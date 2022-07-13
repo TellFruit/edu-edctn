@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Portal.DAL.Entities.Abstract
 {
-    public abstract class Material
+    public abstract class Material : BaseEntity
     {
-
+        public string Title { get; set; }
     }
 }
