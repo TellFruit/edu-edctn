@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portal", "Portal\Portal.csproj", "{FE6ACB0D-949B-4126-B7AA-9AE681B0BF68}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Portal", "Portal\Portal.csproj", "{FE6ACB0D-949B-4126-B7AA-9AE681B0BF68}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portal.DAL", "Portal.DAL\Portal.DAL.csproj", "{133251B4-5C36-411C-A3BD-736CEB848805}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{FE6ACB0D-949B-4126-B7AA-9AE681B0BF68}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FE6ACB0D-949B-4126-B7AA-9AE681B0BF68}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FE6ACB0D-949B-4126-B7AA-9AE681B0BF68}.Release|Any CPU.Build.0 = Release|Any CPU
+		{133251B4-5C36-411C-A3BD-736CEB848805}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{133251B4-5C36-411C-A3BD-736CEB848805}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{133251B4-5C36-411C-A3BD-736CEB848805}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{133251B4-5C36-411C-A3BD-736CEB848805}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
