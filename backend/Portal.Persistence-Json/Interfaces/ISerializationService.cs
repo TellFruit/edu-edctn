@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Portal.Domain.Interfaces
 {
-    internal interface ISerializationService
+    public interface ISerializationService
     {
         // turn any object into a specified string
         string Serialize<T>(T unserialized);

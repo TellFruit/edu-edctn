@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Portal.Domain.Interfaces
 {
-    internal interface IFileIoService
+    public interface IFileIoService
     {
         void Write(string data);
 
