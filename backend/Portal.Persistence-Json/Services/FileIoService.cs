@@ -18,7 +18,21 @@ namespace Portal.Persistence_Json.Services
 
         public string Read()
         {
-            throw new NotImplementedException();
+            string result = "";
+
+            if (File.Exists(_path))
+            {
+                using (StreamReader reader = new StreamReader(_path))
+                {
+                    result = reader.ReadToEnd();
+                }
+            }
+            else
+            {
+                throw new FileNotFoundException(nameof(_path));
+            }
+
+            return result;
         }
 
         public void Write(string data)
