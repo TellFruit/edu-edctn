@@ -8,8 +8,10 @@ namespace Portal.Domain.Interfaces
 {
     internal interface ISerializationService
     {
-        string Serialize<T>(T obj);
+        // turn any object into a specified string
+        string Serialize<T>(T unserialized);
 
-        T Deserialize<T>(string json);
+        // make serialized string a specified object again 
+        T Deserialize<T>(string serialized);
     }
 }
