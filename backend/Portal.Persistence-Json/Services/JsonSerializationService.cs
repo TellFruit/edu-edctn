@@ -8,14 +8,16 @@ namespace Portal.Persistence_Json.Services
 {
     internal class JsonSerializationService : ISerializationService
     {
-        public T Deserialize<T>(string serialized)
+        public T Deserialize<T>(string json)
         {
-            throw new NotImplementedException();
+            return JsonConvert.DeserializeObject<T>(json) ?? throw new ArgumentException(nameof(json));
         }
 
-        public string Serialize<T>(T unserialized)
+        public string Serialize<T>(T obj)
         {
-            throw new NotImplementedException();
+            string result = JsonConvert.SerializeObject(obj, Formatting.Indented);
+
+            return result.Length > 1 ? result : throw new ArgumentException(nameof(obj));
         }
     }
 }
