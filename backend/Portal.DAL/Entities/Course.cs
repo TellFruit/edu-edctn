@@ -9,15 +9,12 @@ namespace Portal.DAL.Entities
 {
     public class Course : BaseEntity
     {
-        public Course()
-        {
-            Materials = new List<Material>();
-        }
-
         public string Name { get; set; }
         public string Description { get; set; }
+
         public User Author { get; set; }
         public Scope Scope { get; set; }
         public ICollection<Material> Materials { get; set; }
+        public ICollection<User> Users { get; set; }
     }
 }

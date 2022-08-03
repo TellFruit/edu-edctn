@@ -14,7 +14,10 @@ namespace Portal.DAL.Entities.Abstract
         }
 
         public string Title { get; set; }
+
         public Scope Scope { get; set; }
         public ICollection<Perk> Perks { get; set; }
+        public ICollection<User> Users { get; set; }
+        public ICollection<Course> Courses { get; set; }
     }
 }
