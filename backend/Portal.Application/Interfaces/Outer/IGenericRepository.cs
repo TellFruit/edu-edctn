@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Portal.Application.Interfaces
+namespace Portal.Application.Interfaces.Outer
 {
     public interface IGenericRepository<TEntity> where TEntity : BaseEntity
     {
