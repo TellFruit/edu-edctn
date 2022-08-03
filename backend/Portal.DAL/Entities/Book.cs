@@ -1,7 +1,7 @@
-﻿using Portal.DAL.Entities.Abstract;
+﻿using Portal.Domain.Entities.Abstract;
 using System.Collections;
 
-namespace Portal.DAL.Entities
+namespace Portal.Domain.Entities
 {
     public class Book : Material
     {

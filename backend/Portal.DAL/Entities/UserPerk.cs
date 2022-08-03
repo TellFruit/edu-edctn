@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Portal.DAL.Entities
+namespace Portal.Domain.Entities
 {
     public class UserPerk
     {

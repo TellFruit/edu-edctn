@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Portal.DAL.Entities.Abstract
+namespace Portal.Domain.Entities.Abstract
 {
     public abstract class Material : BaseEntity
     {

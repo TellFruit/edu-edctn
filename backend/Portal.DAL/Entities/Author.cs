@@ -1,5 +1,5 @@
-﻿using Portal.DAL.Entities.Abstract;
-namespace Portal.DAL.Entities
+﻿using Portal.Domain.Entities.Abstract;
+namespace Portal.Domain.Entities
 {
     public class Author : BaseEntity
     {
