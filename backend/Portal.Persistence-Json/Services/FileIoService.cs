@@ -37,7 +37,10 @@ namespace Portal.Persistence_Json.Services
 
         public void Write(string data)
         {
-            throw new NotImplementedException();
+            using (StreamWriter writer = new StreamWriter(_path, false))
+            {
+                writer.Write(data);
+            }
         }
     }
 }
