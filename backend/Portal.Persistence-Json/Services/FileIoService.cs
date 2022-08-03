@@ -9,6 +9,13 @@ namespace Portal.Persistence_Json.Services
 {
     internal class FileIoService : IFileIoService
     {
+        private string _path;
+
+        public FileIoService(string path)
+        {
+            _path = path;
+        }
+
         public string Read()
         {
             throw new NotImplementedException();
