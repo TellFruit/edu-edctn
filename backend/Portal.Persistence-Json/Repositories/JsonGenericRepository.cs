@@ -23,6 +23,7 @@ namespace Portal.Persistence_Json.Repositories
 
         public void Create(T entity)
         {
+            entity.Id = GenerateNextId();
             _entities.Add(entity);
         }
 
@@ -63,6 +64,18 @@ namespace Portal.Persistence_Json.Repositories
             {
                 _entities = new List<T>();
             }
+        }
+
+        private int GenerateNextId()
+        {
+            int result = 1;
+
+            if (_entities.Count > 0)
+            {
+                result = _entities.Max(b => b.Id) + 1;
+            }
+
+            return result;
         }
     }
 }
