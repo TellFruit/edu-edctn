@@ -46,6 +46,12 @@ namespace Portal.Persistence_Json.Repositories
                 Create(entity);
             }
         }
+        public void SaveChanges()
+        {
+            var type = typeof(T);
+            string path = $"{Directory.GetCurrentDirectory}\\{nameof(type.Name)}\\.json";
+            _file.SetPath(path).Write(_json.Serialize(_entities));
+        }
 
         private void InitEntities()
         {
