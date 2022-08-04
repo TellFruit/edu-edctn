@@ -23,22 +23,28 @@ namespace Portal.Persistence_Json.Repositories
 
         public void Create(T entity)
         {
-            throw new NotImplementedException();
+            _entities.Add(entity);
         }
 
         public void Delete(T entity)
         {
-            throw new NotImplementedException();
+            _entities.Remove(entity);
         }
 
         public ICollection<T> Read()
         {
-            throw new NotImplementedException();
+            return _entities;
         }
 
         public void Update(T entity)
         {
-            throw new NotImplementedException();
+            var match = _entities.FirstOrDefault(e => e.Id.Equals(entity.Id));
+
+            if (match is not null)
+            {
+                Delete(match);
+                Create(entity);
+            }
         }
 
         private void InitEntities()
