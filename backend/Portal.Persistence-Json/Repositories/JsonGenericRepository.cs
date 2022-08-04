@@ -47,6 +47,7 @@ namespace Portal.Persistence_Json.Repositories
                 Create(entity);
             }
         }
+
         public void SaveChanges()
         {
             var type = typeof(T);

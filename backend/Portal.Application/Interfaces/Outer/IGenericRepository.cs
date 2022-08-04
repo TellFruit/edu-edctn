@@ -9,10 +9,10 @@ namespace Portal.Application.Interfaces.Outer
 {
     public interface IGenericRepository<TEntity> where TEntity : BaseEntity
     {
-        void Create(TEntity entity);
-        ICollection<TEntity> Read();
-        void Update(TEntity entity);
-        void Delete(TEntity entity);
-        void SaveChanges();
+        Task<TEntity> Create(TEntity entity);
+        Task<ICollection<TEntity>> Read();
+        Task<TEntity> Update(TEntity entity);
+        Task<int> Delete(TEntity entity);
+        Task SaveChanges();
     }
 }
