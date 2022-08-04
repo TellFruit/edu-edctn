@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Portal.Persistence_Json.Repositories
 {
-    internal class JsonGenericRepository<T> : IGenericRepository<T> where T : BaseEntity
+    internal class JsonGenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : BaseEntity
     {
         private readonly IFileIoService _file;
         private readonly ISerializationService _json;
 
-        private ICollection<T> _entities;
+        private ICollection<TEntity> _entities;
 
         public JsonGenericRepository(IFileIoService file, ISerializationService json)
         {
@@ -21,23 +21,27 @@ namespace Portal.Persistence_Json.Repositories
             InitEntities();
         }
 
-        public void Create(T entity)
+        public async Task<TEntity> Create(TEntity entity)
         {
             entity.Id = GenerateNextId();
             _entities.Add(entity);
+
+            return entity;
         }
 
-        public void Delete(T entity)
+        public async Task<int> Delete(TEntity entity)
         {
-            _entities.Remove(entity);
+            _entities.Remove(_entities.FirstOrDefault(e => e.Id == entity.Id));
+
+            return entity.Id;
         }
 
-        public ICollection<T> Read()
+        public async Task<ICollection<TEntity>> Read()
         {
             return _entities;
         }
 
-        public void Update(T entity)
+        public async Task<TEntity> Update(TEntity entity)
         {
             var match = _entities.FirstOrDefault(e => e.Id.Equals(entity.Id));
 
@@ -46,11 +50,13 @@ namespace Portal.Persistence_Json.Repositories
                 Delete(match);
                 Create(entity);
             }
+
+            return entity;
         }
 
-        public void SaveChanges()
+        public async Task SaveChanges()
         {
-            var type = typeof(T);
+            var type = typeof(TEntity);
             string path = $"{Directory.GetCurrentDirectory}\\{nameof(type.Name)}\\.json";
             _file.SetPath(path).Write(_json.Serialize(_entities));
         }
@@ -59,11 +65,11 @@ namespace Portal.Persistence_Json.Repositories
         {
             try
             {
-                _entities = _json.Deserialize<List<T>>(_file.Read());
+                _entities = _json.Deserialize<List<TEntity>>(_file.Read());
             }
             catch (ArgumentException)
             {
-                _entities = new List<T>();
+                _entities = new List<TEntity>();
             }
         }
 
