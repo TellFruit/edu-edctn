@@ -10,11 +10,6 @@ namespace Portal.Persistence_Json.Services
     {
         private string _path;
 
-        public FileIoService(string path)
-        {
-            _path = path;
-        }
-
         public string Read()
         {
             string result = "";
@@ -40,6 +35,13 @@ namespace Portal.Persistence_Json.Services
             {
                 writer.Write(data);
             }
+        }
+
+        public IFileIoService SetPath(string path)
+        {
+            _path = path;
+
+            return this;
         }
     }
 }

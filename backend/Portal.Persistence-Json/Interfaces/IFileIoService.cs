@@ -11,5 +11,7 @@ namespace Portal.Domain.Interfaces
         void Write(string data);
 
         string Read();
+
+        IFileIoService SetPath(string path);
     }
 }
