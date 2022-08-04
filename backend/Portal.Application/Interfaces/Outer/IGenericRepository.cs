@@ -13,5 +13,6 @@ namespace Portal.Application.Interfaces.Outer
         ICollection<TEntity> Read();
         void Update(TEntity entity);
         void Delete(TEntity entity);
+        void SaveChanges();
     }
 }

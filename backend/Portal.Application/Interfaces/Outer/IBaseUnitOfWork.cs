@@ -15,6 +15,6 @@ namespace Portal.Application.Interfaces.Outer
         IGenericRepository<TEntity> GetRepository<TEntity>() where TEntity : BaseEntity;
 
         // Method to save info from all the repositories to the source
-        void Save();
+        void SaveAllChanges();
     }
 }
