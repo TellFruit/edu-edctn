@@ -1,3 +1,2 @@
 ﻿global using Portal.Application.Interfaces.Outer;
-
-global using MediatR;
+global using Portal.Domain.Entities.Abstract;
