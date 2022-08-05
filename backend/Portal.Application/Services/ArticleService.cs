@@ -7,16 +7,10 @@ using System.Threading.Tasks;
 
 namespace Portal.Application.Services
 {
-    internal class ArticleService : IModelService<ArticleDTO>
+    internal class ArticleService : BaseModelService<Article>, IModelService<ArticleDTO>
     {
-        private readonly IMapper _mapper;
-        private readonly IGenericRepository<Article> _repository;
-
-        public ArticleService(IGenericRepository<Article> repository, IMapper mapper)
-        {
-            _repository = repository;
-            _mapper = mapper;
-        }
+        public ArticleService(IGenericRepository<Article> repository, IMapper mapper) 
+            : base(repository, mapper) {}
 
         public async Task<ArticleDTO> Create(ArticleDTO entity)
         {
