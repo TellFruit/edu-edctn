@@ -10,11 +10,9 @@ namespace Portal.Application.MappingProfiles
     {
         public VideoProfile()
         {
-            CreateMap<Video, VideoDTO>()
-                .ForMember(v => v.Perks, opt => opt.MapFrom(src => src.Perks));
+            CreateMap<Video, VideoDTO>();
 
-            CreateMap<VideoDTO, Video>()
-                .ForMember(v => v.Perks, opt => opt.MapFrom(src => src.Perks));
+            CreateMap<VideoDTO, Video>();
         }
     }
 }

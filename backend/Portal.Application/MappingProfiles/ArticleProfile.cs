@@ -10,11 +10,9 @@ namespace Portal.Application.MappingProfiles
     {
         public ArticleProfile()
         {
-            CreateMap<Article, ArticleDTO>()
-                .ForMember(a => a.Perks, opt => opt.MapFrom(src => src.Perks));
+            CreateMap<Article, ArticleDTO>();
 
-            CreateMap<ArticleDTO, Article>()
-                .ForMember(a => a.Perks, opt => opt.MapFrom(src => src.Perks));
+            CreateMap<ArticleDTO, Article>();
         }
     }
 }
