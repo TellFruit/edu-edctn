@@ -57,7 +57,7 @@ namespace Portal.Persistence_Json.Repositories
         public async Task SaveChanges()
         {
             var type = typeof(TEntity);
-            string path = $"{Directory.GetCurrentDirectory}\\{nameof(type.Name)}\\.json";
+            string path = $"{Environment.CurrentDirectory}\\{nameof(type.Name)}\\.json";
             _file.SetPath(path).Write(_json.Serialize(_entities));
         }
 
