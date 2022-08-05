@@ -12,8 +12,8 @@ namespace Portal.Application.DTO
         public string Name { get; set; }
         public string Description { get; set; }
 
-        public User Author { get; set; }
+        public UserDTO Author { get; set; }
 
-        public ICollection<Material> Materials { get; set; }
+        public ICollection<MaterialDTO> Materials { get; set; }
     }
 }
