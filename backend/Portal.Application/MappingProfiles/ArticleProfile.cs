@@ -8,11 +8,13 @@ namespace Portal.Application.MappingProfiles
 {
     internal class ArticleProfile : Profile
     {
-        public ArticleProfile()
+        public ArticleProfile(IMapper mapper)
         {
-            CreateMap<Article, ArticleDTO>();
+            CreateMap<Article, ArticleDTO>()
+                .ForMember(a => a.Perks, src => src.MapFrom(a => a.Perks.Select(x => mapper.Map<PerkDTO>(x)).ToList()));
 
-            CreateMap<ArticleDTO, Article>();
+            CreateMap<ArticleDTO, Article>()
+                .ForMember(a => a.Perks, src => src.MapFrom(a => a.Perks.Select(x => mapper.Map<Perk>(x)).ToList()));
         }
     }
 }

@@ -12,5 +12,6 @@ namespace Portal.Application.DTO
         public string Title { get; set; }
         public string Url { get; set; }
         public DateTime Published { get; set; }
+        public ICollection<PerkDTO> Perks { get; set; }
     }
 }
