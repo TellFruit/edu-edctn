@@ -8,6 +8,13 @@ namespace Portal.Application.Services
 {
     internal class ArticleService : IModelService<Article>
     {
+        private readonly IGenericRepository<Article> _repository;
+
+        public ArticleService(IGenericRepository<Article> repository)
+        {
+            _repository = repository;
+        }
+
         public Task<Article> Create(Article entity)
         {
             throw new NotImplementedException();

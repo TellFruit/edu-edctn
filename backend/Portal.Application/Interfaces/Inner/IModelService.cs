@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace Portal.Application.Interfaces.Inner
 {
-    internal interface IModelService<TEntity> where TEntity : BaseEntity
+    internal interface IModelService<TEntity, TEntityDTO> where TEntity : BaseEntity 
+                                                            where TEntityDTO : class
     {
-        Task<TEntity> Create(TEntity entity);
+        Task<TEntity> Create(TEntityDTO entity);
         Task<ICollection<TEntity>> GetAll();
-        Task<TEntity> Update(TEntity entity);
-        Task<int> Delete(TEntity entity);
+        Task<TEntity> Update(TEntityDTO entity);
+        Task<int> Delete(TEntityDTO entity);
     }
 }
