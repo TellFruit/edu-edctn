@@ -11,9 +11,14 @@ namespace Portal.Application.Services
         public BookService(IGenericRepository<Book> repository, IMapper mapper)
             : base(repository, mapper) {}
 
-        public Task<BookDTO> Create(BookDTO entity)
+        public async Task<BookDTO> Create(BookDTO entity)
         {
-            throw new NotImplementedException();
+            var book = _mapper.Map<Book>(entity);
+
+            await _repository.Create(book);
+            await _repository.SaveChanges();
+
+            return _mapper.Map<BookDTO>(book);
         }
 
         public Task<int> Delete(int id)
