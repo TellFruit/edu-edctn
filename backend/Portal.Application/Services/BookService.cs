@@ -38,9 +38,9 @@ namespace Portal.Application.Services
 
         public async Task<ICollection<BookDTO>> GetAll()
         {
-            var articles = await _repository.Read();
+            var books = await _repository.Read();
 
-            return _mapper.Map<ICollection<BookDTO>>(articles);
+            return _mapper.Map<ICollection<BookDTO>>(books);
         }
 
         public async Task<BookDTO> Update(BookDTO entity)

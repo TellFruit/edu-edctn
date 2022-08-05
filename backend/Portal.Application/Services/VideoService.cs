@@ -38,9 +38,9 @@ namespace Portal.Application.Services
 
         public async Task<ICollection<VideoDTO>> GetAll()
         {
-            var articles = await _repository.Read();
+            var videos = await _repository.Read();
 
-            return _mapper.Map<ICollection<VideoDTO>>(articles);
+            return _mapper.Map<ICollection<VideoDTO>>(videos);
         }
 
         public async Task<VideoDTO> Update(VideoDTO entity)

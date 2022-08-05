@@ -36,9 +36,11 @@ namespace Portal.Application.Services
             return await _repository.Delete(toDelete);
         }
 
-        public Task<ICollection<PerkDTO>> GetAll()
+        public async Task<ICollection<PerkDTO>> GetAll()
         {
-            throw new NotImplementedException();
+            var books = await _repository.Read();
+
+            return _mapper.Map<ICollection<PerkDTO>>(books);
         }
 
         public Task<PerkDTO> Update(PerkDTO entity)
