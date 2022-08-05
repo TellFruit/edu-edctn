@@ -10,9 +10,11 @@ namespace Portal.Application.MappingProfiles
     {
         public BookProfile()
         {
-            CreateMap<Book, BookDTO>();
+            CreateMap<Book, BookDTO>()
+                .ForMember(b => b.Perks, opt => opt.MapFrom(src => src.Perks));
 
-            CreateMap<BookDTO, Book>();
+            CreateMap<BookDTO, Book>()
+                .ForMember(b => b.Perks, opt => opt.MapFrom(src => src.Perks));
         }
     }
 }
