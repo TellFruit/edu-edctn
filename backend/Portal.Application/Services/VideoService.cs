@@ -6,14 +6,19 @@ using System.Threading.Tasks;
 
 namespace Portal.Application.Services
 {
-    internal class VideoService : BaseModelService<Video> IModelService<VideoDTO>
+    internal class VideoService : BaseModelService<Video>, IModelService<VideoDTO>
     {
         public VideoService(IGenericRepository<Video> repository, IMapper mapper)
             : base(repository, mapper) {}
 
-        public Task<VideoDTO> Create(VideoDTO entity)
+        public async Task<VideoDTO> Create(VideoDTO entity)
         {
-            throw new NotImplementedException();
+            var video = _mapper.Map<Video>(entity);
+
+            await _repository.Create(video);
+            await _repository.SaveChanges();
+
+            return _mapper.Map<VideoDTO>(video);
         }
 
         public Task<int> Delete(int id)
