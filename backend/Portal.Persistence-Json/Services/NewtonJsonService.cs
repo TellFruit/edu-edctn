@@ -19,7 +19,8 @@ namespace Portal.Persistence_Json.Services
 
         public T Deserialize<T>(string json)
         {
-            return (T)JsonConvert.DeserializeObject(json, typeof(T), _settings);
+            return (T)JsonConvert.DeserializeObject(json, typeof(T), _settings)
+                ?? throw new ArgumentException(nameof(json));
         }
 
         public string Serialize<T>(T obj)
