@@ -11,9 +11,16 @@ namespace Portal.Application.Services
         public PerkService(IGenericRepository<Perk> repository, IMapper mapper)
             : base(repository, mapper) {}
 
-        public Task<PerkDTO> Create(PerkDTO entity)
+        public async Task<PerkDTO> Create(PerkDTO entity)
         {
-            throw new NotImplementedException();
+            var perk = _mapper.Map<Perk>(entity);
+
+            perk.CreatedAt = DateTime.Now;
+
+            await _repository.Create(perk);
+            await _repository.SaveChanges();
+
+            return _mapper.Map<PerkDTO>(perk);
         }
 
         public Task<int> Delete(int id)
