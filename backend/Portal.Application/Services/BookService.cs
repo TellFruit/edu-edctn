@@ -47,18 +47,20 @@ namespace Portal.Application.Services
         {
             var articles = await _repository.Read();
 
-            var toUpdate = articles.FirstOrDefault(a => a.Id.Equals(entity.Id));
+            var toUpdate = articles.FirstOrDefault(a => a.Id.Equals(entity.Id)); 
+            var data = _mapper.Map<Book>(entity);
 
             if (toUpdate is null)
             {
                 throw new EntityNotFoundException(nameof(Book));
             }
 
-            toUpdate.Title = entity.Title;
-            toUpdate.Authors = entity.Authors;
-            toUpdate.PageCount = entity.PageCount;
-            toUpdate.Format = entity.Format;
-            toUpdate.Published = entity.Published;
+            toUpdate.Title = data.Title;
+            toUpdate.Authors = data.Authors;
+            toUpdate.PageCount = data.PageCount;
+            toUpdate.Format = data.Format;
+            toUpdate.Published = data.Published;
+            toUpdate.Perks = data.Perks;
 
             toUpdate.UpdatedAt = DateTime.Now;
 
