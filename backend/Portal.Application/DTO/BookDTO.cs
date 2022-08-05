@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace Portal.Application.DTO
 {
-    public class BookDTO
+    public class BookDTO : MaterialDTO
     {
-        public int Id { get; set; }
-        public string Title { get; set; }
         public int PageCount { get; set; }
         public string Format { get; set; }
         public DateTime Published { get; set; }

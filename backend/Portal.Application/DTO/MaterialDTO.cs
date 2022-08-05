@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace Portal.Application.DTO
 {
-    internal class MaterialDTO
+    public class MaterialDTO
     {
+        public int Id { get; set; }
+        public string Title { get; set; }
     }
 }
