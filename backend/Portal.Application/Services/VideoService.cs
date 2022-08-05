@@ -41,9 +41,26 @@ namespace Portal.Application.Services
             return _mapper.Map<ICollection<VideoDTO>>(articles);
         }
 
-        public Task<VideoDTO> Update(VideoDTO entity)
+        public async Task<VideoDTO> Update(VideoDTO entity)
         {
-            throw new NotImplementedException();
+            var articles = await _repository.Read();
+
+            var toUpdate = articles.FirstOrDefault(a => a.Id.Equals(entity.Id));
+
+            if (toUpdate is null)
+            {
+                throw new EntityNotFoundException(nameof(Book));
+            }
+
+            toUpdate.Title = entity.Title;
+            toUpdate.Duration = entity.Duration;
+            toUpdate.Quality = entity.Quality;
+
+            toUpdate.UpdatedAt = DateTime.Now;
+
+            await _repository.Update(toUpdate);
+
+            return _mapper.Map<VideoDTO>(toUpdate);
         }
     }
 }
