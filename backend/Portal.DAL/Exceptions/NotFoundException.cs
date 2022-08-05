@@ -9,8 +9,6 @@ namespace Portal.Domain.Exceptions
     public class EntityNotFoundException : Exception
     {
         public EntityNotFoundException(string name)
-            : base($"Entity of type ({name}) not found!")
-        {
-        }
+            : base($"Entity named ({name}) not found!"){}
     }
 }
