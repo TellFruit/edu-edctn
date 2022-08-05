@@ -38,14 +38,30 @@ namespace Portal.Application.Services
 
         public async Task<ICollection<PerkDTO>> GetAll()
         {
-            var books = await _repository.Read();
+            var perks = await _repository.Read();
 
-            return _mapper.Map<ICollection<PerkDTO>>(books);
+            return _mapper.Map<ICollection<PerkDTO>>(perks);
         }
 
-        public Task<PerkDTO> Update(PerkDTO entity)
+        public async Task<PerkDTO> Update(PerkDTO entity)
         {
-            throw new NotImplementedException();
+            var articles = await _repository.Read();
+
+            var toUpdate = articles.FirstOrDefault(a => a.Id.Equals(entity.Id));
+            var data = _mapper.Map<Perk>(entity);
+
+            if (toUpdate is null)
+            {
+                throw new EntityNotFoundException(nameof(Book));
+            }
+
+            toUpdate.Name = data.Name;
+
+            toUpdate.UpdatedAt = DateTime.Now;
+
+            await _repository.Update(toUpdate);
+
+            return _mapper.Map<PerkDTO>(toUpdate);
         }
     }
 }
