@@ -11,10 +11,14 @@ namespace Portal.Application.MappingProfiles
         public ArticleProfile(IMapper mapper)
         {
             CreateMap<Article, ArticleDTO>()
-                .ForMember(a => a.Perks, src => src.MapFrom(a => a.Perks.Select(x => mapper.Map<PerkDTO>(x)).ToList()));
+                .ForMember(a => a.Perks, src => src.MapFrom(a => a.Perks
+                    .Select(x => mapper.Map<PerkDTO>(x))
+                        .ToList()));
 
             CreateMap<ArticleDTO, Article>()
-                .ForMember(a => a.Perks, src => src.MapFrom(a => a.Perks.Select(x => mapper.Map<Perk>(x)).ToList()));
+                .ForMember(a => a.Perks, src => src.MapFrom(a => a.Perks
+                    .Select(x => mapper.Map<Perk>(x))
+                        .ToList()));
         }
     }
 }

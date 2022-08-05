@@ -49,15 +49,16 @@ namespace Portal.Application.Services
             var articles = await _repository.Read();
 
             var toUpdate = articles.FirstOrDefault(a => a.Id.Equals(entity.Id));
+            var data = _mapper.Map<Article>(entity);
 
             if (toUpdate is null)
             {
                 throw new EntityNotFoundException(nameof(Article));
             }
 
-            toUpdate.Title = entity.Title;
-            toUpdate.Url = entity.Url;
-            toUpdate.Published = entity.Published;
+            toUpdate.Title = data.Title;
+            toUpdate.Url = data.Url;
+            toUpdate.Perks = data.Perks;
 
             toUpdate.UpdatedAt = DateTime.Now;
 
