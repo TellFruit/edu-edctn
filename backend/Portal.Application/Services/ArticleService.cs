@@ -8,16 +8,23 @@ namespace Portal.Application.Services
 {
     internal class ArticleService : IModelService<ArticleDTO>
     {
+        private readonly IMapper _mapper;
         private readonly IGenericRepository<Article> _repository;
 
-        public ArticleService(IGenericRepository<Article> repository)
+        public ArticleService(IGenericRepository<Article> repository, IMapper mapper)
         {
             _repository = repository;
+            _mapper = mapper;
         }
 
-        public Task<ArticleDTO> Create(ArticleDTO entity)
+        public async Task<ArticleDTO> Create(ArticleDTO entity)
         {
-            throw new NotImplementedException();
+            var article = _mapper.Map<Article>(entity);
+
+            await _repository.Create(article);
+            await _repository.SaveChanges();
+
+            return _mapper.Map<ArticleDTO>(article);
         }
 
         public Task<int> Delete(ArticleDTO entity)
