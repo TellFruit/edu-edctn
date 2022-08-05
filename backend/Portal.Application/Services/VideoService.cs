@@ -15,6 +15,8 @@ namespace Portal.Application.Services
         {
             var video = _mapper.Map<Video>(entity);
 
+            video.CreatedAt = DateTime.Now;
+
             await _repository.Create(video);
             await _repository.SaveChanges();
 
