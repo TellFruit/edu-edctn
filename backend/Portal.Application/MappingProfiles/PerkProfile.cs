@@ -4,11 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Portal.Application.DTO
+namespace Portal.Application.MappingProfiles
 {
-    public class PerkDTO
+    internal class PerkProfile : Profile
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
     }
 }

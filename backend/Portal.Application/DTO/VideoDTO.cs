@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Portal.Application.DTO
 {
-    internal class VideoDTO
+    public class VideoDTO
     {
         public int Id { get; set; }
         public string Title { get; set; }
