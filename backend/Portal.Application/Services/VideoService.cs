@@ -48,15 +48,17 @@ namespace Portal.Application.Services
             var articles = await _repository.Read();
 
             var toUpdate = articles.FirstOrDefault(a => a.Id.Equals(entity.Id));
+            var data = _mapper.Map<Video>(entity);
 
             if (toUpdate is null)
             {
                 throw new EntityNotFoundException(nameof(Book));
             }
 
-            toUpdate.Title = entity.Title;
-            toUpdate.Duration = entity.Duration;
-            toUpdate.Quality = entity.Quality;
+            toUpdate.Title = data.Title;
+            toUpdate.Duration = data.Duration;
+            toUpdate.Quality = data.Quality;
+            toUpdate.Perks = data.Perks;
 
             toUpdate.UpdatedAt = DateTime.Now;
 
