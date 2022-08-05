@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -30,8 +31,14 @@ namespace Portal.Application.Services
         public async Task<int> Delete(int id)
         {
             var articles = await _repository.Read();
+            var toDelete = articles.FirstOrDefault(a => a.Id.Equals(id));
 
-            return await _repository.Delete(articles.FirstOrDefault(a => a.Id.Equals(id)));
+            if (toDelete is null)
+            {
+                throw new EntityNotFoundException(nameof(Article));
+            }
+
+            return await _repository.Delete(toDelete);
         }
 
         public async Task<ICollection<ArticleDTO>> GetAll()
@@ -46,6 +53,11 @@ namespace Portal.Application.Services
             var articles = await _repository.Read();
 
             var toUpdate = articles.FirstOrDefault(a => a.Id.Equals(entity.Id));
+
+            if (toUpdate is null)
+            {
+                throw new EntityNotFoundException(nameof(Article));
+            }
 
             toUpdate.Title = entity.Title;
             toUpdate.Url = entity.Url;
