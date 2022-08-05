@@ -15,6 +15,8 @@ namespace Portal.Application.Services
         {
             var book = _mapper.Map<Book>(entity);
 
+            book.CreatedAt = DateTime.Now;
+
             await _repository.Create(book);
             await _repository.SaveChanges();
 

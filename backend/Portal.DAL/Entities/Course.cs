@@ -13,7 +13,7 @@ namespace Portal.Domain.Entities
         public string Description { get; set; }
 
         public User Author { get; set; }
-        public Scope Scope { get; set; }
+
         public ICollection<Material> Materials { get; set; }
         public ICollection<User> Users { get; set; }
     }
