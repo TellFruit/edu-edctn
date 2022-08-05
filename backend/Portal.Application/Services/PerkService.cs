@@ -45,9 +45,9 @@ namespace Portal.Application.Services
 
         public async Task<PerkDTO> Update(PerkDTO entity)
         {
-            var articles = await _repository.Read();
+            var perks = await _repository.Read();
 
-            var toUpdate = articles.FirstOrDefault(a => a.Id.Equals(entity.Id));
+            var toUpdate = perks.FirstOrDefault(a => a.Id.Equals(entity.Id));
             var data = _mapper.Map<Perk>(entity);
 
             if (toUpdate is null)

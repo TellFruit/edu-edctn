@@ -43,9 +43,29 @@ namespace Portal.Application.Services
             return _mapper.Map<ICollection<UserDTO>>(users);
         }
 
-        public Task<UserDTO> Update(UserDTO entity)
+        public async Task<UserDTO> Update(UserDTO entity)
         {
-            throw new NotImplementedException();
+            var users = await _repository.Read();
+
+            var toUpdate = users.FirstOrDefault(a => a.Id.Equals(entity.Id));
+            var data = _mapper.Map<User>(entity);
+
+            if (toUpdate is null)
+            {
+                throw new EntityNotFoundException(nameof(Book));
+            }
+
+            toUpdate.FirstName = data.FirstName;
+            toUpdate.LastName = data.LastName;
+            toUpdate.Email = data.Email;
+            toUpdate.Password = data.Password;
+            toUpdate.Roles = data.Roles;
+
+            toUpdate.UpdatedAt = DateTime.Now;
+
+            await _repository.Update(toUpdate);
+
+            return _mapper.Map<UserDTO>(toUpdate);
         }
     }
 }
