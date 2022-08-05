@@ -23,9 +23,17 @@ namespace Portal.Application.Services
             return _mapper.Map<PerkDTO>(perk);
         }
 
-        public Task<int> Delete(int id)
+        public async Task<int> Delete(int id)
         {
-            throw new NotImplementedException();
+            var perks = await _repository.Read();
+            var toDelete = perks.FirstOrDefault(a => a.Id.Equals(id));
+
+            if (toDelete is null)
+            {
+                throw new EntityNotFoundException(nameof(Perk));
+            }
+
+            return await _repository.Delete(toDelete);
         }
 
         public Task<ICollection<PerkDTO>> GetAll()
