@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Portal.Application.Interfaces.Inner
 {
-    internal interface IModelService<TEntityDTO> where TEntityDTO : class
+    public interface IModelService<TEntityDTO> where TEntityDTO : class
     {
         Task<TEntityDTO> Create(TEntityDTO entity);
         Task<ICollection<TEntityDTO>> GetAll();
