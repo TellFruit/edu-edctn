@@ -28,7 +28,7 @@ namespace Portal.Application.Services
 
             if (toDelete is null)
             {
-                throw new EntityNotFoundException(nameof(Article));
+                throw new EntityNotFoundException(nameof(Book));
             }
 
             return await _repository.Delete(toDelete);
@@ -49,7 +49,7 @@ namespace Portal.Application.Services
 
             if (toUpdate is null)
             {
-                throw new EntityNotFoundException(nameof(Article));
+                throw new EntityNotFoundException(nameof(Book));
             }
 
             toUpdate.Title = entity.Title;

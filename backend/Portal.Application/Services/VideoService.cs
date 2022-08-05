@@ -21,14 +21,24 @@ namespace Portal.Application.Services
             return _mapper.Map<VideoDTO>(video);
         }
 
-        public Task<int> Delete(int id)
+        public async Task<int> Delete(int id)
         {
-            throw new NotImplementedException();
+            var videos = await _repository.Read();
+            var toDelete = videos.FirstOrDefault(a => a.Id.Equals(id));
+
+            if (toDelete is null)
+            {
+                throw new EntityNotFoundException(nameof(Video));
+            }
+
+            return await _repository.Delete(toDelete);
         }
 
-        public Task<ICollection<VideoDTO>> GetAll()
+        public async Task<ICollection<VideoDTO>> GetAll()
         {
-            throw new NotImplementedException();
+            var articles = await _repository.Read();
+
+            return _mapper.Map<ICollection<VideoDTO>>(articles);
         }
 
         public Task<VideoDTO> Update(VideoDTO entity)
