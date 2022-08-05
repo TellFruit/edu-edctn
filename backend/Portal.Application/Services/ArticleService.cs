@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Portal.Application.Services
 {
-    internal class ArticleService : IModelService<Article>
+    internal class ArticleService : IModelService<ArticleDTO>
     {
         private readonly IGenericRepository<Article> _repository;
 
@@ -15,22 +15,22 @@ namespace Portal.Application.Services
             _repository = repository;
         }
 
-        public Task<Article> Create(Article entity)
+        public Task<ArticleDTO> Create(ArticleDTO entity)
         {
             throw new NotImplementedException();
         }
 
-        public Task<int> Delete(Article entity)
+        public Task<int> Delete(ArticleDTO entity)
         {
             throw new NotImplementedException();
         }
 
-        public Task<ICollection<Article>> GetAll()
+        public Task<ICollection<ArticleDTO>> GetAll()
         {
             throw new NotImplementedException();
         }
 
-        public Task<Article> Update(Article entity)
+        public Task<ArticleDTO> Update(ArticleDTO entity)
         {
             throw new NotImplementedException();
         }
