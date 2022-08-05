@@ -12,5 +12,6 @@ namespace Portal.Application.DTO
         public string Title { get; set; }
         public TimeSpan Duration { get; set; }
         public int Quality { get; set; }
+        public ICollection<Perk> Perks { get; set; }
     }
 }
