@@ -27,9 +27,11 @@ namespace Portal.Application.Services
             return _mapper.Map<ArticleDTO>(article);
         }
 
-        public Task<int> Delete(ArticleDTO entity)
+        public async Task<int> Delete(int id)
         {
-            throw new NotImplementedException();
+            var articles = await _repository.Read();
+
+            return await _repository.Delete(articles.FirstOrDefault(x => x.Id == id));
         }
 
         public Task<ICollection<ArticleDTO>> GetAll()

@@ -11,6 +11,6 @@ namespace Portal.Application.Interfaces.Inner
         Task<TEntityDTO> Create(TEntityDTO entity);
         Task<ICollection<TEntityDTO>> GetAll();
         Task<TEntityDTO> Update(TEntityDTO entity);
-        Task<int> Delete(TEntityDTO entity);
+        Task<int> Delete(int id);
     }
 }
