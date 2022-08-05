@@ -36,9 +36,11 @@ namespace Portal.Application.Services
             return await _repository.Delete(toDelete);
         }
 
-        public Task<ICollection<UserDTO>> GetAll()
+        public async Task<ICollection<UserDTO>> GetAll()
         {
-            throw new NotImplementedException();
+            var users = await _repository.Read();
+
+            return _mapper.Map<ICollection<UserDTO>>(users);
         }
 
         public Task<UserDTO> Update(UserDTO entity)
