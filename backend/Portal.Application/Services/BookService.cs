@@ -41,9 +41,28 @@ namespace Portal.Application.Services
             return _mapper.Map<ICollection<BookDTO>>(articles);
         }
 
-        public Task<BookDTO> Update(BookDTO entity)
+        public async Task<BookDTO> Update(BookDTO entity)
         {
-            throw new NotImplementedException();
+            var articles = await _repository.Read();
+
+            var toUpdate = articles.FirstOrDefault(a => a.Id.Equals(entity.Id));
+
+            if (toUpdate is null)
+            {
+                throw new EntityNotFoundException(nameof(Article));
+            }
+
+            toUpdate.Title = entity.Title;
+            toUpdate.Authors = entity.Authors;
+            toUpdate.PageCount = entity.PageCount;
+            toUpdate.Format = entity.Format;
+            toUpdate.Published = entity.Published;
+
+            toUpdate.UpdatedAt = DateTime.Now;
+
+            await _repository.Update(toUpdate);
+
+            return _mapper.Map<BookDTO>(toUpdate);
         }
     }
 }
