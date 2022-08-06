@@ -59,7 +59,7 @@ namespace Portal.UI_Console
 
         public void SetCommandParser(IParseInput parser)
         {
-            throw new NotImplementedException();
+            _commandParser = parser;
         }
     }
 }
