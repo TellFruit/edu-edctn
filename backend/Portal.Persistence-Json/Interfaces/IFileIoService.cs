@@ -1,6 +1,6 @@
 ﻿namespace Portal.Domain.Interfaces
 {
-    public interface IFileIoService
+    internal interface IFileIoService
     {
         void Write(string data);
 

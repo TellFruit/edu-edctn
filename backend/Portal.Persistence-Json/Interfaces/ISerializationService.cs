@@ -1,6 +1,6 @@
 ﻿namespace Portal.Domain.Interfaces
 {
-    public interface ISerializationService
+    internal interface ISerializationService
     {
         // turn any object into a specified string
         string Serialize<T>(T unserialized);
