@@ -24,7 +24,7 @@
 
             if (toDelete is null)
             {
-                throw new EntityNotFoundException(nameof(Book));
+                throw new EntityNotFoundException(nameof(Course));
             }
 
             return await _repository.Delete(toDelete);
@@ -39,7 +39,26 @@
 
         public async Task<CourseDTO> Update(CourseDTO entity)
         {
-            throw new NotImplementedException();
+            var courses = await _repository.Read();
+
+            var toUpdate = courses.FirstOrDefault(a => a.Id.Equals(entity.Id));
+            var data = _mapper.Map<Course>(entity);
+            
+            if (toUpdate is null)
+            {
+                throw new EntityNotFoundException(nameof(Course));
+            }
+
+            toUpdate.Name = data.Name;
+            toUpdate.Description = data.Description;
+            toUpdate.Author = data.Author;
+            toUpdate.Materials = data.Materials;
+
+            toUpdate.UpdatedAt = DateTime.Now;
+
+            await _repository.Update(toUpdate);
+
+            return _mapper.Map<CourseDTO>(toUpdate);
         }
     }
 }
