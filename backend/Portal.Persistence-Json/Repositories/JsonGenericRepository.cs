@@ -14,6 +14,8 @@
             _file = file;
             _json = json;
 
+            _path = GeneratePath();
+            _file.SetPath(_path);
             InitEntities();
         }
 
@@ -57,9 +59,6 @@
 
         private void InitEntities()
         {
-            var type = typeof(TEntity);
-            _path = $"{Environment.CurrentDirectory}\\{type.Name}\\.json";
-
             try
             {
                 _entities = _json.Deserialize<List<TEntity>>(_file.Read());
@@ -80,6 +79,11 @@
             }
 
             return result;
+        }
+
+        private string GeneratePath()
+        {
+            return $"{Environment.CurrentDirectory}\\{typeof(TEntity).Name}\\.json";
         }
     }
 }
