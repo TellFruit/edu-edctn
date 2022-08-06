@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -15,6 +15,13 @@
   <ItemGroup>
     <ProjectReference Include="..\Portal.Application\Portal.Application.csproj" />
     <ProjectReference Include="..\Portal.Persistence-Json\Portal.Persistence-Json.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ConsoleCommands\Get\" />
+    <Folder Include="ConsoleCommands\Modify\" />
+    <Folder Include="ConsoleCommands\Other\" />
+    <Folder Include="Parsers\" />
   </ItemGroup>
 
 </Project>
