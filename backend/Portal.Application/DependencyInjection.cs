@@ -21,7 +21,9 @@
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ICourseService, CourseService>();
 
-            services.AddScoped<IUserAuth, UserAuth>();
+            services.AddScoped<IConfigService, ConfigService>();
+
+            services.AddSingleton<IUserAuth, UserAuth>();
         }
     }
 }
