@@ -32,7 +32,9 @@
 
         public async Task<ICollection<CourseDTO>> GetAll()
         {
-            throw new NotImplementedException();
+            var courses = await _repository.Read();
+
+            return _mapper.Map<ICollection<CourseDTO>>(courses);
         }
 
         public async Task<CourseDTO> Update(CourseDTO entity)
