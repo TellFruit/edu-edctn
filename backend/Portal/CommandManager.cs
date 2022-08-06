@@ -28,7 +28,33 @@ namespace Portal.UI_Console
 
         public void InitCommandFlow()
         {
-            throw new NotImplementedException();
+            string input;
+
+            do
+            {
+                try
+                {
+                    input = Console.ReadLine() ?? "";
+
+                    var parts = _commandParser.Parse(input);
+
+                    LastCommand = GetCommand(parts.First());
+
+                    if (_parameterParser is null)
+                    {
+                        LastCommand.Output();
+                    }
+                    else
+                    {
+                        LastCommand.Output(_parameterParser.Parse(parts.Last()).ToArray());
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Error: " + e.Message);
+                }
+            }
+            while (true);
         }
 
         public void SetCommandParser(IParseInput parser)
