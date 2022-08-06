@@ -83,7 +83,7 @@
 
         private string GeneratePath()
         {
-            return $"{Environment.CurrentDirectory}\\{typeof(TEntity).Name}\\.json";
+            return $"{Environment.CurrentDirectory}\\{typeof(TEntity).Name}.json";
         }
     }
 }

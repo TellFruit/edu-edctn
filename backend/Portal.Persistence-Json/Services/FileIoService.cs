@@ -17,7 +17,7 @@
             }
             else
             {
-                throw new FileNotFoundException(nameof(_path));
+                //throw new FileNotFoundException(nameof(_path));
             }
 
             return result;

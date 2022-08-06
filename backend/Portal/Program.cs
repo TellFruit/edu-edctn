@@ -20,14 +20,16 @@
             return services.BuildServiceProvider();
         }
 
-        public static void Main()
+        public static Task Main()
         {
             Console.OutputEncoding = Encoding.Unicode;
             Console.InputEncoding = Encoding.Unicode;
 
             _root = CompositionRoot();
 
-            Root.GetService<ConsoleApp>().Run();
+            Root.GetService<ConsoleApp>()?.Run();
+
+            return Task.CompletedTask;
         }
     }
 }
