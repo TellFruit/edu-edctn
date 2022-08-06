@@ -23,7 +23,7 @@ namespace Portal.UI_Console
 
         public IConsoleCommand? GetCommand(string commandName)
         {
-            throw new NotImplementedException();
+            
         }
 
         public void InitCommandFlow()
