@@ -14,11 +14,12 @@
             },
             Assembly.GetExecutingAssembly());
 
-            services.AddScoped<ArticleService>();
-            services.AddScoped<BookService>();
-            services.AddScoped<VideoService>();
-            services.AddScoped<PerkService>();
-            services.AddScoped<UserService>();
+            services.AddScoped<IArticleService, ArticleService>();
+            services.AddScoped<IBookService, BookService>();
+            services.AddScoped<IVideoService, VideoService>();
+            services.AddScoped<IPerkService, PerkService>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<ICourseService, CourseService>();
 
             services.AddScoped<IUserAuth, UserAuth>();
         }
