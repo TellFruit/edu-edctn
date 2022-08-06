@@ -1,6 +1,6 @@
 ﻿namespace Portal.Application.Services
 {
-    internal class PerkService : BaseModelService<Perk>, IModelService<PerkDTO>
+    internal class PerkService : BaseModelService<Perk>, IPerkService
     {
         public PerkService(IGenericRepository<Perk> repository, IMapper mapper)
             : base(repository, mapper) {}

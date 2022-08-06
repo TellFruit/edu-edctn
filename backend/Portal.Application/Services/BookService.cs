@@ -1,6 +1,6 @@
 ﻿namespace Portal.Application.Services
 {
-    internal class BookService : BaseModelService<Book>, IModelService<BookDTO>
+    internal class BookService : BaseModelService<Book>, IBookService
     {
         public BookService(IGenericRepository<Book> repository, IMapper mapper)
             : base(repository, mapper) {}

@@ -1,6 +1,6 @@
 ﻿namespace Portal.Application.Services
 {
-    internal class ArticleService : BaseModelService<Article>, IModelService<ArticleDTO>
+    internal class ArticleService : BaseModelService<Article>, IArticleService
     {
         public ArticleService(IGenericRepository<Article> repository, IMapper mapper) 
             : base(repository, mapper) {}

@@ -1,6 +1,6 @@
 ﻿namespace Portal.Application.Services
 {
-    internal class UserService : BaseModelService<User>, IModelService<UserDTO>
+    internal class UserService : BaseModelService<User>, IUserService
     {
         public UserService(IGenericRepository<User> repository, IMapper mapper)
             : base(repository, mapper) {}

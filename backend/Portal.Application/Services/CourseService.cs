@@ -1,6 +1,7 @@
 ﻿namespace Portal.Application.Services
 {
-    internal class CourseService
+    public class CourseService
     {
+
     }
 }

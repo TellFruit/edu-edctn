@@ -1,6 +1,6 @@
 ﻿namespace Portal.Application.Services
 {
-    internal class VideoService : BaseModelService<Video>, IModelService<VideoDTO>
+    internal class VideoService : BaseModelService<Video>, IVideoService
     {
         public VideoService(IGenericRepository<Video> repository, IMapper mapper)
             : base(repository, mapper) {}
