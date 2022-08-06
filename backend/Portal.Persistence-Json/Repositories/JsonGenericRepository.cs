@@ -5,6 +5,8 @@
         private readonly IFileIoService _file;
         private readonly ISerializationService _json;
 
+        private string _path;
+
         private ICollection<TEntity> _entities;
 
         public JsonGenericRepository(IFileIoService file, ISerializationService json)
@@ -50,13 +52,14 @@
 
         public async Task SaveChanges()
         {
-            var type = typeof(TEntity);
-            string path = $"{Environment.CurrentDirectory}\\{nameof(type.Name)}\\.json";
-            _file.SetPath(path).Write(_json.Serialize(_entities));
+            _file.SetPath(_path).Write(_json.Serialize(_entities));
         }
 
         private void InitEntities()
         {
+            var type = typeof(TEntity);
+            _path = $"{Environment.CurrentDirectory}\\{type.Name}\\.json";
+
             try
             {
                 _entities = _json.Deserialize<List<TEntity>>(_file.Read());
