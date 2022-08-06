@@ -1,5 +1,5 @@
-﻿global using Portal.Application.Interfaces.Outer;
-global using Portal.Application.Interfaces.Inner;
+﻿global using Portal.Application.Interfaces.OuterImpl;
+global using Portal.Application.Interfaces.InnerImpl;
 global using Portal.Application.Services.Abstract;
 global using Portal.Application.DTO;
 

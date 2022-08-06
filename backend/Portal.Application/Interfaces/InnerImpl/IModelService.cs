@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Portal.Application.Interfaces.Inner
+﻿namespace Portal.Application.Interfaces.InnerImpl
 {
     public interface IModelService<TEntityDTO> where TEntityDTO : class
     {

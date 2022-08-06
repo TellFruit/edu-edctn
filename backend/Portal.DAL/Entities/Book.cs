@@ -1,5 +1,4 @@
 ﻿using Portal.Domain.Entities.Abstract;
-using System.Collections;
 
 namespace Portal.Domain.Entities
 {

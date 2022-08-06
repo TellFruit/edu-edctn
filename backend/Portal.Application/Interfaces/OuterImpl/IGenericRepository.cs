@@ -1,11 +1,4 @@
-﻿using Portal.Domain.Entities.Abstract;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Portal.Application.Interfaces.Outer
+﻿namespace Portal.Application.Interfaces.OuterImpl
 {
     public interface IGenericRepository<TEntity> where TEntity : BaseEntity
     {

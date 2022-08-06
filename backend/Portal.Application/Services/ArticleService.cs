@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Portal.Application.Services
+﻿namespace Portal.Application.Services
 {
     internal class ArticleService : BaseModelService<Article>, IModelService<ArticleDTO>
     {
