@@ -1,4 +1,5 @@
 ﻿global using System.Reflection;
+global using System.Configuration;
 
 global using Portal.Application.Interfaces.OuterImpl;
 global using Portal.Application.Interfaces.InnerImpl;

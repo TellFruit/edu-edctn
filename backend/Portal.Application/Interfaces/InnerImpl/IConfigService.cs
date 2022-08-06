@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Portal.Application.Interfaces.InnerImpl
 {
-    public interface IConfigureService
+    public interface IConfigService
     {
         string GetSetting(string key);
     }
