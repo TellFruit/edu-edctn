@@ -1,4 +1,6 @@
-﻿namespace Portal.UI_Console
+﻿using Portal.UI_Console.CommandManagement;
+
+namespace Portal.UI_Console
 {
     [ExcludeFromCodeCoverage]
     static class Program

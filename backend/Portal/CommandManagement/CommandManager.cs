@@ -1,6 +1,6 @@
 ﻿using Portal.UI_Console.ConsoleCommands.Modify.Materials.Article;
 
-namespace Portal.UI_Console
+namespace Portal.UI_Console.CommandManagement
 {
     internal class CommandManager : ICommandManager
     {
@@ -9,7 +9,7 @@ namespace Portal.UI_Console
         private IParseInput _commandParser;
         private IParseInput? _parameterParser;
 
-        public IConsoleCommand? LastCommand { get; set; }
+        public IConsoleCommand LastCommand { get; set; }
 
         public CommandManager(IParseInput commandParser, IConfigService config)
         {
@@ -17,7 +17,7 @@ namespace Portal.UI_Console
             _config = config;
         }
 
-        public IConsoleCommand? GetCommand(string commandName)
+        public IConsoleCommand GetCommand(string commandName)
         {
             _parameterParser = null;
 

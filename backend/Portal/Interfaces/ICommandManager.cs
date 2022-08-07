@@ -12,6 +12,6 @@ namespace Portal.UI_Console.Interfaces
 
         void SetCommandParser(IParseInput parser);
 
-        IConsoleCommand? GetCommand(string commandName);
+        IConsoleCommand GetCommand(string commandName);
     }
 }

@@ -8,6 +8,5 @@ namespace Portal.Domain.Entities
         
         public ICollection<UserPerk> UserPerks { get; set; }
         public ICollection<Material> Materials { get; set; }
-
     }
 }
