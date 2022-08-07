@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Portal.UI_Console.ConsoleCommands.Modify.Course;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,9 +24,11 @@ namespace Portal.UI_Console.CommandManagement.ChooseCommand
 
             switch (commandName)
             {
-                case "create-article":
+                case "add-article":
                     {
-                       
+                       var articleService = Program.Root.GetService<IArticleService>();
+
+                        return new AddArticleCommand(articleService, _toCreate);
                     }
                 case "return":
                     {
