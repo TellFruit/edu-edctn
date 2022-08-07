@@ -21,7 +21,6 @@
     <Folder Include="CommandManagement\ChooseCommand\" />
     <Folder Include="ConsoleCommands\Get\" />
     <Folder Include="ConsoleCommands\Modify\Course\" />
-    <Folder Include="ConsoleCommands\Other\" />
   </ItemGroup>
 
 </Project>
