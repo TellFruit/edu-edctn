@@ -12,6 +12,12 @@
 
             services.AddSingleton<ConsoleApp>();
 
+            services.AddScoped<ICommandManager, CommandManager>();
+
+            // as the only place it is passes through DI is CommandManager
+            // and in CommandManager it is required to use exactly that parser
+            services.AddScoped<IParseInput, ParseInitPrompt>();
+
             Portal.Application
                 .DependencyInjection.RegisterApplication(services);
             Portal.Persistence_Json
