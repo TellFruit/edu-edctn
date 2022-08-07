@@ -8,11 +8,13 @@ namespace Portal.UI_Console.ConsoleCommands.Other
 {
     internal class PaginateCommand<T> : IConsoleCommand
     {
+        private readonly IConfigService _config;
         private ICollection<T> _collection;
 
-        public PaginateCommand(ICollection<T> collection)
+        public PaginateCommand(IConfigService config, ICollection<T> collection)
         {
             _collection = collection;
+            _config = config;
         }
 
         public async Task Output(params string[] parameters)
@@ -20,7 +22,7 @@ namespace Portal.UI_Console.ConsoleCommands.Other
             string input = "";
 
             int page = 1;
-            int pageSize = 3;
+            int pageSize = int.Parse(_config.GetSetting("PaginatedPageSize"));
 
             do
             {
