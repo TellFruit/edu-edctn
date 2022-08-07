@@ -17,7 +17,7 @@ namespace Portal.UI_Console.ConsoleCommands.Other
             _config = config;
         }
 
-        public async Task Output(params string[] parameters)
+        public async Task<bool> Output(params string[] parameters)
         {
             string input = "";
 
@@ -47,6 +47,8 @@ namespace Portal.UI_Console.ConsoleCommands.Other
                 input = Console.ReadLine();
             }
             while (true);
+
+            return true;
         }
     }
 }

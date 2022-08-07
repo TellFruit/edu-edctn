@@ -20,7 +20,6 @@
   <ItemGroup>
     <Folder Include="CommandManagement\ChooseCommand\" />
     <Folder Include="ConsoleCommands\Get\" />
-    <Folder Include="ConsoleCommands\Modify\Course\" />
   </ItemGroup>
 
 </Project>

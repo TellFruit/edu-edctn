@@ -24,6 +24,7 @@ namespace Portal.UI_Console.CommandManagement
 
         public async Task InitCommandFlow()
         {
+            bool allowed = true;
             string input = "";
 
             do
@@ -38,11 +39,11 @@ namespace Portal.UI_Console.CommandManagement
 
                     if (_parameterParser is null)
                     {
-                        await LastCommand.Output();
+                        allowed = await LastCommand.Output();
                     }
                     else
                     {
-                        await LastCommand.Output(_parameterParser.Parse(parts.Last()).ToArray());
+                        allowed = await LastCommand.Output(_parameterParser.Parse(parts.Last()).ToArray());
                     }
                 }
                 catch (Exception e)
@@ -50,7 +51,7 @@ namespace Portal.UI_Console.CommandManagement
                     Console.WriteLine("Error: " + e.Message);
                 }
             }
-            while (true);
+            while (allowed);
         }
 
         public void SetCommandParser(IParseInput parser)

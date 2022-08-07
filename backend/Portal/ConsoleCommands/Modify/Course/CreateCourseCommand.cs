@@ -4,15 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Portal.UI_Console.ConsoleCommands.Other
+namespace Portal.UI_Console.ConsoleCommands.Modify.Course
 {
-    internal class ExitCommand : IConsoleCommand
+    internal class CreateCourseCommand : IConsoleCommand
     {
+        private readonly ICourseService _course;
+        private readonly IArticleService _article;
+
         public async Task<bool> Output(params string[] parameters)
         {
-            Environment.Exit(0);
 
-            return false;
         }
     }
 }

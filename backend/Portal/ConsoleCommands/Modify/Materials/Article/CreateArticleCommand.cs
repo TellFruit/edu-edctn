@@ -16,7 +16,7 @@ namespace Portal.UI_Console.ConsoleCommands.Modify.Materials.Article
             _articleService = articleService;
         }
 
-        public async Task Output(params string[] parameters)
+        public async Task<bool> Output(params string[] parameters)
         {
             /* Examples of correct input:
              * Tilte - https://regex101.com/ (11.12.2002)
@@ -33,6 +33,8 @@ namespace Portal.UI_Console.ConsoleCommands.Modify.Materials.Article
 
             await _articleService.Create(toCreate);
             Console.WriteLine("Success! Article created");
+
+            return true;
         }
     }
 }
