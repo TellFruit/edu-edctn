@@ -49,6 +49,10 @@ namespace Portal.UI_Console.ConsoleCommands.Modify.Course
             }
             while (true);
 
+            var wantedArticle = await _article.GetById(wantedId);
+
+            _courseDTO.Materials.Add((MaterialDTO)wantedArticle);
+
             return true;
         }
     }
