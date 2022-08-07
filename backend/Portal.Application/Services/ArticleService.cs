@@ -37,6 +37,15 @@
             return _mapper.Map<ICollection<ArticleDTO>>(articles);
         }
 
+        public async Task<ICollection<ArticleDTO>> GetById(int id)
+        {
+            var articles = await _repository.Read();
+
+            var wantedArticle = articles.Where(a => a.Id.Equals(id));
+
+            return _mapper.Map<ICollection<ArticleDTO>>(articles);
+        }
+
         public async Task<ArticleDTO> Update(ArticleDTO entity)
         {
             var articles = await _repository.Read();

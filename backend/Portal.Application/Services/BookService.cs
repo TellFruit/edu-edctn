@@ -37,6 +37,15 @@
             return _mapper.Map<ICollection<BookDTO>>(books);
         }
 
+        public async Task<ICollection<BookDTO>> GetById(int id)
+        {
+            var books = await _repository.Read();
+
+            var wantedBook = books.Where(b => b.Id.Equals(id));
+
+            return _mapper.Map<ICollection<BookDTO>>(wantedBook);
+        }
+
         public async Task<BookDTO> Update(BookDTO entity)
         {
             var articles = await _repository.Read();
