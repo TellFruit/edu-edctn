@@ -18,6 +18,12 @@ namespace Portal.UI_Console.ConsoleCommands.Modify.Materials.Article
 
         public async Task Output(params string[] parameters)
         {
+            /* Examples of correct input:
+             * Tilte - https://regex101.com/ (11.12.2002)
+             * Tilte - https://regex101.com/ (11/12/2002)
+             * Tilte - https://regex101.com/ (2002)
+             */
+
             var toCreate = new ArticleDTO() 
             {
                 Title = parameters[0],
