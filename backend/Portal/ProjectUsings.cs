@@ -4,6 +4,7 @@ global using System.Text;
 
 global using Portal.Application.Interfaces.InnerImpl.Services;
 global using Portal.Application.Interfaces.InnerImpl;
+global using Portal.Application.DTO;
 global using Portal.UI_Console.CommandManagement;
 global using Portal.UI_Console.CommandManagement.ChooseCommand;
 global using Portal.UI_Console.ConsoleCommands.Other;
