@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Portal.UI_Console.ConsoleCommands.Modify.Materials.Article;
 
 namespace Portal.UI_Console
 {
@@ -23,7 +19,23 @@ namespace Portal.UI_Console
 
         public IConsoleCommand? GetCommand(string commandName)
         {
-            
+            _parameterParser = null;
+
+            switch (commandName)
+            {
+                case "create-article":
+                    {
+                        var articleService = Program.Root.GetService<IArticleService>();
+
+                        _parameterParser = new BasicRegexParse(_config.GetSetting("ArticleRegex"));
+
+                        return new CreateArticleCommand(articleService);
+                    }
+                default:
+                    break;
+            }
+
+            throw new InvalidOperationException(nameof(commandName));
         }
 
         public async Task InitCommandFlow()
