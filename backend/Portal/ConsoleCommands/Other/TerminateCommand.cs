@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Portal.UI_Console.ConsoleCommands.Other
 {
-    internal class ExitCommand : IConsoleCommand
+    internal class TerminateCommand : IConsoleCommand
     {
         public async Task<bool> Output(params string[] parameters)
         {

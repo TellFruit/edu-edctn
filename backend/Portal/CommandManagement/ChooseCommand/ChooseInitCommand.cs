@@ -31,7 +31,7 @@ namespace Portal.UI_Console.CommandManagement.ChooseCommand
                     }
                 case "exit":
                     {
-                        return new ExitCommand();
+                        return new TerminateCommand();
                     }
                 default:
                     break;
