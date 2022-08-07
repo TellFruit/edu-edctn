@@ -17,7 +17,7 @@ namespace Portal.UI_Console
             _manager = manager;
         }
 
-        public async Task Run()
+        public async Task Start()
         {
             await _manager.InitCommandFlow();
         }

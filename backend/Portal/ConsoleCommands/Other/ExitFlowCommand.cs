@@ -8,7 +8,7 @@ namespace Portal.UI_Console.ConsoleCommands.Other
 {
     internal class ExitFlowCommand : IConsoleCommand
     {
-        public async Task<bool> Output(params string[] parameters)
+        public async Task<bool> Run(params string[] parameters)
         {
             Console.WriteLine("Current flow is finished!");
 

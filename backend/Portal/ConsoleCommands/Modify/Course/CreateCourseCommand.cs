@@ -8,7 +8,7 @@ namespace Portal.UI_Console.ConsoleCommands.Modify.Course
 {
     internal class CreateCourseCommand : IConsoleCommand
     {
-        public async Task<bool> Output(params string[] parameters)
+        public async Task<bool> Run(params string[] parameters)
         {
 
         }

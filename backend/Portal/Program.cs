@@ -34,7 +34,7 @@
 
             _root = CompositionRoot();
 
-            Root.GetService<ConsoleApp>()?.Run();
+            Root.GetService<ConsoleApp>()?.Start();
 
             return Task.CompletedTask;
         }

@@ -8,6 +8,6 @@ namespace Portal.UI_Console.Interfaces
 {
     internal interface IConsoleCommand
     {
-        Task<bool> Output(params string[] parameters);
+        Task<bool> Run(params string[] parameters);
     }
 }

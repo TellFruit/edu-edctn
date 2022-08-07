@@ -17,7 +17,7 @@ namespace Portal.UI_Console.ConsoleCommands.Other
             _config = config;
         }
 
-        public async Task<bool> Output(params string[] parameters)
+        public async Task<bool> Run(params string[] parameters)
         {
             string input = "";
 

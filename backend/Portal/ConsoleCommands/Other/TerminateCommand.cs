@@ -8,7 +8,7 @@ namespace Portal.UI_Console.ConsoleCommands.Other
 {
     internal class TerminateCommand : IConsoleCommand
     {
-        public async Task<bool> Output(params string[] parameters)
+        public async Task<bool> Run(params string[] parameters)
         {
             Environment.Exit(0);
 

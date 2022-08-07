@@ -39,11 +39,11 @@ namespace Portal.UI_Console.CommandManagement
 
                     if (_parameterParser is null)
                     {
-                        allowed = await LastCommand.Output();
+                        allowed = await LastCommand.Run();
                     }
                     else
                     {
-                        allowed = await LastCommand.Output(_parameterParser.Parse(parts.Last()).ToArray());
+                        allowed = await LastCommand.Run(_parameterParser.Parse(parts.Last()).ToArray());
                     }
                 }
                 catch (Exception e)
