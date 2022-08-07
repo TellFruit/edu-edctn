@@ -30,7 +30,7 @@ namespace Portal.UI_Console.CommandManagement.ChooseCommand
                     }
                 case "return":
                     {
-                        return new ExitFlowCommand();
+                        return new CancelCourseCreateCommand(_toCreate);
                     }
                 default:
                     break;

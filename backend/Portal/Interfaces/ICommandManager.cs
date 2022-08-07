@@ -10,8 +10,6 @@ namespace Portal.UI_Console.Interfaces
     {
         Task InitCommandFlow();
 
-        void SetCommandParser(IParseInput parser);
-
         IConsoleCommand GetCommand(string commandName);
     }
 }

@@ -53,10 +53,5 @@ namespace Portal.UI_Console.CommandManagement
             }
             while (allowed);
         }
-
-        public void SetCommandParser(IParseInput parser)
-        {
-            _commandParser = parser;
-        }
     }
 }
