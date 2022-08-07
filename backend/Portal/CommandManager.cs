@@ -40,7 +40,7 @@ namespace Portal.UI_Console
 
         public async Task InitCommandFlow()
         {
-            string input;
+            string input = "";
 
             do
             {
