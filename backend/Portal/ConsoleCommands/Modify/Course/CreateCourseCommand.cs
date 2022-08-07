@@ -28,7 +28,10 @@ namespace Portal.UI_Console.ConsoleCommands.Modify.Course
             Console.WriteLine("Course creation flow started. Write commands to form it.");
             await commandManager.InitCommandFlow();
 
-            await _course.Create(_courseDTO);
+            if (_courseDTO.Materials.Count > 0)
+            {
+                await _course.Create(_courseDTO);
+            }
 
             return true;
         }
