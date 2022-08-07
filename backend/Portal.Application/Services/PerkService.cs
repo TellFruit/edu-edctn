@@ -41,7 +41,7 @@
         {
             var perks = await _repository.Read();
 
-            var wantedPerk = perks.Where(c => c.Id.Equals(id));
+            var wantedPerk = perks.FirstOrDefault(c => c.Id.Equals(id));
 
             return _mapper.Map<PerkDTO>(wantedPerk);
         }

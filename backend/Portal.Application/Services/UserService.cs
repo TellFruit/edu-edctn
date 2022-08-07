@@ -41,7 +41,7 @@
         {
             var users = await _repository.Read();
 
-            var wantedUser = users.Where(c => c.Id.Equals(id));
+            var wantedUser = users.FirstOrDefault(c => c.Id.Equals(id));
 
             return _mapper.Map<UserDTO>(wantedUser);
         }

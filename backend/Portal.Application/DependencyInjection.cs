@@ -11,6 +11,7 @@
                 cfg.AddProfile<VideoProfile>();
                 cfg.AddProfile<PerkProfile>();
                 cfg.AddProfile<UserProfile>();
+                cfg.AddProfile<CourseProfile>();
             },
             Assembly.GetExecutingAssembly());
 

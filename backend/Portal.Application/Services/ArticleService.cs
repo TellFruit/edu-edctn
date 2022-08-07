@@ -41,7 +41,7 @@
         {
             var articles = await _repository.Read();
 
-            var wantedArticle = articles.Where(a => a.Id.Equals(id));
+            var wantedArticle = articles.FirstOrDefault(a => a.Id.Equals(id));
 
             return _mapper.Map<ArticleDTO>(wantedArticle);
         }

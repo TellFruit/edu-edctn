@@ -41,7 +41,7 @@
         {
             var books = await _repository.Read();
 
-            var wantedBook = books.Where(b => b.Id.Equals(id));
+            var wantedBook = books.FirstOrDefault(b => b.Id.Equals(id));
 
             return _mapper.Map<BookDTO>(wantedBook);
         }

@@ -1,4 +1,5 @@
-﻿using Portal.UI_Console.ConsoleCommands.Modify.Course;
+﻿using AutoMapper;
+using Portal.UI_Console.ConsoleCommands.Modify.Course;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +25,7 @@ namespace Portal.UI_Console.CommandManagement.ChooseCommand
             {
                 case "add-article":
                     {
-                       var articleService = Program.Root.GetService<IArticleService>();
+                        var articleService = Program.Root.GetService<IArticleService>();
 
                         return new AddArticleCommand(articleService, _toCreate);
                     }

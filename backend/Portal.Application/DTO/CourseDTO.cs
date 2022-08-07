@@ -9,5 +9,10 @@
         public UserDTO Author { get; set; }
 
         public ICollection<MaterialDTO> Materials { get; set; }
+
+        public CourseDTO()
+        {
+            Materials = new List<MaterialDTO>();
+        }
     }
 }

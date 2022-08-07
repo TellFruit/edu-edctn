@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -39,7 +40,7 @@ namespace Portal.UI_Console.ConsoleCommands.Modify.Course
 
                 if (input.Equals("return"))
                 {
-                    break;
+                    return true;
                 }
 
                 try { wantedId = int.Parse(input); }

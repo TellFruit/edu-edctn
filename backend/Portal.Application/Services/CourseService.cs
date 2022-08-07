@@ -41,7 +41,7 @@
         {
             var courses = await _repository.Read();
 
-            var wantedCourse = courses.Where(c => c.Id.Equals(id));
+            var wantedCourse = courses.FirstOrDefault(c => c.Id.Equals(id));
 
             return _mapper.Map<CourseDTO>(wantedCourse);
         }

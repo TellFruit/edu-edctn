@@ -41,7 +41,7 @@
         {
             var videos = await _repository.Read();
 
-            var wantedVideo = videos.Where(v => v.Id.Equals(id));
+            var wantedVideo = videos.FirstOrDefault(v => v.Id.Equals(id));
 
             return _mapper.Map<VideoDTO>(wantedVideo);
         }
