@@ -4,38 +4,22 @@ namespace Portal.UI_Console.CommandManagement
 {
     internal class CommandManager : ICommandManager
     {
-        private readonly IConfigService _config;
+        private readonly IChooseCommand _choose;
 
         private IParseInput _commandParser;
         private IParseInput? _parameterParser;
 
         public IConsoleCommand LastCommand { get; set; }
 
-        public CommandManager(IParseInput commandParser, IConfigService config)
+        public CommandManager(IParseInput commandParser, IChooseCommand choose)
         {
             _commandParser = commandParser;
-            _config = config;
+            _choose = choose;
         }
 
         public IConsoleCommand GetCommand(string commandName)
         {
-            _parameterParser = null;
-
-            switch (commandName)
-            {
-                case "create-article":
-                    {
-                        var articleService = Program.Root.GetService<IArticleService>();
-
-                        _parameterParser = new BasicRegexParse(_config.GetSetting("ArticleRegex"));
-
-                        return new CreateArticleCommand(articleService);
-                    }
-                default:
-                    break;
-            }
-
-            throw new InvalidOperationException(nameof(commandName));
+            return _choose.Choose(out _parameterParser, commandName);
         }
 
         public async Task InitCommandFlow()

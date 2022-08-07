@@ -1,6 +1,4 @@
-﻿using Portal.UI_Console.CommandManagement;
-
-namespace Portal.UI_Console
+﻿namespace Portal.UI_Console
 {
     [ExcludeFromCodeCoverage]
     static class Program
@@ -14,6 +12,7 @@ namespace Portal.UI_Console
 
             services.AddSingleton<ConsoleApp>();
 
+            services.AddScoped<IChooseCommand, ChooseInitCommand>();
             services.AddScoped<ICommandManager, CommandManager>();
 
             // as the only place it is passes through DI is CommandManager

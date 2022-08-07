@@ -16,8 +16,10 @@ namespace Portal.UI_Console.CommandManagement.ChooseCommand
             _config = config;
         }
 
-        public IConsoleCommand Choose(out IParseInput parser, string commandName)
+        public IConsoleCommand Choose(out IParseInput? parser, string commandName)
         {
+            parser = null;
+
             switch (commandName)
             {
                 case "create-article":
