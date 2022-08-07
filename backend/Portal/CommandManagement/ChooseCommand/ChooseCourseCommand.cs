@@ -9,12 +9,10 @@ namespace Portal.UI_Console.CommandManagement.ChooseCommand
 {
     internal class ChooseCourseCommand : IChooseCommand
     {
-        private readonly IConfigService _config;
         private readonly CourseDTO _toCreate;
 
-        public ChooseCourseCommand(IConfigService config, CourseDTO toCreate)
+        public ChooseCourseCommand(CourseDTO toCreate)
         {
-            _config = config;
             _toCreate = toCreate;
         }
 
