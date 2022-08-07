@@ -26,7 +26,7 @@ namespace Portal.UI_Console
             
         }
 
-        public void InitCommandFlow()
+        public async Task InitCommandFlow()
         {
             string input;
 
@@ -42,11 +42,11 @@ namespace Portal.UI_Console
 
                     if (_parameterParser is null)
                     {
-                        LastCommand.Output();
+                        await LastCommand.Output();
                     }
                     else
                     {
-                        LastCommand.Output(_parameterParser.Parse(parts.Last()).ToArray());
+                        await LastCommand.Output(_parameterParser.Parse(parts.Last()).ToArray());
                     }
                 }
                 catch (Exception e)

@@ -26,6 +26,7 @@ namespace Portal.UI_Console.ConsoleCommands.Modify.Materials.Article
             };
 
             await _articleService.Create(toCreate);
+            Console.WriteLine("Success! Article created");
         }
     }
 }

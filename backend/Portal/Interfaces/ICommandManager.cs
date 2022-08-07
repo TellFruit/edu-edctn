@@ -8,7 +8,7 @@ namespace Portal.UI_Console.Interfaces
 {
     internal interface ICommandManager
     {
-        void InitCommandFlow();
+        Task InitCommandFlow();
 
         void SetCommandParser(IParseInput parser);
 
