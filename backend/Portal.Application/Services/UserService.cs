@@ -37,13 +37,13 @@
             return _mapper.Map<ICollection<UserDTO>>(users);
         }
 
-        public async Task<ICollection<UserDTO>> GetById(int id)
+        public async Task<UserDTO> GetById(int id)
         {
             var users = await _repository.Read();
 
             var wantedUser = users.Where(c => c.Id.Equals(id));
 
-            return _mapper.Map<ICollection<UserDTO>>(wantedUser);
+            return _mapper.Map<UserDTO>(wantedUser);
         }
 
         public async Task<UserDTO> Update(UserDTO entity)

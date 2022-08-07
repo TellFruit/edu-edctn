@@ -51,7 +51,7 @@ namespace Portal.UI_Console.ConsoleCommands.Modify.Course
 
             var wantedArticle = await _article.GetById(wantedId);
 
-            _courseDTO.Materials.Add((MaterialDTO)wantedArticle);
+            _courseDTO.Materials.Add(wantedArticle);
 
             return true;
         }

@@ -37,13 +37,13 @@
             return _mapper.Map<ICollection<PerkDTO>>(perks);
         }
 
-        public async Task<ICollection<PerkDTO>> GetById(int id)
+        public async Task<PerkDTO> GetById(int id)
         {
             var perks = await _repository.Read();
 
             var wantedPerk = perks.Where(c => c.Id.Equals(id));
 
-            return _mapper.Map<ICollection<PerkDTO>>(wantedPerk);
+            return _mapper.Map<PerkDTO>(wantedPerk);
         }
 
         public async Task<PerkDTO> Update(PerkDTO entity)

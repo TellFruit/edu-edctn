@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Portal.UI_Console.ConsoleCommands.Modify.Course;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,6 +29,12 @@ namespace Portal.UI_Console.CommandManagement.ChooseCommand
                         parser = new BasicRegexParse(_config.GetSetting("ArticleRegex"));
 
                         return new CreateArticleCommand(articleService);
+                    }
+                case "create-course":
+                    {
+                        var courseService = Program.Root.GetService<ICourseService>();
+
+                        return new CreateCourseCommand(courseService);
                     }
                 case "exit":
                     {

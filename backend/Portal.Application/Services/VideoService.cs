@@ -37,13 +37,13 @@
             return _mapper.Map<ICollection<VideoDTO>>(videos);
         }
 
-        public async Task<ICollection<VideoDTO>> GetById(int id)
+        public async Task<VideoDTO> GetById(int id)
         {
             var videos = await _repository.Read();
 
             var wantedVideo = videos.Where(v => v.Id.Equals(id));
 
-            return _mapper.Map<ICollection<VideoDTO>>(wantedVideo);
+            return _mapper.Map<VideoDTO>(wantedVideo);
         }
 
         public async Task<VideoDTO> Update(VideoDTO entity)
