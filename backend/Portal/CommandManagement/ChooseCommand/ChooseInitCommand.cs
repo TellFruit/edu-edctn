@@ -75,6 +75,14 @@ namespace Portal.UI_Console.CommandManagement.ChooseCommand
 
                         return new UpdateArticleCommand(articleService);
                     }
+                case "delete-article":
+                    {
+                        var articleService = Program.Root.GetService<IArticleService>();
+
+                        parser = new BasicRegexParse("");
+
+                        return new DeleteArticleCommand(articleService);
+                    }
                 case "exit":
                     {
                         return new TerminateCommand();
