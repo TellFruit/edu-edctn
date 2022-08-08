@@ -25,9 +25,29 @@ namespace Portal.UI_Console.CommandManagement.ChooseCommand
 
                         return new AddArticleCommand(articleService, _toCreate);
                     }
+                case "add-book":
+                    {
+                        var bookService = Program.Root.GetService<IBookService>();
+
+                        return new AddBookCommand(bookService, _toCreate);
+                    }
+                case "add-video":
+                    {
+                        var videoService = Program.Root.GetService<IVideoService>();
+
+                        return new AddVideoCommand(videoService, _toCreate);
+                    }
                 case "remove-article":
                     {
                         return new RemoveArticleCommand(_toCreate);
+                    }
+                case "remove-book":
+                    {
+                        return new RemoveBookCommand(_toCreate);
+                    }
+                case "remove-video":
+                    {
+                        return new RemoveVideoCommand(_toCreate);
                     }
                 case "finish-course":
                     {
