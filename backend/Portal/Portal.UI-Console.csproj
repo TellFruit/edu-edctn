@@ -19,6 +19,8 @@
 
   <ItemGroup>
     <Folder Include="ConsoleCommands\Get\" />
+    <Folder Include="ConsoleCommands\Modify\Materials\Book\" />
+    <Folder Include="ConsoleCommands\Modify\Materials\Video\" />
   </ItemGroup>
 
 </Project>

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Portal.UI_Console.ConsoleCommands.Modify.Course
+namespace Portal.UI_Console.ConsoleCommands.Modify.Course.Add
 {
     internal class AddArticleCommand : IConsoleCommand
     {
@@ -30,6 +30,7 @@ namespace Portal.UI_Console.ConsoleCommands.Modify.Course
             Console.WriteLine("Take a look and write \'return\' to proceed and choose");
             await viewCommand.Run();
 
+            ICollection<int> marked = new List<int>();
             int wantedId = 0;
             string input = "";
             do
@@ -46,15 +47,19 @@ namespace Portal.UI_Console.ConsoleCommands.Modify.Course
                 try { wantedId = int.Parse(input); }
                 catch { if (!input.Equals("")) { input = ""; continue; } }
 
-                break;
+                if (marked.Contains(wantedId))
+                {
+                    Console.WriteLine("Already included!");
+                    continue;
+                }
+
+                var wantedArticle = await _article.GetById(wantedId);
+
+                _courseDTO.Materials.Add(wantedArticle);
+
+                marked.Add(wantedId);
             }
             while (true);
-
-            var wantedArticle = await _article.GetById(wantedId);
-
-            _courseDTO.Materials.Add(wantedArticle);
-
-            return true;
         }
     }
 }
