@@ -6,22 +6,22 @@ using System.Threading.Tasks;
 
 namespace Portal.UI_Console.ConsoleCommands.Modify.Course.Remove
 {
-    internal class RemoveBookCommand : IConsoleCommand
+    internal class RemoveVideoCommand : IConsoleCommand
     {
         private readonly CourseDTO _courseDTO;
-        public RemoveBookCommand(CourseDTO course)
+        public RemoveVideoCommand(CourseDTO course)
         {
             _courseDTO = course;
         }
 
         public async Task<bool> Run(params string[] parameters)
         {
-            Console.WriteLine("All included books: ");
+            Console.WriteLine("All included videos: ");
             foreach (var material in _courseDTO.Materials)
             {
-                var converted = material as BookDTO;
+                var converted = material as VideoDTO;
 
-                if (converted.PageCount is not 0)
+                if (converted.Quality is not 0)
                 {
                     Console.WriteLine(converted);
                 }
@@ -32,7 +32,7 @@ namespace Portal.UI_Console.ConsoleCommands.Modify.Course.Remove
             string input = "";
             do
             {
-                Console.WriteLine("Write id of book to exclude or \'return\' to stop: ");
+                Console.WriteLine("Write id of video to exclude or \'return\' to stop: ");
 
                 input = Console.ReadLine();
 
@@ -57,9 +57,9 @@ namespace Portal.UI_Console.ConsoleCommands.Modify.Course.Remove
             var newMaterials = new List<MaterialDTO>();
             foreach (var material in _courseDTO.Materials)
             {
-                var converted = material as BookDTO;
+                var converted = material as VideoDTO;
 
-                if (converted.PageCount is not 0
+                if (converted.Quality is not 0
                     && toRemove.Contains(converted.Id))
                 {
                     continue;
@@ -73,4 +73,5 @@ namespace Portal.UI_Console.ConsoleCommands.Modify.Course.Remove
             return true;
         }
     }
+}
 }
