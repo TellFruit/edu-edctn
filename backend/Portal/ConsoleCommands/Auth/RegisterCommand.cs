@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Portal.UI_Console.ConsoleCommands.Auth
 {
-    internal class LoginCommand : IConsoleCommand
+    internal class RegisterCommand : IConsoleCommand
     {
         private readonly IUserAuth _userAuth;
 
-        public LoginCommand(IUserAuth userAuth)
+        public RegisterCommand(IUserAuth userAuth)
         {
             _userAuth = userAuth;
         }
@@ -27,8 +27,8 @@ namespace Portal.UI_Console.ConsoleCommands.Auth
                 Console.WriteLine("To suspend the operation write \'return\': ");
 
                 Console.WriteLine("Enter your email: ");
-                email = Console.ReadLine(); 
-                
+                email = Console.ReadLine();
+
                 Console.WriteLine("Enter your password: ");
                 password = Console.ReadLine();
 
@@ -37,11 +37,11 @@ namespace Portal.UI_Console.ConsoleCommands.Auth
                     break;
                 }
 
-                result = await _userAuth.Login(email, password);
+                result = await _userAuth.Register(email, password);
 
                 if (result is false)
                 {
-                    Console.WriteLine("Email or password is incorrect.");
+                    Console.WriteLine("Email is already taken.");
                     continue;
                 }
 
