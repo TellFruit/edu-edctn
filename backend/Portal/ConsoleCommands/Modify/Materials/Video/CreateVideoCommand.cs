@@ -30,7 +30,7 @@ namespace Portal.UI_Console.ConsoleCommands.Modify.Materials.Video
             };
 
             await _videoService.Create(toCreate);
-            Console.WriteLine("Success! Book created");
+            Console.WriteLine("Success! Video created");
 
             return true;
         }

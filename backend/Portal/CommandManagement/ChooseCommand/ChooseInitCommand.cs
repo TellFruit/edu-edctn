@@ -1,4 +1,6 @@
 ﻿using Portal.UI_Console.ConsoleCommands.Modify.Course;
+using Portal.UI_Console.ConsoleCommands.Modify.Materials.Book;
+using Portal.UI_Console.ConsoleCommands.Modify.Materials.Video;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,6 +31,22 @@ namespace Portal.UI_Console.CommandManagement.ChooseCommand
                         parser = new BasicRegexParse(_config.GetSetting("ArticleRegex"));
 
                         return new CreateArticleCommand(articleService);
+                    }
+                case "create-book":
+                    {
+                        var bookService = Program.Root.GetService<IBookService>();
+
+                        parser = new BasicRegexParse(_config.GetSetting("BookRegex"));
+
+                        return new CreateBookCommand(bookService);
+                    }
+                case "create-video":
+                    {
+                        var videoService = Program.Root.GetService<IVideoService>();
+
+                        parser = new BasicRegexParse(_config.GetSetting("VideoRegex"));
+
+                        return new CreateVideoCommand(videoService);
                     }
                 case "create-course":
                     {

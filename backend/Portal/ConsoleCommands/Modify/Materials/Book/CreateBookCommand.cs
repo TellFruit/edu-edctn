@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Portal.UI_Console.Parsers.Values;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,7 +28,7 @@ namespace Portal.UI_Console.ConsoleCommands.Modify.Materials.Book
                 Authors = parameters[0].Split(", ").ToList(),
                 Title = parameters[1],
                 PageCount = int.Parse(parameters[2]),
-                Published = DateTime.Parse(parameters[3]),
+                Published = new ParseDateTime().Parse(parameters[3]),
                 Format = parameters[4],
             };
 
