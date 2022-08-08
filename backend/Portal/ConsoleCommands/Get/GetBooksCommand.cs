@@ -6,22 +6,22 @@ using System.Threading.Tasks;
 
 namespace Portal.UI_Console.ConsoleCommands.Get
 {
-    internal class GetArticlesCommand : IConsoleCommand
+    internal class GetBooksCommand : IConsoleCommand
     {
-        private readonly IArticleService _articleService;
+        private readonly IBookService _bookService;
 
-        public GetArticlesCommand(IArticleService articleService)
+        public GetBooksCommand(IBookService bookService)
         {
-            _articleService = articleService;
+            _bookService = bookService;
         }
 
         public async Task<bool> Run(params string[] parameters)
         {
-            var all = await _articleService.GetAll();
+            var all = await _bookService.GetAll();
 
             var configService = Program.Root.GetService<IConfigService>();
 
-            IConsoleCommand paginate = new PaginateCommand<ArticleDTO>(configService, all);
+            IConsoleCommand paginate = new PaginateCommand<BookDTO>(configService, all);
 
             await paginate.Run();
 
