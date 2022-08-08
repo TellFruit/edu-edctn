@@ -14,5 +14,10 @@
         {
             Materials = new List<MaterialDTO>();
         }
+
+        public override string ToString()
+        {
+            return $"{Id} - {Name}: {Description}";
+        }
     }
 }
