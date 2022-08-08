@@ -17,6 +17,15 @@ namespace Portal.UI_Console.ConsoleCommands.Modify.Materials.Video
 
         public async Task<bool> Run(params string[] parameters)
         {
+            var userAuth = Program.Root.GetService<IUserAuth>();
+
+            var auth = new AuthorizeCommand(userAuth);
+            if (await auth.Run() is false)
+            {
+                Console.WriteLine("Operation suspended!");
+                return true;
+            }
+
             /* Examples of correct input:
              * Never Gonna Give You Up – 720p, 00:04:12
              * Invaders Must die - 480p, 00:05:32
