@@ -30,7 +30,7 @@ namespace Portal.Application.DTO
                 date = Published.ToString("MM/dd/yyyy");
             }
 
-            return $"{string.Join(", ", Authors)} - {Title}, {PageCount} ({date}){Format}";
+            return $"{Id} - {string.Join(", ", Authors)} - {Title}, {PageCount} ({date}){Format}";
         }
     }
 }
