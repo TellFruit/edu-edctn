@@ -19,7 +19,6 @@
 
   <ItemGroup>
     <Folder Include="ConsoleCommands\Get\" />
-    <Folder Include="ConsoleCommands\Modify\Materials\Video\" />
   </ItemGroup>
 
 </Project>
