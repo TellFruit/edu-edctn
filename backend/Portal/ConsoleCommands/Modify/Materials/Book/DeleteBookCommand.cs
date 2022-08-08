@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Portal.UI_Console.ConsoleCommands.Modify.Materials.Book
+﻿namespace Portal.UI_Console.ConsoleCommands.Modify.Materials.Book
 {
     internal class DeleteBookCommand : IConsoleCommand
     {

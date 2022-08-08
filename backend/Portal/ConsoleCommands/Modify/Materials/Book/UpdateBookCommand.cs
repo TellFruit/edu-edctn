@@ -1,9 +1,4 @@
 ﻿using Portal.UI_Console.Parsers.Values;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Portal.UI_Console.ConsoleCommands.Modify.Materials.Book
 {

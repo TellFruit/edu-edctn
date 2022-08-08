@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Portal.Application.Interfaces.InnerImpl.Services
+﻿namespace Portal.Application.Interfaces.InnerImpl.Services
 {
     public interface IArticleService : IModelService<ArticleDTO> { }
     public interface IBookService : IModelService<BookDTO> { }

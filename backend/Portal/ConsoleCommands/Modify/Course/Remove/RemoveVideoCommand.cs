@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Portal.UI_Console.ConsoleCommands.Modify.Course.Remove
+﻿namespace Portal.UI_Console.ConsoleCommands.Modify.Course.Remove
 {
     internal class RemoveVideoCommand : IConsoleCommand
     {
@@ -73,5 +67,4 @@ namespace Portal.UI_Console.ConsoleCommands.Modify.Course.Remove
             return true;
         }
     }
-}
 }

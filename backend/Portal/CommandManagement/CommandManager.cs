@@ -1,6 +1,4 @@
-﻿using Portal.UI_Console.ConsoleCommands.Modify.Materials.Article;
-
-namespace Portal.UI_Console.CommandManagement
+﻿namespace Portal.UI_Console.CommandManagement
 {
     internal class CommandManager : ICommandManager
     {
