@@ -27,7 +27,9 @@
                 throw new EntityNotFoundException(nameof(Article));
             }
 
-            return await _repository.Delete(toDelete);
+            int resultId = await _repository.Delete(toDelete);
+            await _repository.SaveChanges();
+            return resultId;
         }
 
         public async Task<ICollection<ArticleDTO>> GetAll()
@@ -61,10 +63,12 @@
             toUpdate.Title = data.Title;
             toUpdate.Url = data.Url;
             toUpdate.Perks = data.Perks;
+            toUpdate.Published = data.Published;
 
             toUpdate.UpdatedAt = DateTime.Now;
 
             await _repository.Update(toUpdate);
+            await _repository.SaveChanges();
 
             return _mapper.Map<ArticleDTO>(toUpdate);
         }

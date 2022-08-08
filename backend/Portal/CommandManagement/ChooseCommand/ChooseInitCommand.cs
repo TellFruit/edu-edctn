@@ -55,11 +55,25 @@ namespace Portal.UI_Console.CommandManagement.ChooseCommand
 
                         return new CreateCourseCommand(courseService);
                     }
+                case "get-articles":
+                    {
+                        var articleService = Program.Root.GetService<IArticleService>();
+
+                        return new GetArticlesCommand(articleService);
+                    }
                 case "get-courses":
                     {
                         var courseService = Program.Root.GetService<ICourseService>();
 
                         return new GetCoursesCommand(courseService);
+                    }
+                case "update-article":
+                    {
+                        var articleService = Program.Root.GetService<IArticleService>();
+
+                        parser = new BasicRegexParse(_config.GetSetting("ModifyArticleRegex"));
+
+                        return new UpdateArticleCommand(articleService);
                     }
                 case "exit":
                     {

@@ -21,7 +21,11 @@
 
         public async Task<TEntity> Create(TEntity entity)
         {
-            entity.Id = GenerateNextId();
+            if (entity.Id.Equals(default))
+            {
+                entity.Id = GenerateNextId();
+            }
+
             _entities.Add(entity);
 
             return entity;
@@ -45,8 +49,8 @@
 
             if (match is not null)
             {
-                Delete(match);
-                Create(entity);
+                await Delete(match);
+                await Create(entity);
             }
 
             return entity;
