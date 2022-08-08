@@ -56,6 +56,18 @@ namespace Portal.UI_Console.CommandManagement.ChooseCommand
 
                         return new GetArticlesCommand(articleService);
                     }
+                case "get-books":
+                    {
+                        var bookService = Program.Root.GetService<IBookService>();
+
+                        return new GetBooksCommand(bookService);
+                    }
+                case "get-videos":
+                    {
+                        var videoService = Program.Root.GetService<IVideoService>();
+
+                        return new GetVideosCommand(videoService);
+                    }
                 case "get-courses":
                     {
                         var courseService = Program.Root.GetService<ICourseService>();
@@ -69,6 +81,22 @@ namespace Portal.UI_Console.CommandManagement.ChooseCommand
                         parser = new BasicRegexParse(_config.GetSetting("ModifyArticleRegex"));
 
                         return new UpdateArticleCommand(articleService);
+                    }
+                case "update-book":
+                    {
+                        var bookService = Program.Root.GetService<IBookService>();
+
+                        parser = new BasicRegexParse(_config.GetSetting("ModifyBookRegex"));
+
+                        return new UpdateBookCommand(bookService);
+                    }
+                case "update-video":
+                    {
+                        var videoService = Program.Root.GetService<IVideoService>();
+
+                        parser = new BasicRegexParse(_config.GetSetting("ModifyVideoRegex"));
+
+                        return new UpdateVideoCommand(videoService);
                     }
                 case "update-course":
                     {
@@ -85,6 +113,30 @@ namespace Portal.UI_Console.CommandManagement.ChooseCommand
                         parser = new BasicSplitParse("");
 
                         return new DeleteArticleCommand(articleService);
+                    }
+                case "delete-book":
+                    {
+                        var bookService = Program.Root.GetService<IBookService>();
+
+                        parser = new BasicSplitParse("");
+
+                        return new DeleteBookCommand(bookService);
+                    }
+                case "delete-video":
+                    {
+                        var videoService = Program.Root.GetService<IVideoService>();
+
+                        parser = new BasicSplitParse("");
+
+                        return new DeleteVideoCommand(videoService);
+                    }
+                case "delete-course":
+                    {
+                        var courseService = Program.Root.GetService<ICourseService>();
+
+                        parser = new BasicSplitParse("");
+
+                        return new DeleteCourseCommand(courseService);
                     }
                 case "exit":
                     {
