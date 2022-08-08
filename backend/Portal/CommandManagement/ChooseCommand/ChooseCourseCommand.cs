@@ -29,6 +29,10 @@ namespace Portal.UI_Console.CommandManagement.ChooseCommand
 
                         return new AddArticleCommand(articleService, _toCreate);
                     }
+                case "finish-course":
+                    {
+                        return new FinishCourseCreationCommand(_toCreate);
+                    }
                 case "return":
                     {
                         return new CancelCourseCreateCommand(_toCreate);

@@ -12,6 +12,7 @@
                 cfg.AddProfile<PerkProfile>();
                 cfg.AddProfile<UserProfile>();
                 cfg.AddProfile<CourseProfile>();
+                cfg.AddProfile<MaterilProfile>();
             },
             Assembly.GetExecutingAssembly());
 

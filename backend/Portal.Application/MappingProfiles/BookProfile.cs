@@ -4,9 +4,11 @@
     {
         public BookProfile()
         {
-            CreateMap<Book, BookDTO>();
+            CreateMap<Book, BookDTO>()
+                .IncludeBase<Material, MaterialDTO>();
 
-            CreateMap<BookDTO, Book>();
+            CreateMap<BookDTO, Book>()
+                .IncludeBase<MaterialDTO, Material>();
         }
     }
 }
