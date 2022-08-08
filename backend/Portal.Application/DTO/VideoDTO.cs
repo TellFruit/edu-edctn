@@ -8,7 +8,7 @@
 
         public override string ToString()
         {
-            return $"{Id} - {Title} - {Quality}, {Duration.ToString(@"hh\:mm\:ss")}";
+            return $"{Id} - {Title} - {Quality}p, {Duration.ToString(@"hh\:mm\:ss")}";
         }
     }
 }

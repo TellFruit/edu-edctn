@@ -18,8 +18,8 @@ namespace Portal.UI_Console.ConsoleCommands.Modify.Materials.Video
         public async Task<bool> Run(params string[] parameters)
         {
             /* Examples of correct input:
-             * Never Gonna Give You Up – 720, 00:04:12
-             * Invaders Must die - 480, 00:05:32
+             * Never Gonna Give You Up – 720p, 00:04:12
+             * Invaders Must die - 480p, 00:05:32
              */
 
             var toCreate = new VideoDTO()
