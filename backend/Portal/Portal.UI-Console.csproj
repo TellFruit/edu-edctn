@@ -17,8 +17,4 @@
     <ProjectReference Include="..\Portal.Persistence-Json\Portal.Persistence-Json.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="ConsoleCommands\Get\" />
-  </ItemGroup>
-
 </Project>

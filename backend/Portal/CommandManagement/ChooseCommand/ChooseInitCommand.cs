@@ -1,4 +1,5 @@
-﻿using Portal.UI_Console.ConsoleCommands.Modify.Course;
+﻿using Portal.UI_Console.ConsoleCommands.Get;
+using Portal.UI_Console.ConsoleCommands.Modify.Course;
 using Portal.UI_Console.ConsoleCommands.Modify.Materials.Book;
 using Portal.UI_Console.ConsoleCommands.Modify.Materials.Video;
 using System;
@@ -53,6 +54,12 @@ namespace Portal.UI_Console.CommandManagement.ChooseCommand
                         var courseService = Program.Root.GetService<ICourseService>();
 
                         return new CreateCourseCommand(courseService);
+                    }
+                case "get-courses":
+                    {
+                        var courseService = Program.Root.GetService<ICourseService>();
+
+                        return new GetCoursesCommand(courseService);
                     }
                 case "exit":
                     {
