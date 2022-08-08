@@ -50,6 +50,8 @@
 
             await _service.Create(_user);
 
+            _authenticated = true;
+
             return true;
         }
     }
