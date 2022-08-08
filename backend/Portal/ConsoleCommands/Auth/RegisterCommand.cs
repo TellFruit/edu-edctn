@@ -29,10 +29,15 @@ namespace Portal.UI_Console.ConsoleCommands.Auth
                 Console.WriteLine("Enter your email: ");
                 email = Console.ReadLine();
 
+                if (email.Equals("return"))
+                {
+                    break;
+                }
+
                 Console.WriteLine("Enter your password: ");
                 password = Console.ReadLine();
 
-                if (email.Equals("return") || password.Equals("return"))
+                if (password.Equals("return"))
                 {
                     break;
                 }

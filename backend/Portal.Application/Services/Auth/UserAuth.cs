@@ -2,13 +2,13 @@
 {
     internal class UserAuth : IUserAuth
     {
-        private readonly IModelService<UserDTO> _service;
+        private readonly IUserService _service;
         private readonly IMapper _mapper;
         private UserDTO _user;
 
         private bool _authenticated;
 
-        public UserAuth(IModelService<UserDTO> service, IMapper mapper)
+        public UserAuth(IUserService service, IMapper mapper)
         {
             _service = service;
             _mapper = mapper;
