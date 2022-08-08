@@ -25,7 +25,7 @@ namespace Portal.Application.DTO
                 date = Published.ToString("MM/dd/yyyy");
             }
 
-            return $"{Id} - {Title} - {date}, {Url}";
+            return $"{Id} - {Title} - {Url}, {date}";
         }
     }
 }
