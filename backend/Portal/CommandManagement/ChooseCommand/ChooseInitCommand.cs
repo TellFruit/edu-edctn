@@ -79,7 +79,7 @@ namespace Portal.UI_Console.CommandManagement.ChooseCommand
                     {
                         var articleService = Program.Root.GetService<IArticleService>();
 
-                        parser = new BasicRegexParse("");
+                        parser = new BasicSplitParse("");
 
                         return new DeleteArticleCommand(articleService);
                     }
