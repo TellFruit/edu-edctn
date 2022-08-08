@@ -1,5 +1,6 @@
-﻿using AutoMapper;
-using Portal.UI_Console.ConsoleCommands.Modify.Course;
+﻿using Portal.UI_Console.ConsoleCommands.Modify.Course;
+using Portal.UI_Console.ConsoleCommands.Modify.Course.Add;
+using Portal.UI_Console.ConsoleCommands.Modify.Course.Remove;
 using System;
 using System.Collections.Generic;
 using System.Linq;
