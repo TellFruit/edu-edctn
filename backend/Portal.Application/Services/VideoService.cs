@@ -10,6 +10,7 @@
             var video = _mapper.Map<Video>(entity);
 
             video.CreatedAt = DateTime.Now;
+            video.UpdatedAt = DateTime.Now;
 
             await _repository.Create(video);
             await _repository.SaveChanges();
@@ -27,7 +28,10 @@
                 throw new EntityNotFoundException(nameof(Video));
             }
 
-            return await _repository.Delete(toDelete);
+            int result = await _repository.Delete(toDelete);
+            await _repository.SaveChanges();
+
+            return result;
         }
 
         public async Task<ICollection<VideoDTO>> GetAll()
@@ -66,6 +70,7 @@
             toUpdate.UpdatedAt = DateTime.Now;
 
             await _repository.Update(toUpdate);
+            await _repository.SaveChanges();
 
             return _mapper.Map<VideoDTO>(toUpdate);
         }

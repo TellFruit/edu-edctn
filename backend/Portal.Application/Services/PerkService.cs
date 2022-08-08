@@ -10,6 +10,7 @@
             var perk = _mapper.Map<Perk>(entity);
 
             perk.CreatedAt = DateTime.Now;
+            perk.UpdatedAt = DateTime.Now;
 
             await _repository.Create(perk);
             await _repository.SaveChanges();
@@ -27,7 +28,10 @@
                 throw new EntityNotFoundException(nameof(Perk));
             }
 
-            return await _repository.Delete(toDelete);
+            int result = await _repository.Delete(toDelete);
+            await _repository.SaveChanges();
+
+            return result;
         }
 
         public async Task<ICollection<PerkDTO>> GetAll()
@@ -63,6 +67,7 @@
             toUpdate.UpdatedAt = DateTime.Now;
 
             await _repository.Update(toUpdate);
+            await _repository.SaveChanges();
 
             return _mapper.Map<PerkDTO>(toUpdate);
         }

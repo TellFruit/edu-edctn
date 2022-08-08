@@ -10,6 +10,7 @@
             var book = _mapper.Map<Book>(entity);
 
             book.CreatedAt = DateTime.Now;
+            book.UpdatedAt = DateTime.Now;
 
             await _repository.Create(book);
             await _repository.SaveChanges();
@@ -26,8 +27,11 @@
             {
                 throw new EntityNotFoundException(nameof(Book));
             }
+            
+            int result = await _repository.Delete(toDelete);
+            await _repository.SaveChanges();
 
-            return await _repository.Delete(toDelete);
+            return result;
         }
 
         public async Task<ICollection<BookDTO>> GetAll()
@@ -68,6 +72,7 @@
             toUpdate.UpdatedAt = DateTime.Now;
 
             await _repository.Update(toUpdate);
+            await _repository.SaveChanges();
 
             return _mapper.Map<BookDTO>(toUpdate);
         }

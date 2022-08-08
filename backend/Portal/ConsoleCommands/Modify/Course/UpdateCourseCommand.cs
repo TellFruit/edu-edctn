@@ -43,7 +43,7 @@ namespace Portal.UI_Console.ConsoleCommands.Modify.Course
 
             if (courseDTO.Materials.Count > 0)
             {
-                await _course.Create(courseDTO);
+                await _course.Update(courseDTO);
             }
             else
             {

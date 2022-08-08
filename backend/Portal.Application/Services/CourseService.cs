@@ -10,6 +10,7 @@
             var course = _mapper.Map<Course>(entity);
 
             course.CreatedAt = DateTime.Now;
+            course.UpdatedAt = DateTime.Now;
 
             await _repository.Create(course);
             await _repository.SaveChanges();
@@ -26,8 +27,10 @@
             {
                 throw new EntityNotFoundException(nameof(Course));
             }
+            int result = await _repository.Delete(toDelete);
+            await _repository.SaveChanges();
 
-            return await _repository.Delete(toDelete);
+            return result;
         }
 
         public async Task<ICollection<CourseDTO>> GetAll()
@@ -66,6 +69,7 @@
             toUpdate.UpdatedAt = DateTime.Now;
 
             await _repository.Update(toUpdate);
+            await _repository.SaveChanges();
 
             return _mapper.Map<CourseDTO>(toUpdate);
         }

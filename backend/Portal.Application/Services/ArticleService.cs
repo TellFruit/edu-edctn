@@ -10,6 +10,7 @@
             var article = _mapper.Map<Article>(entity);
 
             article.CreatedAt = DateTime.Now;
+            article.UpdatedAt = DateTime.Now;
 
             await _repository.Create(article);
             await _repository.SaveChanges();

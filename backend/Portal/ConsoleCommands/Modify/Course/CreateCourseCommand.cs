@@ -42,6 +42,10 @@ namespace Portal.UI_Console.ConsoleCommands.Modify.Course
             {
                 await _course.Create(_courseDTO);
             }
+            else
+            {
+                Console.WriteLine("Operation failed. No materials are present!");
+            }
 
             return true;
         }

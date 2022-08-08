@@ -21,8 +21,8 @@
         public async Task<bool> Login(string email, string password)
         {
             var users = await _service.GetAll();
-            var found = users.FirstOrDefault(u => !u.Email.Equals(email)
-               && !u.Password.Equals(password));
+            var found = users.FirstOrDefault(u => u.Email.Equals(email)
+               && u.Password.Equals(password));
 
             if (found is null)
             {
