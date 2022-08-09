@@ -23,7 +23,9 @@
             Console.WriteLine("Take a look and write \'return\' to proceed and choose");
             await viewCommand.Run();
 
-            ICollection<int> marked = new List<int>();
+            ICollection<int> present = _courseDTO.Materials
+                .Where(x => x as ArticleDTO is not null)
+                .Select(x => x.Id).ToList();
             int wantedId = 0;
             string input = "";
             do
@@ -40,7 +42,7 @@
                 try { wantedId = int.Parse(input); }
                 catch { if (!input.Equals("")) { input = ""; continue; } }
 
-                if (marked.Contains(wantedId))
+                if (present.Contains(wantedId))
                 {
                     Console.WriteLine("Already included!");
                     continue;
@@ -49,8 +51,6 @@
                 var wantedArticle = await _article.GetById(wantedId);
 
                 _courseDTO.Materials.Add(wantedArticle);
-
-                marked.Add(wantedId);
             }
             while (true);
         }
