@@ -52,6 +52,12 @@
 
                 var wantedArticle = await _video.GetById(wantedId);
 
+                if (wantedArticle is null)
+                {
+                    Console.WriteLine("Not found");
+                    continue;
+                }
+
                 _courseDTO.Materials.Add(wantedArticle);
             }
             while (true);
