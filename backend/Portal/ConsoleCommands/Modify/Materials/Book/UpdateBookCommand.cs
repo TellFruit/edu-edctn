@@ -27,7 +27,7 @@ namespace Portal.UI_Console.ConsoleCommands.Modify.Materials.Book
              * Е. Таненбаум, І. Амамбаум – Сучасні операційні системи, 1365 (12.05.2013).pdf
              */
 
-            var toCreate = new BookDTO()
+            var toUpdate = new BookDTO()
             {
                 Id = int.Parse(parameters[0]),
                 Authors = parameters[1].Split(", ").ToList(),
@@ -37,7 +37,7 @@ namespace Portal.UI_Console.ConsoleCommands.Modify.Materials.Book
                 Format = parameters[5],
             };
 
-            await _bookService.Update(toCreate);
+            await _bookService.Update(toUpdate);
             Console.WriteLine("Success! Book updated");
 
             return true;

@@ -25,7 +25,7 @@
              * 2 - Invaders Must die - 480p, 00:05:32
              */
 
-            var toCreate = new VideoDTO()
+            var toUpdate = new VideoDTO()
             {
                 Id = int.Parse(parameters[0]),
                 Title = parameters[1],
@@ -33,7 +33,7 @@
                 Duration = TimeSpan.Parse(parameters[3]),
             };
 
-            await _videoService.Create(toCreate);
+            await _videoService.Update(toUpdate);
             Console.WriteLine("Success! Video updated");
 
             return true;
