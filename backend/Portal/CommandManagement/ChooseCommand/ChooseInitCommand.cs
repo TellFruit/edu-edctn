@@ -1,9 +1,4 @@
-﻿using Portal.UI_Console.ConsoleCommands.Get;
-using Portal.UI_Console.ConsoleCommands.Modify.Course;
-using Portal.UI_Console.ConsoleCommands.Modify.Materials.Book;
-using Portal.UI_Console.ConsoleCommands.Modify.Materials.Video;
-
-namespace Portal.UI_Console.CommandManagement.ChooseCommand
+﻿namespace Portal.UI_Console.CommandManagement.ChooseCommand
 {
     internal class ChooseInitCommand : IChooseCommand
     {

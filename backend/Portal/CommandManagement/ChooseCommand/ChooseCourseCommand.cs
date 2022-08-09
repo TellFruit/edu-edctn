@@ -1,8 +1,4 @@
-﻿using Portal.UI_Console.ConsoleCommands.Modify.Course;
-using Portal.UI_Console.ConsoleCommands.Modify.Course.Add;
-using Portal.UI_Console.ConsoleCommands.Modify.Course.Remove;
-
-namespace Portal.UI_Console.CommandManagement.ChooseCommand
+﻿namespace Portal.UI_Console.CommandManagement.ChooseCommand
 {
     internal class ChooseCourseCommand : IChooseCommand
     {
