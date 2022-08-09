@@ -19,6 +19,16 @@
 
             string input = "";
 
+            if (_courseDTO.Id != 0)
+            {
+                Console.WriteLine("Edit name or description? Type 'no' if no needd.");
+                input = Console.ReadLine();
+                if (input.Equals("no"))
+                {
+                    return false;
+                }
+            }
+
             Console.WriteLine("Write name of the course: ");
             input = Console.ReadLine();
             _courseDTO.Name = input;
