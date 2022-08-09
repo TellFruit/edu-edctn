@@ -25,7 +25,7 @@
 
             if (toDelete is null)
             {
-                throw new EntityNotFoundException(nameof(Perk));
+                throw new EntityNotFoundException(nameof(User));
             }
 
             int result = await _repository.Delete(toDelete);
@@ -59,7 +59,7 @@
 
             if (toUpdate is null)
             {
-                throw new EntityNotFoundException(nameof(Book));
+                throw new EntityNotFoundException(nameof(User));
             }
 
             toUpdate.FirstName = data.FirstName;

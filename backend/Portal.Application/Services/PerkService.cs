@@ -59,7 +59,7 @@
 
             if (toUpdate is null)
             {
-                throw new EntityNotFoundException(nameof(Book));
+                throw new EntityNotFoundException(nameof(Perk));
             }
 
             toUpdate.Name = data.Name;
