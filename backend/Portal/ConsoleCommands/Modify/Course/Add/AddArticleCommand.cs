@@ -23,13 +23,14 @@
             Console.WriteLine("Take a look and write \'return\' to proceed and choose");
             await viewCommand.Run();
 
-            ICollection<int> present = _courseDTO.Materials
-                .Where(x => x as ArticleDTO is not null)
-                .Select(x => x.Id).ToList();
             int wantedId = 0;
             string input = "";
             do
             {
+                ICollection<int> present = _courseDTO.Materials
+                .Where(x => x as ArticleDTO is not null)
+                .Select(x => x.Id).ToList();
+
                 Console.WriteLine("Write id of wanted article or \'return\' to stop: ");
 
                 input = Console.ReadLine();

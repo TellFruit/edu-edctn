@@ -38,7 +38,7 @@
         public async Task<bool> Register(string email, string password)
         {
             var users = await _service.GetAll();
-            var found = users.FirstOrDefault(u => !u.Email.Equals(email));
+            var found = users.FirstOrDefault(u => u.Email.Equals(email));
 
             if (found is not null)
             {
