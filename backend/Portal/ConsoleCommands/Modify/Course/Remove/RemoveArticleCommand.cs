@@ -10,15 +10,23 @@
 
         public async Task<bool> Run(params string[] parameters)
         {
+            bool toContinue = false;
             Console.WriteLine("All included articles: ");
             foreach (var material in _courseDTO.Materials)
             {
                 var converted = material as ArticleDTO;
 
-                if (converted.Url is not null or "")
+                if (converted is not null)
                 {
+                    toContinue = true;
                     Console.WriteLine(converted);
                 }
+            }
+
+            if(!toContinue)
+            {
+                Console.WriteLine("No such materials found! Returning...");
+                return true;
             }
 
             ICollection<int> toRemove = new List<int>();
@@ -53,7 +61,7 @@
             {
                 var converted = material as ArticleDTO;
 
-                if (converted.Url is not null or ""
+                if (converted is not null
                     && toRemove.Contains(converted.Id))
                 {
                     continue;

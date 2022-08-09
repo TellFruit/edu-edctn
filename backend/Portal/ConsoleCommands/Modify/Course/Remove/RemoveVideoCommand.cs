@@ -10,13 +10,15 @@
 
         public async Task<bool> Run(params string[] parameters)
         {
+            bool toContinue = false;
             Console.WriteLine("All included videos: ");
             foreach (var material in _courseDTO.Materials)
             {
                 var converted = material as VideoDTO;
 
-                if (converted.Quality is not 0)
+                if (converted is not null)
                 {
+                    toContinue = true;
                     Console.WriteLine(converted);
                 }
             }
@@ -53,7 +55,7 @@
             {
                 var converted = material as VideoDTO;
 
-                if (converted.Quality is not 0
+                if (converted is not null
                     && toRemove.Contains(converted.Id))
                 {
                     continue;
