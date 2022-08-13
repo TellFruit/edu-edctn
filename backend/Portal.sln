@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Portal.UI-Console", "Portal\Portal.UI-Console.csproj", "{FE6ACB0D-949B-4126-B7AA-9AE681B0BF68}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Portal.UI-Console", "Portal.UI-Console\Portal.UI-Console.csproj", "{FE6ACB0D-949B-4126-B7AA-9AE681B0BF68}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Portal.Domain", "Portal.DAL\Portal.Domain.csproj", "{133251B4-5C36-411C-A3BD-736CEB848805}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Portal.Domain", "Portal.Domain\Portal.Domain.csproj", "{133251B4-5C36-411C-A3BD-736CEB848805}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{87ADC687-E1D7-4C35-8EFD-0BAB9679F90B}"
 EndProject
