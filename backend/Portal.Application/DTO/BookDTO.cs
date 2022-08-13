@@ -16,7 +16,9 @@ namespace Portal.Application.DTO
 
             string date;
 
-            if (Published.Hour == 1 && Published.Minute == 1 && Published.Second == 1)
+            var mark = ApplicationConstants.YearOnlyDateMark;
+
+            if (Published.Hour == mark && Published.Minute == mark && Published.Second == mark)
             {
                 date = Published.ToString("yyyy");
             }
