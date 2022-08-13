@@ -4,7 +4,8 @@
     {
         public static void RegisterApplication(IServiceCollection services)
         {
-            services.AddAutoMapper(cfg =>
+            services.AddAutoMapper(
+                cfg =>
             {
                 cfg.AddProfile<ArticleProfile>();
                 cfg.AddProfile<BookProfile>();

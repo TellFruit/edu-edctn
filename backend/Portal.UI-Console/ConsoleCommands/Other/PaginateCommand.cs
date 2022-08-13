@@ -25,8 +25,18 @@
                     break;
                 }
 
-                try { page = int.Parse(input); }
-                catch { if (!input.Equals(string.Empty)) { input = string.Empty; continue; } }
+                try 
+                { 
+                    page = int.Parse(input);
+                }
+                catch 
+                { 
+                    if (!input.Equals(string.Empty)) 
+                    {
+                        input = string.Empty;
+                        continue;
+                    }
+                }
 
                 Console.WriteLine($"Page {page}:");
 

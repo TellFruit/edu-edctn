@@ -23,6 +23,7 @@
 
                         return new CreateArticleCommand(articleService);
                     }
+
                 case "create-book":
                     {
                         var bookService = Program.Root.GetService<IBookService>();
@@ -31,6 +32,7 @@
 
                         return new CreateBookCommand(bookService);
                     }
+
                 case "create-video":
                     {
                         var videoService = Program.Root.GetService<IVideoService>();
@@ -39,36 +41,42 @@
 
                         return new CreateVideoCommand(videoService);
                     }
+
                 case "create-course":
                     {
                         var courseService = Program.Root.GetService<ICourseService>();
 
                         return new CreateCourseCommand(courseService);
                     }
+
                 case "get-articles":
                     {
                         var articleService = Program.Root.GetService<IArticleService>();
 
                         return new GetArticlesCommand(articleService);
                     }
+
                 case "get-books":
                     {
                         var bookService = Program.Root.GetService<IBookService>();
 
                         return new GetBooksCommand(bookService);
                     }
+
                 case "get-videos":
                     {
                         var videoService = Program.Root.GetService<IVideoService>();
 
                         return new GetVideosCommand(videoService);
                     }
+
                 case "get-courses":
                     {
                         var courseService = Program.Root.GetService<ICourseService>();
 
                         return new GetCoursesCommand(courseService);
                     }
+
                 case "update-article":
                     {
                         var articleService = Program.Root.GetService<IArticleService>();
@@ -77,6 +85,7 @@
 
                         return new UpdateArticleCommand(articleService);
                     }
+
                 case "update-book":
                     {
                         var bookService = Program.Root.GetService<IBookService>();
@@ -85,6 +94,7 @@
 
                         return new UpdateBookCommand(bookService);
                     }
+
                 case "update-video":
                     {
                         var videoService = Program.Root.GetService<IVideoService>();
@@ -93,6 +103,7 @@
 
                         return new UpdateVideoCommand(videoService);
                     }
+
                 case "update-course":
                     {
                         var courseService = Program.Root.GetService<ICourseService>();
@@ -101,6 +112,7 @@
 
                         return new UpdateCourseCommand(courseService);
                     }
+
                 case "delete-article":
                     {
                         var articleService = Program.Root.GetService<IArticleService>();
@@ -109,6 +121,7 @@
 
                         return new DeleteArticleCommand(articleService);
                     }
+
                 case "delete-book":
                     {
                         var bookService = Program.Root.GetService<IBookService>();
@@ -117,6 +130,7 @@
 
                         return new DeleteBookCommand(bookService);
                     }
+
                 case "delete-video":
                     {
                         var videoService = Program.Root.GetService<IVideoService>();
@@ -125,6 +139,7 @@
 
                         return new DeleteVideoCommand(videoService);
                     }
+
                 case "delete-course":
                     {
                         var courseService = Program.Root.GetService<ICourseService>();
@@ -133,16 +148,19 @@
 
                         return new DeleteCourseCommand(courseService);
                     }
+
                 case "logout":
                     {
                         var userAuth = Program.Root.GetService<IUserAuth>();
 
                         return new LogoutCommand(userAuth);
                     }
+
                 case "exit":
                     {
                         return new TerminateCommand();
                     }
+
                 default:
                     break;
             }

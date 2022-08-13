@@ -37,8 +37,18 @@
                     break;
                 }
 
-                try { wantedId = int.Parse(input); }
-                catch { if (!input.Equals(string.Empty)) { input = string.Empty; continue; } }
+                try
+                {
+                    wantedId = int.Parse(input);
+                }
+                catch
+                {
+                    if (!input.Equals(string.Empty))
+                    {
+                        input = string.Empty;
+                        continue;
+                    }
+                }
 
                 if (toRemove.FirstOrDefault(x => x.Equals(wantedId)) is not 0)
                 {
