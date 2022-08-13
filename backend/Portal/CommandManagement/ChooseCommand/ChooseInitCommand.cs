@@ -133,6 +133,12 @@
 
                         return new DeleteCourseCommand(courseService);
                     }
+                case "logout":
+                    {
+                        var userAuth = Program.Root.GetService<IUserAuth>();
+
+                        return new LogoutCommand(userAuth);
+                    }
                 case "exit":
                     {
                         return new TerminateCommand();
