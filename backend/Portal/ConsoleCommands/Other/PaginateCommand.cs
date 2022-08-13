@@ -13,7 +13,7 @@
 
         public async Task<bool> Run(params string[] parameters)
         {
-            string input = "";
+            string input = string.Empty;
 
             int page = 1;
             int pageSize = int.Parse(_config.GetSetting("PaginatedPageSize"));
@@ -26,7 +26,7 @@
                 }
 
                 try { page = int.Parse(input); }
-                catch { if (!input.Equals("")) { input = ""; continue; } }
+                catch { if (!input.Equals(string.Empty)) { input = string.Empty; continue; } }
 
                 Console.WriteLine($"Page {page}:");
 

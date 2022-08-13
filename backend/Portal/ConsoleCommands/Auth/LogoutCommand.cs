@@ -19,11 +19,11 @@ namespace Portal.UI_Console.ConsoleCommands.Auth
         {
             if (await _userAuth.Logout())
             {
-                Console.Write("Success! You've just logged out.");
+                Console.WriteLine("Success! You've just logged out.");
             }
             else
             {
-                Console.Write("Failure! You are alredy not logged...");
+                Console.WriteLine("Failure! You are alredy not logged...");
             }
 
             return true;

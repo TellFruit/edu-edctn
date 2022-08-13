@@ -13,8 +13,8 @@
         {
             bool result = false;
 
-            string email = "";
-            string password = "";
+            string email = string.Empty;
+            string password = string.Empty;
 
             do
             {

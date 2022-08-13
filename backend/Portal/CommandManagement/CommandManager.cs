@@ -23,13 +23,13 @@
         public async Task InitCommandFlow()
         {
             bool allowed = true;
-            string input = "";
+            string input = string.Empty;
 
             do
             {
                 try
                 {
-                    input = Console.ReadLine() ?? "";
+                    input = Console.ReadLine() ?? string.Empty;
 
                     var parts = _commandParser.Parse(input);
 

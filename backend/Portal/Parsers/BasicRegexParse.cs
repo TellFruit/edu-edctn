@@ -19,7 +19,7 @@
                 throw new ArgumentException(nameof(Regex));
             }
 
-            string ignoreGroup = "";
+            string ignoreGroup = string.Empty;
 
             if (match.Groups.Count > 1)
             {

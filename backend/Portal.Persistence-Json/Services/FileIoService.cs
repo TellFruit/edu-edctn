@@ -6,7 +6,7 @@
 
         public string Read()
         {
-            string result = "";
+            string result = string.Empty;
 
             if (File.Exists(_path))
             {

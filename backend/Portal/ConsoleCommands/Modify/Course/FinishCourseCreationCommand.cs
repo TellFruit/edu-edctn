@@ -17,7 +17,7 @@
                 return true;
             }
 
-            string input = "";
+            string input = string.Empty;
 
             if (_courseDTO.Id != 0)
             {

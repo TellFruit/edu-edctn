@@ -25,7 +25,7 @@
 
             ICollection<int> toRemove = new List<int>();
             int wantedId = 0;
-            string input = "";
+            string input = string.Empty;
             do
             {
                 Console.WriteLine("Write id of video to exclude or \'return\' to stop: ");
@@ -38,7 +38,7 @@
                 }
 
                 try { wantedId = int.Parse(input); }
-                catch { if (!input.Equals("")) { input = ""; continue; } }
+                catch { if (!input.Equals(string.Empty)) { input = string.Empty; continue; } }
 
                 if (toRemove.FirstOrDefault(x => x.Equals(wantedId)) is not 0)
                 {

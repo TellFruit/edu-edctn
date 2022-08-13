@@ -4,7 +4,7 @@
     {
         public string GetSetting(string key)
         {
-            return ConfigurationManager.AppSettings[key] ?? "";
+            return ConfigurationManager.AppSettings[key] ?? string.Empty;
         }
     }
 }

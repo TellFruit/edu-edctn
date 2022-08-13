@@ -16,7 +16,7 @@
                 return true;
             }
 
-            string input = "";
+            string input = string.Empty;
             do
             {
                 Console.WriteLine("Write 'login' or 'register'. To suspend - write 'return'");

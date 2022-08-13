@@ -97,7 +97,7 @@
                     {
                         var courseService = Program.Root.GetService<ICourseService>();
 
-                        parser = new BasicSplitParse("");
+                        parser = new BasicSplitParse(string.Empty);
 
                         return new UpdateCourseCommand(courseService);
                     }
@@ -105,7 +105,7 @@
                     {
                         var articleService = Program.Root.GetService<IArticleService>();
 
-                        parser = new BasicSplitParse("");
+                        parser = new BasicSplitParse(string.Empty);
 
                         return new DeleteArticleCommand(articleService);
                     }
@@ -113,7 +113,7 @@
                     {
                         var bookService = Program.Root.GetService<IBookService>();
 
-                        parser = new BasicSplitParse("");
+                        parser = new BasicSplitParse(string.Empty);
 
                         return new DeleteBookCommand(bookService);
                     }
@@ -121,7 +121,7 @@
                     {
                         var videoService = Program.Root.GetService<IVideoService>();
 
-                        parser = new BasicSplitParse("");
+                        parser = new BasicSplitParse(string.Empty);
 
                         return new DeleteVideoCommand(videoService);
                     }
@@ -129,7 +129,7 @@
                     {
                         var courseService = Program.Root.GetService<ICourseService>();
 
-                        parser = new BasicSplitParse("");
+                        parser = new BasicSplitParse(string.Empty);
 
                         return new DeleteCourseCommand(courseService);
                     }

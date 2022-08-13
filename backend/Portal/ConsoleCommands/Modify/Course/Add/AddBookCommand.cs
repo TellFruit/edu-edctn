@@ -24,7 +24,7 @@
             await viewCommand.Run();
 
             int wantedId = 0;
-            string input = "";
+            string input = string.Empty;
             do
             {
                 ICollection<int> present = _courseDTO.Materials
@@ -41,7 +41,7 @@
                 }
 
                 try { wantedId = int.Parse(input); }
-                catch { if (!input.Equals("")) { input = ""; continue; } }
+                catch { if (!input.Equals(string.Empty)) { input = string.Empty; continue; } }
 
                 if (present.Contains(wantedId))
                 {
