@@ -54,5 +54,18 @@
 
             return true;
         }
+
+        public async Task<bool> Logout()
+        {
+            if (!IsAuthenticated)
+            {
+                return false;
+            }
+
+            _user = new UserDTO();
+            _authenticated = false;
+
+            return true;
+        }
     }
 }
