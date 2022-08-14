@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using Portal.Application.Interfaces.OuterImpl;
 using Portal.Domain.Entities;
 using Portal.Persistence_EF_Core.Repositories.Abstract;
@@ -20,9 +21,18 @@ namespace Portal.Persistence_EF_Core.Repositories
             return entity;
         }
 
-        public Task<int> Delete(ArticleDomain entity)
+        public async Task<int> Delete(ArticleDomain entity)
         {
-            throw new NotImplementedException();
+            var articleEntity = await _context.Materials.OfType<Article>()
+                .FirstOrDefaultAsync(u => u.Id == entity.Id);
+
+            //if (userEntity == null)
+            //{
+            //    throw new NotFoundException(nameof(User), userId);
+            //}
+
+            _context.Materials.Remove(articleEntity);
+            return articleEntity.Id;
         }
 
         public Task<ICollection<ArticleDomain>> Read()
