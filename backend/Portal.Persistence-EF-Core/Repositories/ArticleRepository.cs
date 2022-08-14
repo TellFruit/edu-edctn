@@ -35,9 +35,12 @@ namespace Portal.Persistence_EF_Core.Repositories
             return articleEntity.Id;
         }
 
-        public Task<ICollection<ArticleDomain>> Read()
+        public async Task<ICollection<ArticleDomain>> Read()
         {
-            throw new NotImplementedException();
+            var articles = await _context.Materials.OfType<Article>()
+                .ToListAsync();
+
+            return _mapper.Map<List<ArticleDomain>>(articles);
         }
 
         public Task SaveChanges()
