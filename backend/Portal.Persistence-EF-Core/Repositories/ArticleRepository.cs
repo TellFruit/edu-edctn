@@ -43,14 +43,27 @@ namespace Portal.Persistence_EF_Core.Repositories
             return _mapper.Map<List<ArticleDomain>>(articles);
         }
 
-        public Task SaveChanges()
+        public async Task SaveChanges()
         {
-            throw new NotImplementedException();
+            await _context.SaveChangesAsync();
         }
 
-        public Task<ArticleDomain> Update(ArticleDomain entity)
+        public async Task<ArticleDomain> Update(ArticleDomain entity)
         {
-            throw new NotImplementedException();
+            var articleEntity = await _context.Materials.OfType<Article>()
+                .FirstOrDefaultAsync(u => u.Id == entity.Id);
+
+            var data = _mapper.Map<Article>(entity);
+
+            articleEntity.Title = data.Title;
+            articleEntity.Url = data.Url;
+            articleEntity.Perks = data.Perks;
+            articleEntity.Published = data.Published;
+            articleEntity.UpdatedAt = data.UpdatedAt;
+
+            _context.Update(articleEntity);
+
+            return entity;
         }
     }
 }
