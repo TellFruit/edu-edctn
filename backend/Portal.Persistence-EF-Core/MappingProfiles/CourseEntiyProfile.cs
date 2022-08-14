@@ -4,9 +4,9 @@ using Portal.Persitence_EF_Core.FrameworkEntities;
 
 namespace Portal.Persistence_EF_Core.MappingProfiles
 {
-    internal class CourseProfile : Profile
+    internal class CourseEntiyProfile : Profile
     {
-        public CourseProfile()
+        public CourseEntiyProfile()
         {
             CreateMap<CourseDomain, Course>();
 

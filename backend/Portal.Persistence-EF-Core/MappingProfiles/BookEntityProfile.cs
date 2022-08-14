@@ -6,14 +6,14 @@ using Portal.Persitence_EF_Core.FrameworkEntities.Abstract;
 
 namespace Portal.Persistence_EF_Core.MappingProfiles
 {
-    internal class VideoProfile : Profile
+    internal class BookEntityProfile : Profile
     {
-        public VideoProfile()
+        public BookEntityProfile()
         {
-            CreateMap<VideoDomain, Video>()
+            CreateMap<BookDomain, Book>()
                 .IncludeBase<MaterialDomain, Material>();
 
-            CreateMap<Video, VideoDomain>()
+            CreateMap<Book, BookDomain>()
                 .IncludeBase<Material, MaterialDomain>();
         }
     }

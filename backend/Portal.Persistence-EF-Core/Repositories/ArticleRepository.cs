@@ -1,13 +1,23 @@
-﻿using Portal.Application.Interfaces.OuterImpl;
+﻿using AutoMapper;
+using Portal.Application.Interfaces.OuterImpl;
 using Portal.Domain.Entities;
+using Portal.Persistence_EF_Core.Repositories.Abstract;
+using Portal.Persitence_EF_Core.FrameworkEntities;
 
 namespace Portal.Persistence_EF_Core.Repositories
 {
-    internal class ArticleRepository : IGenericRepository<ArticleDomain>
+    internal class ArticleRepository : BaseRepository, IGenericRepository<ArticleDomain>
     {
-        public Task<ArticleDomain> Create(ArticleDomain entity)
+        public ArticleRepository(IMapper mapper, PortalContext context)
+            : base(mapper, context) {}
+
+        public async Task<ArticleDomain> Create(ArticleDomain entity)
         {
-            throw new NotImplementedException();
+            var articleEntity = _mapper.Map<Article>(entity);
+
+            _context.Add(articleEntity);
+
+            return entity;
         }
 
         public Task<int> Delete(ArticleDomain entity)

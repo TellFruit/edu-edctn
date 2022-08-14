@@ -4,9 +4,9 @@ using Portal.Persitence_EF_Core.FrameworkEntities.Abstract;
 
 namespace Portal.Persistence_EF_Core.MappingProfiles
 {
-    public class MaterialProfile : Profile
+    public class MaterialEntityProfile : Profile
     {
-        public MaterialProfile()
+        public MaterialEntityProfile()
         {
             CreateMap<MaterialDomain, Material>();
 

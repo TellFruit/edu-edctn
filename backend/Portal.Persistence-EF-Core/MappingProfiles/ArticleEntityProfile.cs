@@ -6,9 +6,9 @@ using Portal.Persitence_EF_Core.FrameworkEntities.Abstract;
 
 namespace Portal.Persistence_EF_Core.MappingProfiles
 {
-    internal class ArticleProfile : Profile
+    internal class ArticleEntityProfile : Profile
     {
-        public ArticleProfile()
+        public ArticleEntityProfile()
         {
             CreateMap<ArticleDomain, Article>()
                 .IncludeBase<MaterialDomain, Material>();
