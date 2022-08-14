@@ -61,7 +61,7 @@ namespace Portal.Persistence_EF_Core.Repositories
             articleEntity.Published = data.Published;
             articleEntity.UpdatedAt = data.UpdatedAt;
 
-            _context.Update(articleEntity);
+            _context.Materials.Update(articleEntity);
 
             return entity;
         }

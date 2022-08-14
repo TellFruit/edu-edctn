@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using Portal.Application.Interfaces.OuterImpl;
 using Portal.Domain.Entities;
 using Portal.Persistence_EF_Core.Repositories.Abstract;
+using Portal.Persitence_EF_Core.FrameworkEntities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,29 +17,60 @@ namespace Portal.Persistence_EF_Core.Repositories
         public BookRepository(IMapper mapper, PortalContext context)
             : base(mapper, context) {}
 
-        public Task<BookDomain> Create(BookDomain entity)
+        public async Task<BookDomain> Create(BookDomain entity)
         {
-            throw new NotImplementedException();
+            var bookEntity = _mapper.Map<Book>(entity);
+
+            _context.Add(bookEntity);
+
+            return entity;
         }
 
-        public Task<int> Delete(BookDomain entity)
+        public async Task<int> Delete(BookDomain entity)
         {
-            throw new NotImplementedException();
+            var bookEntity = await _context.Materials.OfType<Book>()
+                .FirstOrDefaultAsync(u => u.Id == entity.Id);
+
+            //if (userEntity == null)
+            //{
+            //    throw new NotFoundException(nameof(User), userId);
+            //}
+
+            _context.Materials.Remove(bookEntity);
+            return bookEntity.Id;
         }
 
-        public Task<ICollection<BookDomain>> Read()
+        public async Task<ICollection<BookDomain>> Read()
         {
-            throw new NotImplementedException();
+            var books = await _context.Materials.OfType<Book>()
+                .ToListAsync();
+
+            return _mapper.Map<List<BookDomain>>(books);
         }
 
-        public Task SaveChanges()
+        public async Task SaveChanges()
         {
-            throw new NotImplementedException();
+            await _context.SaveChangesAsync();
         }
 
-        public Task<BookDomain> Update(BookDomain entity)
+        public async Task<BookDomain> Update(BookDomain entity)
         {
-            throw new NotImplementedException();
+            var bookEntity = await _context.Materials.OfType<Book>()
+                .FirstOrDefaultAsync(u => u.Id == entity.Id);
+
+            var data = _mapper.Map<Book>(entity);
+
+            bookEntity.Title = data.Title;
+            bookEntity.Authors = data.Authors;
+            bookEntity.PageCount = data.PageCount;
+            bookEntity.Format = data.Format;
+            bookEntity.Published = data.Published;
+            bookEntity.Perks = data.Perks;
+            bookEntity.UpdatedAt = data.UpdatedAt;
+
+            _context.Materials.Update(bookEntity);
+
+            return entity;
         }
     }
 }
