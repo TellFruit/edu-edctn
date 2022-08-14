@@ -5,6 +5,7 @@
         private readonly IChooseCommand _choose;
 
         private IParseInput _commandParser;
+
         private IParseInput? _parameterParser;
 
         public IConsoleCommand LastCommand { get; set; }
