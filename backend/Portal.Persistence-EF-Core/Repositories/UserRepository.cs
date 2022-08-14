@@ -44,19 +44,34 @@ namespace Portal.Persistence_EF_Core.Repositories
             return userEntity.Id;
         }
 
-        public Task<ICollection<UserDomain>> Read()
+        public async Task<ICollection<UserDomain>> Read()
         {
-            throw new NotImplementedException();
+            var users = await _context.Users.ToListAsync();
+
+            return _mapper.Map<List<UserDomain>>(users);
         }
 
-        public Task SaveChanges()
+        public async Task SaveChanges()
         {
-            throw new NotImplementedException();
+            await _context.SaveChangesAsync();
         }
 
-        public Task<UserDomain> Update(UserDomain entity)
+        public async Task<UserDomain> Update(UserDomain entity)
         {
-            throw new NotImplementedException();
+            var userEntity = await _context.Users.FirstOrDefaultAsync(u => u.Id == entity.Id);
+
+            var data = _mapper.Map<User>(entity);
+
+            userEntity.FirstName = data.FirstName;
+            userEntity.LastName = data.LastName;
+            userEntity.Email = data.Email;
+            userEntity.Password = data.Password;
+            userEntity.Roles = data.Roles;
+            userEntity.UpdatedAt = data.UpdatedAt;
+
+            _context.Update(userEntity);
+
+            return entity;
         }
     }
 }
