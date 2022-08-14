@@ -7,6 +7,6 @@ namespace Portal.Persitence_EF_Core.FrameworkEntities
         public int PageCount { get; set; }
         public string Format { get; set; }
         public DateTime Published { get; set; }
-        public ICollection<string> Authors { get; set; }
+        public string Authors { get; set; }
     }
 }

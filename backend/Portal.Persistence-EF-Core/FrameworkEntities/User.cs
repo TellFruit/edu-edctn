@@ -10,7 +10,7 @@ namespace Portal.Persitence_EF_Core.FrameworkEntities
         public string LastName { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
-        public ICollection<string> Roles { get; set; }
+        public string Roles { get; set; }
 
         public ICollection<UserPerk> UserPerks { get; set; }
         public ICollection<Material> Materials { get; set; }

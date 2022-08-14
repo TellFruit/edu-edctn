@@ -2,7 +2,7 @@
 
 namespace Portal.Persitence_EF_Core.FrameworkEntities
 {
-    public class Article : Material
+    internal class Article : Material
     {
         public string Url { get; set; }
         public DateTime Published { get; set; }

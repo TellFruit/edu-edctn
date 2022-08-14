@@ -1,6 +1,6 @@
 ﻿namespace Portal.Persitence_EF_Core.FrameworkEntities.Abstract
 {
-    internal abstract class Material : FrameworkEntity
+    internal class Material : FrameworkEntity
     {
         public string Title { get; set; }
 
