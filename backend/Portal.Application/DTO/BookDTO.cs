@@ -8,7 +8,7 @@ namespace Portal.Application.DTO
         public string Format { get; set; }
         public DateTime Published { get; set; }
         public ICollection<string> Authors { get; set; }
-        public ICollection<Perk> Perks { get; set; }
+        public ICollection<PerkDomain> Perks { get; set; }
 
         public override string ToString()
         {

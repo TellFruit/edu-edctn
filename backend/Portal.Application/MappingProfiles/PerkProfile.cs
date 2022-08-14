@@ -4,9 +4,9 @@
     {
         public PerkProfile()
         {
-            CreateMap<Perk, PerkDTO>();
+            CreateMap<PerkDomain, PerkDTO>();
 
-            CreateMap<PerkDTO, Perk>();
+            CreateMap<PerkDTO, PerkDomain>();
         }
     }
 }

@@ -1,13 +1,13 @@
 ﻿namespace Portal.Application.Services
 {
-    internal class UserService : BaseModelService<User>, IUserService
+    internal class UserService : BaseModelService<UserDomain>, IUserService
     {
-        public UserService(IGenericRepository<User> repository, IMapper mapper)
+        public UserService(IGenericRepository<UserDomain> repository, IMapper mapper)
             : base(repository, mapper) {}
 
         public async Task<UserDTO> Create(UserDTO entity)
         {
-            var user = _mapper.Map<User>(entity);
+            var user = _mapper.Map<UserDomain>(entity);
 
             user.CreatedAt = DateTime.Now;
             user.UpdatedAt = DateTime.Now;
@@ -25,7 +25,7 @@
 
             if (toDelete is null)
             {
-                throw new EntityNotFoundException(nameof(User));
+                throw new EntityNotFoundException(nameof(UserDomain));
             }
 
             int result = await _repository.Delete(toDelete);
@@ -55,11 +55,11 @@
             var users = await _repository.Read();
 
             var toUpdate = users.FirstOrDefault(a => a.Id.Equals(entity.Id));
-            var data = _mapper.Map<User>(entity);
+            var data = _mapper.Map<UserDomain>(entity);
 
             if (toUpdate is null)
             {
-                throw new EntityNotFoundException(nameof(User));
+                throw new EntityNotFoundException(nameof(UserDomain));
             }
 
             toUpdate.FirstName = data.FirstName;

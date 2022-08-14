@@ -1,13 +1,13 @@
 ﻿namespace Portal.Application.Services
 {
-    internal class CourseService : BaseModelService<Course>, ICourseService
+    internal class CourseService : BaseModelService<CourseDomain>, ICourseService
     {
-        public CourseService(IGenericRepository<Course> repository, IMapper mapper)
+        public CourseService(IGenericRepository<CourseDomain> repository, IMapper mapper)
             : base(repository, mapper) {}
 
         public async Task<CourseDTO> Create(CourseDTO entity)
         {
-            var course = _mapper.Map<Course>(entity);
+            var course = _mapper.Map<CourseDomain>(entity);
 
             course.CreatedAt = DateTime.Now;
             course.UpdatedAt = DateTime.Now;
@@ -25,7 +25,7 @@
 
             if (toDelete is null)
             {
-                throw new EntityNotFoundException(nameof(Course));
+                throw new EntityNotFoundException(nameof(CourseDomain));
             }
             int result = await _repository.Delete(toDelete);
             await _repository.SaveChanges();
@@ -54,11 +54,11 @@
             var courses = await _repository.Read();
 
             var toUpdate = courses.FirstOrDefault(a => a.Id.Equals(entity.Id));
-            var data = _mapper.Map<Course>(entity);
+            var data = _mapper.Map<CourseDomain>(entity);
             
             if (toUpdate is null)
             {
-                throw new EntityNotFoundException(nameof(Course));
+                throw new EntityNotFoundException(nameof(CourseDomain));
             }
 
             toUpdate.Name = data.Name;

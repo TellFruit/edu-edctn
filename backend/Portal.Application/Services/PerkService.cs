@@ -1,13 +1,13 @@
 ﻿namespace Portal.Application.Services
 {
-    internal class PerkService : BaseModelService<Perk>, IPerkService
+    internal class PerkService : BaseModelService<PerkDomain>, IPerkService
     {
-        public PerkService(IGenericRepository<Perk> repository, IMapper mapper)
+        public PerkService(IGenericRepository<PerkDomain> repository, IMapper mapper)
             : base(repository, mapper) {}
 
         public async Task<PerkDTO> Create(PerkDTO entity)
         {
-            var perk = _mapper.Map<Perk>(entity);
+            var perk = _mapper.Map<PerkDomain>(entity);
 
             perk.CreatedAt = DateTime.Now;
             perk.UpdatedAt = DateTime.Now;
@@ -25,7 +25,7 @@
 
             if (toDelete is null)
             {
-                throw new EntityNotFoundException(nameof(Perk));
+                throw new EntityNotFoundException(nameof(PerkDomain));
             }
 
             int result = await _repository.Delete(toDelete);
@@ -55,11 +55,11 @@
             var perks = await _repository.Read();
 
             var toUpdate = perks.FirstOrDefault(a => a.Id.Equals(entity.Id));
-            var data = _mapper.Map<Perk>(entity);
+            var data = _mapper.Map<PerkDomain>(entity);
 
             if (toUpdate is null)
             {
-                throw new EntityNotFoundException(nameof(Perk));
+                throw new EntityNotFoundException(nameof(PerkDomain));
             }
 
             toUpdate.Name = data.Name;

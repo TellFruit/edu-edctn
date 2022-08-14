@@ -4,9 +4,9 @@
     {
         public UserProfile()
         {
-            CreateMap<User, UserDTO>();
+            CreateMap<UserDomain, UserDTO>();
 
-            CreateMap<UserDTO, User>();
+            CreateMap<UserDTO, UserDomain>();
         }
     }
 }

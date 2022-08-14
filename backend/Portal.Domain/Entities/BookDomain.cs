@@ -2,7 +2,7 @@
 
 namespace Portal.Domain.Entities
 {
-    public class Book : Material
+    public class BookDomain : MaterialDomain
     {
         public int PageCount { get; set; }
         public string Format { get; set; }

@@ -4,9 +4,9 @@
     {
         public MaterilProfile()
         {
-            CreateMap<Material, MaterialDTO>();
+            CreateMap<MaterialDomain, MaterialDTO>();
 
-            CreateMap<MaterialDTO, Material>();
+            CreateMap<MaterialDTO, MaterialDomain>();
         }
     }
 }

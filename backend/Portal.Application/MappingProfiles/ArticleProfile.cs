@@ -4,11 +4,11 @@
     {
         public ArticleProfile()
         {
-            CreateMap<Article, ArticleDTO>()
-                .IncludeBase<Material, MaterialDTO>();
+            CreateMap<ArticleDomain, ArticleDTO>()
+                .IncludeBase<MaterialDomain, MaterialDTO>();
 
-            CreateMap<ArticleDTO, Article>()
-                .IncludeBase<MaterialDTO, Material>();
+            CreateMap<ArticleDTO, ArticleDomain>()
+                .IncludeBase<MaterialDTO, MaterialDomain>();
         }
     }
 }

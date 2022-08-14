@@ -4,11 +4,11 @@
     {
         public VideoProfile()
         {
-            CreateMap<Video, VideoDTO>()
-                .IncludeBase<Material, MaterialDTO>();
+            CreateMap<VideoDomain, VideoDTO>()
+                .IncludeBase<MaterialDomain, MaterialDTO>();
 
-            CreateMap<VideoDTO, Video>()
-                .IncludeBase<MaterialDTO, Material>();
+            CreateMap<VideoDTO, VideoDomain>()
+                .IncludeBase<MaterialDTO, MaterialDomain>();
         }
     }
 }

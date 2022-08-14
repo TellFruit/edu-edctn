@@ -1,13 +1,13 @@
 ﻿namespace Portal.Application.Services
 {
-    internal class BookService : BaseModelService<Book>, IBookService
+    internal class BookService : BaseModelService<BookDomain>, IBookService
     {
-        public BookService(IGenericRepository<Book> repository, IMapper mapper)
+        public BookService(IGenericRepository<BookDomain> repository, IMapper mapper)
             : base(repository, mapper) {}
 
         public async Task<BookDTO> Create(BookDTO entity)
         {
-            var book = _mapper.Map<Book>(entity);
+            var book = _mapper.Map<BookDomain>(entity);
 
             book.CreatedAt = DateTime.Now;
             book.UpdatedAt = DateTime.Now;
@@ -25,7 +25,7 @@
 
             if (toDelete is null)
             {
-                throw new EntityNotFoundException(nameof(Book));
+                throw new EntityNotFoundException(nameof(BookDomain));
             }
             
             int result = await _repository.Delete(toDelete);
@@ -55,11 +55,11 @@
             var articles = await _repository.Read();
 
             var toUpdate = articles.FirstOrDefault(a => a.Id.Equals(entity.Id)); 
-            var data = _mapper.Map<Book>(entity);
+            var data = _mapper.Map<BookDomain>(entity);
 
             if (toUpdate is null)
             {
-                throw new EntityNotFoundException(nameof(Book));
+                throw new EntityNotFoundException(nameof(BookDomain));
             }
 
             toUpdate.Title = data.Title;

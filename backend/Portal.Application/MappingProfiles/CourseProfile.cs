@@ -4,9 +4,9 @@
     {
         public CourseProfile()
         {
-            CreateMap<Course, CourseDTO>();
+            CreateMap<CourseDomain, CourseDTO>();
 
-            CreateMap<CourseDTO, Course>();
+            CreateMap<CourseDTO, CourseDomain>();
         }
     }
 }

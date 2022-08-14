@@ -2,7 +2,7 @@
 
 namespace Portal.Domain.Entities
 {
-    public class Video : Material
+    public class VideoDomain : MaterialDomain
     {
         public TimeSpan Duration { get; set; }
         public int Quality { get; set; }

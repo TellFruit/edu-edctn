@@ -1,13 +1,13 @@
 ﻿namespace Portal.Application.Services
 {
-    internal class ArticleService : BaseModelService<Article>, IArticleService
+    internal class ArticleService : BaseModelService<ArticleDomain>, IArticleService
     {
-        public ArticleService(IGenericRepository<Article> repository, IMapper mapper) 
+        public ArticleService(IGenericRepository<ArticleDomain> repository, IMapper mapper) 
             : base(repository, mapper) {}
 
         public async Task<ArticleDTO> Create(ArticleDTO entity)
         {
-            var article = _mapper.Map<Article>(entity);
+            var article = _mapper.Map<ArticleDomain>(entity);
 
             article.CreatedAt = DateTime.Now;
             article.UpdatedAt = DateTime.Now;
@@ -25,7 +25,7 @@
 
             if (toDelete is null)
             {
-                throw new EntityNotFoundException(nameof(Article));
+                throw new EntityNotFoundException(nameof(ArticleDomain));
             }
 
             int resultId = await _repository.Delete(toDelete);
@@ -54,11 +54,11 @@
             var articles = await _repository.Read();
 
             var toUpdate = articles.FirstOrDefault(a => a.Id.Equals(entity.Id));
-            var data = _mapper.Map<Article>(entity);
+            var data = _mapper.Map<ArticleDomain>(entity);
 
             if (toUpdate is null)
             {
-                throw new EntityNotFoundException(nameof(Article));
+                throw new EntityNotFoundException(nameof(ArticleDomain));
             }
 
             toUpdate.Title = data.Title;

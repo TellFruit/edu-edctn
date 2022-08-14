@@ -2,7 +2,7 @@
 
 namespace Portal.Domain.Entities
 {
-    public class User : BaseEntity
+    public class UserDomain : BaseEntity
     {
         public string Login { get; set; }
         public string FirstName { get; set; }
@@ -11,8 +11,8 @@ namespace Portal.Domain.Entities
         public string Password { get; set; }
         public ICollection<string> Roles { get; set; }
 
-        public ICollection<UserPerk> UserPerks { get; set; }
-        public ICollection<Material> Materials { get; set; }
-        public ICollection<Course> Courses { get; set; }
+        public ICollection<UserPerkDomain> UserPerks { get; set; }
+        public ICollection<MaterialDomain> Materials { get; set; }
+        public ICollection<CourseDomain> Courses { get; set; }
     }
 }

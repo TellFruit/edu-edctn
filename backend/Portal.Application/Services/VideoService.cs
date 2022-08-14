@@ -1,13 +1,13 @@
 ﻿namespace Portal.Application.Services
 {
-    internal class VideoService : BaseModelService<Video>, IVideoService
+    internal class VideoService : BaseModelService<VideoDomain>, IVideoService
     {
-        public VideoService(IGenericRepository<Video> repository, IMapper mapper)
+        public VideoService(IGenericRepository<VideoDomain> repository, IMapper mapper)
             : base(repository, mapper) {}
 
         public async Task<VideoDTO> Create(VideoDTO entity)
         {
-            var video = _mapper.Map<Video>(entity);
+            var video = _mapper.Map<VideoDomain>(entity);
 
             video.CreatedAt = DateTime.Now;
             video.UpdatedAt = DateTime.Now;
@@ -25,7 +25,7 @@
 
             if (toDelete is null)
             {
-                throw new EntityNotFoundException(nameof(Video));
+                throw new EntityNotFoundException(nameof(VideoDomain));
             }
 
             int result = await _repository.Delete(toDelete);
@@ -55,11 +55,11 @@
             var articles = await _repository.Read();
 
             var toUpdate = articles.FirstOrDefault(a => a.Id.Equals(entity.Id));
-            var data = _mapper.Map<Video>(entity);
+            var data = _mapper.Map<VideoDomain>(entity);
 
             if (toUpdate is null)
             {
-                throw new EntityNotFoundException(nameof(Video));
+                throw new EntityNotFoundException(nameof(VideoDomain));
             }
 
             toUpdate.Title = data.Title;
