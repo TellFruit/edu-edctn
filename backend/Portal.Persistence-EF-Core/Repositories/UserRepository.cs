@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using Portal.Application.Interfaces.OuterImpl;
 using Portal.Domain.Entities;
 using Portal.Persitence_EF_Core.FrameworkEntities;
@@ -25,14 +26,22 @@ namespace Portal.Persistence_EF_Core.Repositories
         {
             var userEntity = _mapper.Map<User>(entity);
 
-            await _context.AddAsync(userEntity);
+            _context.Add(userEntity);
 
             return entity;
         }
 
-        public Task<int> Delete(UserDomain entity)
+        public async Task<int> Delete(UserDomain entity)
         {
-            throw new NotImplementedException();
+            var userEntity = await _context.Users.FirstOrDefaultAsync(u => u.Id == entity.Id);
+
+            //if (userEntity == null)
+            //{
+            //    throw new NotFoundException(nameof(User), userId);
+            //}
+
+            _context.Users.Remove(userEntity);
+            return userEntity.Id;
         }
 
         public Task<ICollection<UserDomain>> Read()
