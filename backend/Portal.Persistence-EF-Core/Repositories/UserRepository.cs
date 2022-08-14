@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Portal.Application.Interfaces.OuterImpl;
 using Portal.Domain.Entities;
+using Portal.Persistence_EF_Core.Repositories.Abstract;
 using Portal.Persitence_EF_Core.FrameworkEntities;
 using System;
 using System.Collections.Generic;
@@ -11,16 +12,10 @@ using System.Threading.Tasks;
 
 namespace Portal.Persistence_EF_Core.Repositories
 {
-    internal class UserRepository : IGenericRepository<UserDomain>
+    internal class UserRepository : BaseRepository, IGenericRepository<UserDomain>
     {
-        private readonly IMapper _mapper;
-        private readonly PortalContext _context;
-
         public UserRepository(IMapper mapper, PortalContext context)
-        {
-            _mapper = mapper;
-            _context = context;
-        }
+            : base(mapper, context) {}
 
         public async Task<UserDomain> Create(UserDomain entity)
         {
