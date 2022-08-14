@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using Portal.Application.Interfaces.OuterImpl;
 using Portal.Domain.Entities;
 using Portal.Persistence_EF_Core.Repositories.Abstract;
+using Portal.Persitence_EF_Core.FrameworkEntities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,29 +17,58 @@ namespace Portal.Persistence_EF_Core.Repositories
         public VideoRepository(IMapper mapper, PortalContext context) 
             : base(mapper, context) {}
 
-        public Task<VideoDomain> Create(VideoDomain entity)
+        public async Task<VideoDomain> Create(VideoDomain entity)
         {
-            throw new NotImplementedException();
+            var videoEntity = _mapper.Map<Video>(entity);
+
+            _context.Add(videoEntity);
+
+            return entity;
         }
 
-        public Task<int> Delete(VideoDomain entity)
+        public async Task<int> Delete(VideoDomain entity)
         {
-            throw new NotImplementedException();
+            var videoEntity = await _context.Materials.OfType<Video>()
+                .FirstOrDefaultAsync(u => u.Id == entity.Id);
+
+            //if (userEntity == null)
+            //{
+            //    throw new NotFoundException(nameof(User), userId);
+            //}
+
+            _context.Materials.Remove(videoEntity);
+            return videoEntity.Id;
         }
 
-        public Task<ICollection<VideoDomain>> Read()
+        public async Task<ICollection<VideoDomain>> Read()
         {
-            throw new NotImplementedException();
+            var videos = await _context.Materials.OfType<Video>()
+                .ToListAsync();
+
+            return _mapper.Map<List<VideoDomain>>(videos);
         }
 
-        public Task SaveChanges()
+        public async Task SaveChanges()
         {
-            throw new NotImplementedException();
+            await _context.SaveChangesAsync();
         }
 
-        public Task<VideoDomain> Update(VideoDomain entity)
+        public async Task<VideoDomain> Update(VideoDomain entity)
         {
-            throw new NotImplementedException();
+            var videoEntity = await _context.Materials.OfType<Video>()
+                .FirstOrDefaultAsync(u => u.Id == entity.Id);
+
+            var data = _mapper.Map<Video>(entity);
+
+            videoEntity.Title = data.Title;
+            videoEntity.Duration = data.Duration;
+            videoEntity.Quality = data.Quality;
+            videoEntity.Perks = data.Perks;
+            videoEntity.UpdatedAt = data.UpdatedAt;
+
+            _context.Materials.Update(videoEntity);
+
+            return entity;
         }
     }
 }
