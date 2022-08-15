@@ -6,6 +6,6 @@
         Task<ICollection<TEntity>> Read();
         Task<TEntity> Update(TEntity entity);
         Task<int> Delete(TEntity entity);
-        Task SaveChanges();
+        void SaveChanges();
     }
 }

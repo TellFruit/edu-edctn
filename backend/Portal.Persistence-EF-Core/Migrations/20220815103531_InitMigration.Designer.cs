@@ -12,8 +12,8 @@ using Portal.Persistence_EF_Core;
 namespace Portal.Persistence_EF_Core.Migrations
 {
     [DbContext(typeof(PortalContext))]
-    [Migration("20220814110313_initinit")]
-    partial class initinit
+    [Migration("20220815103531_InitMigration")]
+    partial class InitMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

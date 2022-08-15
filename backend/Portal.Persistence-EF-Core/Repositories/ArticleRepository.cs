@@ -37,15 +37,15 @@ namespace Portal.Persistence_EF_Core.Repositories
 
         public async Task<ICollection<ArticleDomain>> Read()
         {
-            var articles = await _context.Materials.OfType<Article>()
-                .ToListAsync();
+            var articles = _context.Materials.OfType<Article>()
+                .ToList();
 
-            return _mapper.Map<List<ArticleDomain>>(articles);
+            return articles.Select(x => _mapper.Map<ArticleDomain>(x)).ToList();
         }
 
-        public async Task SaveChanges()
+        public void SaveChanges()
         {
-            await _context.SaveChangesAsync();
+            _context.SaveChanges();
         }
 
         public async Task<ArticleDomain> Update(ArticleDomain entity)

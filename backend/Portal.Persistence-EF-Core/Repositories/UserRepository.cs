@@ -21,7 +21,9 @@ namespace Portal.Persistence_EF_Core.Repositories
         {
             var userEntity = _mapper.Map<User>(entity);
 
-            _context.Add(userEntity);
+            _context.Users.Add(userEntity);
+
+           // await _context.SaveChangesAsync();
 
             return entity;
         }
@@ -41,14 +43,14 @@ namespace Portal.Persistence_EF_Core.Repositories
 
         public async Task<ICollection<UserDomain>> Read()
         {
-            var users = await _context.Users.ToListAsync();
+            var users = _context.Users.ToList();
 
-            return _mapper.Map<List<UserDomain>>(users);
+            return users.Select(x => _mapper.Map<UserDomain>(x)).ToList();
         }
 
-        public async Task SaveChanges()
+        public void SaveChanges()
         {
-            await _context.SaveChangesAsync();
+            _context.SaveChanges();
         }
 
         public async Task<UserDomain> Update(UserDomain entity)

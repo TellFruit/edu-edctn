@@ -56,7 +56,7 @@
             return entity;
         }
 
-        public async Task SaveChanges()
+        public void SaveChanges()
         {
             _file.SetPath(_path).Write(_json.Serialize(_entities));
         }

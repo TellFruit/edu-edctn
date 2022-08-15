@@ -28,7 +28,7 @@ namespace Portal.Persistence_EF_Core
                 },
             Assembly.GetExecutingAssembly());
 
-            services.Adds<PortalContext>();
+            services.AddScoped<PortalContext>();
 
             services.AddScoped<IGenericRepository<UserDomain>, UserRepository>();
             services.AddScoped<IGenericRepository<ArticleDomain>, ArticleRepository>();

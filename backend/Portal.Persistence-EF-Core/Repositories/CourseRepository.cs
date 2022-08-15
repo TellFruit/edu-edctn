@@ -4,6 +4,7 @@ using Portal.Application.Interfaces.OuterImpl;
 using Portal.Domain.Entities;
 using Portal.Persistence_EF_Core.Repositories.Abstract;
 using Portal.Persitence_EF_Core.FrameworkEntities;
+using Portal.Persitence_EF_Core.FrameworkEntities.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,18 @@ namespace Portal.Persistence_EF_Core.Repositories
         {
             var courseEntity = _mapper.Map<Course>(entity);
 
-            _context.Add(courseEntity);
+            //var materials = new List<Material>();
+
+            //if (courseEntity.Materials.OfType<Article>().Count() > 0)
+            //{
+            //    materials.AddRange(_context.Materials.OfType<Article>()
+            //        .Where(x => courseEntity.Materials.OfType<Article>()
+            //                .Select(a => a.Id).Contains(x.Id)));
+            //}
+
+            courseEntity.Materials = materials;
+
+            _context.Courses.Add(courseEntity);
 
             return entity;
         }
@@ -47,9 +59,9 @@ namespace Portal.Persistence_EF_Core.Repositories
             return _mapper.Map<List<CourseDomain>>(courses);
         }
 
-        public async Task SaveChanges()
+        public void SaveChanges()
         {
-            await _context.SaveChangesAsync();
+            _context.SaveChanges();
         }
 
         public async Task<CourseDomain> Update(CourseDomain entity)

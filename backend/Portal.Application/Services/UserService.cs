@@ -13,7 +13,7 @@
             user.UpdatedAt = DateTime.Now;
 
             await _repository.Create(user);
-            await _repository.SaveChanges();
+            _repository.SaveChanges();
 
             return _mapper.Map<UserDTO>(user);
         }
@@ -29,7 +29,7 @@
             }
 
             int result = await _repository.Delete(toDelete);
-            await _repository.SaveChanges();
+            _repository.SaveChanges();
 
             return result;
         }
@@ -71,7 +71,7 @@
             toUpdate.UpdatedAt = DateTime.Now;
 
             await _repository.Update(toUpdate);
-            await _repository.SaveChanges();
+            _repository.SaveChanges();
 
             return _mapper.Map<UserDTO>(toUpdate);
         }

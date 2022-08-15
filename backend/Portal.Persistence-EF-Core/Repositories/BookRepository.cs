@@ -48,9 +48,9 @@ namespace Portal.Persistence_EF_Core.Repositories
             return _mapper.Map<List<BookDomain>>(books);
         }
 
-        public async Task SaveChanges()
+        public void SaveChanges()
         {
-            await _context.SaveChangesAsync();
+            _context.SaveChanges();
         }
 
         public async Task<BookDomain> Update(BookDomain entity)

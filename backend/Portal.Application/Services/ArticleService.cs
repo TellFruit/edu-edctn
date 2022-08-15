@@ -13,7 +13,7 @@
             article.UpdatedAt = DateTime.Now;
 
             await _repository.Create(article);
-            await _repository.SaveChanges();
+            _repository.SaveChanges();
 
             return _mapper.Map<ArticleDTO>(article);
         }
@@ -29,7 +29,7 @@
             }
 
             int resultId = await _repository.Delete(toDelete);
-            await _repository.SaveChanges();
+            _repository.SaveChanges();
             return resultId;
         }
 
@@ -69,7 +69,7 @@
             toUpdate.UpdatedAt = DateTime.Now;
 
             await _repository.Update(toUpdate);
-            await _repository.SaveChanges();
+            _repository.SaveChanges();
 
             return _mapper.Map<ArticleDTO>(toUpdate);
         }

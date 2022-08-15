@@ -13,7 +13,7 @@
             course.UpdatedAt = DateTime.Now;
 
             await _repository.Create(course);
-            await _repository.SaveChanges();
+            _repository.SaveChanges();
 
             return _mapper.Map<CourseDTO>(course);
         }
@@ -28,7 +28,7 @@
                 throw new EntityNotFoundException(nameof(CourseDomain));
             }
             int result = await _repository.Delete(toDelete);
-            await _repository.SaveChanges();
+            _repository.SaveChanges();
 
             return result;
         }
@@ -69,7 +69,7 @@
             toUpdate.UpdatedAt = DateTime.Now;
 
             await _repository.Update(toUpdate);
-            await _repository.SaveChanges();
+            _repository.SaveChanges();
 
             return _mapper.Map<CourseDTO>(toUpdate);
         }

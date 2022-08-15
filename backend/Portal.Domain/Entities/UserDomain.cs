@@ -9,7 +9,7 @@ namespace Portal.Domain.Entities
         public string LastName { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
-        public ICollection<string> Roles { get; set; }
+        public string Roles { get; set; }
 
         public ICollection<UserPerkDomain> UserPerks { get; set; }
         public ICollection<MaterialDomain> Materials { get; set; }
