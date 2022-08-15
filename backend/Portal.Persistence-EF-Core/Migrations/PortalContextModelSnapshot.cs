@@ -37,6 +37,21 @@ namespace Portal.Persistence_EF_Core.Migrations
                     b.ToTable("CourseMaterial");
                 });
 
+            modelBuilder.Entity("CourseUser", b =>
+                {
+                    b.Property<int>("AttendedCoursesId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UsersId")
+                        .HasColumnType("int");
+
+                    b.HasKey("AttendedCoursesId", "UsersId");
+
+                    b.HasIndex("UsersId");
+
+                    b.ToTable("CourseUser");
+                });
+
             modelBuilder.Entity("MaterialPerk", b =>
                 {
                     b.Property<int>("MaterialsId")
@@ -67,36 +82,70 @@ namespace Portal.Persistence_EF_Core.Migrations
                     b.ToTable("MaterialUser");
                 });
 
-            modelBuilder.Entity("Portal.Persistence_EF_Core.FrameworkEntities.UserCourse", b =>
+            modelBuilder.Entity("Portal.Persistence_EF_Core.FrameworkEntities.CourseMaterial", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
                     b.Property<int>("CourseId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
+                    b.Property<int>("MaterialId")
+                        .HasColumnType("int");
+
+                    b.HasKey("CourseId", "MaterialId");
+
+                    b.HasIndex("MaterialId");
+
+                    b.ToTable("CourseMaterials");
+                });
+
+            modelBuilder.Entity("Portal.Persistence_EF_Core.FrameworkEntities.MaterialPerk", b =>
+                {
+                    b.Property<int>("PerkId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MaterialId")
+                        .HasColumnType("int");
 
                     b.Property<int>("Progress")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("datetime2");
+                    b.HasKey("PerkId", "MaterialId");
 
+                    b.HasIndex("MaterialId");
+
+                    b.ToTable("MaterialPerks");
+                });
+
+            modelBuilder.Entity("Portal.Persistence_EF_Core.FrameworkEntities.UserCourse", b =>
+                {
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.Property<int>("CourseId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Progress")
+                        .HasColumnType("int");
+
+                    b.HasKey("UserId", "CourseId");
 
                     b.HasIndex("CourseId");
 
-                    b.HasIndex("UserId");
+                    b.ToTable("UserCourses");
+                });
 
-                    b.ToTable("UserCourse");
+            modelBuilder.Entity("Portal.Persistence_EF_Core.FrameworkEntities.UserMaterial", b =>
+                {
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MaterialId")
+                        .HasColumnType("int");
+
+                    b.HasKey("UserId", "MaterialId");
+
+                    b.HasIndex("MaterialId");
+
+                    b.ToTable("UserMaterials");
                 });
 
             modelBuilder.Entity("Portal.Persitence_EF_Core.FrameworkEntities.Abstract.Material", b =>
@@ -199,48 +248,28 @@ namespace Portal.Persistence_EF_Core.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FirstName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Login")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("PerkId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Roles")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("Id");
-
-                    b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("Portal.Persitence_EF_Core.FrameworkEntities.UserPerk", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("Level")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PerkId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UserId")
+                    b.Property<int?>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -249,7 +278,25 @@ namespace Portal.Persistence_EF_Core.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("UserPerk");
+                    b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("Portal.Persitence_EF_Core.FrameworkEntities.UserPerk", b =>
+                {
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PerkId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Level")
+                        .HasColumnType("int");
+
+                    b.HasKey("UserId", "PerkId");
+
+                    b.HasIndex("PerkId");
+
+                    b.ToTable("UserPerks");
                 });
 
             modelBuilder.Entity("Portal.Persitence_EF_Core.FrameworkEntities.Article", b =>
@@ -316,6 +363,21 @@ namespace Portal.Persistence_EF_Core.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("CourseUser", b =>
+                {
+                    b.HasOne("Portal.Persitence_EF_Core.FrameworkEntities.Course", null)
+                        .WithMany()
+                        .HasForeignKey("AttendedCoursesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Portal.Persitence_EF_Core.FrameworkEntities.User", null)
+                        .WithMany()
+                        .HasForeignKey("UsersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("MaterialPerk", b =>
                 {
                     b.HasOne("Portal.Persitence_EF_Core.FrameworkEntities.Abstract.Material", null)
@@ -346,6 +408,44 @@ namespace Portal.Persistence_EF_Core.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Portal.Persistence_EF_Core.FrameworkEntities.CourseMaterial", b =>
+                {
+                    b.HasOne("Portal.Persitence_EF_Core.FrameworkEntities.Course", "Course")
+                        .WithMany("CourseMaterials")
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Portal.Persitence_EF_Core.FrameworkEntities.Abstract.Material", "Material")
+                        .WithMany("CourseMaterials")
+                        .HasForeignKey("MaterialId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Course");
+
+                    b.Navigation("Material");
+                });
+
+            modelBuilder.Entity("Portal.Persistence_EF_Core.FrameworkEntities.MaterialPerk", b =>
+                {
+                    b.HasOne("Portal.Persitence_EF_Core.FrameworkEntities.Abstract.Material", "Material")
+                        .WithMany("MaterialPerks")
+                        .HasForeignKey("MaterialId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Portal.Persitence_EF_Core.FrameworkEntities.Perk", "Perk")
+                        .WithMany("MaterialPerks")
+                        .HasForeignKey("PerkId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Material");
+
+                    b.Navigation("Perk");
+                });
+
             modelBuilder.Entity("Portal.Persistence_EF_Core.FrameworkEntities.UserCourse", b =>
                 {
                     b.HasOne("Portal.Persitence_EF_Core.FrameworkEntities.Course", "Course")
@@ -365,15 +465,45 @@ namespace Portal.Persistence_EF_Core.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("Portal.Persistence_EF_Core.FrameworkEntities.UserMaterial", b =>
+                {
+                    b.HasOne("Portal.Persitence_EF_Core.FrameworkEntities.Abstract.Material", "Material")
+                        .WithMany("UserMaterials")
+                        .HasForeignKey("MaterialId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Portal.Persitence_EF_Core.FrameworkEntities.User", "User")
+                        .WithMany("UserMaterial")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Material");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Portal.Persitence_EF_Core.FrameworkEntities.Course", b =>
                 {
                     b.HasOne("Portal.Persitence_EF_Core.FrameworkEntities.User", "User")
-                        .WithMany()
+                        .WithMany("CreatedCourses")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Portal.Persitence_EF_Core.FrameworkEntities.User", b =>
+                {
+                    b.HasOne("Portal.Persitence_EF_Core.FrameworkEntities.Perk", null)
+                        .WithMany("Users")
+                        .HasForeignKey("PerkId");
+
+                    b.HasOne("Portal.Persitence_EF_Core.FrameworkEntities.User", null)
+                        .WithMany("Users")
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("Portal.Persitence_EF_Core.FrameworkEntities.UserPerk", b =>
@@ -395,21 +525,42 @@ namespace Portal.Persistence_EF_Core.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("Portal.Persitence_EF_Core.FrameworkEntities.Abstract.Material", b =>
+                {
+                    b.Navigation("CourseMaterials");
+
+                    b.Navigation("MaterialPerks");
+
+                    b.Navigation("UserMaterials");
+                });
+
             modelBuilder.Entity("Portal.Persitence_EF_Core.FrameworkEntities.Course", b =>
                 {
+                    b.Navigation("CourseMaterials");
+
                     b.Navigation("UserCourses");
                 });
 
             modelBuilder.Entity("Portal.Persitence_EF_Core.FrameworkEntities.Perk", b =>
                 {
+                    b.Navigation("MaterialPerks");
+
                     b.Navigation("UserPerks");
+
+                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("Portal.Persitence_EF_Core.FrameworkEntities.User", b =>
                 {
+                    b.Navigation("CreatedCourses");
+
                     b.Navigation("UserCourses");
 
+                    b.Navigation("UserMaterial");
+
                     b.Navigation("UserPerks");
+
+                    b.Navigation("Users");
                 });
 #pragma warning restore 612, 618
         }

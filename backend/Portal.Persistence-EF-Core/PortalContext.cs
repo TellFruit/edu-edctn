@@ -20,11 +20,15 @@ namespace Portal.Persistence_EF_Core
 
         public DbSet<Material> Materials { get; set; }
 
-        //public DbSet<Article> Articles;
+        public DbSet<CourseMaterial> CourseMaterials { get; set; }
 
-        //public DbSet<Book> Books;
+        public DbSet<UserCourse> UserCourses { get; set; }
 
-        //public DbSet<Video> Videos;
+        public DbSet<UserMaterial> UserMaterials { get; set; }
+
+        public DbSet<MaterialPerk> MaterialPerks { get; set; }
+
+        public DbSet<UserPerk> UserPerks { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -33,9 +37,32 @@ namespace Portal.Persistence_EF_Core
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<User>()
+                .HasMany(u => u.AttendedCourses)
+                .WithMany(c => c.Users);
+
+            modelBuilder.Entity<User>()
+                .HasMany(u => u.CreatedCourses)
+                .WithOne(c => c.User);
+
             modelBuilder.Entity<Article>();
             modelBuilder.Entity<Book>();
             modelBuilder.Entity<Video>();
+
+            modelBuilder.Entity<CourseMaterial>()
+                .HasKey(x => new { x.CourseId, x.MaterialId });
+
+            modelBuilder.Entity<UserCourse>()
+                .HasKey(x => new { x.UserId, x.CourseId });
+
+            modelBuilder.Entity<UserMaterial>()
+                .HasKey(x => new { x.UserId, x.MaterialId });
+
+            modelBuilder.Entity<MaterialPerk>()
+                .HasKey(x => new { x.PerkId, x.MaterialId });
+
+            modelBuilder.Entity<UserPerk>()
+                .HasKey(x => new { x.UserId, x.PerkId });
         }
     }
 }

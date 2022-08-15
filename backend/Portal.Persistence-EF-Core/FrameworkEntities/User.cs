@@ -12,8 +12,13 @@ namespace Portal.Persitence_EF_Core.FrameworkEntities
         public string Password { get; set; }
         public string? Roles { get; set; }
 
-        public ICollection<UserPerk> UserPerks { get; set; }
+        public ICollection<User> Users { get; set; }
+        public ICollection<Course> CreatedCourses { get; set; }
+        public ICollection<Course> AttendedCourses { get; set; }
         public ICollection<Material> Materials { get; set; }
+
+        public ICollection<UserPerk> UserPerks { get; set; }
         public ICollection<UserCourse> UserCourses { get; set; }
+        public ICollection<UserMaterial> UserMaterial { get; set; }
     }
 }

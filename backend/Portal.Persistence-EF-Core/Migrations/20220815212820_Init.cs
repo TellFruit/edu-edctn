@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Portal.Persistence_EF_Core.Migrations
 {
-    public partial class InitMigration : Migration
+    public partial class Init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -49,26 +49,6 @@ namespace Portal.Persistence_EF_Core.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Users",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Login = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Roles = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Users", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "MaterialPerk",
                 columns: table => new
                 {
@@ -93,6 +73,63 @@ namespace Portal.Persistence_EF_Core.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "MaterialPerks",
+                columns: table => new
+                {
+                    PerkId = table.Column<int>(type: "int", nullable: false),
+                    MaterialId = table.Column<int>(type: "int", nullable: false),
+                    Progress = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MaterialPerks", x => new { x.PerkId, x.MaterialId });
+                    table.ForeignKey(
+                        name: "FK_MaterialPerks_Materials_MaterialId",
+                        column: x => x.MaterialId,
+                        principalTable: "Materials",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_MaterialPerks_Perks_PerkId",
+                        column: x => x.PerkId,
+                        principalTable: "Perks",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Users",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Login = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Roles = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PerkId = table.Column<int>(type: "int", nullable: true),
+                    UserId = table.Column<int>(type: "int", nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Users", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Users_Perks_PerkId",
+                        column: x => x.PerkId,
+                        principalTable: "Perks",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Users_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Courses",
                 columns: table => new
                 {
@@ -100,7 +137,7 @@ namespace Portal.Persistence_EF_Core.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: true),
+                    UserId = table.Column<int>(type: "int", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
@@ -140,26 +177,48 @@ namespace Portal.Persistence_EF_Core.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "UserPerk",
+                name: "UserMaterials",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Level = table.Column<int>(type: "int", nullable: false),
-                    PerkId = table.Column<int>(type: "int", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: false)
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    MaterialId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserPerk", x => x.Id);
+                    table.PrimaryKey("PK_UserMaterials", x => new { x.UserId, x.MaterialId });
                     table.ForeignKey(
-                        name: "FK_UserPerk_Perks_PerkId",
+                        name: "FK_UserMaterials_Materials_MaterialId",
+                        column: x => x.MaterialId,
+                        principalTable: "Materials",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_UserMaterials_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UserPerks",
+                columns: table => new
+                {
+                    PerkId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    Level = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserPerks", x => new { x.UserId, x.PerkId });
+                    table.ForeignKey(
+                        name: "FK_UserPerks_Perks_PerkId",
                         column: x => x.PerkId,
                         principalTable: "Perks",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_UserPerk_Users_UserId",
+                        name: "FK_UserPerks_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
@@ -191,28 +250,72 @@ namespace Portal.Persistence_EF_Core.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "UserCourse",
+                name: "CourseMaterials",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Progress = table.Column<int>(type: "int", nullable: false),
                     CourseId = table.Column<int>(type: "int", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    MaterialId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserCourse", x => x.Id);
+                    table.PrimaryKey("PK_CourseMaterials", x => new { x.CourseId, x.MaterialId });
                     table.ForeignKey(
-                        name: "FK_UserCourse_Courses_CourseId",
+                        name: "FK_CourseMaterials_Courses_CourseId",
                         column: x => x.CourseId,
                         principalTable: "Courses",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_UserCourse_Users_UserId",
+                        name: "FK_CourseMaterials_Materials_MaterialId",
+                        column: x => x.MaterialId,
+                        principalTable: "Materials",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CourseUser",
+                columns: table => new
+                {
+                    AttendedCoursesId = table.Column<int>(type: "int", nullable: false),
+                    UsersId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CourseUser", x => new { x.AttendedCoursesId, x.UsersId });
+                    table.ForeignKey(
+                        name: "FK_CourseUser_Courses_AttendedCoursesId",
+                        column: x => x.AttendedCoursesId,
+                        principalTable: "Courses",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_CourseUser_Users_UsersId",
+                        column: x => x.UsersId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UserCourses",
+                columns: table => new
+                {
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    CourseId = table.Column<int>(type: "int", nullable: false),
+                    Progress = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserCourses", x => new { x.UserId, x.CourseId });
+                    table.ForeignKey(
+                        name: "FK_UserCourses_Courses_CourseId",
+                        column: x => x.CourseId,
+                        principalTable: "Courses",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_UserCourses_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
@@ -225,9 +328,19 @@ namespace Portal.Persistence_EF_Core.Migrations
                 column: "MaterialsId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_CourseMaterials_MaterialId",
+                table: "CourseMaterials",
+                column: "MaterialId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Courses_UserId",
                 table: "Courses",
                 column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CourseUser_UsersId",
+                table: "CourseUser",
+                column: "UsersId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_MaterialPerk_PerksId",
@@ -235,28 +348,38 @@ namespace Portal.Persistence_EF_Core.Migrations
                 column: "PerksId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_MaterialPerks_MaterialId",
+                table: "MaterialPerks",
+                column: "MaterialId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_MaterialUser_UsersId",
                 table: "MaterialUser",
                 column: "UsersId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserCourse_CourseId",
-                table: "UserCourse",
+                name: "IX_UserCourses_CourseId",
+                table: "UserCourses",
                 column: "CourseId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserCourse_UserId",
-                table: "UserCourse",
-                column: "UserId");
+                name: "IX_UserMaterials_MaterialId",
+                table: "UserMaterials",
+                column: "MaterialId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserPerk_PerkId",
-                table: "UserPerk",
+                name: "IX_UserPerks_PerkId",
+                table: "UserPerks",
                 column: "PerkId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserPerk_UserId",
-                table: "UserPerk",
+                name: "IX_Users_PerkId",
+                table: "Users",
+                column: "PerkId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Users_UserId",
+                table: "Users",
                 column: "UserId");
         }
 
@@ -266,28 +389,40 @@ namespace Portal.Persistence_EF_Core.Migrations
                 name: "CourseMaterial");
 
             migrationBuilder.DropTable(
+                name: "CourseMaterials");
+
+            migrationBuilder.DropTable(
+                name: "CourseUser");
+
+            migrationBuilder.DropTable(
                 name: "MaterialPerk");
+
+            migrationBuilder.DropTable(
+                name: "MaterialPerks");
 
             migrationBuilder.DropTable(
                 name: "MaterialUser");
 
             migrationBuilder.DropTable(
-                name: "UserCourse");
+                name: "UserCourses");
 
             migrationBuilder.DropTable(
-                name: "UserPerk");
+                name: "UserMaterials");
 
             migrationBuilder.DropTable(
-                name: "Materials");
+                name: "UserPerks");
 
             migrationBuilder.DropTable(
                 name: "Courses");
 
             migrationBuilder.DropTable(
-                name: "Perks");
+                name: "Materials");
 
             migrationBuilder.DropTable(
                 name: "Users");
+
+            migrationBuilder.DropTable(
+                name: "Perks");
         }
     }
 }

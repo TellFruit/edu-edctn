@@ -2,7 +2,8 @@
 {
     internal class UserPerk
     {
-        public int Id { get; set; }
+        public int PerkId { get; set; }
+        public int UserId { get; set; }
         public int Level { get; set; }
 
         public Perk Perk { get; set; }
