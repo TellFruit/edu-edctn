@@ -45,7 +45,7 @@ namespace Portal.Persistence_EF_Core.Repositories
             var videos = await _context.Materials.OfType<Video>()
                 .ToListAsync();
 
-            return _mapper.Map<List<VideoDomain>>(videos);
+            return videos.Select(x => _mapper.Map<VideoDomain>(x)).ToList();
         }
 
         public void SaveChanges()

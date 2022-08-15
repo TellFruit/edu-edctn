@@ -45,7 +45,7 @@ namespace Portal.Persistence_EF_Core.Repositories
             var books = await _context.Materials.OfType<Book>()
                 .ToListAsync();
 
-            return _mapper.Map<List<BookDomain>>(books);
+            return books.Select(x => _mapper.Map<BookDomain>(x)).ToList();
         }
 
         public void SaveChanges()

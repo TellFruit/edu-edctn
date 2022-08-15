@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Portal.Persistence_EF_Core.FrameworkEntities;
 using Portal.Persitence_EF_Core.FrameworkEntities;
 using Portal.Persitence_EF_Core.FrameworkEntities.Abstract;
 using System;

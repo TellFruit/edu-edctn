@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Portal.Application.Interfaces.OuterImpl;
 using Portal.Domain.Entities;
+using Portal.Persistence_EF_Core.FrameworkEntities;
 using Portal.Persistence_EF_Core.Repositories.Abstract;
 using Portal.Persitence_EF_Core.FrameworkEntities;
 using Portal.Persitence_EF_Core.FrameworkEntities.Abstract;
@@ -28,10 +29,10 @@ namespace Portal.Persistence_EF_Core.Repositories
             //{
             //    materials.AddRange(_context.Materials.OfType<Article>()
             //        .Where(x => courseEntity.Materials.OfType<Article>()
-            //                .Select(a => a.Id).Contains(x.Id)));
-            //}
+            ////                .Select(a => a.Id).Contains(x.Id)));
+            ////}
 
-            courseEntity.Materials = materials;
+            //courseEntity.Materials = materials;
 
             _context.Courses.Add(courseEntity);
 
