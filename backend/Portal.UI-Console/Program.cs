@@ -21,8 +21,8 @@
 
             Portal.Application
                 .DependencyInjection.RegisterApplication(services);
-            Portal.Persistence_Json
-                .DependencyInjection.RegisterPersistenceJson(services);
+            Portal.Persistence_EF_Core
+                .DependencyInjection.RegisterEntityFramework(services);
 
             return services.BuildServiceProvider();
         }
