@@ -46,18 +46,13 @@ namespace Portal.Persistence_EF_Core.Repositories
         {
             var courseEntity = await _context.Users.FirstOrDefaultAsync(u => u.Id == entity.Id);
 
-            //if (userEntity == null)
-            //{
-            //    throw new NotFoundException(nameof(User), userId);
-            //}
-
             _context.Users.Remove(courseEntity);
             return courseEntity.Id;
         }
 
         public async Task<ICollection<CourseDomain>> Read()
         {
-            var courses = _context.Courses.ToList();
+            var courses = _context.Courses.Include(c => c.Materials).ToList();
 
             return courses.Select(x => _mapper.Map<CourseDomain>(x)).ToList();
         }
