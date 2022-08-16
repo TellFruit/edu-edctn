@@ -1,6 +1,4 @@
-﻿using Portal.Persitence_EF_Core.FrameworkEntities.Abstract;
-
-namespace Portal.Persitence_EF_Core.FrameworkEntities
+﻿namespace Portal.Persitence_EF_Core.FrameworkEntities
 {
     internal class Book : Material
     {

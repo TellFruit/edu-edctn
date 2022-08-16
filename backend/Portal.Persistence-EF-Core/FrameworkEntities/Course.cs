@@ -1,8 +1,4 @@
-﻿using Portal.Persistence_EF_Core.FrameworkEntities;
-using Portal.Persitence_EF_Core.FrameworkEntities.Abstract;
-using System.ComponentModel.DataAnnotations.Schema;
-
-namespace Portal.Persitence_EF_Core.FrameworkEntities
+﻿namespace Portal.Persitence_EF_Core.FrameworkEntities
 {
     internal class Course : FrameworkEntity
     {

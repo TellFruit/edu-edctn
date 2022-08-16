@@ -1,13 +1,4 @@
-﻿using AutoMapper;
-using Microsoft.EntityFrameworkCore;
-using Portal.Application.Interfaces.OuterImpl;
-using Portal.Domain.Entities;
-using Portal.Domain.Exceptions;
-using Portal.Persistence_EF_Core.Exceptions;
-using Portal.Persistence_EF_Core.Repositories.Abstract;
-using Portal.Persitence_EF_Core.FrameworkEntities;
-
-namespace Portal.Persistence_EF_Core.Repositories
+﻿namespace Portal.Persistence_EF_Core.Repositories
 {
     internal class ArticleRepository : BaseRepository, IGenericRepository<ArticleDomain>
     {

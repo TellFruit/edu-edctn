@@ -1,13 +1,4 @@
-﻿using Portal.Persitence_EF_Core.FrameworkEntities;
-using Portal.Persitence_EF_Core.FrameworkEntities.Abstract;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Portal.Persistence_EF_Core.FrameworkEntities
+﻿namespace Portal.Persistence_EF_Core.FrameworkEntities
 {
     internal class CourseMaterial
     {
