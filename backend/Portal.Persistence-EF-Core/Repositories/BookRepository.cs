@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Portal.Application.Interfaces.OuterImpl;
 using Portal.Domain.Entities;
 using Portal.Domain.Exceptions;
+using Portal.Persistence_EF_Core.Exceptions;
 using Portal.Persistence_EF_Core.Repositories.Abstract;
 using Portal.Persitence_EF_Core.FrameworkEntities;
 using System;
@@ -34,7 +35,7 @@ namespace Portal.Persistence_EF_Core.Repositories
 
             if (bookEntity == null)
             {
-                throw new EntityNotFoundException(nameof(Book));
+                throw new DbEntityNotFoundException(nameof(Book));
             }
 
             _context.Materials.Remove(bookEntity);
@@ -62,7 +63,7 @@ namespace Portal.Persistence_EF_Core.Repositories
             
             if (bookEntity == null)
             {
-                throw new EntityNotFoundException(nameof(Book));
+                throw new DbEntityNotFoundException(nameof(Book));
             }
 
             bookEntity.Title = data.Title;

@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Portal.Application.Interfaces.OuterImpl;
 using Portal.Domain.Entities;
 using Portal.Domain.Exceptions;
+using Portal.Persistence_EF_Core.Exceptions;
 using Portal.Persistence_EF_Core.FrameworkEntities;
 using Portal.Persistence_EF_Core.Repositories.Abstract;
 using Portal.Persitence_EF_Core.FrameworkEntities;
@@ -49,7 +50,7 @@ namespace Portal.Persistence_EF_Core.Repositories
 
             if (courseEntity == null)
             {
-                throw new EntityNotFoundException(nameof(Course));
+                throw new DbEntityNotFoundException(nameof(Course));
             }
 
             _context.Courses.Remove(courseEntity);
@@ -95,7 +96,7 @@ namespace Portal.Persistence_EF_Core.Repositories
 
             if (courseEntity == null)
             {
-                throw new EntityNotFoundException(nameof(Course));
+                throw new DbEntityNotFoundException(nameof(Course));
             }
 
             courseEntity.Name = data.Name;
