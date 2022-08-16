@@ -23,8 +23,6 @@ namespace Portal.Persistence_EF_Core.Repositories
 
             _context.Users.Add(userEntity);
 
-           // await _context.SaveChangesAsync();
-
             return entity;
         }
 

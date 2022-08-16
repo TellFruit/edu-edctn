@@ -23,16 +23,19 @@ namespace Portal.Persistence_EF_Core.Repositories
         {
             var courseEntity = _mapper.Map<Course>(entity);
 
-            //var materials = new List<Material>();
+            var courseMaterials = new List<CourseMaterial>();
 
-            //if (courseEntity.Materials.OfType<Article>().Count() > 0)
-            //{
-            //    materials.AddRange(_context.Materials.OfType<Article>()
-            //        .Where(x => courseEntity.Materials.OfType<Article>()
-            ////                .Select(a => a.Id).Contains(x.Id)));
-            ////}
+            foreach (var material in entity.Materials)
+            {
+                courseMaterials.Add(new CourseMaterial 
+                { 
+                    MaterialId = material.Id
+                });
+            }
 
-            //courseEntity.Materials = materials;
+            courseEntity.Materials = null;
+
+            courseEntity.CourseMaterials = courseMaterials;
 
             _context.Courses.Add(courseEntity);
 
@@ -54,10 +57,9 @@ namespace Portal.Persistence_EF_Core.Repositories
 
         public async Task<ICollection<CourseDomain>> Read()
         {
-            var courses = await _context.Materials.OfType<Course>()
-                .ToListAsync();
+            var courses = _context.Courses.ToList();
 
-            return _mapper.Map<List<CourseDomain>>(courses);
+            return courses.Select(x => _mapper.Map<CourseDomain>(x)).ToList();
         }
 
         public void SaveChanges()
@@ -67,16 +69,24 @@ namespace Portal.Persistence_EF_Core.Repositories
 
         public async Task<CourseDomain> Update(CourseDomain entity)
         {
-            var courseEntity = await _context.Materials.OfType<Course>()
+            var courseEntity = await _context.Courses.Include(c => c.CourseMaterials)
                 .FirstOrDefaultAsync(u => u.Id == entity.Id);
 
             var data = _mapper.Map<Course>(entity);
 
+            var updatedCourseMaterials = data.Materials
+                .Select(m => new CourseMaterial
+                {
+                    CourseId = data.Id,
+                    MaterialId = m.Id
+                })
+                .ToList();
+
             courseEntity.Name = data.Name;
             courseEntity.Description = data.Description;
-            courseEntity.User = data.User;
-            courseEntity.Materials = data.Materials;
+            //courseEntity.User = data.User;
             courseEntity.UpdatedAt = data.UpdatedAt;
+            courseEntity.CourseMaterials = updatedCourseMaterials;
 
             _context.Update(courseEntity);
 
