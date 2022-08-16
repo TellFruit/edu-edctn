@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Portal.Application.Interfaces.OuterImpl;
 using Portal.Domain.Entities;
+using Portal.Domain.Exceptions;
 using Portal.Persistence_EF_Core.FrameworkEntities;
 using Portal.Persistence_EF_Core.Repositories.Abstract;
 using Portal.Persitence_EF_Core.FrameworkEntities;
@@ -27,8 +28,8 @@ namespace Portal.Persistence_EF_Core.Repositories
 
             foreach (var material in entity.Materials)
             {
-                courseMaterials.Add(new CourseMaterial 
-                { 
+                courseMaterials.Add(new CourseMaterial
+                {
                     MaterialId = material.Id
                 });
             }
@@ -44,15 +45,30 @@ namespace Portal.Persistence_EF_Core.Repositories
 
         public async Task<int> Delete(CourseDomain entity)
         {
-            var courseEntity = await _context.Users.FirstOrDefaultAsync(u => u.Id == entity.Id);
+            var courseEntity = _context.Courses.FirstOrDefault(u => u.Id == entity.Id);
 
-            _context.Users.Remove(courseEntity);
+            if (courseEntity == null)
+            {
+                throw new EntityNotFoundException(nameof(Course));
+            }
+
+            _context.Courses.Remove(courseEntity);
             return courseEntity.Id;
         }
 
         public async Task<ICollection<CourseDomain>> Read()
         {
-            var courses = _context.Courses.Include(c => c.Materials).ToList();
+            var courses = _context.Courses
+                .Include(c => c.CourseMaterials)
+                    .ThenInclude(cm => cm.Material)
+                .ToList();
+
+            foreach(var course in courses)
+            {
+                course.Materials = course.CourseMaterials
+                    .Select(cm => cm.Material)
+                    .ToList();
+            }
 
             return courses.Select(x => _mapper.Map<CourseDomain>(x)).ToList();
         }
@@ -64,8 +80,8 @@ namespace Portal.Persistence_EF_Core.Repositories
 
         public async Task<CourseDomain> Update(CourseDomain entity)
         {
-            var courseEntity = await _context.Courses.Include(c => c.CourseMaterials)
-                .FirstOrDefaultAsync(u => u.Id == entity.Id);
+            var courseEntity = _context.Courses.Include(c => c.Materials)
+                .FirstOrDefault(u => u.Id == entity.Id);
 
             var data = _mapper.Map<Course>(entity);
 
@@ -76,6 +92,11 @@ namespace Portal.Persistence_EF_Core.Repositories
                     MaterialId = m.Id
                 })
                 .ToList();
+
+            if (courseEntity == null)
+            {
+                throw new EntityNotFoundException(nameof(Course));
+            }
 
             courseEntity.Name = data.Name;
             courseEntity.Description = data.Description;

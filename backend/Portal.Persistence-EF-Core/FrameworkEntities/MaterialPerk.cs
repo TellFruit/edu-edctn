@@ -12,7 +12,6 @@ namespace Portal.Persistence_EF_Core.FrameworkEntities
     {
         public int PerkId { get; set; }
         public int MaterialId { get; set; }
-        public int Progress { get; set; }
 
         public Perk Perk { get; set; }
         public Material Material { get; set; }

@@ -8,8 +8,9 @@ namespace Portal.Persitence_EF_Core.FrameworkEntities
     {
         public string Name { get; set; }
         public string Description { get; set; }
+        public int? UserId { get; set; }
 
-        public User User { get; set; }
+        public User? User { get; set; }
 
         public ICollection<Material> Materials { get; set; }
         public ICollection<User> Users { get; set; }

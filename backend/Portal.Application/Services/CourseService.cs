@@ -63,7 +63,6 @@
 
             toUpdate.Name = data.Name;
             toUpdate.Description = data.Description;
-            // toUpdate.Author = data.Author;
             toUpdate.Materials = data.Materials;
 
             toUpdate.UpdatedAt = DateTime.Now;
