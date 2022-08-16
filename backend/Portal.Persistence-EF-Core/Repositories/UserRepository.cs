@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Portal.Application.Interfaces.OuterImpl;
 using Portal.Domain.Entities;
+using Portal.Domain.Exceptions;
 using Portal.Persistence_EF_Core.Repositories.Abstract;
 using Portal.Persitence_EF_Core.FrameworkEntities;
 using System;
@@ -28,12 +29,12 @@ namespace Portal.Persistence_EF_Core.Repositories
 
         public async Task<int> Delete(UserDomain entity)
         {
-            var userEntity = await _context.Users.FirstOrDefaultAsync(u => u.Id == entity.Id);
+            var userEntity = _context.Users.FirstOrDefault(u => u.Id == entity.Id);
 
-            //if (userEntity == null)
-            //{
-            //    throw new NotFoundException(nameof(User), userId);
-            //}
+            if (userEntity == null)
+            {
+                throw new EntityNotFoundException(nameof(User));
+            }
 
             _context.Users.Remove(userEntity);
             return userEntity.Id;
@@ -53,9 +54,14 @@ namespace Portal.Persistence_EF_Core.Repositories
 
         public async Task<UserDomain> Update(UserDomain entity)
         {
-            var userEntity = await _context.Users.FirstOrDefaultAsync(u => u.Id == entity.Id);
+            var userEntity = _context.Users.FirstOrDefault(u => u.Id == entity.Id);
 
             var data = _mapper.Map<User>(entity);
+
+            if (userEntity == null)
+            {
+                throw new EntityNotFoundException(nameof(User));
+            }
 
             userEntity.FirstName = data.FirstName;
             userEntity.LastName = data.LastName;

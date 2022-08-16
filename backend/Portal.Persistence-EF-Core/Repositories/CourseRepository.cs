@@ -79,7 +79,6 @@ namespace Portal.Persistence_EF_Core.Repositories
 
             courseEntity.Name = data.Name;
             courseEntity.Description = data.Description;
-            //courseEntity.User = data.User;
             courseEntity.UpdatedAt = data.UpdatedAt;
             courseEntity.CourseMaterials = updatedCourseMaterials;
 

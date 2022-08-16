@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Portal.Application.Interfaces.OuterImpl;
 using Portal.Domain.Entities;
+using Portal.Domain.Exceptions;
 using Portal.Persistence_EF_Core.Repositories.Abstract;
 using Portal.Persitence_EF_Core.FrameworkEntities;
 
@@ -23,13 +24,13 @@ namespace Portal.Persistence_EF_Core.Repositories
 
         public async Task<int> Delete(ArticleDomain entity)
         {
-            var articleEntity = await _context.Materials.OfType<Article>()
-                .FirstOrDefaultAsync(u => u.Id == entity.Id);
+            var articleEntity = _context.Materials.OfType<Article>()
+                .FirstOrDefault(u => u.Id == entity.Id);
 
-            //if (userEntity == null)
-            //{
-            //    throw new NotFoundException(nameof(User), userId);
-            //}
+            if (articleEntity == null)
+            {
+                throw new EntityNotFoundException(nameof(Article));
+            }
 
             _context.Materials.Remove(articleEntity);
             return articleEntity.Id;
@@ -37,8 +38,7 @@ namespace Portal.Persistence_EF_Core.Repositories
 
         public async Task<ICollection<ArticleDomain>> Read()
         {
-            var articles = _context.Materials.OfType<Article>()
-                .ToList();
+            var articles = _context.Materials.OfType<Article>().ToList();
 
             return articles.Select(x => _mapper.Map<ArticleDomain>(x)).ToList();
         }
@@ -50,14 +50,18 @@ namespace Portal.Persistence_EF_Core.Repositories
 
         public async Task<ArticleDomain> Update(ArticleDomain entity)
         {
-            var articleEntity = await _context.Materials.OfType<Article>()
-                .FirstOrDefaultAsync(u => u.Id == entity.Id);
+            var articleEntity = _context.Materials.OfType<Article>()
+                .FirstOrDefault(u => u.Id == entity.Id);
 
             var data = _mapper.Map<Article>(entity);
+            
+            if (articleEntity == null)
+            {
+                throw new EntityNotFoundException(nameof(Article));
+            }
 
             articleEntity.Title = data.Title;
             articleEntity.Url = data.Url;
-            articleEntity.Perks = data.Perks;
             articleEntity.Published = data.Published;
             articleEntity.UpdatedAt = data.UpdatedAt;
 

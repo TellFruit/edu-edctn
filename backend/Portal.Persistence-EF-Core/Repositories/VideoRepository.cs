@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Portal.Application.Interfaces.OuterImpl;
 using Portal.Domain.Entities;
+using Portal.Domain.Exceptions;
 using Portal.Persistence_EF_Core.Repositories.Abstract;
 using Portal.Persitence_EF_Core.FrameworkEntities;
 using System;
@@ -28,13 +29,13 @@ namespace Portal.Persistence_EF_Core.Repositories
 
         public async Task<int> Delete(VideoDomain entity)
         {
-            var videoEntity = await _context.Materials.OfType<Video>()
-                .FirstOrDefaultAsync(u => u.Id == entity.Id);
+            var videoEntity = _context.Materials.OfType<Video>()
+                .FirstOrDefault(u => u.Id == entity.Id);
 
-            //if (userEntity == null)
-            //{
-            //    throw new NotFoundException(nameof(User), userId);
-            //}
+            if (videoEntity == null)
+            {
+                throw new EntityNotFoundException(nameof(Video));
+            }
 
             _context.Materials.Remove(videoEntity);
             return videoEntity.Id;
@@ -42,8 +43,8 @@ namespace Portal.Persistence_EF_Core.Repositories
 
         public async Task<ICollection<VideoDomain>> Read()
         {
-            var videos = await _context.Materials.OfType<Video>()
-                .ToListAsync();
+            var videos = _context.Materials.OfType<Video>()
+                .ToList();
 
             return videos.Select(x => _mapper.Map<VideoDomain>(x)).ToList();
         }
@@ -55,15 +56,19 @@ namespace Portal.Persistence_EF_Core.Repositories
 
         public async Task<VideoDomain> Update(VideoDomain entity)
         {
-            var videoEntity = await _context.Materials.OfType<Video>()
-                .FirstOrDefaultAsync(u => u.Id == entity.Id);
+            var videoEntity = _context.Materials.OfType<Video>()
+                .FirstOrDefault(u => u.Id == entity.Id);
 
             var data = _mapper.Map<Video>(entity);
+
+            if (videoEntity == null)
+            {
+                throw new EntityNotFoundException(nameof(Video));
+            }
 
             videoEntity.Title = data.Title;
             videoEntity.Duration = data.Duration;
             videoEntity.Quality = data.Quality;
-            videoEntity.Perks = data.Perks;
             videoEntity.UpdatedAt = data.UpdatedAt;
 
             _context.Materials.Update(videoEntity);
