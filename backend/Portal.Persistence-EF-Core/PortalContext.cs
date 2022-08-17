@@ -1,6 +1,4 @@
-﻿using Portal.Persistence_EF_Core.FrameworkEntities;
-
-namespace Portal.Persistence_EF_Core
+﻿namespace Portal.Persistence_EF_Core
 {
     internal class PortalContext : DbContext
     {

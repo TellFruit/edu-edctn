@@ -1,4 +1,4 @@
-﻿namespace Portal.Persitence_EF_Core.FrameworkEntities.Abstract
+﻿namespace Portal.Persistence_EF_Core.FrameworkEntities.Abstract
 {
     internal abstract class FrameworkEntity
     {

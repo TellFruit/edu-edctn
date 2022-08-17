@@ -1,6 +1,4 @@
-﻿using Portal.Persistence_EF_Core.FrameworkEntities;
-
-namespace Portal.Persitence_EF_Core.FrameworkEntities
+﻿namespace Portal.Persistence_EF_Core.FrameworkEntities
 {
     internal class Perk : FrameworkEntity
     {
