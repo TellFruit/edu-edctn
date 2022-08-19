@@ -1,10 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Portal.Persistence_EF_Core.MappingProfiles;
-using Portal.Persistence_EF_Core.Repositories;
-using System.Configuration;
-using System.Reflection;
-
-namespace Portal.Persistence_EF_Core
+﻿namespace Portal.Persistence_EF_Core
 {
     public static class DependencyInjection
     {

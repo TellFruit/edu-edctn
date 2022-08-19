@@ -3,7 +3,7 @@
     internal class ArticleRepository : BaseRepository, IGenericRepository<ArticleDomain>
     {
         public ArticleRepository(IMapper mapper, PortalContext context)
-            : base(mapper, context) {}
+            : base(mapper, context) { }
 
         public async Task<ArticleDomain> Create(ArticleDomain entity)
         {
@@ -36,7 +36,7 @@
         }
 
         public void SaveChanges()
-        {
+        { 
             _context.SaveChanges();
         }
 
@@ -46,7 +46,7 @@
                 .FirstOrDefault(u => u.Id == entity.Id);
 
             var data = _mapper.Map<Article>(entity);
-            
+
             if (articleEntity == null)
             {
                 throw new DbEntityNotFoundException(nameof(Article));
