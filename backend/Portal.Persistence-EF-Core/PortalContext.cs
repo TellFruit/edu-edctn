@@ -1,15 +1,13 @@
-﻿using Portal.Application.Interfaces.InnerImpl;
-
-namespace Portal.Persistence_EF_Core
+﻿namespace Portal.Persistence_EF_Core
 {
     internal class PortalContext : DbContext
     {
-        private readonly IConfigService _configService;
+        //private readonly IConfigService _config;
 
-        public PortalContext(IConfigService configService)
-        {
-            _configService = configService;
-        }
+        //public PortalContext(IConfigService configService)
+        //{
+        //    _config = configService;
+        //}
 
         public DbSet<User> Users { get; set; }
 
@@ -19,31 +17,23 @@ namespace Portal.Persistence_EF_Core
 
         public DbSet<Material> Materials { get; set; }
 
-        public DbSet<CourseMaterial> CourseMaterials { get; set; }
+        //public DbSet<CourseMaterial> CourseMaterials { get; set; }
 
-        public DbSet<UserCourse> UserCourses { get; set; }
+        //public DbSet<UserCourse> UserCourses { get; set; }
 
-        public DbSet<UserMaterial> UserMaterials { get; set; }
+        //public DbSet<UserMaterial> UserMaterials { get; set; }
 
-        public DbSet<MaterialPerk> MaterialPerks { get; set; }
+        //public DbSet<MaterialPerk> MaterialPerks { get; set; }
 
-        public DbSet<UserPerk> UserPerks { get; set; }
+        //public DbSet<UserPerk> UserPerks { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(_configService.GetSetting("DbConnectionString"));
+            optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Database=EducationalPortal;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>()
-                .HasMany(u => u.AttendedCourses)
-                .WithMany(c => c.Users);
-
-            modelBuilder.Entity<User>()
-                .HasMany(u => u.CreatedCourses)
-                .WithOne(c => c.User);
-
             modelBuilder.Entity<Article>();
             modelBuilder.Entity<Book>();
             modelBuilder.Entity<Video>();

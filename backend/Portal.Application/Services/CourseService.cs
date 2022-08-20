@@ -27,6 +27,7 @@
             {
                 throw new EntityNotFoundException(nameof(CourseDomain));
             }
+
             int result = await _repository.Delete(toDelete);
             _repository.SaveChanges();
 

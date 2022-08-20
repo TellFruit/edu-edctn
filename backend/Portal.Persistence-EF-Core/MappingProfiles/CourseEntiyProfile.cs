@@ -6,7 +6,13 @@
         {
             CreateMap<CourseDomain, Course>();
 
-            CreateMap<Course, CourseDomain>();
+            CreateMap<Course, CourseDomain>()
+                .ForMember(dom => dom.Materials, 
+                    src => src.MapFrom(
+                        ef =>
+                            ef.CourseMaterials
+                                .Select(cm => cm.Material)
+                                .ToList()));
         }
     }
 }

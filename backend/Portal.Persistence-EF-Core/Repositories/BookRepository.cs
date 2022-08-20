@@ -16,8 +16,8 @@
 
         public async Task<int> Delete(BookDomain entity)
         {
-            var bookEntity = await _context.Materials.OfType<Book>()
-                .FirstOrDefaultAsync(u => u.Id == entity.Id);
+            var bookEntity = _context.Materials.OfType<Book>()
+                .FirstOrDefault(u => u.Id == entity.Id);
 
             if (bookEntity == null)
             {

@@ -8,9 +8,6 @@
 
         public User? User { get; set; }
 
-        public ICollection<Material> Materials { get; set; }
-        public ICollection<User> Users { get; set; }
-
         public ICollection<UserCourse> UserCourses { get; set; }
         public ICollection<CourseMaterial> CourseMaterials { get; set; }
     }

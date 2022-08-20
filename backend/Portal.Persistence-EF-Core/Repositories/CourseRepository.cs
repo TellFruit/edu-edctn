@@ -19,8 +19,6 @@
                 });
             }
 
-            courseEntity.Materials = null;
-
             courseEntity.CourseMaterials = courseMaterials;
 
             _context.Courses.Add(courseEntity);
@@ -48,13 +46,6 @@
                     .ThenInclude(cm => cm.Material)
                 .ToList();
 
-            foreach(var course in courses)
-            {
-                course.Materials = course.CourseMaterials
-                    .Select(cm => cm.Material)
-                    .ToList();
-            }
-
             return courses.Select(x => _mapper.Map<CourseDomain>(x)).ToList();
         }
 
@@ -65,30 +56,31 @@
 
         public async Task<CourseDomain> Update(CourseDomain entity)
         {
-            var courseEntity = _context.Courses.Include(c => c.Materials)
+            var courseEntity = _context.Courses
+                .Include(c => c.CourseMaterials)
+                    .ThenInclude(cm => cm.Material)
                 .FirstOrDefault(u => u.Id == entity.Id);
-
-            var data = _mapper.Map<Course>(entity);
-
-            var updatedCourseMaterials = data.Materials
-                .Select(m => new CourseMaterial
-                {
-                    CourseId = data.Id,
-                    MaterialId = m.Id
-                })
-                .ToList();
 
             if (courseEntity == null)
             {
                 throw new DbEntityNotFoundException(nameof(Course));
             }
 
-            courseEntity.Name = data.Name;
-            courseEntity.Description = data.Description;
-            courseEntity.UpdatedAt = data.UpdatedAt;
+            var updatedCourseMaterials = entity.Materials
+                .Select(m => new CourseMaterial
+                {
+                    CourseId = entity.Id,
+                    MaterialId = m.Id
+                }) 
+                .ToList();
+
+            courseEntity.Name = entity.Name;
+            courseEntity.Description = entity.Description;
+            courseEntity.UpdatedAt = entity.UpdatedAt;
             courseEntity.CourseMaterials = updatedCourseMaterials;
 
             _context.Update(courseEntity);
+            _context.SaveChanges();
 
             return entity;
         }

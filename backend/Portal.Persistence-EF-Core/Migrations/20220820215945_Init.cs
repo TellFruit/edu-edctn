@@ -1,10 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace Portal.Persistence_EF_Core.Migrations
 {
-    public partial class StarterPack : Migration
+    public partial class Init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -59,22 +60,16 @@ namespace Portal.Persistence_EF_Core.Migrations
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Roles = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UserId = table.Column<int>(type: "int", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Users", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Users_Users_UserId",
-                        column: x => x.UserId,
-                        principalTable: "Users",
-                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
-                name: "MaterialPerks",
+                name: "MaterialPerk",
                 columns: table => new
                 {
                     PerkId = table.Column<int>(type: "int", nullable: false),
@@ -82,15 +77,15 @@ namespace Portal.Persistence_EF_Core.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_MaterialPerks", x => new { x.PerkId, x.MaterialId });
+                    table.PrimaryKey("PK_MaterialPerk", x => new { x.PerkId, x.MaterialId });
                     table.ForeignKey(
-                        name: "FK_MaterialPerks_Materials_MaterialId",
+                        name: "FK_MaterialPerk_Materials_MaterialId",
                         column: x => x.MaterialId,
                         principalTable: "Materials",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_MaterialPerks_Perks_PerkId",
+                        name: "FK_MaterialPerk_Perks_PerkId",
                         column: x => x.PerkId,
                         principalTable: "Perks",
                         principalColumn: "Id",
@@ -120,7 +115,7 @@ namespace Portal.Persistence_EF_Core.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "UserMaterials",
+                name: "UserMaterial",
                 columns: table => new
                 {
                     UserId = table.Column<int>(type: "int", nullable: false),
@@ -128,15 +123,15 @@ namespace Portal.Persistence_EF_Core.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserMaterials", x => new { x.UserId, x.MaterialId });
+                    table.PrimaryKey("PK_UserMaterial", x => new { x.UserId, x.MaterialId });
                     table.ForeignKey(
-                        name: "FK_UserMaterials_Materials_MaterialId",
+                        name: "FK_UserMaterial_Materials_MaterialId",
                         column: x => x.MaterialId,
                         principalTable: "Materials",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_UserMaterials_Users_UserId",
+                        name: "FK_UserMaterial_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
@@ -144,7 +139,7 @@ namespace Portal.Persistence_EF_Core.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "UserPerks",
+                name: "UserPerk",
                 columns: table => new
                 {
                     PerkId = table.Column<int>(type: "int", nullable: false),
@@ -153,15 +148,15 @@ namespace Portal.Persistence_EF_Core.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserPerks", x => new { x.UserId, x.PerkId });
+                    table.PrimaryKey("PK_UserPerk", x => new { x.UserId, x.PerkId });
                     table.ForeignKey(
-                        name: "FK_UserPerks_Perks_PerkId",
+                        name: "FK_UserPerk_Perks_PerkId",
                         column: x => x.PerkId,
                         principalTable: "Perks",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_UserPerks_Users_UserId",
+                        name: "FK_UserPerk_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
@@ -169,7 +164,7 @@ namespace Portal.Persistence_EF_Core.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CourseMaterials",
+                name: "CourseMaterial",
                 columns: table => new
                 {
                     CourseId = table.Column<int>(type: "int", nullable: false),
@@ -177,15 +172,15 @@ namespace Portal.Persistence_EF_Core.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CourseMaterials", x => new { x.CourseId, x.MaterialId });
+                    table.PrimaryKey("PK_CourseMaterial", x => new { x.CourseId, x.MaterialId });
                     table.ForeignKey(
-                        name: "FK_CourseMaterials_Courses_CourseId",
+                        name: "FK_CourseMaterial_Courses_CourseId",
                         column: x => x.CourseId,
                         principalTable: "Courses",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_CourseMaterials_Materials_MaterialId",
+                        name: "FK_CourseMaterial_Materials_MaterialId",
                         column: x => x.MaterialId,
                         principalTable: "Materials",
                         principalColumn: "Id",
@@ -193,7 +188,7 @@ namespace Portal.Persistence_EF_Core.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "UserCourses",
+                name: "UserCourse",
                 columns: table => new
                 {
                     UserId = table.Column<int>(type: "int", nullable: false),
@@ -202,15 +197,15 @@ namespace Portal.Persistence_EF_Core.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserCourses", x => new { x.UserId, x.CourseId });
+                    table.PrimaryKey("PK_UserCourse", x => new { x.UserId, x.CourseId });
                     table.ForeignKey(
-                        name: "FK_UserCourses_Courses_CourseId",
+                        name: "FK_UserCourse_Courses_CourseId",
                         column: x => x.CourseId,
                         principalTable: "Courses",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_UserCourses_Users_UserId",
+                        name: "FK_UserCourse_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
@@ -218,8 +213,8 @@ namespace Portal.Persistence_EF_Core.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_CourseMaterials_MaterialId",
-                table: "CourseMaterials",
+                name: "IX_CourseMaterial_MaterialId",
+                table: "CourseMaterial",
                 column: "MaterialId");
 
             migrationBuilder.CreateIndex(
@@ -228,50 +223,42 @@ namespace Portal.Persistence_EF_Core.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_MaterialPerks_MaterialId",
-                table: "MaterialPerks",
+                name: "IX_MaterialPerk_MaterialId",
+                table: "MaterialPerk",
                 column: "MaterialId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserCourses_CourseId",
-                table: "UserCourses",
+                name: "IX_UserCourse_CourseId",
+                table: "UserCourse",
                 column: "CourseId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserMaterials_MaterialId",
-                table: "UserMaterials",
+                name: "IX_UserMaterial_MaterialId",
+                table: "UserMaterial",
                 column: "MaterialId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserPerks_PerkId",
-                table: "UserPerks",
+                name: "IX_UserPerk_PerkId",
+                table: "UserPerk",
                 column: "PerkId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Users_UserId",
-                table: "Users",
-                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "CourseMaterials");
+                name: "CourseMaterial");
 
             migrationBuilder.DropTable(
                 name: "MaterialPerk");
 
             migrationBuilder.DropTable(
-                name: "MaterialPerks");
+                name: "UserCourse");
 
             migrationBuilder.DropTable(
-                name: "UserCourses");
+                name: "UserMaterial");
 
             migrationBuilder.DropTable(
-                name: "UserMaterials");
-
-            migrationBuilder.DropTable(
-                name: "UserPerks");
+                name: "UserPerk");
 
             migrationBuilder.DropTable(
                 name: "Courses");
