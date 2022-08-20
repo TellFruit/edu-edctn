@@ -1,7 +1,16 @@
-﻿namespace Portal.Persistence_EF_Core
+﻿using Portal.Application.Interfaces.InnerImpl;
+
+namespace Portal.Persistence_EF_Core
 {
     internal class PortalContext : DbContext
     {
+        private readonly IConfigService _configService;
+
+        public PortalContext(IConfigService configService)
+        {
+            _configService = configService;
+        }
+
         public DbSet<User> Users { get; set; }
 
         public DbSet<Course> Courses { get; set; }
@@ -22,7 +31,7 @@
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Database=EducationalPortal;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+            optionsBuilder.UseSqlServer(_configService.GetSetting("DbConnectionString"));
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
