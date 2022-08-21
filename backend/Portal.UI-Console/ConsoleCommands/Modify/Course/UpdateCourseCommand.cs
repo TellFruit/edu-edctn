@@ -38,6 +38,7 @@
             if (courseDTO.Materials.Count > 0)
             {
                 await _course.Update(courseDTO);
+                Console.WriteLine("Success! Course updated.");
             }
             else
             {

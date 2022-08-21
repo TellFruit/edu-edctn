@@ -34,6 +34,7 @@
             if (_courseDTO.Materials.Count > 0)
             {
                 await _course.Create(_courseDTO);
+                Console.WriteLine("Success! Course created.");
             }
             else
             {

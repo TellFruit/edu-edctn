@@ -58,7 +58,6 @@
         {
             var courseEntity = _context.Courses
                 .Include(c => c.CourseMaterials)
-                    .ThenInclude(cm => cm.Material)
                 .FirstOrDefault(u => u.Id == entity.Id);
 
             if (courseEntity == null)
@@ -80,7 +79,6 @@
             courseEntity.CourseMaterials = updatedCourseMaterials;
 
             _context.Update(courseEntity);
-            _context.SaveChanges();
 
             return entity;
         }
