@@ -1,19 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Portal.Persistence_EF_Core.Repositories
+﻿namespace Portal.Persistence_EF_Core.Repositories
 {
     internal class PerkRepository : BaseRepository, IGenericRepository<PerkDomain>
     {
         public PerkRepository(IMapper mapper, PortalContext context) 
             : base(mapper, context) {}
 
-        public Task<PerkDomain> Create(PerkDomain entity)
+        public async Task<PerkDomain> Create(PerkDomain entity)
         {
-            throw new NotImplementedException();
+            var perkEntity = _mapper.Map<Perk>(entity);
+
+            _context.Perks.Add(perkEntity);
+
+            return entity;
         }
 
         public Task<int> Delete(PerkDomain entity)
