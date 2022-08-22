@@ -40,9 +40,24 @@
             _context.SaveChanges();
         }
 
-        public Task<PerkDomain> Update(PerkDomain entity)
+        public async Task<PerkDomain> Update(PerkDomain entity)
         {
-            throw new NotImplementedException();
+            var perkEntity = _context.Perks
+                .FirstOrDefault(u => u.Id == entity.Id);
+
+            var data = _mapper.Map<Perk>(entity);
+
+            if (perkEntity == null)
+            {
+                throw new DbEntityNotFoundException(nameof(Perk));
+            }
+
+            perkEntity.Name = data.Name;
+            perkEntity.UpdatedAt = data.UpdatedAt;
+
+            _context.Perks.Update(perkEntity);
+
+            return entity;
         }
     }
 }
