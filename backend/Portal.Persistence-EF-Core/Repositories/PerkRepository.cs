@@ -14,9 +14,18 @@
             return entity;
         }
 
-        public Task<int> Delete(PerkDomain entity)
+        public async Task<int> Delete(PerkDomain entity)
         {
-            throw new NotImplementedException();
+            var perkEntity = _context.Materials.OfType<Perk>()
+                .FirstOrDefault(u => u.Id == entity.Id);
+
+            if (perkEntity == null)
+            {
+                throw new DbEntityNotFoundException(nameof(Perk));
+            }
+
+            _context.Perks.Remove(perkEntity);
+            return perkEntity.Id;
         }
 
         public Task<ICollection<PerkDomain>> Read()
