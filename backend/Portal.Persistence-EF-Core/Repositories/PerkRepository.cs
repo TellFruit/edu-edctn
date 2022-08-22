@@ -16,7 +16,7 @@
 
         public async Task<int> Delete(PerkDomain entity)
         {
-            var perkEntity = _context.Materials.OfType<Perk>()
+            var perkEntity = _context.Perks
                 .FirstOrDefault(u => u.Id == entity.Id);
 
             if (perkEntity == null)
@@ -28,9 +28,11 @@
             return perkEntity.Id;
         }
 
-        public Task<ICollection<PerkDomain>> Read()
+        public async Task<ICollection<PerkDomain>> Read()
         {
-            throw new NotImplementedException();
+            var perks = _context.Perks.ToList();
+
+            return perks.Select(x => _mapper.Map<PerkDomain>(x)).ToList();
         }
 
         public void SaveChanges()
