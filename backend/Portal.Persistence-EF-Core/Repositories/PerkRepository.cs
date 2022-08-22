@@ -37,7 +37,7 @@
 
         public void SaveChanges()
         {
-            throw new NotImplementedException();
+            _context.SaveChanges();
         }
 
         public Task<PerkDomain> Update(PerkDomain entity)
