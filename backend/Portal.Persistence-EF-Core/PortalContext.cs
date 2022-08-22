@@ -2,12 +2,12 @@
 {
     internal class PortalContext : DbContext
     {
-        //private readonly IConfigService _config;
+        private readonly IConfigService _config;
 
-        //public PortalContext(IConfigService configService)
-        //{
-        //    _config = configService;
-        //}
+        public PortalContext(IConfigService configService)
+        {
+            _config = configService;
+        }
 
         public DbSet<User> Users { get; set; }
 
@@ -29,7 +29,7 @@
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Database=EducationalPortal;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+            optionsBuilder.UseSqlServer(_config.GetSetting("DbConnectionString"));
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
