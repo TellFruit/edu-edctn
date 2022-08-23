@@ -71,6 +71,7 @@
         {
             var courseEntity = _context.Courses
                 .Include(c => c.CourseMaterials)
+                .Include(c => c.CoursePerks)
                 .FirstOrDefault(u => u.Id == entity.Id);
 
             if (courseEntity == null)
