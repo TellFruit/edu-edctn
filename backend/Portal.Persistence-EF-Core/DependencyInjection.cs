@@ -23,6 +23,7 @@
             services.AddScoped<IGenericRepository<BookDomain>, BookRepository>();
             services.AddScoped<IGenericRepository<VideoDomain>, VideoRepository>();
             services.AddScoped<IGenericRepository<CourseDomain>, CourseRepository>();
+            services.AddScoped<IGenericRepository<PerkDomain>, PerkRepository>();
         }
     }
 }
