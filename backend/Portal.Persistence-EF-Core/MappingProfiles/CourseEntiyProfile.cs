@@ -12,6 +12,12 @@
                         ef =>
                             ef.CourseMaterials
                                 .Select(cm => cm.Material)
+                                .ToList()))
+                .ForMember(dom => dom.Perks,
+                    src => src.MapFrom(
+                        ef =>
+                            ef.CoursePerks
+                                .Select(cp => cp.Perk)
                                 .ToList()));
         }
     }
