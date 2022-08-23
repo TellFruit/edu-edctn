@@ -1,10 +1,16 @@
-﻿namespace Portal.UI_Console.ConsoleCommands.Modify.Skills
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Portal.UI_Console.ConsoleCommands.Modify.Skills
 {
-    internal class CreateSkillCommand : IConsoleCommand
+    internal class DeleteSkillCommand : IConsoleCommand
     {
         private readonly IPerkService _perkService;
 
-        public CreateSkillCommand(IPerkService perkService)
+        public DeleteSkillCommand(IPerkService perkService)
         {
             _perkService = perkService;
         }
@@ -20,17 +26,8 @@
                 return true;
             }
 
-            /* Examples of correct input:
-             * Tilte
-             */
-
-            var toCreate = new PerkDTO()
-            {
-                Name = parameters[0],
-            };
-
-            await _perkService.Create(toCreate);
-            Console.WriteLine("Success! Perk created");
+            await _perkService.Delete(int.Parse(parameters[0]));
+            Console.WriteLine("Success! Perk deleted");
 
             return true;
         }
