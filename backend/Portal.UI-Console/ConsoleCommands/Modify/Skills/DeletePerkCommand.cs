@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Portal.UI_Console.ConsoleCommands.Modify.Skills
+﻿namespace Portal.UI_Console.ConsoleCommands.Modify.Skills
 {
-    internal class DeleteSkillCommand : IConsoleCommand
+    internal class DeletePerkCommand : IConsoleCommand
     {
         private readonly IPerkService _perkService;
 
-        public DeleteSkillCommand(IPerkService perkService)
+        public DeletePerkCommand(IPerkService perkService)
         {
             _perkService = perkService;
         }
