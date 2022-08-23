@@ -2,11 +2,11 @@
 {
     internal class ChooseCourseCommand : IChooseCommand
     {
-        private readonly CourseDTO toCreate;
+        private readonly CourseDTO _courseDTO;
 
-        public ChooseCourseCommand(CourseDTO toCreate)
+        public ChooseCourseCommand(CourseDTO courseDTO)
         {
-            this.toCreate = toCreate;
+            _courseDTO = courseDTO;
         }
 
         public IConsoleCommand Choose(out IParseInput? parser, string commandName)
@@ -19,46 +19,58 @@
                     {
                         var articleService = Program.Root.GetService<IArticleService>();
 
-                        return new AddArticleCommand(articleService, toCreate);
+                        return new AddArticleCommand(articleService, _courseDTO);
                     }
 
                 case "add-book":
                     {
                         var bookService = Program.Root.GetService<IBookService>();
 
-                        return new AddBookCommand(bookService, toCreate);
+                        return new AddBookCommand(bookService, _courseDTO);
                     }
 
                 case "add-video":
                     {
                         var videoService = Program.Root.GetService<IVideoService>();
 
-                        return new AddVideoCommand(videoService, toCreate);
+                        return new AddVideoCommand(videoService, _courseDTO);
+                    }
+
+                case "add-perk":
+                    {
+                        var perkService = Program.Root.GetService<IPerkService>();
+
+                        return new AddPerkCommand(perkService, _courseDTO);
                     }
 
                 case "remove-article":
                     {
-                        return new RemoveArticleCommand(toCreate);
+                        return new RemoveArticleCommand(_courseDTO);
                     }
 
                 case "remove-book":
                     {
-                        return new RemoveBookCommand(toCreate);
+                        return new RemoveBookCommand(_courseDTO);
                     }
 
                 case "remove-video":
                     {
-                        return new RemoveVideoCommand(toCreate);
+                        return new RemoveVideoCommand(_courseDTO);
+                    }
+
+                case "remove-perk": 
+                    {
+                        return new RemovePerkCommand(_courseDTO);
                     }
 
                 case "finish-course":
                     {
-                        return new FinishCourseCreationCommand(toCreate);
+                        return new FinishCourseCreationCommand(_courseDTO);
                     }
 
                 case "return":
                     {
-                        return new CancelCourseCreateCommand(toCreate);
+                        return new CancelCourseCreateCommand(_courseDTO);
                     }
 
                 default:
