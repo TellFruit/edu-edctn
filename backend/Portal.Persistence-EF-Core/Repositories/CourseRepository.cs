@@ -19,7 +19,18 @@
                 });
             }
 
+            var coursePerks = new List<CoursePerk>();
+
+            foreach (var perk in entity.Perks)
+            {
+                coursePerks.Add(new CoursePerk
+                {
+                    PerkId = perk.Id
+                });
+            }
+
             courseEntity.CourseMaterials = courseMaterials;
+            courseEntity.CoursePerks = coursePerks;
 
             _context.Courses.Add(courseEntity);
 
