@@ -30,7 +30,7 @@
                 ICollection<int> present = _courseDTO.Perks
                     .Select(x => x.Id).ToList();
 
-                Console.WriteLine("Write id of wanted article or \'return\' to stop: ");
+                Console.WriteLine("Write id of wanted perk or \'return\' to stop: ");
 
                 input = Console.ReadLine();
 
