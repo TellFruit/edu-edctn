@@ -6,7 +6,6 @@ namespace Portal.Application.DTO
     {
         public string Url { get; set; }
         public DateTime Published { get; set; }
-        public ICollection<PerkDTO> Perks { get; set; }
         public override string ToString()
         {
             string date;

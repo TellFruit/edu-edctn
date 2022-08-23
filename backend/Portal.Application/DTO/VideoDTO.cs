@@ -4,7 +4,6 @@
     {
         public TimeSpan Duration { get; set; }
         public int Quality { get; set; }
-        public ICollection<PerkDomain> Perks { get; set; }
 
         public override string ToString()
         {

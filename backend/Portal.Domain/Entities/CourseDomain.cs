@@ -10,6 +10,7 @@ namespace Portal.Domain.Entities
         public UserDomain Author { get; set; }
 
         public ICollection<MaterialDomain> Materials { get; set; }
+        public ICollection<PerkDomain> Perks { get; set; }
         public ICollection<UserDomain> Users { get; set; }
     }
 }

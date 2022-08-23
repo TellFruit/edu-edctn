@@ -10,5 +10,6 @@
 
         public ICollection<UserCourse> UserCourses { get; set; }
         public ICollection<CourseMaterial> CourseMaterials { get; set; }
+        public ICollection<CoursePerk> CoursePerks { get; set; }
     }
 }
