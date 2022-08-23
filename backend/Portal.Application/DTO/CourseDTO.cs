@@ -9,7 +9,7 @@
         public UserDTO Author { get; set; }
 
         public ICollection<MaterialDTO> Materials { get; set; }
-        public ICollection<PerkDomain> Perks { get; set; }
+        public ICollection<PerkDTO> Perks { get; set; }
 
         public override string ToString()
         {
