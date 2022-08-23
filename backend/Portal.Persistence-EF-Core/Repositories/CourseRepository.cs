@@ -86,10 +86,19 @@
                 }) 
                 .ToList();
 
+            var updatedCoursePerks = entity.Perks
+                .Select(p => new CoursePerk
+                {
+                    CourseId = entity.Id,
+                    PerkId = p.Id
+                })
+                .ToList();
+
             courseEntity.Name = entity.Name;
             courseEntity.Description = entity.Description;
             courseEntity.UpdatedAt = entity.UpdatedAt;
             courseEntity.CourseMaterials = updatedCourseMaterials;
+            courseEntity.CoursePerks = updatedCoursePerks;
 
             _context.Update(courseEntity);
 
