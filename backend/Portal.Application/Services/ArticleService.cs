@@ -63,7 +63,6 @@
 
             toUpdate.Title = data.Title;
             toUpdate.Url = data.Url;
-            toUpdate.Perks = data.Perks;
             toUpdate.Published = data.Published;
 
             toUpdate.UpdatedAt = DateTime.Now;

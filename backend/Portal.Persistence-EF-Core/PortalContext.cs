@@ -17,16 +17,6 @@
 
         public DbSet<Material> Materials { get; set; }
 
-        //public DbSet<CourseMaterial> CourseMaterials { get; set; }
-
-        //public DbSet<UserCourse> UserCourses { get; set; }
-
-        //public DbSet<UserMaterial> UserMaterials { get; set; }
-
-        //public DbSet<MaterialPerk> MaterialPerks { get; set; }
-
-        //public DbSet<UserPerk> UserPerks { get; set; }
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(_config.GetSetting("DbConnectionString"));
@@ -47,8 +37,8 @@
             modelBuilder.Entity<UserMaterial>()
                 .HasKey(x => new { x.UserId, x.MaterialId });
 
-            modelBuilder.Entity<MaterialPerk>()
-                .HasKey(x => new { x.PerkId, x.MaterialId });
+            modelBuilder.Entity<CoursePerk>()
+                .HasKey(x => new { x.PerkId, x.CourseId });
 
             modelBuilder.Entity<UserPerk>()
                 .HasKey(x => new { x.UserId, x.PerkId });

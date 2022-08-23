@@ -5,6 +5,6 @@
         public string Name { get; set; }
 
         public ICollection<UserPerk> UserPerks { get; set; }
-        public ICollection<MaterialPerk> MaterialPerks { get; set; }
+        public ICollection<CoursePerk> CoursePerks { get; set; }
     }
 }

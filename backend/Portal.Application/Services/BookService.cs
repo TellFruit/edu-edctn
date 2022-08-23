@@ -67,7 +67,6 @@
             toUpdate.PageCount = data.PageCount;
             toUpdate.Format = data.Format;
             toUpdate.Published = data.Published;
-            toUpdate.Perks = data.Perks;
 
             toUpdate.UpdatedAt = DateTime.Now;
 

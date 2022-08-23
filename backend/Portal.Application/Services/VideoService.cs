@@ -65,7 +65,6 @@
             toUpdate.Title = data.Title;
             toUpdate.Duration = data.Duration;
             toUpdate.Quality = data.Quality;
-            toUpdate.Perks = data.Perks;
 
             toUpdate.UpdatedAt = DateTime.Now;
 
