@@ -44,6 +44,8 @@
             var courses = _context.Courses
                 .Include(c => c.CourseMaterials)
                     .ThenInclude(cm => cm.Material)
+                .Include(c => c.CoursePerks)
+                    .ThenInclude(cp => cp.Perk)
                 .ToList();
 
             return courses.Select(x => _mapper.Map<CourseDomain>(x)).ToList();
