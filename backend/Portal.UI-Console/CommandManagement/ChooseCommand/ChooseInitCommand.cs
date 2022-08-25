@@ -1,4 +1,6 @@
-﻿namespace Portal.UI_Console.CommandManagement.ChooseCommand
+﻿using Portal.UI_Console.ConsoleCommands.Modify.Skills;
+
+namespace Portal.UI_Console.CommandManagement.ChooseCommand
 {
     internal class ChooseInitCommand : IChooseCommand
     {
@@ -49,6 +51,15 @@
                         return new CreateCourseCommand(courseService);
                     }
 
+                case "create-perk":
+                    {
+                        var perkService = Program.Root.GetService<IPerkService>();
+
+                        parser = new BasicSplitParse("");
+
+                        return new CreatePerkCommand(perkService);
+                    }
+
                 case "get-articles":
                     {
                         var articleService = Program.Root.GetService<IArticleService>();
@@ -75,6 +86,13 @@
                         var courseService = Program.Root.GetService<ICourseService>();
 
                         return new GetCoursesCommand(courseService);
+                    }
+
+                case "get-perks":
+                    {
+                        var perkService = Program.Root.GetService<IPerkService>();
+
+                        return new GetPerksCommand(perkService);
                     }
 
                 case "update-article":
@@ -113,6 +131,15 @@
                         return new UpdateCourseCommand(courseService);
                     }
 
+                case "update-perk":
+                    {
+                        var perkService = Program.Root.GetService<IPerkService>();
+
+                        parser = new BasicSplitParse(string.Empty);
+
+                        return new UpdatePerkCommand(perkService);
+                    }
+
                 case "delete-article":
                     {
                         var articleService = Program.Root.GetService<IArticleService>();
@@ -147,6 +174,15 @@
                         parser = new BasicSplitParse(string.Empty);
 
                         return new DeleteCourseCommand(courseService);
+                    }
+
+                case "delete-perk":
+                    {
+                        var perkService = Program.Root.GetService<IPerkService>();
+
+                        parser = new BasicSplitParse(string.Empty);
+
+                        return new DeletePerkCommand(perkService);
                     }
 
                 case "logout":
