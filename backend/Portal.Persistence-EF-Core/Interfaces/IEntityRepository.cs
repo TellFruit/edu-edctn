@@ -2,15 +2,15 @@
 {
     internal interface IEntityRepository<TEntity> where TEntity : FrameworkEntity
     {
-        void Create(TEntity item);
+        Task Create(TEntity item);
 
-        IEnumerable<TEntity> Read(params Expression<Func<TEntity, object>>[] includeProperties);
+        Task<IEnumerable<TEntity>> Read(params Expression<Func<TEntity, object>>[] includeProperties);
 
-        IEnumerable<TEntity> Read(Func<TEntity, bool> predicate,
+        Task<IEnumerable<TEntity>> Read(Func<TEntity, bool> predicate,
             params Expression<Func<TEntity, object>>[] includeProperties);
 
-        void Update(TEntity item);
+        Task Update(TEntity item);
 
-        void Remove(TEntity item);
+        Task Remove(TEntity item);
     }
 }
