@@ -1,11 +1,11 @@
 ﻿namespace Portal.Application.Interfaces.OuterImpl
 {
-    public interface IGenericRepository<TEntity> where TEntity : BaseEntity
+    public interface IGenericRepository<TDomain> where TDomain : BaseDomain
     {
-        Task<TEntity> Create(TEntity entity);
-        Task<ICollection<TEntity>> Read();
-        Task<TEntity> Update(TEntity entity);
-        Task<int> Delete(TEntity entity);
+        Task<TDomain> Create(TDomain entity);
+        Task<ICollection<TDomain>> Read();
+        Task<TDomain> Update(TDomain entity);
+        Task<int> Delete(TDomain entity);
         void SaveChanges();
     }
 }

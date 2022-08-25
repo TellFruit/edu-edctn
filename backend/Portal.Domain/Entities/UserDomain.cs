@@ -2,7 +2,7 @@
 
 namespace Portal.Domain.Entities
 {
-    public class UserDomain : BaseEntity
+    public class UserDomain : BaseDomain
     {
         public string Login { get; set; }
         public string FirstName { get; set; }

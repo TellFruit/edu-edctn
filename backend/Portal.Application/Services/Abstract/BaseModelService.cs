@@ -1,6 +1,6 @@
 ﻿namespace Portal.Application.Services.Abstract
 {
-    internal abstract class BaseModelService<TEntity> where TEntity : BaseEntity
+    internal abstract class BaseModelService<TEntity> where TEntity : BaseDomain
     {
         protected readonly IMapper _mapper;
         protected readonly IGenericRepository<TEntity> _repository;

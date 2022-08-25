@@ -1,6 +1,6 @@
 ﻿namespace Portal.Persistence_Json.Repositories
 {
-    internal class JsonGenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : BaseEntity
+    internal class JsonGenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : BaseDomain
     {
         private readonly IFileIoService _file;
         private readonly ISerializationService _json;

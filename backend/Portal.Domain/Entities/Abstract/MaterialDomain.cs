@@ -1,6 +1,6 @@
 ﻿namespace Portal.Domain.Entities.Abstract
 {
-    public abstract class MaterialDomain : BaseEntity
+    public abstract class MaterialDomain : BaseDomain
     {
         public string Title { get; set; }
 

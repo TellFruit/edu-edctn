@@ -1,6 +1,6 @@
 ﻿namespace Portal.Domain.Entities.Abstract
 {
-    public abstract class BaseEntity
+    public abstract class BaseDomain
     {
         public int Id { get; set; }
         public DateTime CreatedAt { get; set; }

@@ -2,7 +2,7 @@
 
 namespace Portal.Domain.Entities
 {
-    public class PerkDomain : BaseEntity
+    public class PerkDomain : BaseDomain
     {
         public string Name { get; set; }
         
