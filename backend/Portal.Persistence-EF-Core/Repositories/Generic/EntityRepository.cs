@@ -20,6 +20,7 @@
         {
             return _dbSet
                 .IncludeSeveral(toInclude)
+                .AsNoTracking()
                 .ToList();
         }
 
@@ -27,18 +28,19 @@
         {
             return _dbSet
                 .IncludeSeveral(toInclude)
+                .AsNoTracking()
                 .Where(predicate)
                 .ToList();
         }
 
-        public Task Remove(TEntity item)
+        public async Task Update(TEntity item)
         {
-            throw new NotImplementedException();
+            _context.Entry(item).State = EntityState.Modified;
         }
 
-        public Task Update(TEntity item)
+        public async Task Remove(TEntity item)
         {
-            throw new NotImplementedException();
+            _dbSet.Remove(item);
         }
 
         public void Save()
