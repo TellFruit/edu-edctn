@@ -1,6 +1,6 @@
 ﻿namespace Portal.Persistence_EF_Core.Repositories.Generic
 {
-    internal static class GenericRepository
+    internal static class GenericExtention
     {
         public static IQueryable<T> IncludeSeveral<T>(this IQueryable<T> query, params Expression<Func<T, object>>[] includes)
             where T : class
