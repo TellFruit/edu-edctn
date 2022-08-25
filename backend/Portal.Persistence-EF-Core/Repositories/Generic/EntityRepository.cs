@@ -11,9 +11,9 @@
             _dbSet = _context.Set<TEntity>();
         }
 
-        public Task Create(TEntity item)
+        public async Task Create(TEntity item)
         {
-            throw new NotImplementedException();
+            _dbSet.Add(item);
         }
 
         public Task<IEnumerable<TEntity>> Read(params Expression<Func<TEntity, object>>[] includeProperties)
@@ -34,6 +34,11 @@
         public Task Update(TEntity item)
         {
             throw new NotImplementedException();
+        }
+
+        public void Save()
+        {
+            _context.SaveChanges();
         }
     }
 }
