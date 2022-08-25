@@ -16,14 +16,19 @@
             _dbSet.Add(item);
         }
 
-        public Task<IEnumerable<TEntity>> Read(params Expression<Func<TEntity, object>>[] includeProperties)
+        public async Task<ICollection<TEntity>> Read(params Expression<Func<TEntity, object>>[] toInclude)
         {
-            throw new NotImplementedException();
+            return _dbSet
+                .IncludeSeveral(toInclude)
+                .ToList();
         }
 
-        public Task<IEnumerable<TEntity>> Read(Func<TEntity, bool> predicate, params Expression<Func<TEntity, object>>[] includeProperties)
+        public async Task<ICollection<TEntity>> Read(Func<TEntity, bool> predicate, params Expression<Func<TEntity, object>>[] toInclude)
         {
-            throw new NotImplementedException();
+            return _dbSet
+                .IncludeSeveral(toInclude)
+                .Where(predicate)
+                .ToList();
         }
 
         public Task Remove(TEntity item)
