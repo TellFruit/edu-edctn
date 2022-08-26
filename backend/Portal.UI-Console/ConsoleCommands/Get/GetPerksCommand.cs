@@ -1,10 +1,10 @@
 ﻿namespace Portal.UI_Console.ConsoleCommands.Get
 {
-    internal class GetPerkCommand : IConsoleCommand
+    internal class GetPerksCommand : IConsoleCommand
     {
         private readonly IPerkService _perkService;
 
-        public GetPerkCommand(IPerkService perkService)
+        public GetPerksCommand(IPerkService perkService)
         {
             _perkService = perkService;
         }
