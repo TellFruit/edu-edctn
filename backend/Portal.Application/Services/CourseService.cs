@@ -65,6 +65,7 @@
             toUpdate.Name = data.Name;
             toUpdate.Description = data.Description;
             toUpdate.Materials = data.Materials;
+            toUpdate.Perks = data.Perks;
 
             toUpdate.UpdatedAt = DateTime.Now;
 

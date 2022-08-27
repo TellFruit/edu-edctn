@@ -135,7 +135,7 @@ namespace Portal.UI_Console.CommandManagement.ChooseCommand
                     {
                         var perkService = Program.Root.GetService<IPerkService>();
 
-                        parser = new BasicSplitParse(string.Empty);
+                        parser = new BasicRegexParse(_config.GetSetting("ModifyPerkRegex"));
 
                         return new UpdatePerkCommand(perkService);
                     }
