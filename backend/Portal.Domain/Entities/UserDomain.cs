@@ -11,6 +11,23 @@ namespace Portal.Domain.Entities
         public string Password { get; set; }
         public string Roles { get; set; }
 
+        public bool CourseEnroll(int courseId)
+        {
+            if (CourseProgress.Where(c => c.Equals(courseId)).Any())
+            {
+                return false;
+            }
+
+            CourseProgress.Add(new CourseProgress
+            {
+                UserId = Id,
+                CourseId = courseId,
+                Progress = 0
+            });
+
+            return true;
+        }
+
         public ICollection<UserPerkDomain> UserPerks { get; set; }
         public ICollection<CourseProgress> CourseProgress { get; set; }
         public ICollection<MaterialDomain> Materials { get; set; }
