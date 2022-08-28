@@ -11,9 +11,13 @@ namespace Portal.Domain.Entities
         public string Password { get; set; }
         public string Roles { get; set; }
 
+        public ICollection<UserPerkDomain> UserPerks { get; set; }
+        public ICollection<CourseProgress> CourseProgress { get; set; }
+        public ICollection<MaterialDomain> Materials { get; set; }
+
         public bool CourseEnroll(int courseId)
         {
-            if (CourseProgress.Where(c => c.Equals(courseId)).Any())
+            if (CourseProgressExists(courseId))
             {
                 return false;
             }
@@ -28,8 +32,26 @@ namespace Portal.Domain.Entities
             return true;
         }
 
-        public ICollection<UserPerkDomain> UserPerks { get; set; }
-        public ICollection<CourseProgress> CourseProgress { get; set; }
-        public ICollection<MaterialDomain> Materials { get; set; }
+        public bool CourseUnroll(int courseId)
+        {
+            if (!CourseProgressExists(courseId))
+            {
+                return false;
+            }
+
+            CourseProgress
+                .Remove(CourseProgress
+                    .First(x => x.CourseId
+                        .Equals(courseId)));
+
+            return true;
+        }
+
+        private bool CourseProgressExists(int courseId)
+        {
+            return CourseProgress
+                .Where(c => c.Equals(courseId))
+                .Any();
+        }
     }
 }
