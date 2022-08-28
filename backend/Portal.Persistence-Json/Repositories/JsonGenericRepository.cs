@@ -43,6 +43,11 @@
             return _entities;
         }
 
+        public async Task<ICollection<TEntity>> Read(Func<TEntity, bool> predicate)
+        {
+            return _entities.Where(predicate).ToList();
+        }
+
         public async Task<TEntity> Update(TEntity entity)
         {
             var match = _entities.FirstOrDefault(e => e.Id.Equals(entity.Id));
