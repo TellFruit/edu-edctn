@@ -30,10 +30,19 @@
 
         public async Task<ICollection<VideoDomain>> Read()
         {
-            var videos = _context.Materials.OfType<Video>()
-                .ToList();
+            var videos = _context.Materials.OfType<Video>().ToList();
 
             return videos.Select(x => _mapper.Map<VideoDomain>(x)).ToList();
+        }
+
+        public async Task<ICollection<VideoDomain>> Read(Func<VideoDomain, bool> predicate)
+        {
+            var videos = _context.Materials.OfType<Video>().ToList();
+
+            return videos
+                .Select(x => _mapper.Map<VideoDomain>(x))
+                .Where(predicate)
+                .ToList();
         }
 
         public void SaveChanges()
