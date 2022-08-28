@@ -9,12 +9,19 @@
             _userRepos = userRepos;
         }
 
-        public Task<bool> Enroll(int courseId)
+        public async Task<bool> Enroll(int userId, int courseId)
         {
-            throw new NotImplementedException();
+            var res = await _userRepos.Read(x => x.Id.Equals(userId));
+            var user = res.Last();
+
+            user.CourseEnroll(courseId);
+
+            await _userRepos.Update(user);
+
+            return true;
         }
 
-        public Task<bool> Unroll(int courseId)
+        public Task<bool> Unroll(int userId, int courseId)
         {
             throw new NotImplementedException();
         }
