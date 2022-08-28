@@ -1,12 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Portal.Application.Services.Rules
+﻿namespace Portal.Application.Services.Rules
 {
-    internal class RuleUserService
+    internal class RuleUserService : IRuleUser
     {
+        private readonly IGenericRepository<UserDomain> _userRepos;
+
+        public RuleUserService(IGenericRepository<UserDomain> userRepos)
+        {
+            _userRepos = userRepos;
+        }
+
+        public Task<bool> Enroll(int courseId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> Unroll(int courseId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
