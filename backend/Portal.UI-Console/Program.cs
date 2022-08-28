@@ -12,7 +12,7 @@
 
             services.AddSingleton<ConsoleApp>();
 
-            services.AddScoped<IChooseCommand, ChooseInitCommand>();
+            services.AddScoped<IChooseCommand, ChooseDataCommand>();
             services.AddScoped<ICommandManager, CommandManager>();
 
             // as the only place it is passes through DI is CommandManager

@@ -15,7 +15,7 @@
 
             if (user.CourseEnroll(courseId) is false)
             {
-                throw new RelationAlreadyExists(nameof(user.CourseProgress));
+                throw new RelationAlreadyExistsException(nameof(user.CourseProgress));
             }
 
             await _userRepos.Update(user);
