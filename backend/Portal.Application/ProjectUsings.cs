@@ -13,6 +13,7 @@ global using Portal.Application.DTO;
 
 global using Portal.Domain.Entities;
 global using Portal.Domain.Entities.Abstract;
+global using Portal.Domain.Interfaces;
 global using Portal.Domain.Exceptions;
 
 global using Microsoft.Extensions.DependencyInjection;
