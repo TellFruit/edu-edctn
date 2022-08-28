@@ -12,7 +12,7 @@ namespace Portal.Domain.Entities
         public string Roles { get; set; }
 
         public ICollection<UserPerkDomain> UserPerks { get; set; }
+        public ICollection<CourseProgress> CourseProgress { get; set; }
         public ICollection<MaterialDomain> Materials { get; set; }
-        public ICollection<CourseDomain> Courses { get; set; }
     }
 }

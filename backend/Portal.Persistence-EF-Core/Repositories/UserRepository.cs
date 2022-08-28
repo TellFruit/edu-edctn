@@ -48,7 +48,9 @@
 
         public async Task<UserDomain> Update(UserDomain entity)
         {
-            var userEntity = _context.Users.FirstOrDefault(u => u.Id == entity.Id);
+            var userEntity = _context.Users
+                .Include(u => u.UserCourses)
+                .FirstOrDefault(u => u.Id == entity.Id);
 
             var data = _mapper.Map<User>(entity);
 
@@ -57,12 +59,22 @@
                 throw new DbEntityNotFoundException(nameof(User));
             }
 
+            var updatedUserCourses = entity.CourseProgress
+                .Select(c => new UserCourse
+                {
+                    UserId = c.UserId,
+                    CourseId = c.CourseId,
+                    Progress = c.Progress
+                })
+                .ToList();
+
             userEntity.FirstName = data.FirstName;
             userEntity.LastName = data.LastName;
             userEntity.Email = data.Email;
             userEntity.Password = data.Password;
             userEntity.Roles = data.Roles;
             userEntity.UpdatedAt = data.UpdatedAt;
+            userEntity.UserCourses = updatedUserCourses;
 
             _context.Update(userEntity);
 
