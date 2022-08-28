@@ -17,7 +17,15 @@ namespace Portal.UI_Console.CommandManagement.ChooseCommand
 
         public IConsoleCommand Choose(out IParseInput? parser, string commandName)
         {
-            throw new NotImplementedException();
+            parser = null;
+
+            switch(commandName)
+            {
+                default:
+                    break;
+            }
+
+            throw new InvalidOperationException(nameof(commandName));
         }
     }
 }
