@@ -34,6 +34,16 @@
             return users.Select(x => _mapper.Map<UserDomain>(x)).ToList();
         }
 
+        public async Task<ICollection<UserDomain>> Read(Func<UserDomain, bool> predicate)
+        {
+            var users = _context.Users.ToList();
+
+            return users
+                .Select(x => _mapper.Map<UserDomain>(x))
+                .Where(predicate)
+                .ToList();
+        }
+
         public void SaveChanges()
         {
             _context.SaveChanges();
