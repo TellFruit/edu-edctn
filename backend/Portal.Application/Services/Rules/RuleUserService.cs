@@ -13,7 +13,10 @@
         {
             var user = await GetUserById(userId);
 
-            user.CourseEnroll(courseId);
+            if (user.CourseEnroll(courseId) is false)
+            {
+                throw new RelationAlreadyExists(nameof(user.CourseProgress));
+            }
 
             await _userRepos.Update(user);
 
@@ -24,7 +27,10 @@
         {
             var user = await GetUserById(userId);
 
-            user.CourseUnroll(courseId);
+            if (user.CourseUnroll(courseId) is false)
+            {
+                throw new RelationNotFoundException(nameof(user.CourseProgress));
+            }
 
             await _userRepos.Update(user);
 
