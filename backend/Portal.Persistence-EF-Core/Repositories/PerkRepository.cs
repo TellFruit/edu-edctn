@@ -37,12 +37,9 @@
 
         public async Task<ICollection<PerkDomain>> Read(Func<PerkDomain, bool> predicate)
         {
-            var perks = _context.Perks.ToList();
+            var res = await Read();
 
-            return perks
-                .Select(x => _mapper.Map<PerkDomain>(x))
-                .Where(predicate)
-                .ToList();
+            return res.Where(predicate).ToList();
         }
 
         public void SaveChanges()

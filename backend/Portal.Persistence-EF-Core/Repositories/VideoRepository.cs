@@ -37,12 +37,9 @@
 
         public async Task<ICollection<VideoDomain>> Read(Func<VideoDomain, bool> predicate)
         {
-            var videos = _context.Materials.OfType<Video>().ToList();
+            var res = await Read();
 
-            return videos
-                .Select(x => _mapper.Map<VideoDomain>(x))
-                .Where(predicate)
-                .ToList();
+            return res.Where(predicate).ToList();
         }
 
         public void SaveChanges()

@@ -37,12 +37,9 @@
 
         public async Task<ICollection<BookDomain>> Read(Func<BookDomain, bool> predicate)
         {
-            var books = _context.Materials.OfType<Book>().ToList();
+            var res = await Read();
 
-            return books
-                .Select(x => _mapper.Map<BookDomain>(x))
-                .Where(predicate)
-                .ToList();
+            return res.Where(predicate).ToList();
         }
 
         public void SaveChanges()
