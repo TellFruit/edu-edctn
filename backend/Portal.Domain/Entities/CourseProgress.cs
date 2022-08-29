@@ -13,7 +13,6 @@ namespace Portal.Domain.Entities
         public int Progress { get; set; }
         public bool CourseFinished => Progress >= DomainConstants.ProgressFullfiled;
 
-        public UserDomain User { get; set; }
         public CourseDomain Course { get; set; }
     }
 }

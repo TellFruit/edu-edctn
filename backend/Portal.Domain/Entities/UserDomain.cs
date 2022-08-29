@@ -13,7 +13,7 @@ namespace Portal.Domain.Entities
 
         public ICollection<UserPerkDomain> UserPerks { get; set; }
         public ICollection<CourseProgress> CourseProgress { get; set; }
-        public ICollection<MaterialDomain> Materials { get; set; }
+        public ICollection<MaterialLearned> MaterialLearned { get; set; }
 
         public bool CourseEnroll(int courseId)
         {
@@ -47,10 +47,22 @@ namespace Portal.Domain.Entities
             return true;
         }
 
+        public bool MarkMaterialCompleted(int courseId, int materialId)
+        {
+
+        }
+
         private bool CourseProgressExists(int courseId)
         {
             return CourseProgress
                 .Where(c => c.Equals(courseId))
+                .Any();
+        }
+
+        private bool MaterialLearnedExists(int materialId)
+        {
+            return MaterialLearned
+                .Where(c => c.Equals(materialId))
                 .Any();
         }
     }
