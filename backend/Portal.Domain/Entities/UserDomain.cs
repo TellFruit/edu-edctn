@@ -29,6 +29,8 @@ namespace Portal.Domain.Entities
                 Progress = 0
             });
 
+            RecalculateAllProgress();
+
             return true;
         }
 
@@ -60,6 +62,8 @@ namespace Portal.Domain.Entities
                 MaterialId = materialId,
             });
 
+            RecalculateAllProgress();
+
             return true;
         }
 
@@ -75,6 +79,15 @@ namespace Portal.Domain.Entities
             return MaterialLearned
                 .Where(c => c.Equals(materialId))
                 .Any();
+        }
+
+        private void RecalculateAllProgress()
+        {
+            foreach(var progress in CourseProgress)
+            {
+                progress.User = this;
+                progress.Recalculate();
+            }
         }
     }
 }
