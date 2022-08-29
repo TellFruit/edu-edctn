@@ -63,7 +63,7 @@ namespace Portal.Domain.Entities
                 MaterialId = materialId,
             });
 
-            RecalculateAllProgress();
+            RecalculateWhereMaterial(materialId);
 
             return true;
         }
@@ -82,13 +82,32 @@ namespace Portal.Domain.Entities
                 .Any();
         }
 
+        private void RecalculateWhereMaterial(int materialId)
+        {
+            RecalculateProgress(GetProgressByMaterial(materialId));
+        }
+
         private void RecalculateAllProgress()
         {
-            foreach(var progress in CourseProgress)
+            RecalculateProgress(CourseProgress);
+        }
+
+        private void RecalculateProgress(ICollection<CourseProgress> progresses)
+        {
+            foreach (var progress in progresses)
             {
                 progress.User = this;
                 progress.Recalculate();
             }
+        }
+
+        private ICollection<CourseProgress> GetProgressByMaterial(int materialId)
+        {
+            return CourseProgress
+                .Where(c => c.Course.Materials
+                    .Select(m => m.Id)
+                        .Contains(materialId))
+                .ToList();
         }
     }
 }
