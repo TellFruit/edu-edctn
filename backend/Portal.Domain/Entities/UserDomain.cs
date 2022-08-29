@@ -15,9 +15,9 @@ namespace Portal.Domain.Entities
         public ICollection<CourseProgress> CourseProgress { get; set; }
         public ICollection<MaterialLearned> MaterialLearned { get; set; }
 
-        public bool CourseEnroll(int courseId)
+        public bool CourseEnroll(CourseDomain course)
         {
-            if (CourseProgressExists(courseId))
+            if (CourseProgressExists(course.Id))
             {
                 return false;
             }
@@ -25,8 +25,9 @@ namespace Portal.Domain.Entities
             CourseProgress.Add(new CourseProgress
             {
                 UserId = Id,
-                CourseId = courseId,
-                Progress = 0
+                CourseId = course.Id,
+                Progress = 0,
+                Course = course
             });
 
             RecalculateAllProgress();
@@ -49,7 +50,7 @@ namespace Portal.Domain.Entities
             return true;
         }
 
-        public bool MarkMaterialCompleted(int courseId, int materialId)
+        public bool MarkMaterialCompleted(int materialId)
         {
             if (MaterialLearnedExists(materialId))
             {

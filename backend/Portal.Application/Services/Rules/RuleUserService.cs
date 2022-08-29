@@ -3,17 +3,20 @@
     internal class RuleUserService : IRuleUser
     {
         private readonly IGenericRepository<UserDomain> _userRepos;
+        private readonly IGenericRepository<CourseDomain> _courseRepos;
 
-        public RuleUserService(IGenericRepository<UserDomain> userRepos)
+        public RuleUserService(IGenericRepository<UserDomain> userRepos, IGenericRepository<CourseDomain> courseRepos)
         {
             _userRepos = userRepos;
+            _courseRepos = courseRepos;
         }
 
         public async Task<bool> Enroll(int userId, int courseId)
         {
             var user = await GetUserById(userId);
-
-            if (user.CourseEnroll(courseId) is false)
+            
+            var course = await GetCourseById(courseId);
+            if (user.CourseEnroll(course) is false)
             {
                 throw new RelationAlreadyExistsException(nameof(user.CourseProgress));
             }
@@ -40,6 +43,13 @@
         private async Task<UserDomain> GetUserById(int userId)
         {
             var res = await _userRepos.Read(x => x.Id.Equals(userId));
+
+            return res.Last();
+        }
+
+        private async Task<CourseDomain> GetCourseById(int courseId)
+        {
+            var res = await _courseRepos.Read(c => c.Id.Equals(courseId));
 
             return res.Last();
         }
