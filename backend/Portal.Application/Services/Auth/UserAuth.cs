@@ -18,6 +18,8 @@
 
         public bool IsAuthenticated => _authenticated;
 
+        public int LoggedId => _user.Id is 0 ? -1 : _user.Id;
+
         public async Task<bool> Login(string email, string password)
         {
             var users = await _service.GetAll();
