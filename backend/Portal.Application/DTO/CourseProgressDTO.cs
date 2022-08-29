@@ -4,16 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Portal.Domain.Entities
+namespace Portal.Application.DTO
 {
-    public class CourseProgress
+    public class CourseProgressDTO
     {
         public int UserId { get; set; }
         public int CourseId { get; set; }
         public int Progress { get; set; }
-        public bool CourseFinished => Progress >= DomainConstants.ProgressFullfiled;
+        public bool CourseFinished { get; set; }
 
-        public UserDomain User { get; set; }
-        public CourseDomain Course { get; set; }
+        public override string ToString()
+        {
+            return $"Course ID: {CourseId}, Progress made: {Progress}%";
+        }
     }
 }

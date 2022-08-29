@@ -23,11 +23,11 @@
             return true;
         }
 
-        public async Task<bool> Unroll(int userId, int courseId)
+        public async Task<bool> Unenroll(int userId, int courseId)
         {
             var user = await GetUserById(userId);
 
-            if (user.CourseUnroll(courseId) is false)
+            if (user.CourseUnenroll(courseId) is false)
             {
                 throw new RelationNotFoundException(nameof(user.CourseProgress));
             }

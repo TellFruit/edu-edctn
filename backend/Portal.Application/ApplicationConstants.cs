@@ -2,6 +2,6 @@
 {
     public static class ApplicationConstants
     {
-        public static int YearOnlyDateMark = 1;
+        public const int YearOnlyDateMark = 1;
     }
 }

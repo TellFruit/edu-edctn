@@ -32,7 +32,7 @@ namespace Portal.Domain.Entities
             return true;
         }
 
-        public bool CourseUnroll(int courseId)
+        public bool CourseUnenroll(int courseId)
         {
             if (!CourseProgressExists(courseId))
             {
