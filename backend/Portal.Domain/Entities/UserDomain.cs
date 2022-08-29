@@ -49,7 +49,18 @@ namespace Portal.Domain.Entities
 
         public bool MarkMaterialCompleted(int courseId, int materialId)
         {
+            if (MaterialLearnedExists(materialId))
+            {
+                return false;
+            }
 
+            MaterialLearned.Add(new MaterialLearned
+            {
+                UserId = Id,
+                MaterialId = materialId,
+            });
+
+            return true;
         }
 
         private bool CourseProgressExists(int courseId)
