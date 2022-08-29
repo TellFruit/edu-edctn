@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Portal.Domain.Exceptions
 {
-    public class RelationAlreadyExists : Exception
+    public class RelationAlreadyExistsException : Exception
     {
-        public RelationAlreadyExists(string name)
+        public RelationAlreadyExistsException(string name)
             : base($"Relation named ({name}) already exists!") { }
     }
 }

@@ -28,7 +28,7 @@
             }
 
             var basicParser = Program.Root.GetService<IParseInput>();
-            var chooseCommand = new ChooseCourseDataCommand(courseDTO);
+            var chooseCommand = new ChooseFormCourseCommand(courseDTO);
 
             var commandManager = new CommandManager(basicParser, chooseCommand);
 

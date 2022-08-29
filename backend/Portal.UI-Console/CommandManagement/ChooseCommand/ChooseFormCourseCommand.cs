@@ -1,10 +1,10 @@
 ﻿namespace Portal.UI_Console.CommandManagement.ChooseCommand
 {
-    internal class ChooseCourseCommand : IChooseCommand
+    internal class ChooseFormCourseCommand : IChooseCommand
     {
         private readonly CourseDTO _courseDTO;
 
-        public ChooseCourseCommand(CourseDTO courseDTO)
+        public ChooseFormCourseCommand(CourseDTO courseDTO)
         {
             _courseDTO = courseDTO;
         }
