@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Portal.Domain
 {
-    internal class DomainConstants
+    public static class DomainConstants
     {
+        public const int ProgressFullfiled = 100;
     }
 }

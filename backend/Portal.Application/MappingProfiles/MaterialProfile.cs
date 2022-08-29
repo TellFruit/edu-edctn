@@ -1,8 +1,8 @@
 ﻿namespace Portal.Application.MappingProfiles
 {
-    public class MaterilProfile : Profile
+    public class MaterialProfile : Profile
     {
-        public MaterilProfile()
+        public MaterialProfile()
         {
             CreateMap<MaterialDomain, MaterialDTO>();
 
