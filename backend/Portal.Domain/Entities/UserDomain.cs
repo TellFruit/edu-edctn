@@ -4,6 +4,8 @@ namespace Portal.Domain.Entities
 {
     public class UserDomain : BaseEntity
     {
+        #region Model Properties
+
         public string Login { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -14,6 +16,10 @@ namespace Portal.Domain.Entities
         public ICollection<UserPerkDomain> UserPerks { get; set; }
         public ICollection<CourseProgress> CourseProgress { get; set; }
         public ICollection<MaterialLearned> MaterialLearned { get; set; }
+
+        #endregion
+
+        #region Public Business Rules
 
         public bool CourseEnroll(CourseDomain course)
         {
@@ -30,7 +36,7 @@ namespace Portal.Domain.Entities
                 Course = course
             });
 
-            RecalculateAllProgress();
+            RecalculateProgress(CourseProgress);
 
             return true;
         }
@@ -63,11 +69,31 @@ namespace Portal.Domain.Entities
                 MaterialId = materialId,
             });
 
-            RecalculateWhereMaterial(materialId);
+            RecalculateProgress(GetProgressByMaterial(materialId));
 
             return true;
         }
 
+        public bool UnmarkMaterialCompleted(int materialId)
+        {
+            if (!MaterialLearnedExists(materialId))
+            {
+                return false;
+            }
+
+            MaterialLearned
+                .Remove(MaterialLearned
+                    .First(x => x.MaterialId
+                        .Equals(materialId)));
+
+            RecalculateProgress(GetProgressByMaterial(materialId));
+
+            return true;
+        }
+
+        #endregion
+
+        #region Private Support Methods
         private bool CourseProgressExists(int courseId)
         {
             return CourseProgress
@@ -80,16 +106,6 @@ namespace Portal.Domain.Entities
             return MaterialLearned
                 .Where(c => c.Equals(materialId))
                 .Any();
-        }
-
-        private void RecalculateWhereMaterial(int materialId)
-        {
-            RecalculateProgress(GetProgressByMaterial(materialId));
-        }
-
-        private void RecalculateAllProgress()
-        {
-            RecalculateProgress(CourseProgress);
         }
 
         private void RecalculateProgress(ICollection<CourseProgress> progresses)
@@ -109,5 +125,7 @@ namespace Portal.Domain.Entities
                         .Contains(materialId))
                 .ToList();
         }
+
+        #endregion
     }
 }
