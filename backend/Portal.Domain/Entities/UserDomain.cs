@@ -56,7 +56,7 @@ namespace Portal.Domain.Entities
             return true;
         }
 
-        public bool MarkMaterialCompleted(int materialId)
+        public bool MarkMaterialLearned(int materialId)
         {
             if (MaterialLearnedExists(materialId))
             {
@@ -74,7 +74,7 @@ namespace Portal.Domain.Entities
             return true;
         }
 
-        public bool UnmarkMaterialCompleted(int materialId)
+        public bool UnmarkMaterialLearned(int materialId)
         {
             if (!MaterialLearnedExists(materialId))
             {
