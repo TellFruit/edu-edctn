@@ -121,15 +121,13 @@ namespace Portal.Domain.Entities
         private bool CourseProgressExists(int courseId)
         {
             return CourseProgress
-                .Where(c => c.Equals(courseId))
-                .Any();
+                .Any(c => c.Equals(courseId));
         }
 
         private bool MaterialLearnedExists(int materialId)
         {
             return MaterialLearned
-                .Where(c => c.Equals(materialId))
-                .Any();
+                .Any(c => c.Equals(materialId));
         }
 
         private void RecalculateProgress(ICollection<CourseProgress> progresses)

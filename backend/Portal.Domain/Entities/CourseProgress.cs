@@ -7,8 +7,8 @@
         public int Progress { get; set; }
         public bool CourseFinished => Progress >= DomainConstants.ProgressFullfiled;
 
-        public UserDomain? User { get; set; }
-        public CourseDomain? Course { get; set; }
+        public UserDomain User { get; set; }
+        public CourseDomain Course { get; set; }
 
         public void Recalculate()
         {
@@ -41,7 +41,7 @@
 
         private bool CourseContainsMaterial(int materialId)
         {
-            return Course.Materials.Where(m => m.Id.Equals(materialId)).Any();
+            return Course.Materials.Any(m => m.Id.Equals(materialId));
         }
     }
 }
