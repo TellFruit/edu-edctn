@@ -40,7 +40,7 @@
             modelBuilder.Entity<CoursePerk>()
                 .HasKey(x => new { x.PerkId, x.CourseId });
 
-            modelBuilder.Entity<UserPerk>()
+            modelBuilder.Entity<FrameworkEntities.UserPerk>()
                 .HasKey(x => new { x.UserId, x.PerkId });
         }
     }

@@ -13,7 +13,7 @@ namespace Portal.Domain.Entities
         public string Password { get; set; }
         public string Roles { get; set; }
 
-        public ICollection<UserPerkDomain> UserPerks { get; set; }
+        public ICollection<UserPerk> UserPerks { get; set; }
         public ICollection<CourseProgress> CourseProgress { get; set; }
         public ICollection<MaterialLearned> MaterialLearned { get; set; }
 
@@ -89,6 +89,30 @@ namespace Portal.Domain.Entities
             RecalculateProgress(GetProgressByMaterial(materialId));
 
             return true;
+        }
+
+        public void GainPerksFromCourse(CourseDomain course)
+        {
+            foreach (var perk in course.Perks)
+            {
+                var found = UserPerks
+                    .FirstOrDefault(
+                        x => x.Perk.Id.Equals(perk.Id));
+
+                if (found is null)
+                {
+                    UserPerks.Add(new UserPerk
+                    {
+                        UserId = Id,
+                        PerkId = perk.Id,
+                        Level = 1
+                    });
+                }
+                else
+                {
+                    found.Reestimate();
+                }
+            }
         }
 
         #endregion

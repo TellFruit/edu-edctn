@@ -6,7 +6,7 @@ namespace Portal.Domain.Entities
     {
         public string Name { get; set; }
         
-        public ICollection<UserPerkDomain> UserPerks { get; set; }
+        public ICollection<UserPerk> UserPerks { get; set; }
         public ICollection<MaterialDomain> Materials { get; set; }
     }
 }
