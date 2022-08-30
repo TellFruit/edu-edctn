@@ -21,7 +21,7 @@
                 throw new RelationAlreadyExistsException(nameof(user.CourseProgress));
             }
 
-            await _userRepos.Update(user);
+            await CallUserReposUpdate(user);
 
             return true;
         }
@@ -35,7 +35,35 @@
                 throw new RelationNotFoundException(nameof(user.CourseProgress));
             }
 
-            await _userRepos.Update(user);
+            await CallUserReposUpdate(user);
+
+            return true;
+        }
+
+        public async Task<bool> MarkLearned(int userId, int materialId)
+        {
+            var user = await GetUserById(userId);
+
+            if (user.MarkMaterialLearned(materialId) is false)
+            {
+                throw new RelationAlreadyExistsException(nameof(user.MaterialLearned));
+            }
+
+            await CallUserReposUpdate(user);
+
+            return true;
+        }
+
+        public async Task<bool> UnmarkLearned(int userId, int materialId)
+        {
+            var user = await GetUserById(userId);
+
+            if (user.UnmarkMaterialLearned(materialId) is false)
+            {
+                throw new RelationNotFoundException(nameof(user.MaterialLearned));
+            }
+
+            await CallUserReposUpdate(user);
 
             return true;
         }
@@ -52,6 +80,12 @@
             var res = await _courseRepos.Read(c => c.Id.Equals(courseId));
 
             return res.Last();
+        }
+
+        private async Task CallUserReposUpdate(UserDomain user)
+        {
+            await _userRepos.Update(user);
+            _userRepos.SaveChanges();
         }
     }
 }

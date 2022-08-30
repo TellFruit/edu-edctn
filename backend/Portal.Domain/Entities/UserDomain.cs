@@ -43,7 +43,7 @@ namespace Portal.Domain.Entities
 
         public bool CourseUnenroll(int courseId)
         {
-            if (!CourseProgressExists(courseId))
+            if (CourseProgressExists(courseId) is false)
             {
                 return false;
             }
@@ -76,7 +76,7 @@ namespace Portal.Domain.Entities
 
         public bool UnmarkMaterialLearned(int materialId)
         {
-            if (!MaterialLearnedExists(materialId))
+            if (MaterialLearnedExists(materialId) is false)
             {
                 return false;
             }
