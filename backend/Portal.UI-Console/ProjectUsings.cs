@@ -18,6 +18,7 @@ global using Portal.UI_Console.ConsoleCommands.Auth;
 global using Portal.UI_Console.ConsoleCommands.Get;
 global using Portal.UI_Console.ConsoleCommands.Modify.Materials.Book;
 global using Portal.UI_Console.ConsoleCommands.Modify.Materials.Video;
+global using Portal.UI_Console.ConsoleCommands.Menu.General;
 global using Portal.UI_Console.Interfaces;
 global using Portal.UI_Console.Parsers;
 
