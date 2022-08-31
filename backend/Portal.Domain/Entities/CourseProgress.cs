@@ -10,11 +10,16 @@
         public UserDomain User { get; set; }
         public CourseDomain Course { get; set; }
 
-        public void CallProgressChanges()
+        public void CallChanges()
         {
+            if (CourseFinished)
+            {
+                return;
+            }
+
             Recalculate();
 
-            if(CourseFinished)
+            if (CourseFinished)
             {
                 User.GainPerksFromCourse(Course);
             }

@@ -135,7 +135,7 @@ namespace Portal.Domain.Entities
             foreach (var progress in progresses)
             {
                 progress.User = this;
-                progress.Recalculate();
+                progress.CallChanges();
             }
         }
 
