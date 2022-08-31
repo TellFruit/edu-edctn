@@ -1,6 +1,6 @@
 ﻿namespace Portal.Domain.Entities
 {
-    public class UserPerk
+    public class PerkLevel
     {
         public int UserId { get; set; }
         public int PerkId { get; set; }

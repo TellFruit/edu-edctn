@@ -13,7 +13,7 @@ namespace Portal.Domain.Entities
         public string Password { get; set; }
         public string Roles { get; set; }
 
-        public ICollection<UserPerk> UserPerks { get; set; }
+        public ICollection<PerkLevel> UserPerks { get; set; }
         public ICollection<CourseProgress> CourseProgress { get; set; }
         public ICollection<MaterialLearned> MaterialLearned { get; set; }
 
@@ -101,7 +101,7 @@ namespace Portal.Domain.Entities
 
                 if (found is null)
                 {
-                    UserPerks.Add(new UserPerk
+                    UserPerks.Add(new PerkLevel
                     {
                         UserId = Id,
                         PerkId = perk.Id,
