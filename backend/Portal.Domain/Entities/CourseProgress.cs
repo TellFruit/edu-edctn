@@ -10,7 +10,17 @@
         public UserDomain User { get; set; }
         public CourseDomain Course { get; set; }
 
-        public void Recalculate()
+        public void CallProgressChanges()
+        {
+            Recalculate();
+
+            if(CourseFinished)
+            {
+                User.GainPerksFromCourse(Course);
+            }
+        }
+
+        private void Recalculate()
         {
             bool courseUncompleted = default;
             int result = default;
