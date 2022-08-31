@@ -12,7 +12,7 @@
                     cfg.AddProfile<BookEntityProfile>();
                     cfg.AddProfile<VideoEnityProfile>();
                     cfg.AddProfile<MaterialEntityProfile>();
-                    cfg.AddProfile<CourseEntiyProfile>();
+                    cfg.AddProfile<CourseEntityProfile>();
                     cfg.AddProfile<UserCourseEntityProfile>();
                 },
             Assembly.GetExecutingAssembly());

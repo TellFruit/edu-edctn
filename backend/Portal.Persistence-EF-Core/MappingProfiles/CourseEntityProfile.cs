@@ -1,8 +1,8 @@
 ﻿namespace Portal.Persistence_EF_Core.MappingProfiles
 {
-    internal class CourseEntiyProfile : Profile
+    internal class CourseEntityProfile : Profile
     {
-        public CourseEntiyProfile()
+        public CourseEntityProfile()
         {
             CreateMap<CourseDomain, Course>();
 
