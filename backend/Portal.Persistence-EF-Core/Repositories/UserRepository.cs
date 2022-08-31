@@ -29,7 +29,11 @@
 
         public async Task<ICollection<UserDomain>> Read()
         {
-            var users = _context.Users.ToList();
+            var users = _context.Users
+                .Include(u => u.UserCourses)
+                .Include(u => u.UserMaterial)
+                .Include(u => u.UserPerks)
+                .ToList();
 
             return users.Select(x => _mapper.Map<UserDomain>(x)).ToList();
         }

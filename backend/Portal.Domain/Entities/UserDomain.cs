@@ -13,9 +13,16 @@ namespace Portal.Domain.Entities
         public string Password { get; set; }
         public string Roles { get; set; }
 
-        public ICollection<PerkLevel> UserPerks { get; set; }
+        public ICollection<PerkLevel> PerkLevel { get; set; }
         public ICollection<CourseProgress> CourseProgress { get; set; }
         public ICollection<MaterialLearned> MaterialLearned { get; set; }
+
+        public UserDomain()
+        {
+            PerkLevel = new List<PerkLevel>();
+            CourseProgress = new List<CourseProgress>();
+            MaterialLearned = new List<MaterialLearned>();
+        }
 
         #endregion
 
@@ -23,8 +30,7 @@ namespace Portal.Domain.Entities
 
         public bool CourseEnroll(CourseDomain course)
         {
-            if (CourseProgress is not null
-                && CourseProgressExists(course.Id))
+            if (CourseProgressExists(course.Id))
             {
                 return false;
             }
@@ -44,8 +50,7 @@ namespace Portal.Domain.Entities
 
         public bool CourseUnenroll(int courseId)
         {
-            if (CourseProgress is not null
-                || CourseProgressExists(courseId) is false)
+            if (CourseProgressExists(courseId) is false)
             {
                 return false;
             }
@@ -97,13 +102,13 @@ namespace Portal.Domain.Entities
         {
             foreach (var perk in course.Perks)
             {
-                var found = UserPerks
+                var found = PerkLevel
                     .FirstOrDefault(
                         x => x.Perk.Id.Equals(perk.Id));
 
                 if (found is null)
                 {
-                    UserPerks.Add(new PerkLevel
+                    PerkLevel.Add(new PerkLevel
                     {
                         UserId = Id,
                         PerkId = perk.Id,
