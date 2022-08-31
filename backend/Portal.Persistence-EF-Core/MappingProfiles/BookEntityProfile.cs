@@ -1,6 +1,4 @@
-﻿using Portal.Domain.Entities.Abstract;
-
-namespace Portal.Persistence_EF_Core.MappingProfiles
+﻿namespace Portal.Persistence_EF_Core.MappingProfiles
 {
     internal class BookEntityProfile : Profile
     {

@@ -13,6 +13,7 @@
                     cfg.AddProfile<VideoEnityProfile>();
                     cfg.AddProfile<MaterialEntityProfile>();
                     cfg.AddProfile<CourseEntiyProfile>();
+                    cfg.AddProfile<UserCourseEntityProfile>();
                 },
             Assembly.GetExecutingAssembly());
 
