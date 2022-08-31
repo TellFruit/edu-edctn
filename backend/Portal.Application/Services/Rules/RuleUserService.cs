@@ -4,14 +4,16 @@
     {
         private readonly IGenericRepository<UserDomain> _userRepos;
         private readonly IGenericRepository<CourseDomain> _courseRepos;
+        private readonly IMapper _mapper;
 
-        public RuleUserService(IGenericRepository<UserDomain> userRepos, IGenericRepository<CourseDomain> courseRepos)
+        public RuleUserService(IGenericRepository<UserDomain> userRepos, IGenericRepository<CourseDomain> courseRepos, IMapper mapper)
         {
             _userRepos = userRepos;
             _courseRepos = courseRepos;
+            _mapper = mapper;
         }
 
-        public async Task<bool> Enroll(int userId, int courseId)
+        public async Task<UserDTO> Enroll(int userId, int courseId)
         {
             var user = await GetUserById(userId);
             
@@ -23,10 +25,10 @@
 
             await CallUserReposUpdate(user);
 
-            return true;
+            return _mapper.Map<UserDTO>(user);
         }
 
-        public async Task<bool> Unenroll(int userId, int courseId)
+        public async Task<UserDTO> Unenroll(int userId, int courseId)
         {
             var user = await GetUserById(userId);
 
@@ -37,10 +39,10 @@
 
             await CallUserReposUpdate(user);
 
-            return true;
+            return _mapper.Map<UserDTO>(user);
         }
 
-        public async Task<bool> MarkLearned(int userId, int materialId)
+        public async Task<UserDTO> MarkLearned(int userId, int materialId)
         {
             var user = await GetUserById(userId);
 
@@ -51,10 +53,10 @@
 
             await CallUserReposUpdate(user);
 
-            return true;
+            return _mapper.Map<UserDTO>(user);
         }
 
-        public async Task<bool> UnmarkLearned(int userId, int materialId)
+        public async Task<UserDTO> UnmarkLearned(int userId, int materialId)
         {
             var user = await GetUserById(userId);
 
@@ -65,7 +67,7 @@
 
             await CallUserReposUpdate(user);
 
-            return true;
+            return _mapper.Map<UserDTO>(user);
         }
 
         private async Task<UserDomain> GetUserById(int userId)
