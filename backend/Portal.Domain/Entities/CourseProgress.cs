@@ -44,7 +44,8 @@
                 }
             }
 
-            if (courseUncompleted)
+            if (User.MaterialLearned.Any() is false
+                || courseUncompleted)
             {
                 Progress = result;
             }
