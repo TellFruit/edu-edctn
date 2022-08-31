@@ -1,6 +1,4 @@
-﻿using Portal.UI_Console.ConsoleCommands.Modify.Skills;
-
-namespace Portal.UI_Console.CommandManagement.ChooseCommand
+﻿namespace Portal.UI_Console.CommandManagement.ChooseCommand
 {
     internal class ChooseCatalogCommand : IChooseCommand
     {
