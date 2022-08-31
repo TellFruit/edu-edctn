@@ -58,7 +58,10 @@
 
                 try
                 {
-                    await _ruleUser.Unenroll(_userDTO.Id, wantedId);
+                    var res = await _ruleUser.Unenroll(_userDTO.Id, wantedId);
+
+                    _userDTO.CourseProgress = res.CourseProgress;
+
                     break;
                 }
                 catch (Exception e)
