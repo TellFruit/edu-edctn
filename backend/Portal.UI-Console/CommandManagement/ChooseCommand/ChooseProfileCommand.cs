@@ -15,6 +15,15 @@
 
             switch(commandName)
             {
+                case "enroll-in-course":
+                    {
+                        var ruleUser = Program.Root.GetService<IRuleUser>();
+
+                        var userAuth = Program.Root.GetService<IUserAuth>();
+
+                        return new EnrollInCourseCommand(ruleUser, userAuth);
+                    }
+
                 default:
                     break;
             }

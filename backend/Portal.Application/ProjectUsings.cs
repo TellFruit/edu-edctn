@@ -8,6 +8,7 @@ global using Portal.Application.MappingProfiles;
 global using Portal.Application.Services.Abstract;
 global using Portal.Application.Services.Config;
 global using Portal.Application.Services.Auth;
+global using Portal.Application.Services.Rules;
 global using Portal.Application.Services;
 global using Portal.Application.DTO;
 

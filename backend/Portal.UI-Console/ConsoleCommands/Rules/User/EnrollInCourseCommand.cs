@@ -19,7 +19,7 @@
 
             await getCourses.Run();
 
-            int wantedId = 0;
+            int wantedId = default;
             string input = string.Empty;
             do
             {

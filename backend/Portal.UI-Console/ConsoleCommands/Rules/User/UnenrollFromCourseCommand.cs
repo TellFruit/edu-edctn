@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Portal.UI_Console.ConsoleCommands.Rules.User
+﻿namespace Portal.UI_Console.ConsoleCommands.Rules.User
 {
     internal class UnenrollFromCourseCommand : IConsoleCommand
     {
@@ -36,7 +30,7 @@ namespace Portal.UI_Console.ConsoleCommands.Rules.User
                 return true;
             }
 
-            int wantedId = 0;
+            int wantedId = default;
             string input = string.Empty;
             do
             {

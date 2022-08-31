@@ -18,6 +18,7 @@ global using Portal.UI_Console.ConsoleCommands.Get;
 global using Portal.UI_Console.ConsoleCommands.Modify.Materials.Book;
 global using Portal.UI_Console.ConsoleCommands.Modify.Materials.Video;
 global using Portal.UI_Console.ConsoleCommands.Modify.Skills;
+global using Portal.UI_Console.ConsoleCommands.Rules.User;
 global using Portal.UI_Console.ConsoleCommands.Menu.General;
 global using Portal.UI_Console.ConsoleCommands.Menu;
 global using Portal.UI_Console.Interfaces;
