@@ -58,7 +58,7 @@
 
                 try
                 {
-                    await _ruleUser.Enroll(_userDTO.Id, wantedId);
+                    await _ruleUser.Unenroll(_userDTO.Id, wantedId);
                     break;
                 }
                 catch (Exception e)

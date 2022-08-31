@@ -55,10 +55,16 @@ namespace Portal.Domain.Entities
                 return false;
             }
 
-            CourseProgress
-                .Remove(CourseProgress
-                    .First(x => x.CourseId
-                        .Equals(courseId)));
+            var found = CourseProgress
+                .First(x => x.CourseId
+                    .Equals(courseId));
+
+            if (found.CourseFinished)
+            {
+                throw new InvalidOperationException("Cannot unenroll from the finished course");
+            }
+
+            CourseProgress.Remove(found);
 
             return true;
         }

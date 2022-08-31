@@ -24,6 +24,13 @@
                         return new EnrollInCourseCommand(ruleUser, userAuth);
                     }
 
+                case "unenroll-from-course":
+                    {
+                        var ruleUser = Program.Root.GetService<IRuleUser>();
+
+                        return new UnenrollFromCourseCommand(ruleUser, _userDTO);
+                    }
+
                 default:
                     break;
             }
