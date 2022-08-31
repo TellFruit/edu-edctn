@@ -7,7 +7,7 @@
             CreateMap<CourseDomain, Course>();
 
             CreateMap<Course, CourseDomain>()
-                .ForMember(dom => dom.Materials, 
+                .ForMember(dom => dom.Materials,
                     src => src.MapFrom(
                         ef =>
                             ef.CourseMaterials

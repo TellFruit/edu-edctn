@@ -2,17 +2,19 @@
 {
     internal class UserEntityProfile : Profile
     {
-        public UserEntityProfile(IMapper mapper)
+        public UserEntityProfile()
         {
             CreateMap<UserDomain, User>();
 
             CreateMap<User, UserDomain>()
                 .ForMember(dom => dom.CourseProgress,
-                    src => src.MapFrom(
-                        entity => entity.UserCourses
-                            .Select(
-                                uc => mapper.Map<CourseProgress>(uc))
-                                    .ToList()));
+                   src => src.MapFrom(uc => uc.UserCourses));
+                //.ForMember(dom => dom.CourseProgress,
+                //    src => src.MapFrom(
+                //        entity => entity.UserCourses
+                //            .Select(
+                //                uc => mapper.Map<CourseProgress>(uc))
+                //                    .ToList()));
         }
     }
 }
