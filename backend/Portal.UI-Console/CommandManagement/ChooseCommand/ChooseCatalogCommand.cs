@@ -2,11 +2,11 @@
 
 namespace Portal.UI_Console.CommandManagement.ChooseCommand
 {
-    internal class ChooseDataCommand : IChooseCommand
+    internal class ChooseCatalogCommand : IChooseCommand
     {
         private readonly IConfigService _config;
 
-        public ChooseDataCommand(IConfigService config)
+        public ChooseCatalogCommand(IConfigService config)
         {
             _config = config;
         }

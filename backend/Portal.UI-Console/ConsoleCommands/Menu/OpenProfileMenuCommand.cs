@@ -22,7 +22,7 @@
 
             var wantedUser = await _userService.GetById(_userAuth.LoggedId);
 
-            var chooseCommand = new ChooseUserRulesCommand(wantedUser);
+            var chooseCommand = new ChooseProfileCommand(wantedUser);
             var basicParser = Program.Root.GetService<IParseInput>();
 
             var launchCommand = new LaunchManagerCommand(chooseCommand, basicParser);
