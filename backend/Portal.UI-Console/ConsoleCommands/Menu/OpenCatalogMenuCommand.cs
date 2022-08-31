@@ -12,11 +12,13 @@
         public async Task<bool> Run(params string[] parameters)
         {
             var basicParser = Program.Root.GetService<IParseInput>();
-            var chooseCommad = new ChooseCatalogCommand(_configService);
+            var chooseCommand = new ChooseCatalogCommand(_configService);
 
-            var commandManager = new CommandManager(basicParser, chooseCommad);
+            var launchCommand = new LaunchManagerCommand(chooseCommand, basicParser);
 
-            await commandManager.InitCommandFlow();
+            Console.WriteLine("Catalog menu opened!");
+
+            await launchCommand.Run();
 
             return true;
         }

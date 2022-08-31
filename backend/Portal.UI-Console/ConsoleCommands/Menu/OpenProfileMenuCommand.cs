@@ -27,6 +27,8 @@
 
             var launchCommand = new LaunchManagerCommand(chooseCommand, basicParser);
 
+            Console.WriteLine("Catalog menu opened!");
+
             await launchCommand.Run();
 
             return true;
