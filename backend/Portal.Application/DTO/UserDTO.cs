@@ -10,5 +10,7 @@
         public string Roles { get; set; }
 
         public ICollection<CourseProgressDTO> CourseProgress { get; set; }
+        public ICollection<MaterialLearnedDTO> MaterialLearned { get; set; }
+        public ICollection<PerkLevelDTO> PerkLevel { get; set; }
     }
 }

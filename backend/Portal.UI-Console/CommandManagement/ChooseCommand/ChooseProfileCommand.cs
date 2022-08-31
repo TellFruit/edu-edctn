@@ -21,7 +21,7 @@
 
                         var userAuth = Program.Root.GetService<IUserAuth>();
 
-                        return new EnrollInCourseCommand(ruleUser, userAuth);
+                        return new EnrollInCourseCommand(ruleUser, userAuth, _userDTO);
                     }
 
                 case "unenroll-from-course":

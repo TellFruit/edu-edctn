@@ -4,11 +4,13 @@
     {
         private readonly IRuleUser _ruleUser;
         private readonly IUserAuth _userAuth;
+        private readonly UserDTO _userDTO;
 
-        public EnrollInCourseCommand(IRuleUser ruleUser, IUserAuth userAuth)
+        public EnrollInCourseCommand(IRuleUser ruleUser, IUserAuth userAuth, UserDTO userDTO)
         {
             _ruleUser = ruleUser;
             _userAuth = userAuth;
+            _userDTO = userDTO;
         }
 
         public async Task<bool> Run(params string[] parameters)
@@ -47,7 +49,11 @@
 
                 try
                 {
-                    await _ruleUser.Enroll(_userAuth.LoggedId, wantedId);
+                    var res = await _ruleUser.Enroll(_userAuth.LoggedId, wantedId);
+
+                    _userDTO.CourseProgress = res.CourseProgress;
+                    _userDTO.PerkLevel = res.PerkLevel;
+
                     break;
                 }
                 catch (Exception e)

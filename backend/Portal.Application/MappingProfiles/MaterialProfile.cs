@@ -1,6 +1,6 @@
 ﻿namespace Portal.Application.MappingProfiles
 {
-    public class MaterialProfile : Profile
+    internal class MaterialProfile : Profile
     {
         public MaterialProfile()
         {
