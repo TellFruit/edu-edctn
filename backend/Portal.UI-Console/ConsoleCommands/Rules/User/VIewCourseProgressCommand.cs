@@ -15,14 +15,14 @@
         {
             var wantedId = int.Parse(parameters[0]);
 
-            var course = await _courseService.GetById(wantedId);
-
-            var courseProgress = _userDTO.CourseProgress
-                    .FirstOrDefault(c => c.CourseId.Equals(wantedId));
-
             string input = string.Empty;
             do
             {
+                var course = await _courseService.GetById(wantedId);
+
+                var courseProgress = _userDTO.CourseProgress
+                        .FirstOrDefault(c => c.CourseId.Equals(wantedId));
+
                 Console.WriteLine("Course info:");
                 Console.WriteLine(course);
                 Console.WriteLine($"Course progress: {courseProgress.Progress}%");
@@ -51,6 +51,13 @@
                 foreach (var material in materialsLeft)
                 {
                     Console.WriteLine(material);
+                }
+
+                if (courseProgress.Progress == Domain.DomainConstants.ProgressFullfiled)
+                {
+                    Console.WriteLine("Course is finished. No action available");
+
+                    return true;
                 }
 
                 var basicParser = Program.Root.GetService<IParseInput>();
