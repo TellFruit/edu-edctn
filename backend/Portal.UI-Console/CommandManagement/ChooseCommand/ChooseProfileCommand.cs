@@ -31,6 +31,19 @@
                         return new UnenrollFromCourseCommand(ruleUser, _userDTO);
                     }
 
+                case "mark-material-learned":
+                    {
+                        var ruleUser = Program.Root.GetService<IRuleUser>();
+
+                        var userAuth = Program.Root.GetService<IUserAuth>();
+
+                        var courseService = Program.Root.GetService<ICourseService>();
+
+                        parser = new BasicSplitParse(string.Empty);
+
+                        return new MarkMaterialLearnedCommand(ruleUser, userAuth, courseService, _userDTO);
+                    }
+
                 default:
                     break;
             }
