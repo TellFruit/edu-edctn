@@ -17,7 +17,7 @@
             Console.WriteLine("All courses you have yet to finish: ");
             foreach (var progress in _userDTO.CourseProgress)
             {
-                if (progress.CourseFinished)
+                if (progress.CourseFinished is false)
                 {
                     toContinue = true;
                     Console.WriteLine(progress);
@@ -70,6 +70,8 @@
                 }
             }
             while (true);
+
+            Console.WriteLine("Success! You unerolled from that course.");
 
             return true;
         }

@@ -63,6 +63,8 @@
             }
             while (true);
 
+            Console.WriteLine("Success! You enrolled in that course");
+
             return true;
         }
     }

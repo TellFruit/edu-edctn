@@ -134,13 +134,13 @@ namespace Portal.Domain.Entities
         private bool CourseProgressExists(int courseId)
         {
             return CourseProgress
-                .Any(c => c.Equals(courseId));
+                .Any(c => c.CourseId.Equals(courseId));
         }
 
         private bool MaterialLearnedExists(int materialId)
         {
             return MaterialLearned
-                .Any(c => c.Equals(materialId));
+                .Any(m => m.MaterialId.Equals(materialId));
         }
 
         private void RecalculateProgress(ICollection<CourseProgress> progresses)
