@@ -72,6 +72,14 @@
                 })
                 .ToList();
 
+            var updatedUserMaterial = entity.MaterialLearned
+                .Select(m => new UserMaterial
+                {
+                    UserId = m.UserId,
+                    MaterialId = m.MaterialId,
+                })
+                .ToList();
+
             userEntity.FirstName = data.FirstName;
             userEntity.LastName = data.LastName;
             userEntity.Email = data.Email;
@@ -79,6 +87,7 @@
             userEntity.Roles = data.Roles;
             userEntity.UpdatedAt = data.UpdatedAt;
             userEntity.UserCourses = updatedUserCourses;
+            userEntity.UserMaterial = updatedUserMaterial;
 
             _context.Update(userEntity);
 

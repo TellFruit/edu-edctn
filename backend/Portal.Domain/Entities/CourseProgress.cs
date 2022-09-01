@@ -27,25 +27,18 @@
 
         private void Recalculate()
         {
-            bool courseUncompleted = default;
             int result = default;
 
             int materialsCount = Course.Materials.Count;
             int addPerMaterial = DomainConstants.ProgressFullfiled / materialsCount;
-            foreach(var ml in User.MaterialLearned)
+
+            var filtered = MaterialLearnedByCourse();
+            foreach (var ml in filtered)
             {
-                if (CourseContainsMaterial(ml.MaterialId))
-                {
-                    result += addPerMaterial;
-                }
-                else
-                {
-                    courseUncompleted = true;
-                }
+                result += addPerMaterial;
             }
 
-            if (courseUncompleted
-                || User.MaterialLearned.Any() is false)
+            if (filtered.Count < Course.Materials.Count)
             {
                 Progress = result;
             }
@@ -55,9 +48,13 @@
             }
         }
 
-        private bool CourseContainsMaterial(int materialId)
+        private ICollection<MaterialLearned> MaterialLearnedByCourse()
         {
-            return Course.Materials.Any(m => m.Id.Equals(materialId));
+            return User.MaterialLearned
+                .Where(ml => Course.Materials
+                    .Select(m => m.Id)
+                    .Contains(ml.MaterialId))
+                .ToList();
         }
     }
 }
