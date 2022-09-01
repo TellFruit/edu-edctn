@@ -14,6 +14,8 @@
                     cfg.AddProfile<MaterialEntityProfile>();
                     cfg.AddProfile<CourseEntityProfile>();
                     cfg.AddProfile<UserCourseEntityProfile>();
+                    cfg.AddProfile<UserMaterialEntityProfile>();
+                    cfg.AddProfile<UserPerkEntityProfile>();
                 },
             Assembly.GetExecutingAssembly());
 

@@ -5,7 +5,7 @@
         private readonly ICourseService _courseService;
         private readonly UserDTO _userDTO;
 
-        public VIewCourseProgressCommand(IUserAuth userAuth, ICourseService courseService, UserDTO userDTO)
+        public VIewCourseProgressCommand(ICourseService courseService, UserDTO userDTO)
         {
             _courseService = courseService;
             _userDTO = userDTO;

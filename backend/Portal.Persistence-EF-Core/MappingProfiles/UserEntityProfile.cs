@@ -8,13 +8,11 @@
 
             CreateMap<User, UserDomain>()
                 .ForMember(dom => dom.CourseProgress,
-                   src => src.MapFrom(uc => uc.UserCourses));
-                //.ForMember(dom => dom.CourseProgress,
-                //    src => src.MapFrom(
-                //        entity => entity.UserCourses
-                //            .Select(
-                //                uc => mapper.Map<CourseProgress>(uc))
-                //                    .ToList()));
+                    src => src.MapFrom(uc => uc.UserCourses))
+                .ForMember(dom => dom.MaterialLearned,
+                    src => src.MapFrom(ml => ml.UserMaterial))
+                .ForMember(dom => dom.PerkLevel,
+                    src => src.MapFrom(up => up.UserPerks));
         }
     }
 }
