@@ -40,6 +40,11 @@
                         return new VIewCourseProgressCommand(courseService, _userDTO);
                     }
 
+                case "return":
+                    {
+                        return new ExitFlowCommand();
+                    }
+
                 default:
                     break;
             }

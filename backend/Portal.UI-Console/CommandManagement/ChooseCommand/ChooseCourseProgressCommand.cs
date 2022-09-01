@@ -35,6 +35,11 @@
                         return new UnmarkMaterialLearnedCommand(ruleUser, _userDTO, _courseDTO);
                     }
 
+                case "return":
+                    {
+                        return new ExitFlowCommand();
+                    }
+
                 default:
                     break;
             }

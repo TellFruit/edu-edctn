@@ -3,7 +3,7 @@
     internal class UpdateCourseCommand : IConsoleCommand
     {
         private readonly ICourseService _course;
- 
+
         public UpdateCourseCommand(ICourseService course)
         {
             _course = course;
@@ -35,14 +35,15 @@
             Console.WriteLine("Course update flow started. Write commands to update it.");
             await commandManager.InitCommandFlow();
 
-            if (courseDTO.Materials.Count > 0)
+            if (courseDTO.Materials.Count > 0
+                && courseDTO.Perks.Count > 0)
             {
                 await _course.Update(courseDTO);
                 Console.WriteLine("Success! Course updated.");
             }
             else
             {
-                Console.WriteLine("Operation failed. No materials are present!");
+                Console.WriteLine("Operation failed.");
             }
 
             return true;

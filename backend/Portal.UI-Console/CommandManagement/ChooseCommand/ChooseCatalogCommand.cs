@@ -190,9 +190,9 @@
                         return new LogoutCommand(userAuth);
                     }
 
-                case "exit":
+                case "return":
                     {
-                        return new TerminateCommand();
+                        return new ExitFlowCommand();
                     }
 
                 default:

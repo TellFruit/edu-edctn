@@ -24,6 +24,11 @@
                         return new OpenProfileMenuCommand(userService, userAuth);
                     }
 
+                case "exit":
+                    {
+                        return new TerminateCommand();
+                    }
+
                 default:
                     break;
             }
