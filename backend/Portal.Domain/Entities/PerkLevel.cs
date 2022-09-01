@@ -11,18 +11,11 @@
 
         public void Reestimate()
         {
-            int res = default;
-
             var found = GetCompletedProgressesByPerk(PerkId);
 
-            foreach(var completed in found)
+            if (found.Count > 0)
             {
-                res++;
-            }
-
-            if (res > 0)
-            {
-                Level = res;
+                Level = found.Count;
             }
         }
 
