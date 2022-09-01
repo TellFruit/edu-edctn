@@ -31,6 +31,17 @@
                         return new UnenrollFromCourseCommand(ruleUser, _userDTO);
                     }
 
+                case "view-course-progress":
+                    {
+                        var userAuth = Program.Root.GetService<IUserAuth>();
+
+                        var courseService = Program.Root.GetService<ICourseService>();
+
+                        parser = new BasicSplitParse(string.Empty);
+
+                        return new VIewCourseProgressCommand(userAuth, courseService, _userDTO);
+                    }
+
                 default:
                     break;
             }
