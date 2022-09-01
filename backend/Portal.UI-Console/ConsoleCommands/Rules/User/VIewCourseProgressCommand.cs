@@ -27,7 +27,31 @@
                 Console.WriteLine(course);
                 Console.WriteLine($"Course progress: {courseProgress.Progress}%");
 
+                Console.WriteLine();
 
+                var learnedMaterials = course.Materials
+                    .Where(m => _userDTO.MaterialLearned
+                        .Select(ml => ml.MaterialId)
+                            .Contains(m.Id));
+
+                var materialsLeft = course.Materials
+                    .Where(m => _userDTO.MaterialLearned
+                        .Select(ml => ml.MaterialId)
+                            .Contains(m.Id) is false);
+
+                Console.WriteLine("List of learned materials:");
+                Console.WriteLine("-");
+                foreach (var material in learnedMaterials)
+                {
+                    Console.WriteLine(material);
+                }
+
+                Console.WriteLine("List of materials left to learn:");
+                Console.WriteLine("-");
+                foreach (var material in materialsLeft)
+                {
+                    Console.WriteLine(material);
+                }
 
                 Console.WriteLine("Proceed? If not, type \'no\'");
 
