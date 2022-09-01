@@ -6,7 +6,7 @@
         private readonly CourseDTO _courseDTO;
         private readonly UserDTO _userDTO;
 
-        public MarkMaterialLearnedCommand(IRuleUser ruleUser, ICourseService courseService, UserDTO userDTO, CourseDTO courseDTO)
+        public MarkMaterialLearnedCommand(IRuleUser ruleUser, UserDTO userDTO, CourseDTO courseDTO)
         {
             _ruleUser = ruleUser;
             _userDTO = userDTO;

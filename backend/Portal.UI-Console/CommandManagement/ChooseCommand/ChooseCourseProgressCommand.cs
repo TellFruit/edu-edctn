@@ -1,34 +1,38 @@
 ﻿namespace Portal.UI_Console.CommandManagement.ChooseCommand
 {
-    internal class ChooseProfileCommand : IChooseCommand
+    internal class ChooseCourseProgressCommand : IChooseCommand
     {
         private readonly UserDTO _userDTO;
+        private readonly CourseDTO _courseDTO;
 
-        public ChooseProfileCommand(UserDTO userDTO)
+        public ChooseCourseProgressCommand(UserDTO userDTO, CourseDTO courseDTO)
         {
             _userDTO = userDTO;
+            _courseDTO = courseDTO;
         }
 
         public IConsoleCommand Choose(out IParseInput? parser, string commandName)
         {
             parser = null;
 
-            switch(commandName)
+            switch (commandName)
             {
-                case "enroll-in-course":
+                case "mark-mat-learned":
                     {
                         var ruleUser = Program.Root.GetService<IRuleUser>();
 
-                        var userAuth = Program.Root.GetService<IUserAuth>();
+                        parser = new BasicSplitParse(string.Empty);
 
-                        return new EnrollInCourseCommand(ruleUser, userAuth, _userDTO);
+                        return new MarkMaterialLearnedCommand(ruleUser, _userDTO, _courseDTO);
                     }
 
-                case "unenroll-from-course":
+                case "unmark-mat-learned":
                     {
                         var ruleUser = Program.Root.GetService<IRuleUser>();
 
-                        return new UnenrollFromCourseCommand(ruleUser, _userDTO);
+                        parser = new BasicSplitParse(string.Empty);
+
+                        return new UnmarkMaterialLearnedCommand(ruleUser, _userDTO, _courseDTO);
                     }
 
                 default:
