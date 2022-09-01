@@ -53,6 +53,14 @@
                     Console.WriteLine(material);
                 }
 
+                var basicParser = Program.Root.GetService<IParseInput>();
+
+                var chooseCommand = new ChooseCourseProgressCommand(_userDTO, course);
+
+                var launch = new LaunchManagerCommand(chooseCommand, basicParser);
+
+                await launch.Run();
+
                 Console.WriteLine("Proceed? If not, type \'no\'");
 
                 input = Console.ReadLine();
