@@ -31,8 +31,11 @@
         {
             var users = _context.Users
                 .Include(u => u.UserCourses)
+                    .ThenInclude(uc => uc.Course)
                 .Include(u => u.UserMaterial)
+                    .ThenInclude(um => um.Material)
                 .Include(u => u.UserPerks)
+                    .ThenInclude(up => up.Perk)
                 .ToList();
 
             return users.Select(x => _mapper.Map<UserDomain>(x)).ToList();
@@ -72,11 +75,20 @@
                 })
                 .ToList();
 
-            var updatedUserMaterial = entity.MaterialLearned
+            var updatedUserMaterials = entity.MaterialLearned
                 .Select(m => new UserMaterial
                 {
                     UserId = m.UserId,
                     MaterialId = m.MaterialId,
+                })
+                .ToList();
+
+            var updatedUserPerks = entity.PerkLevel
+                .Select(p => new UserPerk
+                {
+                    UserId = p.UserId,
+                    PerkId = p.PerkId,
+                    Level = p.Level
                 })
                 .ToList();
 
@@ -87,7 +99,8 @@
             userEntity.Roles = data.Roles;
             userEntity.UpdatedAt = data.UpdatedAt;
             userEntity.UserCourses = updatedUserCourses;
-            userEntity.UserMaterial = updatedUserMaterial;
+            userEntity.UserMaterial = updatedUserMaterials;
+            userEntity.UserPerks = updatedUserPerks;
 
             _context.Update(userEntity);
 
