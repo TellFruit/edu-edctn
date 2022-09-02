@@ -16,8 +16,7 @@
 
         public async Task<int> Delete(UserDomain entity)
         {
-            var userEntity = _context.Users
-                .FirstOrDefault(u => u.Id == entity.Id);
+            var userEntity = GetById(entity.Id);
 
             if (userEntity == null)
             {
@@ -56,8 +55,7 @@
 
         public async Task<UserDomain> Update(UserDomain entity)
         {
-            var userEntity = _context.Users
-                .FirstOrDefault(u => u.Id == entity.Id);
+            var userEntity = GetById(entity.Id);
 
             var data = _mapper.Map<User>(entity);
 
@@ -83,6 +81,11 @@
             _context.Update(userEntity);
 
             return entity;
+        }
+
+        private User GetById(int id)
+        {
+            return _context.Users.First(u => u.Id == id);
         }
     }
 }
