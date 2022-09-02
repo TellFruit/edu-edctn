@@ -2,13 +2,6 @@
 {
     internal class PortalContext : DbContext
     {
-        private readonly IConfigService _config;
-
-        public PortalContext(IConfigService configService)
-        {
-            _config = configService;
-        }
-
         public DbSet<User> Users { get; set; }
 
         public DbSet<Course> Courses { get; set; }
@@ -19,7 +12,11 @@
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(_config.GetSetting("DbConnectionString"));
+            var connection = ConfigurationManager
+                .ConnectionStrings["EducationalPortal"]
+                .ConnectionString;
+
+            optionsBuilder.UseSqlServer(connection);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

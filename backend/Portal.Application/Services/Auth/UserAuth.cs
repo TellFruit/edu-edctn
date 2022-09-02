@@ -47,10 +47,7 @@
                 return false;
             }
 
-            _user.Email = email;
-            _user.Password = password;
-
-            await _service.Create(_user);
+            _user = await _service.Create(_user);
 
             _authenticated = true;
 

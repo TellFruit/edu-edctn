@@ -27,7 +27,7 @@
 
             var launchCommand = new LaunchManagerCommand(chooseCommand, basicParser);
 
-            Console.WriteLine("Catalog menu opened!");
+            Console.WriteLine("Profile menu opened!");
 
             await launchCommand.Run();
 

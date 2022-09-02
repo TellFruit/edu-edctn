@@ -15,6 +15,7 @@
         {
             var wantedId = int.Parse(parameters[0]);
 
+            bool toContinue = true;
             string input = string.Empty;
             do
             {
@@ -60,6 +61,11 @@
                     return true;
                 }
 
+                if (toContinue is false)
+                {
+                    return true;
+                }
+
                 var basicParser = Program.Root.GetRequiredService<IParseInput>();
 
                 var chooseCommand = new ChooseCourseProgressCommand(_userDTO, course);
@@ -74,7 +80,7 @@
 
                 if (input.Equals("no"))
                 {
-                    return true;
+                    toContinue = false;
                 }
             } 
             while (true);
