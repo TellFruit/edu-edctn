@@ -11,14 +11,8 @@
 
         public async Task<bool> Run(params string[] parameters)
         {
-            //var courses = await _courseService.GetAll();
-
-            //var filtered = courses
-            //    .Where(c => _userDTO.CourseProgress
-            //        .Select(p => p.CourseId)
-            //        .Contains(c.Id));
-
             var inProgress = _userDTO.CourseProgress
+                .Where(c => c.CourseFinished is false)
                 .Select(c => c.Course);
 
             Console.WriteLine("All courses ");

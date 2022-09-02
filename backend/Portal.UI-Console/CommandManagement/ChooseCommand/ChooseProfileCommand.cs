@@ -36,7 +36,7 @@
                         return new GetCoursesInProgressCommand(_userDTO);
                     }
 
-                case "get-courses-finished":
+                case "get-finished-courses":
                     {
                         return new GetFinishedCoursesCommand(_userDTO);
                     }
