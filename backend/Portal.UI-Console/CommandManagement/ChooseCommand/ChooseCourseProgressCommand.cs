@@ -19,7 +19,7 @@
             {
                 case "mark-mat-learned":
                     {
-                        var ruleUser = Program.Root.GetService<IRuleUser>();
+                        var ruleUser = Program.Root.GetRequiredService<IRuleUser>();
 
                         parser = new BasicSplitParse(string.Empty);
 
@@ -28,7 +28,7 @@
 
                 case "unmark-mat-learned":
                     {
-                        var ruleUser = Program.Root.GetService<IRuleUser>();
+                        var ruleUser = Program.Root.GetRequiredService<IRuleUser>();
 
                         parser = new BasicSplitParse(string.Empty);
 

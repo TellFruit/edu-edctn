@@ -14,7 +14,7 @@
 
         public async Task<bool> Run(params string[] parameters)
         {
-            var configService = Program.Root.GetService<IConfigService>();
+            var configService = Program.Root.GetRequiredService<IConfigService>();
 
             var videos = await _video.GetAll();
 

@@ -11,7 +11,7 @@
 
         public async Task<bool> Run(params string[] parameters)
         {
-            var basicParser = Program.Root.GetService<IParseInput>();
+            var basicParser = Program.Root.GetRequiredService<IParseInput>();
             var chooseCommand = new ChooseCatalogCommand(_configService);
 
             var launchCommand = new LaunchManagerCommand(chooseCommand, basicParser);

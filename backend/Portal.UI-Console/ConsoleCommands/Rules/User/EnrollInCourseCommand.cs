@@ -15,7 +15,7 @@
 
         public async Task<bool> Run(params string[] parameters)
         {
-            var courseService = Program.Root.GetService<ICourseService>();
+            var courseService = Program.Root.GetRequiredService<ICourseService>();
 
             var getCourses = new GetCoursesCommand(courseService);
 

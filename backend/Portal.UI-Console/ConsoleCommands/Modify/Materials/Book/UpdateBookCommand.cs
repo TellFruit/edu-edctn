@@ -13,7 +13,7 @@ namespace Portal.UI_Console.ConsoleCommands.Modify.Materials.Book
 
         public async Task<bool> Run(params string[] parameters)
         {
-            var userAuth = Program.Root.GetService<IUserAuth>();
+            var userAuth = Program.Root.GetRequiredService<IUserAuth>();
 
             var auth = new AuthorizeCommand(userAuth);
             if (await auth.Run() is false)

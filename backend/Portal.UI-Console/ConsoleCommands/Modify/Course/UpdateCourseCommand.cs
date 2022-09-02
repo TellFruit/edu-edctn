@@ -11,7 +11,7 @@
 
         public async Task<bool> Run(params string[] parameters)
         {
-            var userAuth = Program.Root.GetService<IUserAuth>();
+            var userAuth = Program.Root.GetRequiredService<IUserAuth>();
 
             var auth = new AuthorizeCommand(userAuth);
             if (await auth.Run() is false)
@@ -27,7 +27,7 @@
                 return true;
             }
 
-            var basicParser = Program.Root.GetService<IParseInput>();
+            var basicParser = Program.Root.GetRequiredService<IParseInput>();
             var chooseCommand = new ChooseFormCourseCommand(courseDTO);
 
             var commandManager = new CommandManager(basicParser, chooseCommand);

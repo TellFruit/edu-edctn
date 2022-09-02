@@ -13,7 +13,7 @@
         {
             var all = await _perkService.GetAll();
 
-            var configService = Program.Root.GetService<IConfigService>();
+            var configService = Program.Root.GetRequiredService<IConfigService>();
 
             IConsoleCommand paginate = new PaginateCommand<PerkDTO>(configService, all);
 

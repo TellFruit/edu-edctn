@@ -60,7 +60,7 @@
                     return true;
                 }
 
-                var basicParser = Program.Root.GetService<IParseInput>();
+                var basicParser = Program.Root.GetRequiredService<IParseInput>();
 
                 var chooseCommand = new ChooseCourseProgressCommand(_userDTO, course);
 

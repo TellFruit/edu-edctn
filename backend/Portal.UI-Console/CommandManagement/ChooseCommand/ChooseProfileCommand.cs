@@ -17,16 +17,16 @@
             {
                 case "enroll-in-course":
                     {
-                        var ruleUser = Program.Root.GetService<IRuleUser>();
+                        var ruleUser = Program.Root.GetRequiredService<IRuleUser>();
 
-                        var userAuth = Program.Root.GetService<IUserAuth>();
+                        var userAuth = Program.Root.GetRequiredService<IUserAuth>();
 
                         return new EnrollInCourseCommand(ruleUser, userAuth, _userDTO);
                     }
 
                 case "unenroll-from-course":
                     {
-                        var ruleUser = Program.Root.GetService<IRuleUser>();
+                        var ruleUser = Program.Root.GetRequiredService<IRuleUser>();
 
                         return new UnenrollFromCourseCommand(ruleUser, _userDTO);
                     }
@@ -53,7 +53,7 @@
 
                 case "view-course-progress":
                     {
-                        var courseService = Program.Root.GetService<ICourseService>();
+                        var courseService = Program.Root.GetRequiredService<ICourseService>();
 
                         parser = new BasicSplitParse(string.Empty);
 
@@ -62,7 +62,7 @@
 
                 case "logout":
                     {
-                        var userAuth = Program.Root.GetService<IUserAuth>();
+                        var userAuth = Program.Root.GetRequiredService<IUserAuth>();
 
                         return new LogoutCommand(userAuth, false);
                     }

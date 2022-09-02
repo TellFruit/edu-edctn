@@ -10,16 +10,16 @@
             {
                 case "open-catalog":
                     {
-                        var configService = Program.Root.GetService<IConfigService>();
+                        var configService = Program.Root.GetRequiredService<IConfigService>();
 
                         return new OpenCatalogMenuCommand(configService);
                     }
 
                 case "open-profile":
                     {
-                        var userAuth = Program.Root.GetService<IUserAuth>();
+                        var userAuth = Program.Root.GetRequiredService<IUserAuth>();
 
-                        var userService = Program.Root.GetService<IUserService>();
+                        var userService = Program.Root.GetRequiredService<IUserService>();
 
                         return new OpenProfileMenuCommand(userService, userAuth);
                     }

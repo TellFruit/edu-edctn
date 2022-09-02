@@ -17,28 +17,28 @@
             {
                 case "add-article":
                     {
-                        var articleService = Program.Root.GetService<IArticleService>();
+                        var articleService = Program.Root.GetRequiredService<IArticleService>();
 
                         return new AddArticleCommand(articleService, _courseDTO);
                     }
 
                 case "add-book":
                     {
-                        var bookService = Program.Root.GetService<IBookService>();
+                        var bookService = Program.Root.GetRequiredService<IBookService>();
 
                         return new AddBookCommand(bookService, _courseDTO);
                     }
 
                 case "add-video":
                     {
-                        var videoService = Program.Root.GetService<IVideoService>();
+                        var videoService = Program.Root.GetRequiredService<IVideoService>();
 
                         return new AddVideoCommand(videoService, _courseDTO);
                     }
 
                 case "add-perk":
                     {
-                        var perkService = Program.Root.GetService<IPerkService>();
+                        var perkService = Program.Root.GetRequiredService<IPerkService>();
 
                         return new AddPerkCommand(perkService, _courseDTO);
                     }
