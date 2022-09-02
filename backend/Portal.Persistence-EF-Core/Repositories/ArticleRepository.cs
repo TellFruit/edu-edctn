@@ -24,6 +24,7 @@
             }
 
             _context.Materials.Remove(articleEntity);
+
             return articleEntity.Id;
         }
 

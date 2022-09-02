@@ -24,6 +24,7 @@
             }
 
             _context.Users.Remove(userEntity);
+
             return userEntity.Id;
         }
 

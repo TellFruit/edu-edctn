@@ -24,6 +24,7 @@
             }
 
             _context.Perks.Remove(perkEntity);
+
             return perkEntity.Id;
         }
 
@@ -55,8 +56,7 @@
                 throw new DbEntityNotFoundException(nameof(Perk));
             }
 
-            perkEntity.Name = data.Name;
-            perkEntity.UpdatedAt = data.UpdatedAt;
+            perkEntity.MapFromPerkDomain(entity);
 
             _context.Perks.Update(perkEntity);
 
