@@ -16,7 +16,8 @@
 
         public async Task<int> Delete(UserDomain entity)
         {
-            var userEntity = _context.Users.FirstOrDefault(u => u.Id == entity.Id);
+            var userEntity = _context.Users
+                .FirstOrDefault(u => u.Id == entity.Id);
 
             if (userEntity == null)
             {
@@ -56,7 +57,6 @@
         public async Task<UserDomain> Update(UserDomain entity)
         {
             var userEntity = _context.Users
-                .Include(u => u.UserCourses)
                 .FirstOrDefault(u => u.Id == entity.Id);
 
             var data = _mapper.Map<User>(entity);
@@ -67,40 +67,18 @@
             }
 
             var updatedUserCourses = entity.CourseProgress
-                .Select(c => new UserCourse
-                {
-                    UserId = c.UserId,
-                    CourseId = c.CourseId,
-                    Progress = c.Progress
-                })
-                .ToList();
+                .ToUserCourse();
 
             var updatedUserMaterials = entity.MaterialLearned
-                .Select(m => new UserMaterial
-                {
-                    UserId = m.UserId,
-                    MaterialId = m.MaterialId,
-                })
-                .ToList();
+                .ToUserMaterial();
 
             var updatedUserPerks = entity.PerkLevel
-                .Select(p => new UserPerk
-                {
-                    UserId = p.UserId,
-                    PerkId = p.PerkId,
-                    Level = p.Level
-                })
-                .ToList();
+                .ToUserPerk();
 
-            userEntity.FirstName = data.FirstName;
-            userEntity.LastName = data.LastName;
-            userEntity.Email = data.Email;
-            userEntity.Password = data.Password;
-            userEntity.Roles = data.Roles;
-            userEntity.UpdatedAt = data.UpdatedAt;
-            userEntity.UserCourses = updatedUserCourses;
-            userEntity.UserMaterial = updatedUserMaterials;
-            userEntity.UserPerks = updatedUserPerks;
+            userEntity.MapFromUserDomain(entity,
+                updatedUserCourses,
+                updatedUserMaterials,
+                updatedUserPerks);
 
             _context.Update(userEntity);
 

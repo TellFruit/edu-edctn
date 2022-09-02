@@ -14,3 +14,4 @@ global using Portal.Persistence_EF_Core.FrameworkEntities;
 global using Portal.Persistence_EF_Core.FrameworkEntities.Abstract;
 global using Portal.Persistence_EF_Core.MappingProfiles;
 global using Portal.Persistence_EF_Core.Repositories;
+global using Portal.Persistence_EF_Core.Repositories.Extension;
