@@ -31,6 +31,16 @@
                         return new UnenrollFromCourseCommand(ruleUser, _userDTO);
                     }
 
+                case "get-in-progress":
+                    {
+                        return new GetCoursesInProgressCommand(_userDTO);
+                    }
+
+                case "get-finished":
+                    {
+                        return new GetFinishedCoursesCommand(_userDTO);
+                    }
+
                 case "view-course-progress":
                     {
                         var courseService = Program.Root.GetService<ICourseService>();
