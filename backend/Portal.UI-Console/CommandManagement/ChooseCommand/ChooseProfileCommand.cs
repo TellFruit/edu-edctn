@@ -31,14 +31,24 @@
                         return new UnenrollFromCourseCommand(ruleUser, _userDTO);
                     }
 
-                case "get-in-progress":
+                case "get-courses-in-progress":
                     {
                         return new GetCoursesInProgressCommand(_userDTO);
                     }
 
-                case "get-finished":
+                case "get-courses-finished":
                     {
                         return new GetFinishedCoursesCommand(_userDTO);
+                    }
+
+                case "get-mat-learned":
+                    {
+                        return new GetLearnedMaterialsCommand(_userDTO);
+                    }
+
+                case "get-perks-level":
+                    {
+                        return new GetPerksLevelCommand(_userDTO);
                     }
 
                 case "view-course-progress":
