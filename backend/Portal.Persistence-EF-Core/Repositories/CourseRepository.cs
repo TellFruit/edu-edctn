@@ -39,7 +39,7 @@
 
         public async Task<int> Delete(CourseDomain entity)
         {
-            var courseEntity = _context.Courses.FirstOrDefault(u => u.Id == entity.Id);
+            var courseEntity = GetBydId(entity.Id);
 
             if (courseEntity == null)
             {
@@ -76,10 +76,7 @@
 
         public async Task<CourseDomain> Update(CourseDomain entity)
         {
-            var courseEntity = _context.Courses
-                .Include(c => c.CourseMaterials)
-                .Include(c => c.CoursePerks)
-                .FirstOrDefault(u => u.Id == entity.Id);
+            var courseEntity = GetBydId(entity.Id);
 
             if (courseEntity == null)
             {
@@ -111,6 +108,11 @@
             _context.Update(courseEntity);
 
             return entity;
+        }
+
+        private Course GetBydId(int id)
+        {
+            return _context.Courses.First(u => u.Id == id);
         }
     }
 }

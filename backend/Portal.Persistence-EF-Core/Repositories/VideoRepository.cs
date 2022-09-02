@@ -16,8 +16,7 @@
 
         public async Task<int> Delete(VideoDomain entity)
         {
-            var videoEntity = _context.Materials.OfType<Video>()
-                .FirstOrDefault(u => u.Id == entity.Id);
+            var videoEntity = GetById(entity.Id);
 
             if (videoEntity == null)
             {
@@ -49,10 +48,7 @@
 
         public async Task<VideoDomain> Update(VideoDomain entity)
         {
-            var videoEntity = _context.Materials.OfType<Video>()
-                .FirstOrDefault(u => u.Id == entity.Id);
-
-            var data = _mapper.Map<Video>(entity);
+            var videoEntity = GetById(entity.Id);
 
             if (videoEntity == null)
             {
@@ -67,6 +63,12 @@
             _context.Materials.Update(videoEntity);
 
             return entity;
+        }
+
+        private Video GetById(int id)
+        {
+            return _context.Materials.OfType<Video>()
+                .First(u => u.Id == id);
         }
     }
 }

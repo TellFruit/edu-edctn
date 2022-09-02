@@ -16,8 +16,7 @@
 
         public async Task<int> Delete(ArticleDomain entity)
         {
-            var articleEntity = _context.Materials.OfType<Article>()
-                .FirstOrDefault(u => u.Id == entity.Id);
+            var articleEntity = GetById(entity.Id);
 
             if (articleEntity == null)
             {
@@ -49,10 +48,7 @@
 
         public async Task<ArticleDomain> Update(ArticleDomain entity)
         {
-            var articleEntity = _context.Materials.OfType<Article>()
-                .FirstOrDefault(u => u.Id == entity.Id);
-
-            var data = _mapper.Map<Article>(entity);
+            var articleEntity = GetById(entity.Id);
 
             if (articleEntity == null)
             {
@@ -67,6 +63,12 @@
             _context.Materials.Update(articleEntity);
 
             return entity;
+        }
+
+        private Article GetById(int id)
+        {
+            return _context.Materials.OfType<Article>()
+                .First(u => u.Id == id);
         }
     }
 }

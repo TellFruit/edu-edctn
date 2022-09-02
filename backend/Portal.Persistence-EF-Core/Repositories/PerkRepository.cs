@@ -16,8 +16,7 @@
 
         public async Task<int> Delete(PerkDomain entity)
         {
-            var perkEntity = _context.Perks
-                .FirstOrDefault(u => u.Id == entity.Id);
+            var perkEntity = GetById(entity.Id);
 
             if (perkEntity == null)
             {
@@ -49,10 +48,7 @@
 
         public async Task<PerkDomain> Update(PerkDomain entity)
         {
-            var perkEntity = _context.Perks
-                .FirstOrDefault(u => u.Id == entity.Id);
-
-            var data = _mapper.Map<Perk>(entity);
+            var perkEntity = GetById(entity.Id);
 
             if (perkEntity == null)
             {
@@ -65,6 +61,11 @@
             _context.Perks.Update(perkEntity);
 
             return entity;
+        }
+        
+        private Perk GetById(int id)
+        {
+            return _context.Perks.First(u => u.Id == id); 
         }
     }
 }

@@ -16,8 +16,7 @@
 
         public async Task<int> Delete(BookDomain entity)
         {
-            var bookEntity = _context.Materials.OfType<Book>()
-                .FirstOrDefault(u => u.Id == entity.Id);
+            var bookEntity = GetById(entity.Id);
 
             if (bookEntity == null)
             {
@@ -25,6 +24,7 @@
             }
 
             _context.Materials.Remove(bookEntity);
+
             return bookEntity.Id;
         }
 
@@ -49,11 +49,8 @@
 
         public async Task<BookDomain> Update(BookDomain entity)
         {
-            var bookEntity = _context.Materials.OfType<Book>()
-                .FirstOrDefault(u => u.Id == entity.Id);
+            var bookEntity = GetById(entity.Id);
 
-            var data = _mapper.Map<Book>(entity);
-            
             if (bookEntity == null)
             {
                 throw new DbEntityNotFoundException(nameof(Book));
@@ -69,6 +66,12 @@
             _context.Materials.Update(bookEntity);
 
             return entity;
+        }
+
+        private Book GetById(int id)
+        {
+            return _context.Materials.OfType<Book>()
+                .First(u => u.Id == id);
         }
     }
 }

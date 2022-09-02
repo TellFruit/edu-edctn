@@ -57,8 +57,6 @@
         {
             var userEntity = GetById(entity.Id);
 
-            var data = _mapper.Map<User>(entity);
-
             if (userEntity == null)
             {
                 throw new DbEntityNotFoundException(nameof(User));
