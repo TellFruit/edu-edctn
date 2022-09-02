@@ -9,25 +9,9 @@
         {
             var courseEntity = _mapper.Map<Course>(entity);
 
-            var courseMaterials = new List<CourseMaterial>();
+            var courseMaterials = entity.Materials.ToCourseMaterials();
 
-            foreach (var material in entity.Materials)
-            {
-                courseMaterials.Add(new CourseMaterial
-                {
-                    MaterialId = material.Id
-                });
-            }
-
-            var coursePerks = new List<CoursePerk>();
-
-            foreach (var perk in entity.Perks)
-            {
-                coursePerks.Add(new CoursePerk
-                {
-                    PerkId = perk.Id
-                });
-            }
+            var coursePerks = entity.Perks.ToCoursePerks();
 
             courseEntity.CourseMaterials = courseMaterials;
             courseEntity.CoursePerks = coursePerks;
@@ -47,6 +31,7 @@
             }
 
             _context.Courses.Remove(courseEntity);
+            
             return courseEntity.Id;
         }
 
@@ -84,26 +69,14 @@
             }
 
             var updatedCourseMaterials = entity.Materials
-                .Select(m => new CourseMaterial
-                {
-                    CourseId = entity.Id,
-                    MaterialId = m.Id
-                }) 
-                .ToList();
+                .ToCourseMaterials(entity.Id);
 
             var updatedCoursePerks = entity.Perks
-                .Select(p => new CoursePerk
-                {
-                    CourseId = entity.Id,
-                    PerkId = p.Id
-                })
-                .ToList();
+                .ToCoursePerks(entity.Id);
 
-            courseEntity.Name = entity.Name;
-            courseEntity.Description = entity.Description;
-            courseEntity.UpdatedAt = entity.UpdatedAt;
-            courseEntity.CourseMaterials = updatedCourseMaterials;
-            courseEntity.CoursePerks = updatedCoursePerks;
+            courseEntity.MapFromCourseDomain(entity,
+                updatedCourseMaterials,
+                updatedCoursePerks);
 
             _context.Update(courseEntity);
 
