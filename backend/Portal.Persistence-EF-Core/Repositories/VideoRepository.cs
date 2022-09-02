@@ -55,10 +55,7 @@
                 throw new DbEntityNotFoundException(nameof(Video));
             }
 
-            videoEntity.Title = data.Title;
-            videoEntity.Duration = data.Duration;
-            videoEntity.Quality = data.Quality;
-            videoEntity.UpdatedAt = data.UpdatedAt;
+            videoEntity.MapFromVideoDomain(entity);
 
             _context.Materials.Update(videoEntity);
 

@@ -56,12 +56,7 @@
                 throw new DbEntityNotFoundException(nameof(Book));
             }
 
-            bookEntity.Title = data.Title;
-            bookEntity.Authors = data.Authors;
-            bookEntity.PageCount = data.PageCount;
-            bookEntity.Format = data.Format;
-            bookEntity.Published = data.Published;
-            bookEntity.UpdatedAt = data.UpdatedAt;
+            bookEntity.MapFormBookDomain(entity);
 
             _context.Materials.Update(bookEntity);
 

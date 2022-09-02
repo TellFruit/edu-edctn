@@ -55,10 +55,7 @@
                 throw new DbEntityNotFoundException(nameof(Article));
             }
 
-            articleEntity.Title = data.Title;
-            articleEntity.Url = data.Url;
-            articleEntity.Published = data.Published;
-            articleEntity.UpdatedAt = data.UpdatedAt;
+            articleEntity.MapFromArticleDomain(entity);
 
             _context.Materials.Update(articleEntity);
 
