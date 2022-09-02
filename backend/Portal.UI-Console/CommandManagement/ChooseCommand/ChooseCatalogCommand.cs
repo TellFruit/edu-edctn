@@ -187,7 +187,7 @@
                     {
                         var userAuth = Program.Root.GetService<IUserAuth>();
 
-                        return new LogoutCommand(userAuth);
+                        return new LogoutCommand(userAuth, true);
                     }
 
                 case "return":

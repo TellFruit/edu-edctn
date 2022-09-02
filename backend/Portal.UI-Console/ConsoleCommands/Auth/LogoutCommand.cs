@@ -3,10 +3,12 @@
     internal class LogoutCommand : IConsoleCommand
     {
         private readonly IUserAuth _userAuth;
+        private readonly bool _returnValue;
 
-        public LogoutCommand(IUserAuth userAuth)
+        public LogoutCommand(IUserAuth userAuth, bool returnValue)
         {
             _userAuth = userAuth;
+            _returnValue = returnValue;
         }
 
         public async Task<bool> Run(params string[] parameters)
@@ -20,7 +22,7 @@
                 Console.WriteLine("Failure! You are alredy not logged...");
             }
 
-            return true;
+            return _returnValue;
         }
     }
 }

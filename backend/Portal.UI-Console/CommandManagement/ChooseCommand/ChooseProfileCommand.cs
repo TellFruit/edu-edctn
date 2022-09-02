@@ -50,6 +50,13 @@
                         return new VIewCourseProgressCommand(courseService, _userDTO);
                     }
 
+                case "logout":
+                    {
+                        var userAuth = Program.Root.GetService<IUserAuth>();
+
+                        return new LogoutCommand(userAuth, false);
+                    }
+
                 case "return":
                     {
                         return new ExitFlowCommand();
