@@ -8,5 +8,10 @@
 
         public UserDTO User { get; set; }
         public PerkDTO Perk { get; set; }
+
+        public override string ToString()
+        {
+            return $"{Perk.Id} - Name: {Perk.Name}, Level: {Level}";
+        }
     }
 }
