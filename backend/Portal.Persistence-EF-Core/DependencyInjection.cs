@@ -29,12 +29,15 @@
 
         public static void RegisterDbContextXml(IServiceCollection services)
         {
-            services.AddDbContext<PortalContext>(options =>
-                options.UseSqlServer(
-                    ConfigurationManager
-                        .ConnectionStrings["EducationalPortal"]
-                        .ConnectionString));
+            services.RegisterDbContext(ConfigurationManager
+                .ConnectionStrings["EducationalPortal"]
+                .ConnectionString);
+        }
 
+        private static void RegisterDbContext(this IServiceCollection services, string connectionString)
+        {
+            services.AddDbContext<PortalContext>(options =>
+                options.UseSqlServer(connectionString));
         }
     }
 }
