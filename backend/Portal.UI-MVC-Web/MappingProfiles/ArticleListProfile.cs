@@ -1,8 +1,8 @@
 ﻿namespace Portal.UI_MVC_Web.MappingProfiles
 {
-    public class ArticleListingProfile : Profile
+    public class ArticleListProfile : Profile
     {
-        public ArticleListingProfile()
+        public ArticleListProfile()
         {
             CreateMap<ArticleDTO, ArticleListModel>();
 
