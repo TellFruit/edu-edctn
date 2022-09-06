@@ -19,14 +19,22 @@
                 },
             Assembly.GetExecutingAssembly());
 
-            services.AddScoped<PortalContext>();
-
             services.AddScoped<IGenericRepository<UserDomain>, UserRepository>();
             services.AddScoped<IGenericRepository<ArticleDomain>, ArticleRepository>();
             services.AddScoped<IGenericRepository<BookDomain>, BookRepository>();
             services.AddScoped<IGenericRepository<VideoDomain>, VideoRepository>();
             services.AddScoped<IGenericRepository<CourseDomain>, CourseRepository>();
             services.AddScoped<IGenericRepository<PerkDomain>, PerkRepository>();
+        }
+
+        public static void RegisterDbContextXml(IServiceCollection services)
+        {
+            services.AddDbContext<PortalContext>(options =>
+                options.UseSqlServer(
+                    ConfigurationManager
+                        .ConnectionStrings["EducationalPortal"]
+                        .ConnectionString));
+
         }
     }
 }

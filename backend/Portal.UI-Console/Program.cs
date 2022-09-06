@@ -24,6 +24,9 @@
             Portal.Persistence_EF_Core
                 .DependencyInjection.RegisterEntityFramework(services);
 
+            Portal.Persistence_EF_Core
+                .DependencyInjection.RegisterDbContextXml(services);
+
             return services.BuildServiceProvider();
         }
 

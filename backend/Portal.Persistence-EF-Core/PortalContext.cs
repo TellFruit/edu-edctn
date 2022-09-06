@@ -10,14 +10,17 @@
 
         public DbSet<Material> Materials { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            var connection = ConfigurationManager
-                .ConnectionStrings["EducationalPortal"]
-                .ConnectionString;
+        public PortalContext(DbContextOptions<PortalContext> options)
+            : base(options) {}
 
-            optionsBuilder.UseSqlServer(connection);
-        }
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    var connection = ConfigurationManager
+        //        .ConnectionStrings["EducationalPortal"]
+        //        .ConnectionString;
+
+        //    optionsBuilder.UseSqlServer(connection);
+        //}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

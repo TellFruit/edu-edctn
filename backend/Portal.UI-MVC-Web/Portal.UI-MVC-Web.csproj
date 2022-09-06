@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Portal.Application\Portal.Application.csproj" />
+    <ProjectReference Include="..\Portal.Persistence-EF-Core\Portal.Persistence-EF-Core.csproj" />
   </ItemGroup>
 
 </Project>
