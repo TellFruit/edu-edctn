@@ -29,9 +29,15 @@
 
         public static void RegisterDbContextXml(IServiceCollection services)
         {
-            services.RegisterDbContext(ConfigurationManager
+            services.RegisterDbContext(
+                System.Configuration.ConfigurationManager
                 .ConnectionStrings["EducationalPortal"]
                 .ConnectionString);
+        }
+
+        public static void RegisterDbContextJson(IServiceCollection services, IConfiguration config)
+        {
+            services.RegisterDbContext(config.GetConnectionString("Default"));
         }
 
         private static void RegisterDbContext(this IServiceCollection services, string connectionString)

@@ -4,6 +4,7 @@ global using System.Configuration;
 global using AutoMapper;
 global using Microsoft.EntityFrameworkCore;
 global using Microsoft.Extensions.DependencyInjection;
+global using Microsoft.Extensions.Configuration;
 
 global using Portal.Application.Interfaces.OuterImpl;
 global using Portal.Domain.Entities;
