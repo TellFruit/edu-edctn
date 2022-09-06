@@ -1,5 +1,12 @@
 var builder = WebApplication.CreateBuilder(args);
 
+// Add services from used used layers
+Portal.Application
+     .DependencyInjection.RegisterApplication(builder.Services);
+
+Portal.Persistence_EF_Core
+    .DependencyInjection.RegisterEntityFramework(builder.Services);
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
