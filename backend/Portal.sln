@@ -19,6 +19,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Portal.Persistence-EF-Core"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Portal.UI-Console", "Portal.UI-Console\Portal.UI-Console.csproj", "{6E06BB6C-AEDC-41C0-9BDD-0A3E5E8E37E9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portal.UI-MVC-Web", "Portal.UI-MVC-Web\Portal.UI-MVC-Web.csproj", "{CCFA6A3B-775D-49B4-A971-844F428879EA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{6E06BB6C-AEDC-41C0-9BDD-0A3E5E8E37E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6E06BB6C-AEDC-41C0-9BDD-0A3E5E8E37E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6E06BB6C-AEDC-41C0-9BDD-0A3E5E8E37E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CCFA6A3B-775D-49B4-A971-844F428879EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCFA6A3B-775D-49B4-A971-844F428879EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCFA6A3B-775D-49B4-A971-844F428879EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCFA6A3B-775D-49B4-A971-844F428879EA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -55,6 +61,7 @@ Global
 		{D9C6770E-575E-4FDB-92F2-ECD4F3C1C372} = {6848D7A4-D9A6-4746-8C03-B49BA26B66DC}
 		{9E967AD8-69E3-44F6-8B44-B79F1553BA1F} = {6848D7A4-D9A6-4746-8C03-B49BA26B66DC}
 		{6E06BB6C-AEDC-41C0-9BDD-0A3E5E8E37E9} = {F3F8BB4B-CEEA-48D2-A8FA-CF50F691B189}
+		{CCFA6A3B-775D-49B4-A971-844F428879EA} = {F3F8BB4B-CEEA-48D2-A8FA-CF50F691B189}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E98B4899-21A8-492D-92E7-238A604FFFFE}
