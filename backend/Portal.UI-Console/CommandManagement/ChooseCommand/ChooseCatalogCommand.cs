@@ -3,10 +3,12 @@
     internal class ChooseCatalogCommand : IChooseCommand
     {
         private readonly IConfigService _config;
+        private readonly UserDTO _userDTO;
 
-        public ChooseCatalogCommand(IConfigService config)
+        public ChooseCatalogCommand(IConfigService config, UserDTO userDTO)
         {
             _config = config;
+            _userDTO = userDTO;
         }
 
         public IConsoleCommand Choose(out IParseInput? parser, string commandName)

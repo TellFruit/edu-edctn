@@ -8,5 +8,14 @@
                                           .Take(pageSize)
                                           .ToList();
         }
+
+        public static async Task<bool> CallAuthCommand(this UserDTO user)
+        {
+            var userAuth = Program.Root.GetRequiredService<IUserAuth>();
+
+            var command = new AuthorizeCommand(userAuth, user);
+
+            return await command.Run();
+        } 
     }
 }

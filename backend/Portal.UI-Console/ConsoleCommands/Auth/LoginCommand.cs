@@ -3,10 +3,12 @@
     internal class LoginCommand : IConsoleCommand
     {
         private readonly IUserAuth _userAuth;
+        private readonly UserDTO _userDTO;
 
-        public LoginCommand(IUserAuth userAuth)
+        public LoginCommand(IUserAuth userAuth, UserDTO userDTO)
         {
             _userAuth = userAuth;
+            _userDTO = userDTO;
         }
 
         public async Task<bool> Run(params string[] parameters)
@@ -36,13 +38,18 @@
                     break;
                 }
 
-                result = await _userAuth.Login(email, password);
+                _userDTO.Id = await _userAuth.Login(email, password);
+
+                result = _userAuth.IsAuthorized(_userDTO.Id);
 
                 if (result is false)
                 {
                     Console.WriteLine("Email or password is incorrect.");
                     continue;
                 }
+
+                _userDTO.Email = email;
+                _userDTO.Password = password;
 
                 return result;
             }

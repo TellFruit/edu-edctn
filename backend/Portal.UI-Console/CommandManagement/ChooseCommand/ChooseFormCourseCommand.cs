@@ -3,6 +3,8 @@
     internal class ChooseFormCourseCommand : IChooseCommand
     {
         private readonly CourseDTO _courseDTO;
+        private readonly UserDTO _userDTO;
+
 
         public ChooseFormCourseCommand(CourseDTO courseDTO)
         {

@@ -3,15 +3,17 @@
     internal class AuthorizeCommand : IConsoleCommand
     {
         private readonly IUserAuth _userAuth;
+        private readonly UserDTO _userDTO;
 
-        public AuthorizeCommand(IUserAuth userAuth)
+        public AuthorizeCommand(IUserAuth userAuth, UserDTO userDTO)
         {
             _userAuth = userAuth;
+            _userDTO = userDTO;
         }
 
         public async Task<bool> Run(params string[] parameters)
         {
-            if (_userAuth.IsAuthenticated)
+            if (_userAuth.IsAuthorized(_userDTO.Id))
             {
                 return true;
             }
@@ -29,24 +31,24 @@
 
                 if (input.Equals("login"))
                 {
-                    var login = new LoginCommand(_userAuth);
+                    var login = new LoginCommand(_userAuth, _userDTO);
                     await login.Run();
                 }
 
                 if (input.Equals("register"))
                 {
-                    var register = new RegisterCommand(_userAuth);
+                    var register = new RegisterCommand(_userAuth, _userDTO);
                     await register.Run();
                 }
 
-                if (_userAuth.IsAuthenticated)
+                if (_userAuth.IsAuthorized(_userDTO.Id))
                 {
                     break;
                 }
             }
             while (true);
 
-            return _userAuth.IsAuthenticated;
+            return _userAuth.IsAuthorized(_userDTO.Id);
         }
     }
 }

@@ -3,10 +3,13 @@
     internal class OpenCatalogMenuCommand : IConsoleCommand
     {
         private readonly IConfigService _configService;
+        private readonly UserDTO _userDTO;
 
-        public OpenCatalogMenuCommand(IConfigService configService)
+
+        public OpenCatalogMenuCommand(IConfigService configService, UserDTO userDTO)
         {
             _configService = configService;
+            _userDTO = userDTO;
         }
 
         public async Task<bool> Run(params string[] parameters)

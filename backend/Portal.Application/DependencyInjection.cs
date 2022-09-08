@@ -29,6 +29,8 @@
             services.AddSingleton<IUserAuth, UserAuth>();
 
             services.AddScoped<IRuleUser, RuleUserService>();
+
+            services.AddTransient<UserDTO>();
         }
     }
 }

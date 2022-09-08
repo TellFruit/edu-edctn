@@ -4,6 +4,8 @@
     {
         private readonly IUserService _userService;
         private readonly IUserAuth _userAuth;
+        private UserDTO _userDTO;
+
 
         public OpenProfileMenuCommand(IUserService userService, IUserAuth userAuth = null)
         {

@@ -11,7 +11,7 @@
             _service = service;
         }
 
-        public async Task<bool> Login(string email, string password)
+        public async Task<int> Login(string email, string password)
         {
             var users = await _service.GetAll();
             var found = users.FirstOrDefault(u => u.Email.Equals(email)
@@ -19,22 +19,22 @@
 
             if (found is null)
             {
-                return false;
+                return -1;
             }
 
             _loggedUsers.Add(found);
 
-            return true;
+            return found.Id;
         }
 
-        public async Task<bool> Register(string email, string password)
+        public async Task<int> Register(string email, string password)
         {
             var users = await _service.GetAll();
             var found = users.FirstOrDefault(u => u.Email.Equals(email));
 
             if (found is not null)
             {
-                return false;
+                return -1;
             }
 
             var user = new UserDTO();
@@ -42,9 +42,9 @@
             user.Email = email;
             user.Password = password;
 
-            await _service.Create(user);
+            user = await _service.Create(user);
 
-            return true;
+            return user.Id;
         }
 
         public bool Logout(int id)

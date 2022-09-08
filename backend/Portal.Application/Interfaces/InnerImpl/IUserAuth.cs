@@ -2,9 +2,9 @@
 {
     public interface IUserAuth
     {
-        public Task<bool> Login(string email, string password);
+        public Task<int> Login(string email, string password);
 
-        public Task<bool> Register(string email, string password);
+        public Task<int> Register(string email, string password);
 
         public bool Logout(int id);
 
