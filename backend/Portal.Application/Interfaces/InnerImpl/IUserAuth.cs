@@ -2,10 +2,12 @@
 {
     public interface IUserAuth
     {
-        public bool IsAuthenticated { get; }
-        public int LoggedId { get; }
-        Task<bool> Login(string email, string password);
-        Task<bool> Register(string email, string password);
-        Task<bool> Logout();
+        public Task<bool> Login(string email, string password);
+
+        public Task<bool> Register(string email, string password);
+
+        public bool Logout(int id);
+
+        public bool IsAuthorized(int id);
     }
 }

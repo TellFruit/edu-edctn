@@ -2,23 +2,14 @@
 {
     internal class UserAuth : IUserAuth
     {
+        private static List<UserDTO> _loggedUsers = new List<UserDTO>();
+        
         private readonly IUserService _service;
-        private readonly IMapper _mapper;
-        private UserDTO _user;
 
-        private bool _authenticated;
-
-        public UserAuth(IUserService service, IMapper mapper)
+        public UserAuth(IUserService service)
         {
             _service = service;
-            _mapper = mapper;
-            _user = new UserDTO();
-            _authenticated = false;
         }
-
-        public bool IsAuthenticated => _authenticated;
-
-        public int LoggedId => _user.Id is 0 ? -1 : _user.Id;
 
         public async Task<bool> Login(string email, string password)
         {
@@ -31,10 +22,9 @@
                 return false;
             }
 
-            _authenticated = true;
-            _user = _mapper.Map<UserDTO>(found);
+            _loggedUsers.Add(found);
 
-            return _authenticated;
+            return true;
         }
 
         public async Task<bool> Register(string email, string password)
@@ -47,24 +37,31 @@
                 return false;
             }
 
-            _user = await _service.Create(_user);
+            var user = new UserDTO();
 
-            _authenticated = true;
+            user.Email = email;
+            user.Password = password;
+
+            await _service.Create(user);
 
             return true;
         }
 
-        public async Task<bool> Logout()
+        public bool Logout(int id)
         {
-            if (!IsAuthenticated)
+            if (IsAuthorized(id) is false)
             {
                 return false;
             }
 
-            _user = new UserDTO();
-            _authenticated = false;
+            _loggedUsers.Remove(_loggedUsers.First(u => u.Id == id));
 
             return true;
+        }
+
+        public bool IsAuthorized(int id)
+        {
+            return _loggedUsers.Any(u => u.Id.Equals(id));
         }
     }
 }
