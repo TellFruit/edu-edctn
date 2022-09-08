@@ -2,6 +2,11 @@
 {
     public class ArticleIndexModel
     {
-        public ICollection<ArticleListModel> ArticleList { get; set; }
+        public ICollection<ArticleDTO> ArticleList { get; set; }
+
+        public ArticleIndexModel(ICollection<ArticleDTO> articleList)
+        {
+            ArticleList = articleList;
+        }
     }
 }

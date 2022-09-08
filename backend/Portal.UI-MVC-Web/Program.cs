@@ -7,6 +7,9 @@ Portal.Application
 Portal.Persistence_EF_Core
     .DependencyInjection.RegisterEntityFramework(builder.Services);
 
+Portal.Persistence_EF_Core
+    .DependencyInjection.RegisterDbContextJson(builder.Services, builder.Configuration);
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 

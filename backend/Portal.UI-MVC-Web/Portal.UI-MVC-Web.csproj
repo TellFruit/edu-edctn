@@ -17,4 +17,9 @@
     <ProjectReference Include="..\Portal.Persistence-EF-Core\Portal.Persistence-EF-Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Interfaces\" />
+    <Folder Include="Services\" />
+  </ItemGroup>
+
 </Project>

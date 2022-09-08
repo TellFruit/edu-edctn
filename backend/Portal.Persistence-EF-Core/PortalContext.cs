@@ -13,15 +13,6 @@
         public PortalContext(DbContextOptions<PortalContext> options)
             : base(options) {}
 
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    var connection = ConfigurationManager
-        //        .ConnectionStrings["EducationalPortal"]
-        //        .ConnectionString;
-
-        //    optionsBuilder.UseSqlServer(connection);
-        //}
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Article>();
