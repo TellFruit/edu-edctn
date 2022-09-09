@@ -26,7 +26,7 @@
 
             services.AddScoped<IConfigService, ConfigService>();
 
-            services.AddSingleton<IUserAuth, UserAuth>();
+            services.AddScoped<IUserAuth, UserAuth>();
 
             services.AddScoped<IRuleUser, RuleUserService>();
 
