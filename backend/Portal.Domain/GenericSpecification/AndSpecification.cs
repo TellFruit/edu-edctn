@@ -5,8 +5,8 @@ namespace Portal.Domain.GenericSpecification
 {
     internal class AndSpecification<T> : Specification<T> where T : BaseEntity
     {
-        ISpecification<T> leftSpec;
-        ISpecification<T> rightSpec;
+        private ISpecification<T> leftSpec;
+        private ISpecification<T> rightSpec;
 
         public AndSpecification(ISpecification<T> first, ISpecification<T> second)
         {
