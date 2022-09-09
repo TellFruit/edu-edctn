@@ -5,18 +5,17 @@ namespace Portal.UI_Console.ConsoleCommands.Modify.Materials.Book
     internal class UpdateBookCommand : IConsoleCommand
     {
         private readonly IBookService _bookService;
+        private readonly UserDTO _userDTO;
 
-        public UpdateBookCommand(IBookService bookService)
+        public UpdateBookCommand(IBookService bookService, UserDTO userDTO)
         {
             _bookService = bookService;
+            _userDTO = userDTO;
         }
 
         public async Task<bool> Run(params string[] parameters)
         {
-            var userAuth = Program.Root.GetRequiredService<IUserAuth>();
-
-            var auth = new AuthorizeCommand(userAuth);
-            if (await auth.Run() is false)
+            if (await _userDTO.CallAuthCommand() is false)
             {
                 Console.WriteLine("Operation suspended!");
                 return true;

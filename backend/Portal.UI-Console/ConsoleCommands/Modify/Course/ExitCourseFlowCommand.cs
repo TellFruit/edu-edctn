@@ -12,6 +12,11 @@
 
         private void ClearBeforeDeletion()
         {
+            if (_courseDTO.Materials is null)
+            {
+                return;
+            }
+
             _courseDTO.Materials.Clear();
         }
     }

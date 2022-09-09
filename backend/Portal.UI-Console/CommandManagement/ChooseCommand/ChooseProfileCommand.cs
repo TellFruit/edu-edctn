@@ -64,7 +64,7 @@
                     {
                         var userAuth = Program.Root.GetRequiredService<IUserAuth>();
 
-                        return new LogoutCommand(userAuth, false);
+                        return new LogoutCommand(userAuth, false, _userDTO);
                     }
 
                 case "return":

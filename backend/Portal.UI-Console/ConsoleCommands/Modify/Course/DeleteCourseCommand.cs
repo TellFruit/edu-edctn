@@ -3,18 +3,17 @@
     internal class DeleteCourseCommand : IConsoleCommand
     {
         private readonly ICourseService _courseService;
+        private readonly UserDTO _userDTO;
 
-        public DeleteCourseCommand(ICourseService courseService)
+        public DeleteCourseCommand(ICourseService courseService, UserDTO userDTO)
         {
             _courseService = courseService;
+            _userDTO = userDTO;
         }
 
         public async Task<bool> Run(params string[] parameters)
         {
-            var userAuth = Program.Root.GetRequiredService<IUserAuth>();
-
-            var auth = new AuthorizeCommand(userAuth);
-            if (await auth.Run() is false)
+            if (await _userDTO.CallAuthCommand() is false)
             {
                 Console.WriteLine("Operation suspended!");
                 return true;

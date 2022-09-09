@@ -3,17 +3,17 @@
     internal class CreateArticleCommand : IConsoleCommand
     {
         private readonly IArticleService _articleService;
+        private readonly UserDTO _userDTO;
 
-        public CreateArticleCommand(IArticleService articleService)
+        public CreateArticleCommand(IArticleService articleService, UserDTO userDTO)
         {
             _articleService = articleService;
+            _userDTO = userDTO;
         }
 
         public async Task<bool> Run(params string[] parameters)
         {
-
-            var auth = new AuthorizeCommand(userAuth);
-            if (await auth.Run() is false)
+            if (await _userDTO.CallAuthCommand() is false)
             {
                 Console.WriteLine("Operation suspended!");
                 return true;

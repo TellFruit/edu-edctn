@@ -3,26 +3,24 @@
     internal class OpenProfileMenuCommand : IConsoleCommand
     {
         private readonly IUserService _userService;
-        private readonly IUserAuth _userAuth;
-        private UserDTO _userDTO;
+        private readonly UserDTO _userDTO;
 
 
-        public OpenProfileMenuCommand(IUserService userService, IUserAuth userAuth = null)
+        public OpenProfileMenuCommand(IUserService userService, UserDTO userDTO)
         {
             _userService = userService;
-            _userAuth = userAuth;
+            _userDTO = userDTO;
         }
 
         public async Task<bool> Run(params string[] parameters)
         {
-            var auth = new AuthorizeCommand(_userAuth);
-            if (await auth.Run() is false)
+            if (await _userDTO.CallAuthCommand() is false)
             {
                 Console.WriteLine("Operation suspended!");
                 return true;
             }
 
-            var wantedUser = await _userService.GetById(_userAuth.LoggedId);
+            var wantedUser = await _userService.GetById(_userDTO.Id);
 
             var chooseCommand = new ChooseProfileCommand(wantedUser);
             var basicParser = Program.Root.GetRequiredService<IParseInput>();

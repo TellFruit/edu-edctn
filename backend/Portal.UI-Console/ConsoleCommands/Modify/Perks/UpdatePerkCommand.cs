@@ -3,18 +3,17 @@
     internal class UpdatePerkCommand : IConsoleCommand
     {
         private readonly IPerkService _perkService;
+        private readonly UserDTO _userDTO;
 
-        public UpdatePerkCommand(IPerkService perkService)
+        public UpdatePerkCommand(IPerkService perkService, UserDTO userDTO)
         {
             _perkService = perkService;
+            _userDTO = userDTO;
         }
 
         public async Task<bool> Run(params string[] parameters)
         {
-            var userAuth = Program.Root.GetRequiredService<IUserAuth>();
-
-            var auth = new AuthorizeCommand(userAuth);
-            if (await auth.Run() is false)
+            if (await _userDTO.CallAuthCommand() is false)
             {
                 Console.WriteLine("Operation suspended!");
                 return true;

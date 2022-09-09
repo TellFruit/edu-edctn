@@ -49,7 +49,7 @@
 
                 try
                 {
-                    var res = await _ruleUser.Enroll(_userAuth.LoggedId, wantedId);
+                    var res = await _ruleUser.Enroll(_userDTO.Id, wantedId);
 
                     _userDTO.CourseProgress = res.CourseProgress;
                     _userDTO.PerkLevel = res.PerkLevel;

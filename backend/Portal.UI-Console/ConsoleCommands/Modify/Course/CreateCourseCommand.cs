@@ -5,19 +5,18 @@
         private readonly ICourseService _course;
 
         private readonly CourseDTO _courseDTO;
+        private readonly UserDTO _userDTO;
 
-        public CreateCourseCommand(ICourseService course)
+        public CreateCourseCommand(ICourseService course, UserDTO userDTO)
         {
             _courseDTO = new CourseDTO();
             _course = course;
+            _userDTO = userDTO;
         }
 
         public async Task<bool> Run(params string[] parameters)
         {
-            var userAuth = Program.Root.GetRequiredService<IUserAuth>();
-
-            var auth = new AuthorizeCommand(userAuth);
-            if (await auth.Run() is false)
+            if (await _userDTO.CallAuthCommand() is false)
             {
                 Console.WriteLine("Operation suspended!");
                 return true;

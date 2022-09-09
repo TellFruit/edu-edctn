@@ -23,7 +23,7 @@
 
                         parser = new BasicRegexParse(_config.GetSetting("ArticleRegex"));
 
-                        return new CreateArticleCommand(articleService);
+                        return new CreateArticleCommand(articleService, _userDTO);
                     }
 
                 case "create-book":
@@ -32,7 +32,7 @@
 
                         parser = new BasicRegexParse(_config.GetSetting("BookRegex"));
 
-                        return new CreateBookCommand(bookService);
+                        return new CreateBookCommand(bookService, _userDTO);
                     }
 
                 case "create-video":
@@ -41,14 +41,14 @@
 
                         parser = new BasicRegexParse(_config.GetSetting("VideoRegex"));
 
-                        return new CreateVideoCommand(videoService);
+                        return new CreateVideoCommand(videoService, _userDTO);
                     }
 
                 case "create-course":
                     {
                         var courseService = Program.Root.GetRequiredService<ICourseService>();
 
-                        return new CreateCourseCommand(courseService);
+                        return new CreateCourseCommand(courseService, _userDTO);
                     }
 
                 case "create-perk":
@@ -57,7 +57,7 @@
 
                         parser = new BasicSplitParse("");
 
-                        return new CreatePerkCommand(perkService);
+                        return new CreatePerkCommand(perkService, _userDTO);
                     }
 
                 case "get-articles":
@@ -101,7 +101,7 @@
 
                         parser = new BasicRegexParse(_config.GetSetting("ModifyArticleRegex"));
 
-                        return new UpdateArticleCommand(articleService);
+                        return new UpdateArticleCommand(articleService, _userDTO);
                     }
 
                 case "update-book":
@@ -110,7 +110,7 @@
 
                         parser = new BasicRegexParse(_config.GetSetting("ModifyBookRegex"));
 
-                        return new UpdateBookCommand(bookService);
+                        return new UpdateBookCommand(bookService, _userDTO);
                     }
 
                 case "update-video":
@@ -119,7 +119,7 @@
 
                         parser = new BasicRegexParse(_config.GetSetting("ModifyVideoRegex"));
 
-                        return new UpdateVideoCommand(videoService);
+                        return new UpdateVideoCommand(videoService, _userDTO);
                     }
 
                 case "update-course":
@@ -128,7 +128,7 @@
 
                         parser = new BasicSplitParse(string.Empty);
 
-                        return new UpdateCourseCommand(courseService);
+                        return new UpdateCourseCommand(courseService, _userDTO);
                     }
 
                 case "update-perk":
@@ -137,7 +137,7 @@
 
                         parser = new BasicRegexParse(_config.GetSetting("ModifyPerkRegex"));
 
-                        return new UpdatePerkCommand(perkService);
+                        return new UpdatePerkCommand(perkService, _userDTO);
                     }
 
                 case "delete-article":
@@ -146,7 +146,7 @@
 
                         parser = new BasicSplitParse(string.Empty);
 
-                        return new DeleteArticleCommand(articleService);
+                        return new DeleteArticleCommand(articleService, _userDTO);
                     }
 
                 case "delete-book":
@@ -155,7 +155,7 @@
 
                         parser = new BasicSplitParse(string.Empty);
 
-                        return new DeleteBookCommand(bookService);
+                        return new DeleteBookCommand(bookService, _userDTO);
                     }
 
                 case "delete-video":
@@ -164,7 +164,7 @@
 
                         parser = new BasicSplitParse(string.Empty);
 
-                        return new DeleteVideoCommand(videoService);
+                        return new DeleteVideoCommand(videoService, _userDTO);
                     }
 
                 case "delete-course":
@@ -173,7 +173,7 @@
 
                         parser = new BasicSplitParse(string.Empty);
 
-                        return new DeleteCourseCommand(courseService);
+                        return new DeleteCourseCommand(courseService, _userDTO);
                     }
 
                 case "delete-perk":
@@ -182,14 +182,14 @@
 
                         parser = new BasicSplitParse(string.Empty);
 
-                        return new DeletePerkCommand(perkService);
+                        return new DeletePerkCommand(perkService, _userDTO);
                     }
 
                 case "logout":
                     {
                         var userAuth = Program.Root.GetRequiredService<IUserAuth>();
 
-                        return new LogoutCommand(userAuth, true);
+                        return new LogoutCommand(userAuth, true, _userDTO);
                     }
 
                 case "return":

@@ -16,6 +16,6 @@
             var command = new AuthorizeCommand(userAuth, user);
 
             return await command.Run();
-        } 
+        }
     }
 }

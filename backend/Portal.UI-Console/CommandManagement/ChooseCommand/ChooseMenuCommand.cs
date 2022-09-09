@@ -24,11 +24,9 @@
 
                 case "open-profile":
                     {
-                        var userAuth = Program.Root.GetRequiredService<IUserAuth>();
-
                         var userService = Program.Root.GetRequiredService<IUserService>();
 
-                        return new OpenProfileMenuCommand(userService, userAuth);
+                        return new OpenProfileMenuCommand(userService, _userDTO);
                     }
 
                 case "exit":
