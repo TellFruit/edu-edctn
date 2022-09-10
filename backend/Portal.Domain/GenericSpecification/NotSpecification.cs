@@ -14,7 +14,7 @@ namespace Portal.Domain.GenericSpecification
 
 		public override bool IsSatisfiedBy(T item)
 		{
-			return specification.IsSatisfiedBy(item) == false;
+			return specification.IsSatisfiedBy(item) is false;
 		}
 	}
 }
