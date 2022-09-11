@@ -1,0 +1,20 @@
+﻿@model ArticleIndexModel
+
+<table class="table table-hover" id="article-table">
+    <tbody>
+        @foreach (var article in Model.ArticleList)
+        {
+            <tr>
+                <td>
+                    @article.Title
+                </td>
+                <td>
+                    @article.Url
+                </td>
+                <td>
+                    @article.Published
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
