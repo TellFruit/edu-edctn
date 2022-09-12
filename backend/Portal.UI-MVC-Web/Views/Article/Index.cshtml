@@ -1,4 +1,15 @@
 ﻿@model ArticleIndexModel
 
+@{
+    Layout = "_Layout";
+}
+
+@section Styles {
+    <link href="~/css/materials.css" rel="stylesheet"/>
+}
+
 <h1>Articles</h1>
 
+<div class="table-view">
+    @await Html.PartialAsync("_ArticlePartial", Model)
+</div>
