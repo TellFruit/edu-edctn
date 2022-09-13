@@ -2,14 +2,17 @@
 
 @{
     Layout = "_Layout";
+    ViewData["Title"] = "Articles";
 }
 
 @section Styles {
     <link href="~/css/materials.css" rel="stylesheet"/>
 }
 
-<h1>Articles</h1>
+<h1>Data table</h1>
+
+<a asp-action="Create"></a>
 
 <div class="table-view">
-    @await Html.PartialAsync("_ArticlePartial", Model)
+    @await Html.PartialAsync("../Material/_ArticlePartial", Model)
 </div>
