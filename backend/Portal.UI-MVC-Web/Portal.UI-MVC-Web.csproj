@@ -23,4 +23,37 @@
     <Folder Include="Services\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="Resources\Actions.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Actions.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Headings.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Headings.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Materials.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Materials.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\Actions.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Actions.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Headings.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Headings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Materials.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Materials.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
 </Project>

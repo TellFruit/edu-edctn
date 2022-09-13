@@ -1,18 +1,35 @@
-﻿@model ArticleIndexModel
+﻿@using Portal.UI_MVC_Web.Resources
 
-<table class="table table-hover" id="article-table">
+@model ArticleIndexModel
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">@Materials.Title</th>
+            <th scope="col">@Materials.Url</th>
+            <th scope="col">@Materials.Published</th>
+            <th scope="col"/>
+            <th scope="col"/>
+        </tr>
+    </thead>
     <tbody>
         @foreach (var article in Model.ArticleList)
         {
             <tr>
-                <td>
+                <th scope="row">
                     @article.Title
-                </td>
+                </th>
                 <td>
                     @article.Url
                 </td>
                 <td>
                     @article.Published
+                </td>
+                <td class="d-flex flex-row-reverse">
+                    <a asp-controller="Article" asp-action="AddOrEdit" asp-route-id="@article.Id" class="btn btn-secondary">Edit</a>
+                </td>
+                <td>
+                    <a asp-controller="Article" asp-action="Delete" asp-route-id="@article.Id" class="btn btn-danger">Delete</a>
                 </td>
             </tr>
         }
