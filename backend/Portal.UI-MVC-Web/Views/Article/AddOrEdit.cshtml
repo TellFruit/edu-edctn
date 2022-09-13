@@ -1,1 +1,35 @@
-﻿
+﻿@using Portal.UI_MVC_Web.Resources
+
+@model ArticleDTO
+
+@{
+    if (Model.Id.Equals(default))
+    {
+        ViewData["Title"] = "Add Contact";
+    }
+    else
+    {
+        ViewData["Title"] = "Edit Contact";
+    }
+}
+
+
+@using(Html.BeginForm("AddOrEdit", "Home", FormMethod.Post))
+{
+    <div class="mb-2">
+        <div class="d-flex flex-column">
+            @Html.Label(@Materials.Title)
+            @Html.TextBoxFor(m => m.Title)
+        </div>
+        <div class="d-flex flex-column">
+            @Html.Label(@Materials.Url)
+            @Html.TextBoxFor(m => m.Url)
+        </div>
+        <div class="d-flex flex-column">
+            @Html.Label(@Materials.Published)
+            @Html.TextBoxFor(m => m.Published)
+        </div>
+    </div>
+    <input asp-for="Id" type="hidden"/>
+    <input class="btn btn-primary" type="submit" value="@Actions.Submit">
+}
