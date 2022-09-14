@@ -1,4 +1,13 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿function getPartial(url, data, destination) {
+    $ajax({
+        type: "Get",
+        url: url,
+        data: data,
+        traditional: true,
+        success: function (result) {
+            $(destination).html(result);
+        }
+    });
+}
 
-// Write your JavaScript code.
+export { getPartial };
