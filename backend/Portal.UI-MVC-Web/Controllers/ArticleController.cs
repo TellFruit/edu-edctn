@@ -11,7 +11,7 @@
 
         public async Task<IActionResult> Index()
         {
-            return View(await GetArticleIndexMode());
+            return View(await GetArticleIndexModel());
         }
 
         public async Task<IActionResult> AddOrEdit(int? id)
@@ -62,10 +62,10 @@
                 Console.WriteLine(ex.Message);
             }
 
-            return PartialView("_ArticlePartial", await GetArticleIndexMode());
+            return PartialView("_ArticlePartial", await GetArticleIndexModel());
         }
 
-        private async Task<ArticleIndexModel> GetArticleIndexMode()
+        private async Task<ArticleIndexModel> GetArticleIndexModel()
         {
             var articles = await _articleService.GetAll();
 
