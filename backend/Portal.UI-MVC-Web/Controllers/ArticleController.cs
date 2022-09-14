@@ -11,11 +11,7 @@
 
         public async Task<IActionResult> Index()
         {
-            var articles = await _articleService.GetAll();
-
-            var model = new ArticleIndexModel(articles);
-
-            return View(model);
+            return View(await GetArticleIndexMode());
         }
 
         public async Task<IActionResult> AddOrEdit(int? id)
@@ -53,6 +49,27 @@
             }
 
             return RedirectToAction(nameof(Index));
+        }
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            try
+            {
+                await _articleService.Delete(id);
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return PartialView("_ArticlePartial", await GetArticleIndexMode());
+        }
+
+        private async Task<ArticleIndexModel> GetArticleIndexMode()
+        {
+            var articles = await _articleService.GetAll();
+
+            return new ArticleIndexModel(articles);
         }
     }
 }
