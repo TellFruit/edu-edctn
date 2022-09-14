@@ -26,7 +26,7 @@
         </div>
         <div class="d-flex flex-column">
             @Html.Label(@Materials.Published)
-            @Html.TextBoxFor(m => m.Published)
+            <input asp-for="Published" type="date">
         </div>
     </div>
     <input asp-for="Id" type="hidden"/>

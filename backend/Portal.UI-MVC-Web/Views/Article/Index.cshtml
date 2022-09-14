@@ -1,4 +1,6 @@
-﻿@model ArticleIndexModel
+﻿@using Portal.UI_MVC_Web.Resources
+
+@model ArticleIndexModel
 
 @{
     Layout = "_Layout";
@@ -9,10 +11,11 @@
     <link href="~/css/materials.css" rel="stylesheet"/>
 }
 
-<h1>Data table</h1>
+<h1 class="text-center">@ViewData["Title"]</h1>
+<h2>@Headings.DataTable</h2>
 
-<a asp-action="Create"></a>
-
+<a asp-controller="Article" asp-action="AddOrEdit">@Actions.Create</a>
+ 
 <div id="article-table-view">
     @await Html.PartialAsync("_ArticlePartial", Model)
 </div>
