@@ -26,12 +26,20 @@
                     @article.Published
                 </td>
                 <td class="d-flex flex-row-reverse">
-                    <a asp-controller="Article" asp-action="AddOrEdit" asp-route-id="@article.Id" class="btn btn-secondary">Edit</a>
+                    <a asp-controller="Article" asp-action="AddOrEdit" asp-route-id="@article.Id" class="btn btn-secondary">
+                        @Actions.Edit
+                    </a>
                 </td>
                 <td>
-                    <a asp-controller="Article" asp-action="Delete" asp-route-id="@article.Id" class="btn btn-danger">Delete</a>
+                    <a class="btn btn-danger btn-delete" url="@Url.Action("Delete", "Article")" article-id="@article.Id">
+                        @Actions.Delete
+                    </a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+
+@section Scripts{
+    <script src="~/jquery/partial/article-partial.js"></script>
+}
