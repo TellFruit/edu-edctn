@@ -1,4 +1,4 @@
-﻿namespace Portal.UI_MVC_Web.Models.Materials.Article
+﻿namespace Portal.UI_MVC_Web.Models.Materials
 {
     public class ArticleIndexModel
     {

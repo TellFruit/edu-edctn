@@ -13,16 +13,16 @@ function getPartial(url, data, destination, callbackfunc) {
 }
 
 // delete button response call for article table$(function() {
-function createEvents() {
+function createArticleEvents() {
     $("#article-table-view .btn-danger").each(function () {
         $(this).click(function () {
             let url = $(this).attr("url");
             let id = { id: $(this).attr("data_id") };
             let destination = $("#article-table-view");
             
-            getPartial(url, id, destination, createEvents);
+            getPartial(url, id, destination, createArticleEvents);
         });
     });
 }
 
-createEvents();
+createArticleEvents();
