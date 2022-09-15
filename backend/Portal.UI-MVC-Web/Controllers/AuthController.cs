@@ -1,6 +1,4 @@
-﻿using Portal.UI_MVC_Web.Models.Auth;
-
-namespace Portal.UI_MVC_Web.Controllers
+﻿namespace Portal.UI_MVC_Web.Controllers
 {
     public class AuthController : Controller
     {
@@ -11,14 +9,64 @@ namespace Portal.UI_MVC_Web.Controllers
             _userAuth = userAuth;
         }
 
-        public IActionResult Login(AuthModel model)
+        public IActionResult Login(string returnController, string returnAction, object? returnModel)
         {
+            if (IsTempDataAuthorazied())
+            {
+                return RedirectHome();
+            }
+
+            var model = new AuthModel()
+            {
+                User = new UserDTO(),
+                ReturnController = returnController,
+                ReturnAction = returnAction,
+                ReturnModel = returnModel
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Login(AuthModel model)
+        {
+            if (IsTempDataAuthorazied())
+            {
+                return RedirectHome();
+            }
+
+            int loggedId = await _userAuth.Login(model.User.Email, model.User.Password);
+
+            if (_userAuth.IsAuthorized(loggedId))
+            {
+                TempData[nameof(_userAuth.IsAuthorized)] = loggedId;
+
+                return RedirectBack(model);
+            }
+
             return View(model);
         }
 
         public IActionResult Register(AuthModel model)
         {
             return View(model);
+        }
+
+        private IActionResult RedirectBack(AuthModel model)
+        {
+            return RedirectToAction(model.ReturnAction, model.ReturnController, model.ReturnModel);
+        }
+
+        private IActionResult RedirectHome()
+        {
+            return RedirectToAction("Index", "Home");
+        }
+
+        private bool IsTempDataAuthorazied()
+        {
+            int loggedId = (int?) TempData[nameof(_userAuth.IsAuthorized)] ?? default;
+
+            return _userAuth.IsAuthorized(loggedId);
         }
     }
 }
