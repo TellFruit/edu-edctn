@@ -1,4 +1,6 @@
-﻿namespace Portal.UI_MVC_Web.Controllers
+﻿using Portal.UI_MVC_Web.Models.Auth;
+
+namespace Portal.UI_MVC_Web.Controllers
 {
     public class AuthController : Controller
     {
@@ -9,14 +11,14 @@
             _userAuth = userAuth;
         }
 
-        public IActionResult Login()
+        public IActionResult Login(AuthModel model)
         {
-            return View();
+            return View(model);
         }
 
-        public IActionResult Register()
+        public IActionResult Register(AuthModel model)
         {
-            return View();
+            return View(model);
         }
     }
 }
