@@ -1,6 +1,4 @@
-﻿using Portal.UI_MVC_Web.Models.Materials;
-
-namespace Portal.UI_MVC_Web.Controllers
+﻿namespace Portal.UI_MVC_Web.Controllers
 {
     public class ArticleController : Controller
     {

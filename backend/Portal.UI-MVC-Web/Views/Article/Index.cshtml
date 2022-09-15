@@ -1,10 +1,10 @@
-﻿@    using Portal.UI_MVC_Web.Resources
+﻿@using Portal.UI_MVC_Web.Resources
 
 @model ArticleIndexModel
 
 @{
     Layout = "_Layout";
-    ViewData["Title"] = "Articles";
+    ViewData["Title"] = @Context.Request.RouteValues["action"];
 }
 
 @section Styles {

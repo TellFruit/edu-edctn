@@ -112,7 +112,7 @@ namespace Portal.Domain.Entities
                     .FirstOrDefault(
                         x => x.Perk.Id.Equals(perk.Id));
 
-                if (found is null)
+                if (found == null)
                 {
                     PerkLevel.Add(new PerkLevel
                     {
