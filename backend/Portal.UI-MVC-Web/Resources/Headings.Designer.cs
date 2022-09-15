@@ -68,5 +68,14 @@ namespace Portal.UI_MVC_Web.Resources {
                 return ResourceManager.GetString("DataTable", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No data.
+        /// </summary>
+        internal static string NoData {
+            get {
+                return ResourceManager.GetString("NoData", resourceCulture);
+            }
+        }
     }
 }

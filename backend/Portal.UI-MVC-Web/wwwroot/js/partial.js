@@ -1,5 +1,5 @@
 ﻿// general function for a simple get 
-function getPartial(url, data, destination) {
+function getPartial(url, data, destination, callbackfunc) {
     $.ajax({
         type: "Get",
         url: url,
@@ -7,19 +7,22 @@ function getPartial(url, data, destination) {
         traditional: true,
         success: function (result) {
             $(destination).html(result);
+            callbackfunc();
         }
     });
 }
 
 // delete button response call for article table$(function() {
-$(function () {
+function createEvents() {
     $("#article-table-view .btn-danger").each(function () {
         $(this).click(function () {
             let url = $(this).attr("url");
             let id = { id: $(this).attr("data_id") };
             let destination = $("#article-table-view");
-
-            getPartial(url, id, destination);
+            
+            getPartial(url, id, destination, createEvents);
         });
     });
-});
+}
+
+createEvents();

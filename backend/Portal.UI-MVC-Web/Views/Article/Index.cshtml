@@ -12,9 +12,9 @@
 }
 
 <h1 class="text-center">@ViewData["Title"]</h1>
-<h2>@Headings.DataTable</h2>
+<h2 class="text-center">@Headings.DataTable</h2>
 
-<a asp-controller="Article" asp-action="AddOrEdit">@Actions.Create</a>
+<a asp-controller="Article" asp-action="AddOrEdit" class="btn btn-primary">@Actions.Create</a>
  
 <div id="article-table-view">
     @await Html.PartialAsync("_ArticlePartial", Model)
