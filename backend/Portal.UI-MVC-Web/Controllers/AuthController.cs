@@ -1,10 +1,10 @@
 ﻿namespace Portal.UI_MVC_Web.Controllers
 {
-    public class AuthController : Controller
+    public class AuthController : BaseController
     {
         private readonly IUserAuth _userAuth;
 
-        public AuthController(IUserAuth userAuth)
+        public AuthController(IUserAuth userAuth) : base(userAuth) 
         {
             _userAuth = userAuth;
         }
@@ -55,18 +55,6 @@
         private IActionResult RedirectBack(AuthModel model)
         {
             return RedirectToAction(model.ReturnAction, model.ReturnController, model.ReturnModel);
-        }
-
-        private IActionResult RedirectHome()
-        {
-            return RedirectToAction("Index", "Home");
-        }
-
-        private bool IsTempDataAuthorazied()
-        {
-            int loggedId = (int?) TempData[nameof(_userAuth.IsAuthorized)] ?? default;
-
-            return _userAuth.IsAuthorized(loggedId);
         }
     }
 }
