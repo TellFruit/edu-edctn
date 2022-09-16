@@ -37,6 +37,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Materials.resx</DependentUpon>
     </Compile>
+    <Compile Update="Resources\Profile.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Profile.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -51,6 +56,10 @@
     <EmbeddedResource Update="Resources\Materials.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Materials.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Profile.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Profile.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
 
