@@ -21,7 +21,7 @@
         {
             string result = JsonConvert.SerializeObject(obj, _settings);
 
-            return result.Length > 1 ? result : throw new ArgumentException(nameof(obj));
+            return result.Length > 0 ? result : throw new ArgumentException(nameof(obj));
         }
     }
 }

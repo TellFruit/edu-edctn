@@ -23,7 +23,7 @@
                 ReturnModel = returnModel
             };
 
-            ViewBag.Callback = model;
+            //TempData[nameof(CallbackModel)] = model;
 
             return View(new UserDTO());
         }
@@ -36,7 +36,7 @@
                 return RedirectHome();
             }
 
-            var callback = ViewBag.Callback as CallbackModel;
+            var callback = TempData[nameof(CallbackModel)] as CallbackModel;
 
             int loggedId = await _userAuth.Login(user.Email, user.Password);
 

@@ -10,6 +10,8 @@ global using Portal.Application.Services.Config;
 global using Portal.Application.Services.Auth;
 global using Portal.Application.Services.Rules;
 global using Portal.Application.Services;
+global using Newtonsoft.Json;
+
 global using Portal.Application.DTO;
 
 global using Portal.Domain.Entities;

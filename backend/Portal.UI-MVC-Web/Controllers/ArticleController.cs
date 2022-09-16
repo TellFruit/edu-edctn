@@ -1,10 +1,11 @@
 ﻿namespace Portal.UI_MVC_Web.Controllers
 {
-    public class ArticleController : Controller
+    public class ArticleController : BaseController
     {
         private readonly IArticleService _articleService;
 
-        public ArticleController(IArticleService articleService)
+        public ArticleController(IArticleService articleService, IUserAuth userAuth)
+            : base(userAuth) 
         {
             _articleService = articleService;
         }
@@ -53,6 +54,11 @@
 
         public async Task<IActionResult> Delete(int id)
         {
+            if (IsTempDataAuthorazied() is false)
+            {
+                return RedirectLogin(Request.RouteValues, id);
+            }
+
             try
             {
                 await _articleService.Delete(id);

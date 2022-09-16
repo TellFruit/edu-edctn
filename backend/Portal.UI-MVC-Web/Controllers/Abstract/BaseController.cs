@@ -16,13 +16,13 @@
             return _userAuth.IsAuthorized(loggedId);
         }
 
-        protected IActionResult RedirectLogin(string returnController, string returnAction, object? returnModel)
+        protected IActionResult RedirectLogin(RouteValueDictionary routeValues, object? returnModel)
         {
             return RedirectToAction("Login", "Auth",
                 new
                 { 
-                    returnController = returnController,
-                    returnAction = returnAction,
+                    returnController = routeValues["controller"],
+                    returnAction = routeValues["action"],
                     returnModel = returnModel,
                 });
         }
