@@ -2,6 +2,7 @@
 global using System.Configuration;
 
 global using Portal.Application.Interfaces.OuterImpl;
+global using Portal.Application.Interfaces.Other;
 global using Portal.Application.Interfaces.InnerImpl;
 global using Portal.Application.Interfaces.InnerImpl.Services;
 global using Portal.Application.MappingProfiles;

@@ -1,6 +1,6 @@
 ﻿namespace Portal.Application.Services.Config
 {
-    internal class SimpleJsonSerialize
+    internal class SimpleJsonSerialize : ISerialize
     {
         public T Deserialize<T>(string json)
         {

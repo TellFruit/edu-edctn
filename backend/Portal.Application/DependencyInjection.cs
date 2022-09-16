@@ -30,6 +30,8 @@
 
             services.AddScoped<IRuleUser, RuleUserService>();
 
+            services.AddScoped<ISerialize, SimpleJsonSerialize>();
+
             services.AddTransient<UserDTO>();
         }
     }
