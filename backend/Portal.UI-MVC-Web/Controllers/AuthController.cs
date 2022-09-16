@@ -4,7 +4,7 @@
     {
         private readonly IUserAuth _userAuth;
 
-        public AuthController(IUserAuth userAuth) : base(userAuth) 
+        public AuthController(IUserAuth userAuth) : base(userAuth)
         {
             _userAuth = userAuth;
         }
@@ -16,43 +16,46 @@
                 return RedirectHome();
             }
 
-            var model = new AuthModel()
+            var model = new CallbackModel()
             {
-                User = new UserDTO(),
                 ReturnController = returnController,
                 ReturnAction = returnAction,
                 ReturnModel = returnModel
             };
 
-            return View(model);
+            ViewBag.Callback = model;
+
+            return View(new UserDTO());
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login(AuthModel model)
+        public async Task<IActionResult> Login(UserDTO user)
         {
             if (IsTempDataAuthorazied())
             {
                 return RedirectHome();
             }
 
-            int loggedId = await _userAuth.Login(model.User.Email, model.User.Password);
+            var callback = ViewBag.Callback as CallbackModel;
+
+            int loggedId = await _userAuth.Login(user.Email, user.Password);
 
             if (_userAuth.IsAuthorized(loggedId))
             {
                 TempData[nameof(_userAuth.IsAuthorized)] = loggedId;
 
-                return RedirectBack(model);
+                return RedirectBack(callback);
             }
 
-            return View(model);
+            return View(callback);
         }
 
-        public IActionResult Register(AuthModel model)
+        public IActionResult Register(CallbackModel model)
         {
             return View(model);
         }
 
-        private IActionResult RedirectBack(AuthModel model)
+        private IActionResult RedirectBack(CallbackModel model)
         {
             return RedirectToAction(model.ReturnAction, model.ReturnController, model.ReturnModel);
         }
