@@ -11,6 +11,12 @@
         public ICollection<MaterialDTO> Materials { get; set; }
         public ICollection<PerkDTO> Perks { get; set; }
 
+        public CourseDTO()
+        {
+            Materials = new List<MaterialDTO>();
+            Perks = new List<PerkDTO>();
+        }
+
         public override string ToString()
         {
             return $"{Id} - {Name}: {Description}";
