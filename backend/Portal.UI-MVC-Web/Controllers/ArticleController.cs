@@ -1,15 +1,12 @@
 ﻿namespace Portal.UI_MVC_Web.Controllers
 {
-    public class ArticleController : BaseController
+    public class ArticleController : Controller
     {
         private readonly IArticleService _articleService;
-        private readonly ISerialize _serialize;
 
-        public ArticleController(IArticleService articleService, IUserAuth userAuth, ISerialize serialize)
-            : base(userAuth)
+        public ArticleController(IArticleService articleService)
         {
             _articleService = articleService;
-            _serialize = serialize;
         }
 
         public async Task<IActionResult> Index()

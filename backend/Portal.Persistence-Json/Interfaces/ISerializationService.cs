@@ -1,4 +1,9 @@
 ﻿namespace Portal.Domain.Interfaces
 {
-    internal interface ISerializationService : ISerialize {}
+    internal interface ISerializationService
+    {
+        public T Deserialize<T>(string json);
+
+        public string Serialize<T>(T obj);
+    }
 }
