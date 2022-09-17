@@ -21,8 +21,11 @@
             }
 
             var wantedUser = await _userService.GetById(_userDTO.Id);
+            _userDTO.CourseProgress = wantedUser.CourseProgress;
+            _userDTO.PerkLevel = wantedUser.PerkLevel;
+            _userDTO.MaterialLearned = wantedUser.MaterialLearned;
 
-            var chooseCommand = new ChooseProfileCommand(wantedUser);
+            var chooseCommand = new ChooseProfileCommand(_userDTO);
             var basicParser = Program.Root.GetRequiredService<IParseInput>();
 
             var launchCommand = new LaunchManagerCommand(chooseCommand, basicParser);
