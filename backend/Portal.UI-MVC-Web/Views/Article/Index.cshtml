@@ -3,8 +3,9 @@
 @model ArticleIndexModel
 
 @{
+    Context.Session.SetString("LastUrl", Context.Request.Path);
     Layout = "_Layout";
-    ViewData["Title"] = @Context.Request.RouteValues["action"];
+    ViewData["Title"] = Context.Request.RouteValues["action"];
 }
 
 @section Styles {
