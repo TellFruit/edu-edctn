@@ -6,8 +6,6 @@
 
         public Task<int> Register(string email, string password);
 
-        public bool Logout(int id);
-
-        public bool IsAuthorized(int id);
+        public Task<bool> IsAuthorized(int id);
     }
 }

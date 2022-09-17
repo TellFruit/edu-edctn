@@ -3,11 +3,13 @@
     public class ArticleController : BaseController
     {
         private readonly IArticleService _articleService;
+        private readonly ISerialize _serialize;
 
-        public ArticleController(IArticleService articleService, IUserAuth userAuth)
-            : base(userAuth) 
+        public ArticleController(IArticleService articleService, IUserAuth userAuth, ISerialize serialize)
+            : base(userAuth)
         {
             _articleService = articleService;
+            _serialize = serialize;
         }
 
         public async Task<IActionResult> Index()
@@ -54,11 +56,6 @@
 
         public async Task<IActionResult> Delete(int id)
         {
-            if (IsTempDataAuthorazied() is false)
-            {
-                return RedirectLogin(Request.RouteValues, id);
-            }
-
             try
             {
                 await _articleService.Delete(id);

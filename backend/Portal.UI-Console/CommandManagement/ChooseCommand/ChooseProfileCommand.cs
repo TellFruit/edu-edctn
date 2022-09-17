@@ -62,9 +62,7 @@
 
                 case "logout":
                     {
-                        var userAuth = Program.Root.GetRequiredService<IUserAuth>();
-
-                        return new LogoutCommand(userAuth, false, _userDTO);
+                        return new LogoutCommand(false, _userDTO);
                     }
 
                 case "return":

@@ -2,8 +2,6 @@
 {
     internal class UserAuth : IUserAuth
     {
-        private static List<UserDTO> _loggedUsers = new List<UserDTO>();
-        
         private readonly IUserService _service;
 
         public UserAuth(IUserService service)
@@ -21,8 +19,6 @@
             {
                 return -1;
             }
-
-            _loggedUsers.Add(found);
 
             return found.Id;
         }
@@ -47,21 +43,11 @@
             return user.Id;
         }
 
-        public bool Logout(int id)
+        public async Task<bool> IsAuthorized(int id)
         {
-            if (IsAuthorized(id) is false)
-            {
-                return false;
-            }
+            var users = await _service.GetAll();
 
-            _loggedUsers.Remove(_loggedUsers.First(u => u.Id == id));
-
-            return true;
-        }
-
-        public bool IsAuthorized(int id)
-        {
-            return _loggedUsers.Any(u => u.Id.Equals(id));
+            return users.Any(u => u.Id.Equals(id));
         }
     }
 }

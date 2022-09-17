@@ -13,7 +13,7 @@
 
         public async Task<bool> Run(params string[] parameters)
         {
-            if (_userAuth.IsAuthorized(_userDTO.Id))
+            if (await _userAuth.IsAuthorized(_userDTO.Id))
             {
                 return true;
             }
@@ -41,14 +41,14 @@
                     await register.Run();
                 }
 
-                if (_userAuth.IsAuthorized(_userDTO.Id))
-                {
+                if (await _userAuth.IsAuthorized(_userDTO.Id))
+                { 
                     break;
                 }
             }
             while (true);
 
-            return _userAuth.IsAuthorized(_userDTO.Id);
+            return await _userAuth.IsAuthorized(_userDTO.Id);
         }
     }
 }

@@ -2,21 +2,20 @@
 {
     internal class LogoutCommand : IConsoleCommand
     {
-        private readonly IUserAuth _userAuth;
         private readonly UserDTO _userDTO;
         private readonly bool _returnValue;
 
-        public LogoutCommand(IUserAuth userAuth, bool returnValue, UserDTO userDTO)
+        public LogoutCommand(bool returnValue, UserDTO userDTO)
         {
-            _userAuth = userAuth;
             _returnValue = returnValue;
             _userDTO = userDTO;
         }
 
         public async Task<bool> Run(params string[] parameters)
         {
-            if (_userAuth.Logout(_userDTO.Id))
+            if (_userDTO.Id.Equals(default) is false)
             {
+                _userDTO.Id = default;
                 Console.WriteLine("Success! You've just logged out.");
             }
             else

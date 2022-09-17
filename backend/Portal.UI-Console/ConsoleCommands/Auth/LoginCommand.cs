@@ -40,7 +40,7 @@
 
                 _userDTO.Id = await _userAuth.Login(email, password);
 
-                result = _userAuth.IsAuthorized(_userDTO.Id);
+                result = await _userAuth.IsAuthorized(_userDTO.Id);
 
                 if (result is false)
                 {
