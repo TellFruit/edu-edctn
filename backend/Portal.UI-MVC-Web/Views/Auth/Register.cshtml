@@ -1,16 +1,16 @@
 ﻿@using Portal.UI_MVC_Web.Resources
 
-@model LoginModel
+@model RegisterModel
 
 @{
-    ViewData["Title"] = "Login";
+    ViewData["Title"] = "Register";
 }
 
 <h1 class="text-center">@ViewData["Title"]</h1>
 
-<a asp-action="Register" asp-controller="Auth" class="btn btn-secondary">@Actions.Register</a>
+<a asp-action="Login" asp-controller="Auth" class="btn btn-secondary">@Actions.Login</a>
 
-@using(Html.BeginForm("Login", "Auth", FormMethod.Post))
+@using(Html.BeginForm("Register", "Auth", FormMethod.Post))
 {
     <div class="mb-2">
         <div class="d-flex flex-column">
@@ -23,5 +23,5 @@
         </div>
     </div>
 
-    <input class="btn btn-primary" type="submit" value="@Actions.Login">
+    <input class="btn btn-primary" type="submit" value="@Actions.Register">
 }

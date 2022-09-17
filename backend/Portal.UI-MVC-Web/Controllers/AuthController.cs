@@ -34,6 +34,7 @@
             return View();
         }
 
+        [HttpPost]
         public async Task<IActionResult> Register(RegisterModel model)
         {
             var loggedId = await _userAuth.Register(model.Email, model.Password);
