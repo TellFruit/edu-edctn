@@ -1,6 +1,6 @@
 ﻿using Portal.Domain.Entities.Abstract;
 
-namespace Portal.Domain.Entities
+namespace Portal.Domain.Entities.Material
 {
     public class BookDomain : MaterialDomain
     {

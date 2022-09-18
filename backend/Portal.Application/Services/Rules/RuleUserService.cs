@@ -1,4 +1,6 @@
-﻿namespace Portal.Application.Services.Rules
+﻿using Portal.Domain.Entities.Course;
+
+namespace Portal.Application.Services.Rules
 {
     internal class RuleUserService : IRuleUser
     {

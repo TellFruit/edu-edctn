@@ -1,11 +1,11 @@
 ﻿using Portal.Domain.Entities.Abstract;
 
-namespace Portal.Domain.Entities
+namespace Portal.Domain.Entities.Perk
 {
     public class PerkDomain : BaseEntity
     {
         public string Name { get; set; }
-        
+
         public ICollection<PerkLevel> UserPerks { get; set; }
         public ICollection<MaterialDomain> Materials { get; set; }
     }

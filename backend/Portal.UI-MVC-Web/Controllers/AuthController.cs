@@ -23,7 +23,7 @@
             {
                 return View();
             }
-
+            
             await Authenticate(model.Email);
 
             return RedirectBack();

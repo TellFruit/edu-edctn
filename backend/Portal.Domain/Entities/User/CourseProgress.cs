@@ -1,4 +1,6 @@
-﻿namespace Portal.Domain.Entities
+﻿using Portal.Domain.Entities.Course;
+
+namespace Portal.Domain.Entities.User
 {
     public class CourseProgress
     {

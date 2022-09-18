@@ -1,6 +1,7 @@
 ﻿using Portal.Domain.Entities.Abstract;
+using Portal.Domain.Entities.Course;
 
-namespace Portal.Domain.Entities
+namespace Portal.Domain.Entities.User
 {
     public class UserDomain : BaseEntity
     {

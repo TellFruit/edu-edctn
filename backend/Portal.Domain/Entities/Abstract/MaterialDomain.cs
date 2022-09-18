@@ -1,4 +1,6 @@
-﻿namespace Portal.Domain.Entities.Abstract
+﻿using Portal.Domain.Entities.Course;
+
+namespace Portal.Domain.Entities.Abstract
 {
     public abstract class MaterialDomain : BaseEntity
     {

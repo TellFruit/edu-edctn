@@ -1,4 +1,6 @@
-﻿namespace Portal.Application.Services
+﻿using Portal.Domain.Entities.Course;
+
+namespace Portal.Application.Services
 {
     internal class CourseService : BaseModelService<CourseDomain>, ICourseService
     {

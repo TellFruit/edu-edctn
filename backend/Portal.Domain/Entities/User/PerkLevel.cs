@@ -1,4 +1,4 @@
-﻿namespace Portal.Domain.Entities
+﻿namespace Portal.Domain.Entities.User
 {
     public class PerkLevel
     {
