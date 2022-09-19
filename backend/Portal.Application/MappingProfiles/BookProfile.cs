@@ -1,4 +1,6 @@
-﻿namespace Portal.Application.MappingProfiles
+﻿using Portal.Domain.Entities.Material;
+
+namespace Portal.Application.MappingProfiles
 {
     internal class BookProfile : Profile
     {

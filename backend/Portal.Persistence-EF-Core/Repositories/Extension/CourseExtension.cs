@@ -1,7 +1,4 @@
-﻿using Portal.Domain.Entities.Course;
-using Portal.Domain.Entities.Perk;
-
-namespace Portal.Persistence_EF_Core.Repositories.Extension
+﻿namespace Portal.Persistence_EF_Core.Repositories.Extension
 {
     internal static class CourseExtension
     {

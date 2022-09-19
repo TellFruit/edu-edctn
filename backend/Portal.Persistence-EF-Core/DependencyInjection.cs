@@ -1,6 +1,4 @@
-﻿using Portal.Domain.Entities.Course;
-
-namespace Portal.Persistence_EF_Core
+﻿namespace Portal.Persistence_EF_Core
 {
     public static class DependencyInjection
     {

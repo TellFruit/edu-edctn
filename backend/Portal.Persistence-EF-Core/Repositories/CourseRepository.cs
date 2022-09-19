@@ -1,6 +1,4 @@
-﻿using Portal.Domain.Entities.Course;
-
-namespace Portal.Persistence_EF_Core.Repositories
+﻿namespace Portal.Persistence_EF_Core.Repositories
 {
     internal class CourseRepository : BaseRepository, IGenericRepository<CourseDomain>
     {

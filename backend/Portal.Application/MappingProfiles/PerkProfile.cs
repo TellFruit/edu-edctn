@@ -1,4 +1,6 @@
-﻿namespace Portal.Application.MappingProfiles
+﻿using Portal.Domain.Entities.Perk;
+
+namespace Portal.Application.MappingProfiles
 {
     internal class PerkProfile : Profile
     {

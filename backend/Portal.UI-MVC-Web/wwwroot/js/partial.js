@@ -1,7 +1,7 @@
 ﻿// general function for a simple get 
-function getPartial(url, data, destination, callbackfunc) {
+function getPartial(type, url, data, destination, callbackfunc) {
     $.ajax({
-        type: "Get",
+        type: type,
         url: url,
         data: data,
         traditional: true,
@@ -20,7 +20,7 @@ function createArticleEvents() {
             let id = { id: $(this).attr("data_id") };
             let destination = $("#article-table-view");
             
-            getPartial(url, id, destination, createArticleEvents);
+            getPartial("Get", url, id, destination, createArticleEvents);
         });
     });
 }

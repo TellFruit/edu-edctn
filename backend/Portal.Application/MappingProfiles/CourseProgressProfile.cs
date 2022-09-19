@@ -1,4 +1,6 @@
-﻿namespace Portal.Application.MappingProfiles
+﻿using Portal.Domain.Entities.User;
+
+namespace Portal.Application.MappingProfiles
 {
     internal class CourseProgressProfile : Profile
     {

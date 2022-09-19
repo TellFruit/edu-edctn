@@ -1,6 +1,4 @@
-﻿using Portal.Domain.Entities.User;
-
-namespace Portal.Persistence_EF_Core.Repositories.Extension
+﻿namespace Portal.Persistence_EF_Core.Repositories.Extension
 {
     internal static class UserExtension
     {

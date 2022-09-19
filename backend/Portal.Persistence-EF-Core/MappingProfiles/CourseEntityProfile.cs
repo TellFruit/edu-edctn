@@ -1,6 +1,4 @@
-﻿using Portal.Domain.Entities.Course;
-
-namespace Portal.Persistence_EF_Core.MappingProfiles
+﻿namespace Portal.Persistence_EF_Core.MappingProfiles
 {
     internal class CourseEntityProfile : Profile
     {

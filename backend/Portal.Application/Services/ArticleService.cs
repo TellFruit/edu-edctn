@@ -1,6 +1,4 @@
-﻿using Portal.Domain.Entities.Material;
-
-namespace Portal.Application.Services
+﻿namespace Portal.Application.Services
 {
     internal class ArticleService : BaseModelService<ArticleDomain>, IArticleService
     {
