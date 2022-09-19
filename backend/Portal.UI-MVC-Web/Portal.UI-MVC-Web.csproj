@@ -19,7 +19,7 @@
 
   <ItemGroup>
     <Folder Include="Interfaces\" />
-    <Folder Include="Models\Course\" />
+    <Folder Include="Services\" />
     <Folder Include="Views\Course\" />
   </ItemGroup>
 
