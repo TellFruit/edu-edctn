@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Portal.UI_MVC_Web.Models;
+﻿using Portal.UI_MVC_Web.Models;
 using System.Diagnostics;
 
 namespace Portal.UI_MVC_Web.Controllers
@@ -13,18 +12,7 @@ namespace Portal.UI_MVC_Web.Controllers
             _logger = logger;
         }
 
-        public async Task<IActionResult> Index()
-        {
-            var user = User.Identity;
-
-            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-
-            var user1 = User.Identity;
-
-            return View();
-        }
-
-        public IActionResult Privacy()
+        public IActionResult Index()
         {
             return View();
         }

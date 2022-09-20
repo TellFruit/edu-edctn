@@ -27,7 +27,6 @@
   <ItemGroup>
     <Folder Include="Interfaces\" />
     <Folder Include="Services\" />
-    <Folder Include="Views\Video\" />
   </ItemGroup>
 
   <ItemGroup>
