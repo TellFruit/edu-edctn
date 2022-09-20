@@ -61,7 +61,7 @@
                 Console.WriteLine(ex.Message);
             }
 
-            return PartialView("_ArticlePartial", await GetBookIndexModel());
+            return PartialView("_BookPartial", await GetBookIndexModel());
         }
 
         private async Task<BookIndexModel> GetBookIndexModel()

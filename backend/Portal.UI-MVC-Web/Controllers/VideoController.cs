@@ -63,7 +63,7 @@ namespace Portal.UI_MVC_Web.Controllers
                 Console.WriteLine(ex.Message);
             }
 
-            return PartialView("_ArticlePartial", await GetVideoIndexModel());
+            return PartialView("_VideoPartial", await GetVideoIndexModel());
         }
 
         private async Task<VideoIndexModel> GetVideoIndexModel()
