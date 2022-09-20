@@ -33,7 +33,6 @@
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddOrEdit(ArticleDTO article)
         {
             if (!ModelState.IsValid)
