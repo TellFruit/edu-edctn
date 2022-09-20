@@ -47,6 +47,10 @@
                 return false;
             }
 
+            _user = new UserDTO();
+            _user.Email = email;
+            _user.Password = password;
+
             _user = await _service.Create(_user);
 
             _authenticated = true;
