@@ -25,4 +25,17 @@ function createArticleEvents() {
     });
 }
 
+function createBookEvents() {
+    $("#book-table-view .btn-danger").each(function () {
+        $(this).click(function () {
+            let url = $(this).attr("url");
+            let id = { id: $(this).attr("data_id") };
+            let destination = $("#book-table-view");
+
+            getPartial("Get", url, id, destination, createBookEvents);
+        });
+    });
+}
+
 createArticleEvents();
+createBookEvents();
