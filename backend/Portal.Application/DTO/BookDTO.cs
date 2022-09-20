@@ -7,7 +7,7 @@ namespace Portal.Application.DTO
         public int PageCount { get; set; }
         public string Format { get; set; }
         public DateTime Published { get; set; }
-        public ICollection<string> Authors { get; set; }
+        public IList<string> Authors { get; set; }
 
         public override string ToString()
         {

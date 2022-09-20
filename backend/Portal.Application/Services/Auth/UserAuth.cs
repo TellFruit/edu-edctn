@@ -17,7 +17,7 @@
 
             if (found is null)
             {
-                return -1;
+                return default;
             }
 
             return found.Id;

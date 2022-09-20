@@ -12,7 +12,6 @@ function getPartial(type, url, data, destination, callbackfunc) {
     });
 }
 
-// delete button response call for article table$(function() {
 function createArticleEvents() {
     $("#article-table-view .btn-danger").each(function () {
         $(this).click(function () {

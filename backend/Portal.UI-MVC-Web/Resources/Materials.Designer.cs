@@ -88,6 +88,15 @@ namespace Portal.UI_MVC_Web.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Page Count.
+        /// </summary>
+        internal static string PageCount {
+            get {
+                return ResourceManager.GetString("PageCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Published.
         /// </summary>
         internal static string Published {

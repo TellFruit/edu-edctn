@@ -1,5 +1,6 @@
 ﻿namespace Portal.UI_MVC_Web.Controllers
 {
+    [Authorize]
     public class ArticleController : Controller
     {
         private readonly IArticleService _articleService;
@@ -9,6 +10,7 @@
             _articleService = articleService;
         }
 
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             return View(await GetArticleIndexModel());

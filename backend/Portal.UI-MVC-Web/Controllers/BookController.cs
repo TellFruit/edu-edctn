@@ -31,7 +31,6 @@
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddOrEdit(BookDTO book)
         {
             if (!ModelState.IsValid)

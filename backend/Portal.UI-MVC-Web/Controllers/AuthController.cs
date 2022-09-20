@@ -59,12 +59,11 @@
         {
             var claims = new List<Claim>
             {
-                new Claim(ClaimsIdentity.DefaultNameClaimType, userName)
+                new Claim(ClaimTypes.Name, userName)
             };
 
-            ClaimsIdentity id = new ClaimsIdentity(claims, "ApplicationCookie",
-                ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
-            
+            var id = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id));
         }
 

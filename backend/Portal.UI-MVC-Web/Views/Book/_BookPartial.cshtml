@@ -9,11 +9,8 @@
             <th scope="col">@Materials.Author</th>
             <th scope="col">@Materials.Published</th>
             <th scope="col">@Materials.Format</th>
-            @if (User.Identity != null && User.Identity.IsAuthenticated)
-            {
             <th scope="col" />
             <th scope="col" />
-            }
         </tr>
     </thead>
     <tbody>
@@ -27,13 +24,11 @@
                     @book.Authors.First()
                 </td>
                 <td>
-                    @book.Published.Date
+                    @book.Published.ToShortDateString()
                 </td>
                 <td>
                     @book.Format
                 </td>
-                @if (User.Identity != null && User.Identity.IsAuthenticated)
-                {
                 <td class="d-flex flex-row-reverse">
                     <a asp-controller="Book" asp-action="AddOrEdit" asp-route-id="@book.Id" class="btn btn-secondary">
                         @Actions.Edit
@@ -44,7 +39,6 @@
                         @Actions.Delete
                     </a>
                 </td>
-                }
             </tr>
         }
     </tbody>
