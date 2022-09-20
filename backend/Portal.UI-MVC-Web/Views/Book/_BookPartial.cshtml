@@ -1,13 +1,14 @@
 ﻿@using Portal.UI_MVC_Web.Resources
 
-@model ArticleIndexModel
+@model BookIndexModel
 
 <table class="table table-hover" id="article-table">
     <thead>
         <tr>
             <th scope="col">@Materials.Title</th>
-            <th scope="col">@Materials.Url</th>
+            <th scope="col">@Materials.Author</th>
             <th scope="col">@Materials.Published</th>
+            <th scope="col">@Materials.Format</th>
             @if (User.Identity != null && User.Identity.IsAuthenticated)
             {
             <th scope="col" />
@@ -16,27 +17,30 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var article in Model.ArticleList)
+        @foreach (var book in Model.Books)
         {
             <tr>
                 <th scope="row">
-                    @article.Title
+                    @book.Title
                 </th>
                 <td>
-                    @article.Url
+                    @book.Authors.First()
                 </td>
                 <td>
-                    @article.Published.Date
+                    @book.Published.Date
+                </td>
+                <td>
+                    @book.Format
                 </td>
                 @if (User.Identity != null && User.Identity.IsAuthenticated)
                 {
                 <td class="d-flex flex-row-reverse">
-                    <a asp-controller="Article" asp-action="AddOrEdit" asp-route-id="@article.Id" class="btn btn-secondary">
+                    <a asp-controller="Book" asp-action="AddOrEdit" asp-route-id="@book.Id" class="btn btn-secondary">
                         @Actions.Edit
                     </a>
                 </td>
                 <td>
-                    <a class="btn btn-danger" url="@Url.Action("Delete", "Article")" data_id="@article.Id">
+                    <a class="btn btn-danger" url="@Url.Action("Delete", "Book")" data_id="@book.Id">
                         @Actions.Delete
                     </a>
                 </td>
@@ -45,7 +49,7 @@
         }
     </tbody>
 </table>  
-@if (Model.ArticleList.Any() is false)
+@if (Model.Books.Any() is false)
 {
     <h3 class="text-center">@Headings.NoData</h3>
 }
