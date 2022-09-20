@@ -1,0 +1,45 @@
+﻿@using Portal.UI_MVC_Web.Resources
+
+@model VideoIndexModel
+
+<table class="table table-hover" id="video-table">
+    <thead>
+        <tr>
+            <th scope="col">@Materials.Title</th>
+            <th scope="col">@Materials.Duration</th>
+            <th scope="col">@Materials.Quality</th>
+            <th scope="col" />
+            <th scope="col" />
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var video in Model.Videos)
+        {
+            <tr>
+                <th scope="row">
+                    @video.Title
+                </th>
+                <td>
+                    @video.Duration.ToString()
+                </td>
+                <td>
+                    @video.Quality
+                </td>
+                <td class="d-flex flex-row-reverse">
+                    <a asp-controller="Video" asp-action="AddOrEdit" asp-route-id="@video.Id" class="btn btn-secondary">
+                        @Actions.Edit
+                    </a>
+                </td>
+                <td>
+                    <a class="btn btn-danger" url="@Url.Action("Delete", "Vidoe")" data_id="@video.Id">
+                        @Actions.Delete
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>  
+@if (Model.Videos.Any() is false)
+{
+    <h3 class="text-center">@Headings.NoData</h3>
+}

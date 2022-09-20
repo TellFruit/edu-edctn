@@ -36,5 +36,18 @@ function createBookEvents() {
     });
 }
 
+function createVideoEvents() {
+    $("#video-table-view .btn-danger").each(function () {
+        $(this).click(function () {
+            let url = $(this).attr("url");
+            let id = { id: $(this).attr("data_id") };
+            let destination = $("#video-table-view");
+
+            getPartial("Get", url, id, destination, createVideoEvents);
+        });
+    });
+}
+
 createArticleEvents();
 createBookEvents();
+createVideoEvents();

@@ -7,7 +7,9 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Portal.UI_MVC_Web.styles.css" asp-append-version="true" />
-    @await RenderSectionAsync("Styles", false)
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/css/bootstrap-timepicker.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
+    await RenderSectionAsync("Styles", false)
 </head>
 <body>
     <header>
@@ -53,6 +55,7 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="~/js/partial.js"></script>  
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/js/bootstrap-timepicker.min.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
