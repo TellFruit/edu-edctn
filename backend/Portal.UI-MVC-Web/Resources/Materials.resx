@@ -126,6 +126,9 @@
   <data name="Format" xml:space="preserve">
     <value>Format</value>
   </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
   <data name="PageCount" xml:space="preserve">
     <value>Page Count</value>
   </data>
