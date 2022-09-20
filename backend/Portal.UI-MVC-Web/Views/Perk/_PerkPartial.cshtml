@@ -23,7 +23,7 @@
                     </a>
                 </td>
                 <td>
-                    <a class="btn btn-danger" url="@Url.Action("Delete", "Video")" data_id="@perk.Id">
+                    <a class="btn btn-danger" url="@Url.Action("Delete", "Perk")" data_id="@perk.Id">
                         @Actions.Delete
                     </a>
                 </td>
@@ -31,7 +31,7 @@
         }
     </tbody>
 </table>  
-@if (Model.Videos.Any() is false)
+@if (Model.Perks.Any() is false)
 {
     <h3 class="text-center">@Headings.NoData</h3>
 }
