@@ -50,6 +50,13 @@
             return _mapper.Map<CourseDTO>(wantedCourse);
         }
 
+        public async Task<ICollection<CourseDTO>> GetBySpec(ISpecification<CourseDomain> specification)
+        {
+            var courses = await _repository.Read(specification);
+
+            return _mapper.Map<ICollection<CourseDTO>>(courses);
+        }
+
         public async Task<CourseDTO> Update(CourseDTO entity)
         {
             var courses = await _repository.Read();

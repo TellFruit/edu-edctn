@@ -50,6 +50,13 @@
             return _mapper.Map<VideoDTO>(wantedVideo);
         }
 
+        public async Task<ICollection<VideoDTO>> GetBySpec(ISpecification<VideoDomain> specification)
+        {
+            var videos = await _repository.Read(specification);
+
+            return _mapper.Map<ICollection<VideoDTO>>(videos);
+        }
+
         public async Task<VideoDTO> Update(VideoDTO entity)
         {
             var articles = await _repository.Read();

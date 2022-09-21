@@ -50,6 +50,13 @@
             return _mapper.Map<PerkDTO>(wantedPerk);
         }
 
+        public async Task<ICollection<PerkDTO>> GetBySpec(ISpecification<PerkDomain> specification)
+        {
+            var courses = await _repository.Read(specification);
+
+            return _mapper.Map<ICollection<PerkDTO>>(courses);
+        }
+
         public async Task<PerkDTO> Update(PerkDTO entity)
         {
             var perks = await _repository.Read();

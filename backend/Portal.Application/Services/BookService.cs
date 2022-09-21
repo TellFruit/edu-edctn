@@ -50,6 +50,13 @@
             return _mapper.Map<BookDTO>(wantedBook);
         }
 
+        public async Task<ICollection<BookDTO>> GetBySpec(ISpecification<BookDomain> specification)
+        {
+            var books = await _repository.Read(specification);
+
+            return _mapper.Map<ICollection<BookDTO>>(books);
+        }
+
         public async Task<BookDTO> Update(BookDTO entity)
         {
             var articles = await _repository.Read();

@@ -50,6 +50,13 @@
             return _mapper.Map<UserDTO>(wantedUser);
         }
 
+        public async Task<ICollection<UserDTO>> GetBySpec(ISpecification<UserDomain> specification)
+        {
+            var users = await _repository.Read(specification);
+
+            return _mapper.Map<ICollection<UserDTO>>(users);
+        }
+
         public async Task<UserDTO> Update(UserDTO entity)
         {
             var users = await _repository.Read();

@@ -1,11 +1,13 @@
 ﻿namespace Portal.Application.Interfaces.InnerImpl
 {
-    public interface IModelService<TEntityDTO> where TEntityDTO : class
+    public interface IModelService<TDto, TDomain> where TDto : class
+                                                  where TDomain : BaseEntity
     {
-        Task<TEntityDTO> Create(TEntityDTO entity);
-        Task<ICollection<TEntityDTO>> GetAll();
-        Task<TEntityDTO> GetById(int id);
-        Task<TEntityDTO> Update(TEntityDTO entity);
+        Task<TDto> Create(TDto entity);
+        Task<ICollection<TDto>> GetAll();
+        Task<TDto> GetById(int id);
+        Task<ICollection<TDto>> GetBySpec(ISpecification<TDomain> specification);
+        Task<TDto> Update(TDto entity);
         Task<int> Delete(int id);
     }
 }
