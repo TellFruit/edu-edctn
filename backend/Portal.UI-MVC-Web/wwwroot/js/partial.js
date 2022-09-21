@@ -1,5 +1,4 @@
-﻿// general function for a simple get 
-function getPartial(type, url, data, destination, callbackfunc) {
+﻿function getPartial(type, url, data, destination, callbackfunc) {
     $.ajax({
         type: type,
         url: url,
@@ -12,42 +11,35 @@ function getPartial(type, url, data, destination, callbackfunc) {
     });
 }
 
-function createArticleEvents() {
-    $("#article-table-view .btn-danger").each(function () {
+function createDeleteEvents(table, callbackfunc) {
+    $(table + " .btn-danger").each(function () {
         $(this).click(function () {
             let url = $(this).attr("url");
             let id = { id: $(this).attr("data_id") };
-            let destination = $("#article-table-view");
-            
-            getPartial("Get", url, id, destination, createArticleEvents);
+            let destination = $(table);
+
+            getPartial("Get", url, id, destination, callbackfunc);
         });
     });
+}
+
+function createArticleEvents() {
+    createDeleteEvents("#article-table-view", createBookEvents);
 }
 
 function createBookEvents() {
-    $("#book-table-view .btn-danger").each(function () {
-        $(this).click(function () {
-            let url = $(this).attr("url");
-            let id = { id: $(this).attr("data_id") };
-            let destination = $("#book-table-view");
-
-            getPartial("Get", url, id, destination, createBookEvents);
-        });
-    });
+    createDeleteEvents("#book-table-view", createBookEvents);
 }
 
 function createVideoEvents() {
-    $("#video-table-view .btn-danger").each(function () {
-        $(this).click(function () {
-            let url = $(this).attr("url");
-            let id = { id: $(this).attr("data_id") };
-            let destination = $("#video-table-view");
+    createDeleteEvents("#video-table-view", createVideoEvents);
+}
 
-            getPartial("Get", url, id, destination, createVideoEvents);
-        });
-    });
+function createPerkEvents() {
+    createDeleteEvents("#perk-table-view", createPerkEvents);
 }
 
 createArticleEvents();
 createBookEvents();
 createVideoEvents();
+createPerkEvents();
