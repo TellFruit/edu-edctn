@@ -35,11 +35,11 @@
             return books.Select(x => _mapper.Map<BookDomain>(x)).ToList();
         }
 
-        public async Task<ICollection<BookDomain>> Read(Func<BookDomain, bool> predicate)
+        public async Task<ICollection<BookDomain>> Read(ISpecification<BookDomain> specification)
         {
             var res = await Read();
 
-            return res.Where(predicate).ToList();
+            return res.Where(specification).ToList();
         }
 
         public void SaveChanges()

@@ -42,11 +42,11 @@
             return users.Select(x => _mapper.Map<UserDomain>(x)).ToList();
         }
 
-        public async Task<ICollection<UserDomain>> Read(Func<UserDomain, bool> predicate)
+        public async Task<ICollection<UserDomain>> Read(ISpecification<UserDomain> specification)
         {
             var res = await Read();
 
-            return res.Where(predicate).ToList();
+            return res.Where(specification).ToList();
         }
 
         public void SaveChanges()

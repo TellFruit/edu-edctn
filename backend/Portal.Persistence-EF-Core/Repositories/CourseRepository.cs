@@ -47,11 +47,11 @@
             return courses.Select(x => _mapper.Map<CourseDomain>(x)).ToList();
         }
 
-        public async Task<ICollection<CourseDomain>> Read(Func<CourseDomain, bool> predicate)
+        public async Task<ICollection<CourseDomain>> Read(ISpecification<CourseDomain> specification)
         {
             var res = await Read();
 
-            return res.Where(predicate).ToList();
+            return res.Where(specification).ToList();
         }
 
         public void SaveChanges()

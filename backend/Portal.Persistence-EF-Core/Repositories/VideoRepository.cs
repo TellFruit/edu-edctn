@@ -34,11 +34,11 @@
             return videos.Select(x => _mapper.Map<VideoDomain>(x)).ToList();
         }
 
-        public async Task<ICollection<VideoDomain>> Read(Func<VideoDomain, bool> predicate)
+        public async Task<ICollection<VideoDomain>> Read(ISpecification<VideoDomain> specification)
         {
             var res = await Read();
 
-            return res.Where(predicate).ToList();
+            return res.Where(specification).ToList();
         }
 
         public void SaveChanges()

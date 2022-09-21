@@ -35,11 +35,11 @@
             return perks.Select(x => _mapper.Map<PerkDomain>(x)).ToList();
         }
 
-        public async Task<ICollection<PerkDomain>> Read(Func<PerkDomain, bool> predicate)
+        public async Task<ICollection<PerkDomain>> Read(ISpecification<PerkDomain> specification)
         {
             var res = await Read();
 
-            return res.Where(predicate).ToList();
+            return res.Where(specification).ToList();
         }
 
         public void SaveChanges()
