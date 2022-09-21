@@ -1,5 +1,7 @@
 ﻿using Portal.Domain.Entities.Course;
+using Portal.Domain.Entities.Course.Specification;
 using Portal.Domain.Entities.User;
+using Portal.Domain.Entities.User.Specification;
 
 namespace Portal.Application.Services.Rules
 {
@@ -75,14 +77,18 @@ namespace Portal.Application.Services.Rules
 
         private async Task<UserDomain> GetUserById(int userId)
         {
-            var res = await _userRepos.Read(x => x.Id.Equals(userId));
+            var spec = new UserByIdFilter(userId);
+
+            var res = await _userRepos.Read(spec);
 
             return res.Last();
         }
 
         private async Task<CourseDomain> GetCourseById(int courseId)
         {
-            var res = await _courseRepos.Read(c => c.Id.Equals(courseId));
+            var spec = new CourseByIdFilter(courseId);
+
+            var res = await _courseRepos.Read(spec);
 
             return res.Last();
         }

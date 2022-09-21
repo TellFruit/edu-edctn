@@ -1,5 +1,4 @@
 ﻿using Portal.Domain.Entities.Abstract;
-using Portal.Domain.Interfaces;
 
 namespace Portal.Domain.GenericSpecification
 {
