@@ -35,11 +35,11 @@
             return articles.Select(x => _mapper.Map<ArticleDomain>(x)).ToList();
         }
 
-        public async Task<ICollection<ArticleDomain>> Read(Func<ArticleDomain, bool> predicate)
+        public async Task<ICollection<ArticleDomain>> Read(ISpecification<ArticleDomain> specification)
         {
             var res = await Read();
 
-            return res.Where(predicate).ToList();
+            return res.Where(specification).ToList();
         }
 
         public void SaveChanges()
