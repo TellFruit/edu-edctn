@@ -26,6 +26,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
        .AddCookie(options =>
        {
            options.LoginPath = new PathString("/Auth/Login");
+           options.Cookie.Name = "my_app_auth_cookie";
        });
 
 var app = builder.Build();
@@ -45,8 +46,8 @@ app.UseRouting();
 
 app.UseSession();
 
-app.UseAuthorization();
 app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",

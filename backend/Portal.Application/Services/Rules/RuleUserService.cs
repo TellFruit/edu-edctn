@@ -80,7 +80,7 @@ namespace Portal.Application.Services.Rules
             var spec = new UserByIdFilter(userId);
 
             var res = await _userRepos.Read(spec);
-
+             
             return res.Last();
         }
 
