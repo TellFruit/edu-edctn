@@ -1,6 +1,6 @@
-﻿@    using Portal.UI_MVC_Web.Resources
+﻿@using Portal.UI_MVC_Web.Resources
 
-@model PerkIndexModel
+@model CourseIndexModel
 
 @{
     Context.Session.SetString("LastUrl", Context.Request.Path);
@@ -15,8 +15,8 @@
 <h1 class="text-center">@ViewData["Title"]</h1>
 <h2 class="text-center">@Headings.DataTable</h2>
 
-<a asp-controller="Perk" asp-action="AddOrEdit" class="btn btn-primary">@Actions.Create</a>
+<a asp-controller="Course" asp-action="AddOrEdit" class="btn btn-primary">@Actions.Create</a>
  
-<div id="perk-table-view">
-    @await Html.PartialAsync("_PerkPartial", Model)
+<div id="course-table-view">
+    @await Html.PartialAsync("_CoursePartial", Model)
 </div>

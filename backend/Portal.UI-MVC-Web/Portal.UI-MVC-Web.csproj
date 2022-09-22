@@ -20,7 +20,6 @@
   <ItemGroup>
     <Folder Include="Interfaces\" />
     <Folder Include="Services\" />
-    <Folder Include="Views\Course\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -34,10 +33,10 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Headings.resx</DependentUpon>
     </Compile>
-    <Compile Update="Resources\Materials.Designer.cs">
+    <Compile Update="Resources\Objects.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>Materials.resx</DependentUpon>
+      <DependentUpon>Objects.resx</DependentUpon>
     </Compile>
     <Compile Update="Resources\Profile.Designer.cs">
       <DesignTime>True</DesignTime>
@@ -55,9 +54,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Headings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Update="Resources\Materials.resx">
+    <EmbeddedResource Update="Resources\Objects.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Materials.Designer.cs</LastGenOutput>
+      <LastGenOutput>Objects.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\Profile.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

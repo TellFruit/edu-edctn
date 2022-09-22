@@ -17,15 +17,15 @@
 {
     <div class="mb-2">
         <div class="d-flex flex-column">
-            @Html.Label(@Materials.Title)
+            @Html.Label(@Objects.Title)
             @Html.TextBoxFor(m => m.Title)
         </div>
         <div class="d-flex flex-column">
-            @Html.Label(@Materials.Url)
+            @Html.Label(@Objects.Url)
             @Html.TextBoxFor(m => m.Url)
         </div>
         <div class="d-flex flex-column">
-            @Html.Label(@Materials.Published)
+            @Html.Label(@Objects.Published)
             <input asp-for="Published" type="date">
         </div>
     </div>

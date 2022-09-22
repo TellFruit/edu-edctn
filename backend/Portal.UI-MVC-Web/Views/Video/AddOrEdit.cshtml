@@ -17,15 +17,15 @@
 {
     <div class="mb-2">
         <div class="d-flex flex-column">
-            @Html.Label(@Materials.Title)
+            @Html.Label(@Objects.Title)
             @Html.TextBoxFor(m => m.Title)
         </div>
         <div class="d-flex flex-column">
-            @Html.Label(@Materials.Duration)
+            @Html.Label(@Objects.Duration)
             <input asp-for="Duration" id="timepicker" type="text">
         </div>
         <div class="d-flex flex-column">
-            @Html.Label(@Materials.Quality + ", pixels")
+            @Html.Label(@Objects.Quality + ", pixels")
             @Html.TextBoxFor(m => m.Quality)
         </div>
     </div>

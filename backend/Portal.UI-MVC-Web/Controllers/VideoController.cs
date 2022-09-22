@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
-namespace Portal.UI_MVC_Web.Controllers
+﻿namespace Portal.UI_MVC_Web.Controllers
 {
     [Authorize]
     public class VideoController : Controller

@@ -1,4 +1,6 @@
-﻿namespace Portal.UI_MVC_Web.Controllers
+﻿using Portal.UI_MVC_Web.Models.Perk;
+
+namespace Portal.UI_MVC_Web.Controllers
 {
     [Authorize]
     public class PerkController : Controller

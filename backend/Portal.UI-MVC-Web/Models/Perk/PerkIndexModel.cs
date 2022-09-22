@@ -1,4 +1,4 @@
-﻿namespace Portal.UI_MVC_Web.Models.Materials
+﻿namespace Portal.UI_MVC_Web.Models.Perk
 {
     public class PerkIndexModel
     {

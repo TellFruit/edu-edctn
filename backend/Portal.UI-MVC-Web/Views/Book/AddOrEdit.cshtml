@@ -23,23 +23,23 @@
 
     <div class="mb-2">
         <div class="d-flex flex-column">
-            @Html.Label(@Materials.Title)
+            @Html.Label(@Objects.Title)
             @Html.TextBoxFor(m => m.Title)
         </div>
         <div class="d-flex flex-column">
-            @Html.Label(@Materials.PageCount)
+            @Html.Label(@Objects.PageCount)
             @Html.TextBoxFor(m => m.PageCount)
         </div>
         <div class="d-flex flex-column">
-            @Html.Label(@Materials.Author)
+            @Html.Label(@Objects.Author)
             @Html.TextBoxFor(m => m.Authors[0])
         </div>
         <div class="d-flex flex-column">
-            @Html.Label(@Materials.Published)
+            @Html.Label(@Objects.Published)
             <input asp-for="Published" type="date">
         </div>
         <div class="d-flex flex-column">
-            @Html.Label(@Materials.Format)
+            @Html.Label(@Objects.Format)
             @Html.TextBoxFor(m => m.Format)
         </div>
     </div>
