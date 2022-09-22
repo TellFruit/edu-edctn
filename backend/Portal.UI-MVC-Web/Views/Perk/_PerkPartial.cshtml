@@ -1,4 +1,4 @@
-﻿@    using Portal.UI_MVC_Web.Resources
+﻿@using Portal.UI_MVC_Web.Resources
 
 @model PerkIndexModel
 
@@ -18,7 +18,7 @@
                     @perk.Name
                 </th>
                 <td class="d-flex flex-row-reverse">
-                    <a asp-controller="Video" asp-action="AddOrEdit" asp-route-id="@perk.Id" class="btn btn-secondary">
+                    <a asp-controller="Perk" asp-action="AddOrEdit" asp-route-id="@perk.Id" class="btn btn-secondary">
                         @Actions.Edit
                     </a>
                 </td>

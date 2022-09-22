@@ -2,11 +2,11 @@
 {
     public class CourseIndexModel
     {
-        ICollection<CourseDTO> _courses;
+        public ICollection<CourseDTO> Courses { get; set; }
 
         public CourseIndexModel(ICollection<CourseDTO> courses)
         {
-            _courses = courses;
+            Courses = courses;
         }
     }
 }
