@@ -3,45 +3,27 @@
     [Authorize]
     public class CourseController : Controller
     {
-        private readonly ICourseService _courseService;
-        private readonly IArticleService _articleService;
-        private readonly IMapper _mapper;
+        private readonly ICourseViewModelService _viewModelService;
 
-        public CourseController(ICourseService courseService, IArticleService articleService, IMapper mapper)
+        public CourseController(ICourseViewModelService viewModelService)
         {
-            _courseService = courseService;
-            _articleService = articleService;
-            _mapper = mapper;
+            _viewModelService = viewModelService;
         }
 
         [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
-            return View(await GetCourseIndexModel());
+            return View(await _viewModelService.GetCourseIndexModel());
         }
 
         public async Task<IActionResult> AddOrEdit(int? id)
         {
-            CourseDTO course;
-
-            if (id == null)
+            if (id != null)
             {
-                course = new CourseDTO();
-            }
-            else
-            {
-                course = await _courseService.GetById(id.Value);
+                return View(await _viewModelService.ToCourseViewModelById(id.Value));
             }
 
-            var courseViewModel = _mapper.Map<CourseViewModel>(course);
-
-            var spec = new ArticleNotIncludedSpec(courseViewModel.Articles.Select(a => a.Id));
-            var unmarkedArticles = await _articleService.GetBySpec(spec);
-            var castedArticles = _mapper.Map<ICollection<CourseArticleModel>>(unmarkedArticles);
-
-            courseViewModel.Articles.Add(castedArticles.First());
-
-            return View(courseViewModel);
+            return View(_viewModelService.ToCourseViewModel(new CourseDTO()));
         }
 
         [HttpPost]
@@ -54,27 +36,14 @@
 
             if (courseViewModel.Id.Equals(default))
             {
-                var courseDTO = _mapper.Map<CourseDTO>(courseViewModel);
-                var selectedArticles = courseViewModel.Articles.Where(a => a.IsSelected).ToList();
-                var articleDTOs = _mapper.Map<ICollection<ArticleDTO>>(selectedArticles);
-
-                courseDTO.Materials.Add(articleDTOs.First());
-
-                await _courseService.Create(courseDTO);
+                await _viewModelService.CallCreateCourse(courseViewModel);
             }
             else
             {
-                //await _bookService.Update(book);
+                await _viewModelService.CallUpdateCourse(courseViewModel);
             }
 
             return RedirectToAction(nameof(Index));
-        }
-
-        private async Task<CourseIndexModel> GetCourseIndexModel()
-        {
-            var course = await _courseService.GetAll();
-
-            return new CourseIndexModel(course);
         }
     }
 }

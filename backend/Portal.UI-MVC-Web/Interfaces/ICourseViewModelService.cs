@@ -1,6 +1,6 @@
 ﻿namespace Portal.UI_MVC_Web.Interfaces
 {
-    internal interface ICourseViewModelService
+    public interface ICourseViewModelService
     {
         public CourseViewModel ToCourseViewModel(CourseDTO courseDTO);
 
