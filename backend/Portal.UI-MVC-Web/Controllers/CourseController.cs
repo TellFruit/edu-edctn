@@ -17,9 +17,9 @@ namespace Portal.UI_MVC_Web.Controllers
         }
 
         [AllowAnonymous]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            return View(await GetCourseIndexModel());
         }
 
         public async Task<IActionResult> AddOrEdit(int? id)
@@ -39,10 +39,44 @@ namespace Portal.UI_MVC_Web.Controllers
 
             var spec = new ArticleNotIncludedSpec(courseViewModel.Articles.Select(a => a.Id));
             var unmarkedArticles = await _articleService.GetBySpec(spec);
+            var castedArticles = _mapper.Map<ICollection<CourseArticleModel>>(unmarkedArticles);
 
-            courseViewModel.Articles.Union(unmarkedArticles);
+            courseViewModel.Articles.Add(castedArticles.First());
 
-            return View(course);
+            return View(courseViewModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddOrEdit(CourseViewModel courseViewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(courseViewModel);
+            }
+
+            if (courseViewModel.Id.Equals(default))
+            {
+                var courseDTO = _mapper.Map<CourseDTO>(courseViewModel);
+                var selectedArticles = courseViewModel.Articles.Where(a => a.IsSelected).ToList();
+                var articleDTOs = _mapper.Map<ICollection<ArticleDTO>>(selectedArticles);
+
+                courseDTO.Materials.Add(articleDTOs.First());
+
+                await _courseService.Create(courseDTO);
+            }
+            else
+            {
+                //await _bookService.Update(book);
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        private async Task<CourseIndexModel> GetCourseIndexModel()
+        {
+            var course = await _courseService.GetAll();
+
+            return new CourseIndexModel(course);
         }
     }
 }

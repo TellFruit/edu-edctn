@@ -38,6 +38,10 @@
             <tbody>
                 @for (int i = 0; i < Model.Articles.Count(); ++i)
                 {
+                    <input asp-for="Articles[i].Id" type="hidden"/>
+                    <input asp-for="Articles[i].Title" type="hidden"/>
+                    <input asp-for="Articles[i].Url" type="hidden"/>
+                    <input asp-for="Articles[i].Published" type="hidden"/>
                     <tr>
                         <th scope="row">
                             @Html.Label(@Objects.Selected)
