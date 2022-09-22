@@ -1,12 +1,12 @@
-﻿namespace Portal.UI_MVC_Web.Services
+﻿namespace Portal.Application
 {
     public static class CollectionExtension
     {
-        public static ICollection<T> AddRange<T>(this ICollection<T> list, ICollection<T> values)
+        public static IEnumerable<T> AddRange<T>(this IEnumerable<T> list, IEnumerable<T> values)
         {
             foreach (var item in values)
             {
-                list.Add(item);
+                list.Append(item);
             }
 
             return list;

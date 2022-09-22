@@ -29,9 +29,23 @@
             throw new NotImplementedException();
         }
 
-        public async Task<CourseDTO> ToCourseDto(CourseViewModel courseViewModel)
+        public CourseDTO ToCourseDto(CourseViewModel courseViewModel)
         {
-            throw new NotImplementedException();
+            var courseDTO = _mapper.Map<CourseDTO>(courseViewModel);
+
+            var castedArticles = _mapper.Map<ICollection<MaterialDTO>>(courseViewModel.Articles);
+            courseDTO.Materials.AddRange(castedArticles);
+
+            var castedVideos = _mapper.Map<ICollection<MaterialDTO>>(courseViewModel.Videos);
+            courseDTO.Materials.AddRange(castedVideos);
+
+            var castedBooks = _mapper.Map<ICollection<MaterialDTO>>(courseViewModel.Books);
+            courseDTO.Materials.AddRange(castedBooks);
+
+            var castedPerks = _mapper.Map<ICollection<PerkDTO>>(courseViewModel.Perks);
+            courseDTO.Perks.AddRange(castedPerks);
+
+            return courseDTO;
         }
 
         public async Task<CourseViewModel> ToCourseViewModel(CourseDTO courseDTO)
