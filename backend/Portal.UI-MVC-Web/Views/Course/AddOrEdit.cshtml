@@ -26,7 +26,7 @@
         </div>
         <h2 class="text-center">@Headings.Articles</h2>
         <h3 class="text-center">@Headings.DataTable</h3>
-        <table class="table table-hover" id="article-table">
+        <table class="table table-hover">
             <thead>
                 <tr>
                     <th scope="col">@Objects.Selected</th>
@@ -44,17 +44,63 @@
                     <input asp-for="Articles[i].Published" type="hidden"/>
                     <tr>
                         <th scope="row">
-                            @Html.Label(@Objects.Selected)
                             @Html.CheckBoxFor(m => m.Articles[i].IsSelected)
                         </th>
                         <th scope="row">
-                            @Model.Articles[i].Title
+                            @Model.Books[i].Title
                         </th>
                         <td>
-                            @Model.Articles[i].Url
+                            @Model.Books[i].PageCount
                         </td>
                         <td>
                             @Model.Articles[i].Published.Date.ToShortDateString()
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>  
+        @if (Model.Articles.Any() is false)
+        {
+            <h3 class="text-center">@Headings.NoData</h3>
+        }
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">@Objects.Selected</th>
+                    <th scope="col">@Objects.Title</th>
+                    <th scope="col">@Objects.PageCount</th>
+                    <th scope="col">@Objects.Author</th>
+                    <th scope="col">@Objects.Published</th>
+                    <th scope="col">@Objects.Format</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.Articles.Count(); ++i)
+                {
+                    <input asp-for="Books[i].Id" type="hidden"/>
+                    <input asp-for="Books[i].PageCount" type="hidden"/>
+                    <input asp-for="Books[i].Authors" type="hidden"/>
+                    <input asp-for="Books[i].Published" type="hidden"/>
+                    <input asp-for="Books[i].Format" type="hidden"/>
+
+                    <tr>
+                        <th scope="row">
+                            @Html.CheckBoxFor(m => m.Books[i].IsSelected)
+                        </th>
+                        <th scope="row">
+                            @Model.Books[i].Title
+                        </th>
+                        <th scope="row">
+                            @Model.Books[i].PageCount
+                        </th>
+                        <td>
+                            @Model.Books[i].Authors.First()
+                        </td>
+                        <td>
+                            @Model.Books[i].Published.ToShortDateString()
+                        </td>
+                        <td>
+                            @Model.Books[i].Format
                         </td>
                     </tr>
                 }

@@ -6,6 +6,7 @@
     <thead>
         <tr>
             <th scope="col">@Objects.Title</th>
+            <th scope="col">@Objects.PageCount</th>
             <th scope="col">@Objects.Author</th>
             <th scope="col">@Objects.Published</th>
             <th scope="col">@Objects.Format</th>
@@ -19,6 +20,9 @@
             <tr>
                 <th scope="row">
                     @book.Title
+                </th>
+                <th scope="row">
+                    @book.PageCount
                 </th>
                 <td>
                     @book.Authors.First()
