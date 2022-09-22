@@ -16,6 +16,12 @@
             return View(await _viewModelService.GetCourseIndexModel());
         }
 
+        [AllowAnonymous]
+        public async Task<IActionResult> Details(int id)
+        {
+            return View(await _viewModelService.ToCourseViewModelById(id));
+        }
+
         public async Task<IActionResult> AddOrEdit(int? id)
         {
             if (id != null)
