@@ -93,9 +93,9 @@
                         <th scope="row">
                             @Model.Books[i].Title
                         </th>
-                        <th scope="row">
+                        <td>
                             @Model.Books[i].PageCount
-                        </th>
+                        </td>
                         <td>
                             @Model.Books[i].Authors.First()
                         </td>
@@ -145,6 +145,36 @@
                         <td>
                             @Model.Videos[i].Quality
                         </td>
+                    </tr>
+                }
+            </tbody>
+        </table>  
+        @if (Model.Articles.Any() is false)
+        {
+            <h3 class="text-center">@Headings.NoData</h3>
+        }
+        <h2 class="text-center">@Headings.Perks</h2>
+        <h3 class="text-center">@Headings.DataTable</h3>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">@Objects.Selected</th>
+                    <th scope="col">@Objects.Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.Articles.Count(); ++i)
+                {
+                    <input asp-for="Perks[i].Id" type="hidden"/>
+                    <input asp-for="Perks[i].Name" type="hidden"/>
+
+                    <tr>
+                        <th scope="row">
+                            @Html.CheckBoxFor(m => m.Perks[i].IsSelected)
+                        </th>
+                        <th scope="row">
+                            @Model.Perks[i].Name
+                        </th>
                     </tr>
                 }
             </tbody>
