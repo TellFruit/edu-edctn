@@ -30,14 +30,14 @@ builder.Services.AddSession(options =>
 {
     options.IdleTimeout = TimeSpan.FromMinutes(10);
     options.Cookie.HttpOnly = true;
-    options.Cookie.IsEssential = true;
+    options.Cookie.IsEssential = true;-
 });
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
        .AddCookie(options =>
        {
            options.LoginPath = new PathString("/Auth/Login");
-           options.Cookie.Name = "my_app_auth_cookie";
+           options.Cookie.Name = "app_auth_cookie";
        });
 
 var app = builder.Build();
