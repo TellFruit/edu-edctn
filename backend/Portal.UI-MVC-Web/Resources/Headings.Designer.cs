@@ -61,6 +61,24 @@ namespace Portal.UI_MVC_Web.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Articles.
+        /// </summary>
+        internal static string Articles {
+            get {
+                return ResourceManager.GetString("Articles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Books.
+        /// </summary>
+        internal static string Books {
+            get {
+                return ResourceManager.GetString("Books", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Data table.
         /// </summary>
         internal static string DataTable {
@@ -75,6 +93,24 @@ namespace Portal.UI_MVC_Web.Resources {
         internal static string NoData {
             get {
                 return ResourceManager.GetString("NoData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Perks.
+        /// </summary>
+        internal static string Perks {
+            get {
+                return ResourceManager.GetString("Perks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Videos.
+        /// </summary>
+        internal static string Videos {
+            get {
+                return ResourceManager.GetString("Videos", resourceCulture);
             }
         }
     }

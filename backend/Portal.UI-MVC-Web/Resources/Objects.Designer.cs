@@ -133,6 +133,15 @@ namespace Portal.UI_MVC_Web.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Selected.
+        /// </summary>
+        internal static string Selected {
+            get {
+                return ResourceManager.GetString("Selected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Title.
         /// </summary>
         internal static string Title {

@@ -141,6 +141,9 @@
   <data name="Quality" xml:space="preserve">
     <value>Quality</value>
   </data>
+  <data name="Selected" xml:space="preserve">
+    <value>Selected</value>
+  </data>
   <data name="Title" xml:space="preserve">
     <value>Title</value>
   </data>
