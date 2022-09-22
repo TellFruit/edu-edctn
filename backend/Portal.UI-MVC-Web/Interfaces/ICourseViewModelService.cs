@@ -6,7 +6,7 @@
 
         public Task<CourseViewModel> ToCourseViewModelById(int courseId);
 
-        public Task<CourseDTO> ToCourseDto(CourseViewModel courseViewModel);
+        public CourseDTO ToCourseDto(CourseViewModel courseViewModel);
 
 
         public Task CallCreateCourse(CourseViewModel courseViewModel);

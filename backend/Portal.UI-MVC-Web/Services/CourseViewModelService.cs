@@ -21,12 +21,16 @@
 
         public async Task CallCreateCourse(CourseViewModel courseViewModel)
         {
-            throw new NotImplementedException();
+            var courseDTO = ToCourseDto(courseViewModel);
+
+            await _courseService.Create(courseDTO);
         }
 
         public async Task CallUpdateCourse(CourseViewModel courseViewModel)
         {
-            throw new NotImplementedException();
+            var courseDTO = ToCourseDto(courseViewModel);
+
+            await _courseService.Update(courseDTO);
         }
 
         public CourseDTO ToCourseDto(CourseViewModel courseViewModel)
