@@ -1,6 +1,5 @@
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services from used used layers
 Portal.Application
      .DependencyInjection.RegisterApplication(builder.Services);
 
@@ -9,6 +8,8 @@ Portal.Persistence_EF_Core
 
 Portal.Persistence_EF_Core
     .DependencyInjection.RegisterDbContextJson(builder.Services, builder.Configuration);
+
+builder.Services.AddScoped<ICourseViewModelService, CourseViewModelService>();
 
 builder.Services.AddAutoMapper(
                 cfg =>
@@ -30,7 +31,7 @@ builder.Services.AddSession(options =>
 {
     options.IdleTimeout = TimeSpan.FromMinutes(10);
     options.Cookie.HttpOnly = true;
-    options.Cookie.IsEssential = true;-
+    options.Cookie.IsEssential = true;
 });
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
