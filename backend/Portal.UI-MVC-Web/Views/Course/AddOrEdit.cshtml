@@ -13,7 +13,7 @@
     }
 }
 
-@using(Html.BeginForm("AddOrEdit", "Course", FormMethod.Post))
+@using (Html.BeginForm("AddOrEdit", "Course", FormMethod.Post))
 {
     <div class="mb-2">
         <div class="d-flex flex-column">
@@ -38,10 +38,10 @@
             <tbody>
                 @for (int i = 0; i < Model.Articles.Count(); ++i)
                 {
-                    <input asp-for="Articles[i].Id" type="hidden"/>
-                    <input asp-for="Articles[i].Title" type="hidden"/>
-                    <input asp-for="Articles[i].Url" type="hidden"/>
-                    <input asp-for="Articles[i].Published" type="hidden"/>
+                    <input asp-for="Articles[i].Id" type="hidden" />
+                    <input asp-for="Articles[i].Title" type="hidden" />
+                    <input asp-for="Articles[i].Url" type="hidden" />
+                    <input asp-for="Articles[i].Published" type="hidden" />
                     <tr>
                         <th scope="row">
                             @Html.CheckBoxFor(m => m.Articles[i].IsSelected)
@@ -58,7 +58,7 @@
                     </tr>
                 }
             </tbody>
-        </table>  
+        </table>
         @if (Model.Articles.Any() is false)
         {
             <h3 class="text-center">@Headings.NoData</h3>
@@ -77,14 +77,14 @@
                 </tr>
             </thead>
             <tbody>
-                @for (int i = 0; i < Model.Articles.Count(); ++i)
+                @for (int i = 0; i < Model.Books.Count(); ++i)
                 {
-                    <input asp-for="Books[i].Id" type="hidden"/>
-                    <input asp-for="Books[i].Title" type="hidden"/>
-                    <input asp-for="Books[i].PageCount" type="hidden"/>
-                    <input asp-for="Books[i].Authors" type="hidden"/>
-                    <input asp-for="Books[i].Published" type="hidden"/>
-                    <input asp-for="Books[i].Format" type="hidden"/>
+                    <input asp-for="Books[i].Id" type="hidden" />
+                    <input asp-for="Books[i].Title" type="hidden" />
+                    <input asp-for="Books[i].PageCount" type="hidden" />
+                    <input asp-for="Books[i].Authors" type="hidden" />
+                    <input asp-for="Books[i].Published" type="hidden" />
+                    <input asp-for="Books[i].Format" type="hidden" />
 
                     <tr>
                         <th scope="row">
@@ -108,8 +108,8 @@
                     </tr>
                 }
             </tbody>
-        </table>  
-        @if (Model.Articles.Any() is false)
+        </table>
+        @if (Model.Books.Any() is false)
         {
             <h3 class="text-center">@Headings.NoData</h3>
         }
@@ -125,12 +125,12 @@
                 </tr>
             </thead>
             <tbody>
-                @for (int i = 0; i < Model.Articles.Count(); ++i)
+                @for (int i = 0; i < Model.Videos.Count(); ++i)
                 {
-                    <input asp-for="Videos[i].Id" type="hidden"/>
-                    <input asp-for="Videos[i].Title" type="hidden"/>
-                    <input asp-for="Videos[i].Duration" type="hidden"/>
-                    <input asp-for="Videos[i].Quality" type="hidden"/>
+                    <input asp-for="Videos[i].Id" type="hidden" />
+                    <input asp-for="Videos[i].Title" type="hidden" />
+                    <input asp-for="Videos[i].Duration" type="hidden" />
+                    <input asp-for="Videos[i].Quality" type="hidden" />
 
                     <tr>
                         <th scope="row">
@@ -148,8 +148,8 @@
                     </tr>
                 }
             </tbody>
-        </table>  
-        @if (Model.Articles.Any() is false)
+        </table>
+        @if (Model.Videos.Any() is false)
         {
             <h3 class="text-center">@Headings.NoData</h3>
         }
@@ -163,10 +163,10 @@
                 </tr>
             </thead>
             <tbody>
-                @for (int i = 0; i < Model.Articles.Count(); ++i)
+                @for (int i = 0; i < Model.Perks.Count(); ++i)
                 {
-                    <input asp-for="Perks[i].Id" type="hidden"/>
-                    <input asp-for="Perks[i].Name" type="hidden"/>
+                    <input asp-for="Perks[i].Id" type="hidden" />
+                    <input asp-for="Perks[i].Name" type="hidden" />
 
                     <tr>
                         <th scope="row">
@@ -178,12 +178,12 @@
                     </tr>
                 }
             </tbody>
-        </table>  
-        @if (Model.Articles.Any() is false)
+        </table>
+        @if (Model.Perks.Any() is false)
         {
             <h3 class="text-center">@Headings.NoData</h3>
         }
     </div>
-    <input asp-for="Id" type="hidden"/>
+    <input asp-for="Id" type="hidden" />
     <input class="btn btn-primary" type="submit" value="@Actions.Submit">
 }
