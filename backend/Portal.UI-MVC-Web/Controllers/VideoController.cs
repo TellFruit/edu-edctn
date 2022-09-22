@@ -2,6 +2,7 @@
 
 namespace Portal.UI_MVC_Web.Controllers
 {
+    [Authorize]
     public class VideoController : Controller
     {
         private readonly IVideoService _videoService;
@@ -11,6 +12,7 @@ namespace Portal.UI_MVC_Web.Controllers
             _videoService = videoService;
         }
 
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             return View(await GetVideoIndexModel());

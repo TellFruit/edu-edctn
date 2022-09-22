@@ -1,5 +1,6 @@
 ﻿namespace Portal.UI_MVC_Web.Controllers
 {
+    [Authorize]
     public class PerkController : Controller
     {
         private readonly IPerkService _perkService;
@@ -9,6 +10,7 @@
             _perkService = perkService;
         }
 
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             return View(await GetPerkIndexModel());

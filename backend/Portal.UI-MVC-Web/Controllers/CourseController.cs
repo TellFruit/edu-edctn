@@ -2,6 +2,7 @@
 
 namespace Portal.UI_MVC_Web.Controllers
 {
+    [Authorize]
     public class CourseController : Controller
     {
         private readonly ICourseService _courseService;
@@ -15,6 +16,7 @@ namespace Portal.UI_MVC_Web.Controllers
             _mapper = mapper;
         }
 
+        [AllowAnonymous]
         public IActionResult Index()
         {
             return View();

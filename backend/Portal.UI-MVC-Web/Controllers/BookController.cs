@@ -1,5 +1,6 @@
 ﻿namespace Portal.UI_MVC_Web.Controllers
 {
+    [Authorize]
     public class BookController : Controller
     {
         private readonly IBookService _bookService;
@@ -9,6 +10,7 @@
             _bookService = bookService;
         }
 
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             return View(await GetBookIndexModel());

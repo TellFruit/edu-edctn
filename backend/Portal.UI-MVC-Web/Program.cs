@@ -10,6 +10,14 @@ Portal.Persistence_EF_Core
 Portal.Persistence_EF_Core
     .DependencyInjection.RegisterDbContextJson(builder.Services, builder.Configuration);
 
+builder.Services.AddAutoMapper(
+                cfg =>
+                {
+                    cfg.AddProfile<CourseArticleModelProfile>();
+                    cfg.AddProfile<CourseViewModelProfile>();
+                },
+                Assembly.GetExecutingAssembly());
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
