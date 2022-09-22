@@ -87,6 +87,13 @@
             return await ToCourseViewModelWithUnmarked(course);
         }
 
+        public async Task<CourseIndexModel> GetCourseIndexModel()
+        {
+            var course = await _courseService.GetAll();
+
+            return new CourseIndexModel(course);
+        }
+
         private async Task<ICollection<CourseArticleModel>> GetArticlesNotIncluded(CourseViewModel courseViewModel)
         {
             var spec = new ArticleNotIncludedSpec(courseViewModel.Articles.Select(a => a.Id));

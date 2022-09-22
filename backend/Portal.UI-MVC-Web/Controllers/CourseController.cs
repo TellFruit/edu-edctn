@@ -1,6 +1,4 @@
-﻿using Portal.Domain.Entities.Material.Specification;
-
-namespace Portal.UI_MVC_Web.Controllers
+﻿namespace Portal.UI_MVC_Web.Controllers
 {
     [Authorize]
     public class CourseController : Controller

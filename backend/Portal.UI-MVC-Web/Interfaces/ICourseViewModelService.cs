@@ -12,6 +12,8 @@
 
         public CourseDTO ToCourseDto(CourseViewModel courseViewModel);
 
+        public Task<CourseIndexModel> GetCourseIndexModel();
+
         public Task CallCreateCourse(CourseViewModel courseViewModel);
 
         public Task CallUpdateCourse(CourseViewModel courseViewModel);
