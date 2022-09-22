@@ -14,6 +14,9 @@ builder.Services.AddAutoMapper(
                 cfg =>
                 {
                     cfg.AddProfile<CourseArticleModelProfile>();
+                    cfg.AddProfile<CourseBookModelProfile>();
+                    cfg.AddProfile<CourseVideoModelProfile>();
+                    cfg.AddProfile<CoursePerkProfile>();
                     cfg.AddProfile<CourseViewModelProfile>();
                 },
                 Assembly.GetExecutingAssembly());
