@@ -6,14 +6,16 @@
         private readonly IArticleService _articleService;
         private readonly IVideoService _videoService;
         private readonly IBookService _bookService;
+        private readonly IPerkService _perkService;
         private readonly IMapper _mapper;
 
-        public CourseViewModelService(ICourseService courseService, IArticleService articleService, IVideoService videoService, IBookService bookService, IMapper mapper)
+        public CourseViewModelService(ICourseService courseService, IArticleService articleService, IVideoService videoService, IBookService bookService, IMapper mapper, IPerkService perkService)
         {
             _courseService = courseService;
             _articleService = articleService;
             _videoService = videoService;
             _bookService = bookService;
+            _perkService = perkService;
             _mapper = mapper;
         }
 
