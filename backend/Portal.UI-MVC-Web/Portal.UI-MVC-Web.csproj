@@ -18,10 +18,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Services\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Compile Update="Resources\Actions.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
