@@ -36,11 +36,9 @@
         {
             var courseViewModel = _mapper.Map<CourseViewModel>(courseDTO);
 
-            var spec = new ArticleNotIncludedSpec(courseViewModel.Articles.Select(a => a.Id));
-            var unmarkedArticles = await _articleService.GetBySpec(spec);
-            var castedArticles = _mapper.Map<ICollection<CourseArticleModel>>(unmarkedArticles);
+            courseViewModel.Articles.AddRange(await GetArticlesNotIncluded(courseViewModel));
 
-            courseViewModel.Articles.Add(castedArticles.First());
+            return courseViewModel;
         }
 
         public async Task<CourseViewModel> ToCourseViewModelById(int courseId)
@@ -48,6 +46,15 @@
             var course = await _courseService.GetById(courseId);
 
             return await ToCourseViewModel(course);
+        }
+
+        private async Task<ICollection<CourseArticleModel>> GetArticlesNotIncluded(CourseViewModel courseViewModel)
+        {
+            var spec = new ArticleNotIncludedSpec(courseViewModel.Articles.Select(a => a.Id));
+            var unmarkedArticles = await _articleService.GetBySpec(spec);
+            var castedArticles = _mapper.Map<ICollection<CourseArticleModel>>(unmarkedArticles);
+
+            return castedArticles;
         }
     }
 }
