@@ -2,12 +2,15 @@
 {
     internal interface ICourseViewModelService
     {
-        public Task<CourseViewModel> ToCourseViewModel(CourseDTO courseDTO);
+        public CourseViewModel ToCourseViewModel(CourseDTO courseDTO);
+
+        public Task<CourseViewModel> ToCourseViewModelWithUnmarked(CourseDTO courseDTO);
 
         public Task<CourseViewModel> ToCourseViewModelById(int courseId);
 
-        public CourseDTO ToCourseDto(CourseViewModel courseViewModel);
+        public Task<CourseViewModel> ToCourseViewModelByIdWithUnmarked(int courseId);
 
+        public CourseDTO ToCourseDto(CourseViewModel courseViewModel);
 
         public Task CallCreateCourse(CourseViewModel courseViewModel);
 

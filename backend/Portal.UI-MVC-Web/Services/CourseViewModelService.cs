@@ -52,9 +52,15 @@
             return courseDTO;
         }
 
-        public async Task<CourseViewModel> ToCourseViewModel(CourseDTO courseDTO)
+        public CourseViewModel ToCourseViewModel(CourseDTO courseDTO)
         {
             var courseViewModel = _mapper.Map<CourseViewModel>(courseDTO);
+
+            return courseViewModel;
+        }
+        public async Task<CourseViewModel> ToCourseViewModelWithUnmarked(CourseDTO courseDTO)
+        {
+            var courseViewModel = ToCourseViewModel(courseDTO);
 
             courseViewModel.Articles.AddRange(await GetArticlesNotIncluded(courseViewModel));
 
@@ -71,7 +77,14 @@
         {
             var course = await _courseService.GetById(courseId);
 
-            return await ToCourseViewModel(course);
+            return ToCourseViewModel(course);
+        }
+
+        public async Task<CourseViewModel> ToCourseViewModelByIdWithUnmarked(int courseId)
+        {
+            var course = await _courseService.GetById(courseId);
+
+            return await ToCourseViewModelWithUnmarked(course);
         }
 
         private async Task<ICollection<CourseArticleModel>> GetArticlesNotIncluded(CourseViewModel courseViewModel)
