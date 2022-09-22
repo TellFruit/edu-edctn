@@ -40,7 +40,9 @@
 
             courseViewModel.Articles.AddRange(await GetArticlesNotIncluded(courseViewModel));
 
-            courseViewModel.Books.AddRange(await GetBookNotIncluded(courseViewModel));
+            courseViewModel.Books.AddRange(await GetBooksNotIncluded(courseViewModel));
+
+            courseViewModel.Videos.AddRange(await GetVideoNotIncluded(courseViewModel));
 
             return courseViewModel;
         }
@@ -64,10 +66,19 @@
         private async Task<ICollection<CourseBookModel>> GetBooksNotIncluded(CourseViewModel courseVideoModel)
         {
             var spec = new BookNotIncludedSpec(courseVideoModel.Books.Select(a => a.Id));
-            var unmarkedArticles = await _bookService.GetBySpec(spec);
-            var castedBooks = _mapper.Map<ICollection<CourseBookModel>>(unmarkedArticles);
+            var unmarkedBooks = await _bookService.GetBySpec(spec);
+            var castedBooks = _mapper.Map<ICollection<CourseBookModel>>(unmarkedBooks);
 
             return castedBooks;
+        }
+
+        private async Task<ICollection<CourseVideoModel>> GetVideoNotIncluded(CourseViewModel courseVideoModel)
+        {
+            var spec = new VideoNotIncludedSpec(courseVideoModel.Videos.Select(a => a.Id));
+            var unmarkedVideos = await _videoService.GetBySpec(spec);
+            var castedVideos = _mapper.Map<ICollection<CourseVideoModel>>(unmarkedVideos);
+
+            return castedVideos;
         }
     }
 }
