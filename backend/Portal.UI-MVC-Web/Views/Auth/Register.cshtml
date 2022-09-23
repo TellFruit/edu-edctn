@@ -6,8 +6,6 @@
 
 <h1 class="text-center">@ViewData["Title"]</h1>
 
-<a asp-action="Login" asp-controller="Auth" class="btn btn-secondary">@Actions.Login</a>
-
 @using(Html.BeginForm("Register", "Auth", FormMethod.Post))
 {
     <div class="mb-2">
@@ -20,6 +18,8 @@
             @Html.TextBoxFor(m => m.Password)
         </div>
     </div>
-
-    <input class="btn btn-primary" type="submit" value="@Actions.Register">
+    <div class="d-flex justify-content-around">
+        <input class="btn btn-primary" type="submit" value="@Actions.Register">
+        <a asp-action="Login" asp-controller="Auth" class="btn btn-secondary">@Actions.Login</a>
+    </div>
 }
