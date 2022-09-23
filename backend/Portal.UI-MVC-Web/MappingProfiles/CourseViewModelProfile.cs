@@ -7,7 +7,7 @@
             CreateMap<CourseViewModel, CourseDTO>();
 
             CreateMap<CourseDTO, CourseViewModel>()
-                .ForMember(vm => vm.Articles, 
+                .ForMember(vm => vm.Articles,
                     src => src.MapFrom(
                         dto => dto.Materials.OfType<ArticleDTO>()
                             .Select(a => new CourseArticleModel()
@@ -15,8 +15,7 @@
                                 Id = a.Id,
                                 Title = a.Title,
                                 Published = a.Published,
-                                Url = a.Url,
-                                IsSelected = true
+                                Url = a.Url
                             })
                             .ToList()))
                 .ForMember(vm => vm.Books,
@@ -29,8 +28,7 @@
                                 Format = b.Format,
                                 Authors = b.Authors,
                                 PageCount = b.PageCount,
-                                Published = b.Published,
-                                IsSelected = true
+                                Published = b.Published
                             })
                             .ToList()))
                 .ForMember(vm => vm.Videos,
@@ -41,18 +39,7 @@
                                 Id = v.Id,
                                 Title = v.Title,
                                 Quality = v.Quality,
-                                Duration = v.Duration,
-                                IsSelected = true
-                            })
-                            .ToList()))
-                .ForMember(vm => vm.Perks,
-                    src => src.MapFrom(
-                        dto => dto.Materials.OfType<PerkDTO>()
-                            .Select(v => new CoursePerkModel()
-                            {
-                                Id = v.Id,
-                                Name = v.Name,
-                                IsSelected = true
+                                Duration = v.Duration
                             })
                             .ToList()));
         }

@@ -6,8 +6,7 @@
         {
             CreateMap<CourseArticleModel, ArticleDTO>();
 
-            CreateMap<ArticleDTO, CourseArticleModel>()
-                .BeforeMap((dto, vm) => vm.IsSelected = false);
+            CreateMap<ArticleDTO, CourseArticleModel>();
         }
     }
 }

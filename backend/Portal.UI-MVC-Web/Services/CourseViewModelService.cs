@@ -65,8 +65,29 @@
         {
             var courseViewModel = _mapper.Map<CourseViewModel>(courseDTO);
 
+            foreach (var article in courseViewModel.Articles)
+            {
+                article.IsSelected = true;
+            }
+
+            foreach (var book in courseViewModel.Books)
+            {
+                book.IsSelected = true;
+            }
+
+            foreach (var video in courseViewModel.Videos)
+            {
+                video.IsSelected = true;
+            }
+
+            foreach (var perk in courseViewModel.Perks)
+            {
+                perk.IsSelected = true;
+            }
+
             return courseViewModel;
         }
+
         public async Task<CourseViewModel> ToCourseViewModelWithUnmarked(CourseDTO courseDTO)
         {
             var courseViewModel = ToCourseViewModel(courseDTO);
