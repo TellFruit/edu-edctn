@@ -39,7 +39,12 @@ function createPerkEvents() {
     createDeleteEvents("#perk-table-view", createPerkEvents);
 }
 
+function createCourseEvents() {
+    createDeleteEvents("#course-table-view", createCourseEvents);
+}
+
 createArticleEvents();
 createBookEvents();
 createVideoEvents();
 createPerkEvents();
+createCourseEvents();

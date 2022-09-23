@@ -19,13 +19,15 @@
                 <td>
                     @course.Description
                 </td>
-                <td class="d-flex flex-row-reverse">
-                    <a asp-controller="Course" asp-action="AddOrEdit" asp-route-id="@course.Id" class="btn btn-secondary">
-                        @Actions.Edit
-                    </a>
-                    <a asp-controller="Course" asp-action="Details" asp-route-id="@course.Id" class="btn btn-light">
-                        @Actions.Details
-                    </a>
+                <td>
+                    <div class="d-flex flex-row-reverse">
+                        <a asp-controller="Course" asp-action="AddOrEdit" asp-route-id="@course.Id" class="btn btn-secondary">
+                            @Actions.Edit
+                        </a>
+                        <a asp-controller="Course" asp-action="Details" asp-route-id="@course.Id" class="btn btn-light">
+                            @Actions.Details
+                        </a>
+                    </div>
                 </td>
                 <td>
                     <a class="btn btn-danger" url="@Url.Action("Delete", "Course")" data_id="@course.Id">

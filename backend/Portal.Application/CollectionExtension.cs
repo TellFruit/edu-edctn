@@ -2,11 +2,11 @@
 {
     public static class CollectionExtension
     {
-        public static IEnumerable<T> AddRange<T>(this IEnumerable<T> list, IEnumerable<T> values)
+        public static ICollection<T> AddRange<T>(this ICollection<T> list, ICollection<T> values)
         {
             foreach (var item in values)
             {
-                list.Append(item);
+                list.Add(item);
             }
 
             return list;

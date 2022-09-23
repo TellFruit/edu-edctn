@@ -26,10 +26,10 @@
         {
             if (id != null)
             {
-                return View(await _viewModelService.ToCourseViewModelById(id.Value));
+                return View(await _viewModelService.ToCourseViewModelByIdWithUnmarked(id.Value));
             }
 
-            return View(_viewModelService.ToCourseViewModel(new CourseDTO()));
+            return View(await _viewModelService.ToCourseViewModelWithUnmarked(new CourseDTO()));
         }
 
         [HttpPost]

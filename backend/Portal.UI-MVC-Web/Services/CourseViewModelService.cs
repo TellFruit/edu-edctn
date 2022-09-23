@@ -37,17 +37,21 @@
         {
             var courseDTO = _mapper.Map<CourseDTO>(courseViewModel);
 
-            var castedArticles = _mapper.Map<ICollection<MaterialDTO>>(courseViewModel.Articles);
+            var selectedArticles = courseViewModel.Articles.Where(x => x.IsSelected);
+            var castedArticles = _mapper.Map<ICollection<MaterialDTO>>(selectedArticles);
             courseDTO.Materials.AddRange(castedArticles);
 
-            var castedVideos = _mapper.Map<ICollection<MaterialDTO>>(courseViewModel.Videos);
+            var selectedVideos = courseViewModel.Videos.Where(x => x.IsSelected);
+            var castedVideos = _mapper.Map<ICollection<MaterialDTO>>(selectedVideos);
             courseDTO.Materials.AddRange(castedVideos);
 
-            var castedBooks = _mapper.Map<ICollection<MaterialDTO>>(courseViewModel.Books);
+            var selectedBooks = courseViewModel.Books.Where(x => x.IsSelected);
+            var castedBooks = _mapper.Map<ICollection<MaterialDTO>>(selectedBooks);
             courseDTO.Materials.AddRange(castedBooks);
 
-            var castedPerks = _mapper.Map<ICollection<PerkDTO>>(courseViewModel.Perks);
-            courseDTO.Perks.AddRange(castedPerks);
+            var selectedPerks = courseViewModel.Perks.Where(x => x.IsSelected);
+            var castedPerks = _mapper.Map<ICollection<PerkDTO>>(selectedPerks);
+            courseDTO.Perks = castedPerks;
 
             return courseDTO;
         }
