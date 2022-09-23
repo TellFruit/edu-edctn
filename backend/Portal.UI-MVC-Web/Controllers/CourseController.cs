@@ -51,5 +51,19 @@
 
             return RedirectToAction(nameof(Index));
         }
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            try
+            {
+                await _viewModelService.CallDeleteCourse(id);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return PartialView("_CoursePartial", await _viewModelService.GetCourseIndexModel());
+        }
     }
 }

@@ -17,5 +17,7 @@
         public Task CallCreateCourse(CourseViewModel courseViewModel);
 
         public Task CallUpdateCourse(CourseViewModel courseViewModel);
+
+        public Task CallDeleteCourse(int id);
     }
 }

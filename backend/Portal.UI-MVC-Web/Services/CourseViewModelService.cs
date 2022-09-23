@@ -33,6 +33,11 @@
             await _courseService.Update(courseDTO);
         }
 
+        public async Task CallDeleteCourse(int id)
+        {
+            await _courseService.Delete(id);
+        }
+
         public CourseDTO ToCourseDto(CourseViewModel courseViewModel)
         {
             var courseDTO = _mapper.Map<CourseDTO>(courseViewModel);
