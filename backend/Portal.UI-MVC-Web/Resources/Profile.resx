@@ -126,4 +126,13 @@
   <data name="Password" xml:space="preserve">
     <value>Password</value>
   </data>
+  <data name="ProfileCourses" xml:space="preserve">
+    <value>Assigned courses</value>
+  </data>
+  <data name="ProfileMaterials" xml:space="preserve">
+    <value>Learned materials</value>
+  </data>
+  <data name="ProfilePerks" xml:space="preserve">
+    <value>Attained perks</value>
+  </data>
 </root>

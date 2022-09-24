@@ -12,7 +12,7 @@ namespace Portal.Domain.Entities.User
         public string LastName { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
-        public string Roles { get; set; }
+        public Roles Role { get; set; }
 
         public ICollection<PerkLevel> PerkLevel { get; set; }
         public ICollection<CourseProgress> CourseProgress { get; set; }

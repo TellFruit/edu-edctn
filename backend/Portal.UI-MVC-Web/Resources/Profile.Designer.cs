@@ -86,5 +86,32 @@ namespace Portal.UI_MVC_Web.Resources {
                 return ResourceManager.GetString("Password", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Assigned courses.
+        /// </summary>
+        public static string ProfileCourses {
+            get {
+                return ResourceManager.GetString("ProfileCourses", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Learned materials.
+        /// </summary>
+        public static string ProfileMaterials {
+            get {
+                return ResourceManager.GetString("ProfileMaterials", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Attained perks.
+        /// </summary>
+        public static string ProfilePerks {
+            get {
+                return ResourceManager.GetString("ProfilePerks", resourceCulture);
+            }
+        }
     }
 }
