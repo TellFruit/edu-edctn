@@ -12,7 +12,7 @@
 
         public async Task<IActionResult> Info()
         {
-            var spec = new UserByEmailSpec(HttpContext.Session.GetString("LoggedEmail"));
+            var spec = new UserByEmailSpec(User.Identity.Name);
 
             var user = await _userService.GetBySpec(spec);
 
@@ -23,7 +23,10 @@
         {
             await _userService.Update(user);
 
-            HttpContext.Session.SetString("LoggedEmail", user.Email);
+            if (User.Identity.Name.Equals(user.Email) is false)
+            {
+                return RedirectToAction("Login", "Auth");
+            }
 
             return RedirectToAction(nameof(Info));
         }

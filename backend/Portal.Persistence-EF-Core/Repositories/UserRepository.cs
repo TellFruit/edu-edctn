@@ -7,30 +7,38 @@
 
         public async Task<UserDomain> Create(UserDomain entity)
         {
-            var userEntity = _mapper.Map<User>(entity);
+            return await Task.Run(() =>
+            {
+                var userEntity = _mapper.Map<User>(entity);
 
-            _context.Users.Add(userEntity);
+                _context.Users.Add(userEntity);
 
-            return entity;
+                return entity;
+            });
         }
 
         public async Task<int> Delete(UserDomain entity)
         {
-            var userEntity = GetById(entity.Id);
-
-            if (userEntity == null)
+            return await Task.Run(() =>
             {
-                throw new DbEntityNotFoundException(nameof(User));
-            }
+                var userEntity = GetById(entity.Id);
 
-            _context.Users.Remove(userEntity);
+                if (userEntity == null)
+                {
+                    throw new DbEntityNotFoundException(nameof(User));
+                }
 
-            return userEntity.Id;
+                _context.Users.Remove(userEntity);
+
+                return userEntity.Id;
+            });
         }
 
         public async Task<ICollection<UserDomain>> Read()
         {
-            var users = _context.Users
+            return await Task.Run(() =>
+            {
+                var users = _context.Users
                 .Include(u => u.UserCourses)
                     .ThenInclude(uc => uc.Course)
                 .Include(u => u.UserMaterial)
@@ -39,7 +47,8 @@
                     .ThenInclude(up => up.Perk)
                 .ToList();
 
-            return users.Select(x => _mapper.Map<UserDomain>(x)).ToList();
+                return users.Select(x => _mapper.Map<UserDomain>(x)).ToList();
+            });
         }
 
         public async Task<ICollection<UserDomain>> Read(ISpecification<UserDomain> specification)
@@ -56,30 +65,33 @@
 
         public async Task<UserDomain> Update(UserDomain entity)
         {
-            var userEntity = GetById(entity.Id);
-
-            if (userEntity == null)
+            return await Task.Run(() =>
             {
-                throw new DbEntityNotFoundException(nameof(User));
-            }
+                var userEntity = GetById(entity.Id);
 
-            var updatedUserCourses = entity.CourseProgress
-                .ToUserCourse();
+                if (userEntity == null)
+                {
+                    throw new DbEntityNotFoundException(nameof(User));
+                }
 
-            var updatedUserMaterials = entity.MaterialLearned
-                .ToUserMaterial();
+                var updatedUserCourses = entity.CourseProgress
+                    .ToUserCourse();
 
-            var updatedUserPerks = entity.PerkLevel
-                .ToUserPerk();
+                var updatedUserMaterials = entity.MaterialLearned
+                    .ToUserMaterial();
 
-            userEntity.MapFromUserDomain(entity,
-                updatedUserCourses,
-                updatedUserMaterials,
-                updatedUserPerks);
+                var updatedUserPerks = entity.PerkLevel
+                    .ToUserPerk();
 
-            _context.Update(userEntity);
+                userEntity.MapFromUserDomain(entity,
+                    updatedUserCourses,
+                    updatedUserMaterials,
+                    updatedUserPerks);
 
-            return entity;
+                _context.Update(userEntity);
+
+                return entity;
+            });
         }
 
         private User GetById(int id)

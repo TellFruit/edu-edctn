@@ -7,32 +7,41 @@
 
         public async Task<BookDomain> Create(BookDomain entity)
         {
-            var bookEntity = _mapper.Map<Book>(entity);
+            return await Task.Run(() =>
+            {
+                var bookEntity = _mapper.Map<Book>(entity);
 
-            _context.Add(bookEntity);
+                _context.Add(bookEntity);
 
-            return entity;
+                return entity;
+            });
         }
 
         public async Task<int> Delete(BookDomain entity)
         {
-            var bookEntity = GetById(entity.Id);
-
-            if (bookEntity == null)
+            return await Task.Run(() =>
             {
-                throw new DbEntityNotFoundException(nameof(Book));
-            }
+                var bookEntity = GetById(entity.Id);
 
-            _context.Materials.Remove(bookEntity);
+                if (bookEntity == null)
+                {
+                    throw new DbEntityNotFoundException(nameof(Book));
+                }
 
-            return bookEntity.Id;
+                _context.Materials.Remove(bookEntity);
+
+                return bookEntity.Id;
+            });
         }
 
         public async Task<ICollection<BookDomain>> Read()
         {
-            var books = _context.Materials.OfType<Book>().ToList();
+            return await Task.Run(() =>
+            {
+                var books = _context.Materials.OfType<Book>().ToList();
 
-            return books.Select(x => _mapper.Map<BookDomain>(x)).ToList();
+                return books.Select(x => _mapper.Map<BookDomain>(x)).ToList();
+            });
         }
 
         public async Task<ICollection<BookDomain>> Read(ISpecification<BookDomain> specification)
@@ -49,18 +58,21 @@
 
         public async Task<BookDomain> Update(BookDomain entity)
         {
-            var bookEntity = GetById(entity.Id);
-
-            if (bookEntity == null)
+            return await Task.Run(() =>
             {
-                throw new DbEntityNotFoundException(nameof(Book));
-            }
+                var bookEntity = GetById(entity.Id);
 
-            bookEntity.MapFormBookDomain(entity);
+                if (bookEntity == null)
+                {
+                    throw new DbEntityNotFoundException(nameof(Book));
+                }
 
-            _context.Materials.Update(bookEntity);
+                bookEntity.MapFormBookDomain(entity);
 
-            return entity;
+                _context.Materials.Update(bookEntity);
+
+                return entity;
+            });
         }
 
         private Book GetById(int id)

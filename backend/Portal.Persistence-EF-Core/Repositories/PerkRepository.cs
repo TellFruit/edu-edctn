@@ -7,32 +7,41 @@
 
         public async Task<PerkDomain> Create(PerkDomain entity)
         {
-            var perkEntity = _mapper.Map<Perk>(entity);
+            return await Task.Run(() =>
+            {
+                var perkEntity = _mapper.Map<Perk>(entity);
 
-            _context.Perks.Add(perkEntity);
+                _context.Perks.Add(perkEntity);
 
-            return entity;
+                return entity;
+            });
         }
 
         public async Task<int> Delete(PerkDomain entity)
         {
-            var perkEntity = GetById(entity.Id);
-
-            if (perkEntity == null)
+            return await Task.Run(() =>
             {
-                throw new DbEntityNotFoundException(nameof(Perk));
-            }
+                var perkEntity = GetById(entity.Id);
 
-            _context.Perks.Remove(perkEntity);
+                if (perkEntity == null)
+                {
+                    throw new DbEntityNotFoundException(nameof(Perk));
+                }
 
-            return perkEntity.Id;
+                _context.Perks.Remove(perkEntity);
+
+                return perkEntity.Id;
+            });
         }
 
         public async Task<ICollection<PerkDomain>> Read()
         {
-            var perks = _context.Perks.ToList();
+            return await Task.Run(() =>
+            {
+                var perks = _context.Perks.ToList();
 
-            return perks.Select(x => _mapper.Map<PerkDomain>(x)).ToList();
+                return perks.Select(x => _mapper.Map<PerkDomain>(x)).ToList();
+            });
         }
 
         public async Task<ICollection<PerkDomain>> Read(ISpecification<PerkDomain> specification)
@@ -49,18 +58,21 @@
 
         public async Task<PerkDomain> Update(PerkDomain entity)
         {
-            var perkEntity = GetById(entity.Id);
-
-            if (perkEntity == null)
+            return await Task.Run(() =>
             {
-                throw new DbEntityNotFoundException(nameof(Perk));
-            }
+                var perkEntity = GetById(entity.Id);
 
-            perkEntity.MapFromPerkDomain(entity);
+                if (perkEntity == null)
+                {
+                    throw new DbEntityNotFoundException(nameof(Perk));
+                }
 
-            _context.Perks.Update(perkEntity);
+                perkEntity.MapFromPerkDomain(entity);
 
-            return entity;
+                _context.Perks.Update(perkEntity);
+
+                return entity;
+            });
         }
         
         private Perk GetById(int id)

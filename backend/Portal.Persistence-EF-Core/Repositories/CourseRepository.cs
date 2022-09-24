@@ -7,44 +7,53 @@
 
         public async Task<CourseDomain> Create(CourseDomain entity)
         {
-            var courseEntity = _mapper.Map<Course>(entity);
+            return await Task.Run(() =>
+            {
+                var courseEntity = _mapper.Map<Course>(entity);
 
-            var courseMaterials = entity.Materials.ToCourseMaterials();
+                var courseMaterials = entity.Materials.ToCourseMaterials();
 
-            var coursePerks = entity.Perks.ToCoursePerks();
+                var coursePerks = entity.Perks.ToCoursePerks();
 
-            courseEntity.CourseMaterials = courseMaterials;
-            courseEntity.CoursePerks = coursePerks;
+                courseEntity.CourseMaterials = courseMaterials;
+                courseEntity.CoursePerks = coursePerks;
 
-            _context.Courses.Add(courseEntity);
+                _context.Courses.Add(courseEntity);
 
-            return entity;
+                return entity;
+            });
         }
 
         public async Task<int> Delete(CourseDomain entity)
         {
-            var courseEntity = GetBydId(entity.Id);
-
-            if (courseEntity == null)
+            return await Task.Run(() =>
             {
-                throw new DbEntityNotFoundException(nameof(Course));
-            }
+                var courseEntity = GetBydId(entity.Id);
 
-            _context.Courses.Remove(courseEntity);
-            
-            return courseEntity.Id;
+                if (courseEntity == null)
+                {
+                    throw new DbEntityNotFoundException(nameof(Course));
+                }
+
+                _context.Courses.Remove(courseEntity);
+
+                return courseEntity.Id;
+            });
         }
 
         public async Task<ICollection<CourseDomain>> Read()
         {
-            var courses = _context.Courses
+            return await Task.Run(() =>
+            {
+                var courses = _context.Courses
                 .Include(c => c.CourseMaterials)
                     .ThenInclude(cm => cm.Material)
                 .Include(c => c.CoursePerks)
                     .ThenInclude(cp => cp.Perk)
                 .ToList();
 
-            return courses.Select(x => _mapper.Map<CourseDomain>(x)).ToList();
+                return courses.Select(x => _mapper.Map<CourseDomain>(x)).ToList();
+            });
         }
 
         public async Task<ICollection<CourseDomain>> Read(ISpecification<CourseDomain> specification)
@@ -61,26 +70,29 @@
 
         public async Task<CourseDomain> Update(CourseDomain entity)
         {
-            var courseEntity = GetBydId(entity.Id);
-
-            if (courseEntity == null)
+            return await Task.Run(() =>
             {
-                throw new DbEntityNotFoundException(nameof(Course));
-            }
+                var courseEntity = GetBydId(entity.Id);
 
-            var updatedCourseMaterials = entity.Materials
-                .ToCourseMaterials(entity.Id);
+                if (courseEntity == null)
+                {
+                    throw new DbEntityNotFoundException(nameof(Course));
+                }
 
-            var updatedCoursePerks = entity.Perks
-                .ToCoursePerks(entity.Id);
+                var updatedCourseMaterials = entity.Materials
+                    .ToCourseMaterials(entity.Id);
 
-            courseEntity.MapFromCourseDomain(entity,
-                updatedCourseMaterials,
-                updatedCoursePerks);
+                var updatedCoursePerks = entity.Perks
+                    .ToCoursePerks(entity.Id);
 
-            _context.Update(courseEntity);
+                courseEntity.MapFromCourseDomain(entity,
+                    updatedCourseMaterials,
+                    updatedCoursePerks);
 
-            return entity;
+                _context.Update(courseEntity);
+
+                return entity;
+            });
         }
 
         private Course GetBydId(int id)

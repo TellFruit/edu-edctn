@@ -7,31 +7,40 @@
 
         public async Task<VideoDomain> Create(VideoDomain entity)
         {
-            var videoEntity = _mapper.Map<Video>(entity);
+            return await Task.Run(() =>
+            {
+                var videoEntity = _mapper.Map<Video>(entity);
 
-            _context.Add(videoEntity);
+                _context.Add(videoEntity);
 
-            return entity;
+                return entity;
+            });
         }
 
         public async Task<int> Delete(VideoDomain entity)
         {
-            var videoEntity = GetById(entity.Id);
-
-            if (videoEntity == null)
+            return await Task.Run(() =>
             {
-                throw new DbEntityNotFoundException(nameof(Video));
-            }
+                var videoEntity = GetById(entity.Id);
 
-            _context.Materials.Remove(videoEntity);
-            return videoEntity.Id;
+                if (videoEntity == null)
+                {
+                    throw new DbEntityNotFoundException(nameof(Video));
+                }
+
+                _context.Materials.Remove(videoEntity);
+                return videoEntity.Id;
+            });
         }
 
         public async Task<ICollection<VideoDomain>> Read()
         {
-            var videos = _context.Materials.OfType<Video>().ToList();
+            return await Task.Run(() =>
+            {
+                var videos = _context.Materials.OfType<Video>().ToList();
 
-            return videos.Select(x => _mapper.Map<VideoDomain>(x)).ToList();
+                return videos.Select(x => _mapper.Map<VideoDomain>(x)).ToList();
+            });
         }
 
         public async Task<ICollection<VideoDomain>> Read(ISpecification<VideoDomain> specification)
@@ -48,18 +57,21 @@
 
         public async Task<VideoDomain> Update(VideoDomain entity)
         {
-            var videoEntity = GetById(entity.Id);
-
-            if (videoEntity == null)
+            return await Task.Run(() =>
             {
-                throw new DbEntityNotFoundException(nameof(Video));
-            }
+                var videoEntity = GetById(entity.Id);
 
-            videoEntity.MapFromVideoDomain(entity);
+                if (videoEntity == null)
+                {
+                    throw new DbEntityNotFoundException(nameof(Video));
+                }
 
-            _context.Materials.Update(videoEntity);
+                videoEntity.MapFromVideoDomain(entity);
 
-            return entity;
+                _context.Materials.Update(videoEntity);
+
+                return entity;
+            });
         }
 
         private Video GetById(int id)
