@@ -1,11 +1,12 @@
 ﻿namespace Portal.UI_MVC_Web.Controllers
 {
     [Authorize]
-    public class CourseController : Controller
+    public class CourseController : BaseController
     {
         private readonly ICourseViewModelService _viewModelService;
 
-        public CourseController(ICourseViewModelService viewModelService)
+        public CourseController(ICourseViewModelService viewModelService, IUserService userService)
+            : base(userService)
         {
             _viewModelService = viewModelService;
         }
@@ -24,12 +25,22 @@
 
         public async Task<IActionResult> AddOrEdit(int? id)
         {
+            CourseViewModel model;
+
             if (id != null)
             {
-                return View(await _viewModelService.ToCourseViewModelByIdWithUnmarked(id.Value));
+                model = await _viewModelService.ToCourseViewModelByIdWithUnmarked(id.Value);
+                
+                await IfLoggedPutUser(model);
+                
+                return View(model);
             }
 
-            return View(await _viewModelService.ToCourseViewModelWithUnmarked(new CourseDTO()));
+            model = await _viewModelService.ToCourseViewModelWithUnmarked(new CourseDTO());
+
+            await IfLoggedPutUser(model);
+
+            return View(model);
         }
 
         [HttpPost]
@@ -64,6 +75,14 @@
             }
 
             return PartialView("_CoursePartial", await _viewModelService.GetCourseIndexModel());
+        }
+
+        private async Task IfLoggedPutUser(CourseViewModel model)
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                model.LoggedUser = await GetUserByLoggedEmail();
+            }
         }
     }
 }

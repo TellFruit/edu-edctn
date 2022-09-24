@@ -4,6 +4,11 @@
     ViewData["Title"] = $"{Context.Request.RouteValues["controller"]} Details";
 }
 
+@if (User.IsInRole(nameof(Roles.Learner)))
+{
+    
+}
+
 <div class="mb-2">
     <div class="d-flex flex-column">
         @Html.Label(@Objects.Name)
