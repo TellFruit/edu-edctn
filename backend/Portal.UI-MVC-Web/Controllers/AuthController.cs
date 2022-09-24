@@ -3,10 +3,12 @@
     public class AuthController : Controller
     {
         private readonly IUserAuth _userAuth;
+        private readonly IUserService _userService;
 
-        public AuthController(IUserAuth userAuth)
+        public AuthController(IUserAuth userAuth, IUserService userService)
         {
             _userAuth = userAuth;
+            _userService = userService;
         }
 
         public IActionResult Login()
@@ -23,8 +25,10 @@
             {
                 return View();
             }
+
+            var loggedUser = await _userService.GetById(loggedId);
             
-            await Authenticate(model.Email);
+            await Authenticate(loggedUser.Email, loggedUser.Role.ToString());
 
             return RedirectBack();
         }
@@ -37,14 +41,9 @@
         [HttpPost]
         public async Task<IActionResult> Register(RegisterModel model)
         {
-            var loggedId = await _userAuth.Register(model.Email, model.Password);
+            await _userAuth.Register(model.Email, model.Password);
 
-            if (loggedId.Equals(default))
-            {
-                return View();
-            }
-
-            await Authenticate(model.Email);
+            await Authenticate(model.Email, Roles.Learner.ToString());
 
             return RedirectBack();
         }
@@ -55,11 +54,12 @@
             return RedirectToAction("Index", "Home");
         }
 
-        private async Task Authenticate(string userName)
+        private async Task Authenticate(string userName, string userRole)
         {
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Name, userName)
+                new Claim(ClaimsIdentity.DefaultNameClaimType, userName),
+                new Claim(ClaimsIdentity.DefaultRoleClaimType, userRole)
             };
 
             var claimsIdentity = new ClaimsIdentity(

@@ -14,6 +14,7 @@ global using Portal.UI_MVC_Web.Models.Materials;
 global using Portal.UI_MVC_Web.Models.Perk;
 global using Portal.UI_MVC_Web.Models.Auth;
 global using Portal.UI_MVC_Web.Interfaces;
+global using Portal.Domain.Entities.User;
 global using Portal.Domain.Entities.Material.Specification;
 global using Portal.Domain.Entities.Perk.Specification;
 global using Portal.Application;

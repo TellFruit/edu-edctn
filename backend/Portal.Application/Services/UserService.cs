@@ -73,7 +73,7 @@
             toUpdate.LastName = data.LastName;
             toUpdate.Email = data.Email;
             toUpdate.Password = data.Password;
-            toUpdate.Roles = data.Roles;
+            toUpdate.Role = data.Role;
 
             toUpdate.UpdatedAt = DateTime.Now;
 

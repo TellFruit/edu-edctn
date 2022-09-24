@@ -13,8 +13,9 @@
         @Html.Label(@Objects.Description)
         @Html.TextAreaFor(m => m.Description, new { @readonly = true })
     </div>
+    @if (Model.Articles.Any())
+    {
     <h2 class="text-center">@Headings.Articles</h2>
-    <h3 class="text-center">@Headings.DataTable</h3>
     <table class="table table-hover">
         <thead>
             <tr>
@@ -40,17 +41,15 @@
             }
         </tbody>
     </table>
-    @if (Model.Articles.Any() is false)
-    {
-        <h3 class="text-center">@Headings.NoData</h3>
+    <div class="border-top my-3"></div>
+    <div class="border-top my-3"></div>
+    <div class="border-top my-3"></div>
+    <div class="border-top my-3"></div>
+    <div class="border-top my-3"></div>
     }
-    <div class="border-top my-3"></div>
-    <div class="border-top my-3"></div>
-    <div class="border-top my-3"></div>
-    <div class="border-top my-3"></div>
-    <div class="border-top my-3"></div>
+    @if (Model.Books.Any())
+    {
     <h2 class="text-center">@Headings.Books</h2>
-    <h3 class="text-center">@Headings.DataTable</h3>
     <table class="table table-hover">
         <thead>
             <tr>
@@ -84,53 +83,49 @@
             }
         </tbody>
     </table>
-    @if (Model.Books.Any() is false)
-    {
-        <h3 class="text-center">@Headings.NoData</h3>
+    <div class="border-top my-3"></div>
+    <div class="border-top my-3"></div>
+    <div class="border-top my-3"></div>
+    <div class="border-top my-3"></div>
+    <div class="border-top my-3"></div>
     }
-    <div class="border-top my-3"></div>
-    <div class="border-top my-3"></div>
-    <div class="border-top my-3"></div>
-    <div class="border-top my-3"></div>
-    <div class="border-top my-3"></div>
-    <h2 class="text-center">@Headings.Videos</h2>
-    <h3 class="text-center">@Headings.DataTable</h3>
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th scope="col">@Objects.Title</th>
-                <th scope="col">@Objects.Duration</th>
-                <th scope="col">@Objects.Quality</th>
-            </tr>
-        </thead>
-        <tbody>
-            @for (int i = 0; i < Model.Videos.Count(); ++i)
-            {
+    @if (Model.Videos.Any())
+    {
+        <h2 class="text-center">@Headings.Videos</h2>
+        <table class="table table-hover">
+            <thead>
                 <tr>
-                    <th scope="row">
-                        @Model.Videos[i].Title
-                    </th>
-                    <td>
-                        @Model.Videos[i].Duration.ToString()
-                    </td>
-                    <td>
-                        @Model.Videos[i].Quality
-                    </td>
+                    <th scope="col">@Objects.Title</th>
+                    <th scope="col">@Objects.Duration</th>
+                    <th scope="col">@Objects.Quality</th>
                 </tr>
-            }
-        </tbody>
-    </table>
-    @if (Model.Videos.Any() is false)
-    {
-        <h3 class="text-center">@Headings.NoData</h3>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.Videos.Count(); ++i)
+                {
+                    <tr>
+                        <th scope="row">
+                            @Model.Videos[i].Title
+                        </th>
+                        <td>
+                            @Model.Videos[i].Duration.ToString()
+                        </td>
+                        <td>
+                            @Model.Videos[i].Quality
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <div class="border-top my-3"></div>
+        <div class="border-top my-3"></div>
+        <div class="border-top my-3"></div>
+        <div class="border-top my-3"></div>
+        <div class="border-top my-3"></div>
     }
-    <div class="border-top my-3"></div>
-    <div class="border-top my-3"></div>
-    <div class="border-top my-3"></div>
-    <div class="border-top my-3"></div>
-    <div class="border-top my-3"></div>
+    @if (Model.Perks.Any())
+    {
     <h2 class="text-center">@Headings.Perks</h2>
-    <h3 class="text-center">@Headings.DataTable</h3>
     <table class="table table-hover">
         <thead>
             <tr>
@@ -148,8 +143,5 @@
             }
         </tbody>
     </table>
-    @if (Model.Perks.Any() is false)
-    {
-        <h3 class="text-center">@Headings.NoData</h3>
     }
 </div>

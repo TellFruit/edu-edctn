@@ -47,7 +47,7 @@
             user.LastName = data.LastName;
             user.Email = data.Email;
             user.Password = data.Password;
-            user.Roles = data.Roles;
+            user.Roles = data.Role.ToString();
             user.UpdatedAt = data.UpdatedAt;
             user.UserCourses = courses;
             user.UserMaterial = materials;

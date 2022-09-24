@@ -12,8 +12,11 @@
 <h1 class="text-center">@ViewData["Title"]</h1>
 <h2 class="text-center">@Headings.DataTable</h2>
 
-<a asp-controller="Course" asp-action="AddOrEdit" class="btn btn-primary">@Actions.Create</a>
- 
+@if (User.IsInRole(nameof(Roles.Admin)))
+{
+    <a asp-controller="Course" asp-action="AddOrEdit" class="btn btn-primary">@Actions.Create</a>
+}
+
 <div id="course-table-view">
     @await Html.PartialAsync("_CoursePartial", Model)
 </div>

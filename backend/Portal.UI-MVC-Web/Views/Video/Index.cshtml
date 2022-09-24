@@ -13,8 +13,11 @@
 <h1 class="text-center">@ViewData["Title"]</h1>
 <h2 class="text-center">@Headings.DataTable</h2>
 
-<a asp-controller="Video" asp-action="AddOrEdit" class="btn btn-primary">@Actions.Create</a>
- 
+@if (User.IsInRole(nameof(Roles.Admin)))
+{
+    <a asp-controller="Video" asp-action="AddOrEdit" class="btn btn-primary">@Actions.Create</a>
+}
+
 <div id="video-table-view">
     @await Html.PartialAsync("_VideoPartial", Model)
 </div>

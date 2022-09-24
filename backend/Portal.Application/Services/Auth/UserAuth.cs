@@ -37,6 +37,7 @@
 
             user.Email = email;
             user.Password = password;
+            user.Role = Roles.Learner;
 
             user = await _service.Create(user);
 

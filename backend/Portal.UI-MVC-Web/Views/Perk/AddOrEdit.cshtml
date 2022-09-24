@@ -11,6 +11,8 @@
     }
 }
 
+@if (User.IsInRole(nameof(Roles.Admin)) || (!Model.Id.Equals(default) && User.IsInRole(nameof(Roles.Moderator))))
+{
 @using(Html.BeginForm("AddOrEdit", "Perk", FormMethod.Post))
 {
     <div class="mb-2">
@@ -21,4 +23,5 @@
     </div>
     <input asp-for="Id" type="hidden"/>
     <input class="btn btn-primary" type="submit" value="@Actions.Submit">
+}
 }

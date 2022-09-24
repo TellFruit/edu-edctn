@@ -16,14 +16,20 @@
                     @perk.Name
                 </th>
                 <td class="d-flex flex-row-reverse">
-                    <a asp-controller="Perk" asp-action="AddOrEdit" asp-route-id="@perk.Id" class="btn btn-secondary">
-                        @Actions.Edit
-                    </a>
+                    @if (User.IsInRole(nameof(Roles.Moderator)) || User.IsInRole(nameof(Roles.Admin)))
+                    {
+                        <a asp-controller="Perk" asp-action="AddOrEdit" asp-route-id="@perk.Id" class="btn btn-secondary">
+                            @Actions.Edit
+                        </a>
+                    }
                 </td>
                 <td>
-                    <a class="btn btn-danger" url="@Url.Action("Delete", "Perk")" data_id="@perk.Id">
-                        @Actions.Delete
-                    </a>
+                    @if (User.IsInRole(nameof(Roles.Admin)))
+                    {
+                        <a class="btn btn-danger" url="@Url.Action("Delete", "Perk")" data_id="@perk.Id">
+                            @Actions.Delete
+                        </a>
+                    }
                 </td>
             </tr>
         }
