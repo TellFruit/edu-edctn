@@ -3,12 +3,14 @@
     [Authorize]
     public class UserController : BaseController
     {
+        private readonly ICourseViewModelService _viewModelService;
         private readonly IUserService _userService;
         private readonly IRuleUser _ruleUser;
 
-        public UserController(IUserService userService, IRuleUser ruleUser)
+        public UserController(IUserService userService, IRuleUser ruleUser, ICourseViewModelService viewModelService)
             : base(userService)
         {
+            _viewModelService = viewModelService;
             _userService = userService;
             _ruleUser = ruleUser;
         }
@@ -46,6 +48,15 @@
             await _ruleUser.Unenroll(user.Id, courseId);
 
             return RedirectToAction("Index", "Course");
+        }
+
+        public async Task<IActionResult> Courses()
+        {
+            var model = await _viewModelService.GetCourseIndexModel();
+
+            var user = await GetUserByLoggedEmail();
+
+            return View(model);
         }
     }
 }

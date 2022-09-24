@@ -1,4 +1,4 @@
-﻿namespace Portal.UI_MVC_Web.Controllers.Absract
+﻿namespace Portal.UI_MVC_Web.Controllers.Abstract
 {
     public class BaseController : Controller
     {

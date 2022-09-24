@@ -1,7 +1,4 @@
-﻿using Portal.UI_MVC_Web.Models;
-using System.Diagnostics;
-
-namespace Portal.UI_MVC_Web.Controllers
+﻿namespace Portal.UI_MVC_Web.Controllers
 {
     public class HomeController : Controller
     {

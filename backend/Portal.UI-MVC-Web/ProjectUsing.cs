@@ -1,4 +1,5 @@
 ﻿global using System.Security.Claims;
+global using System.Diagnostics;
 global using System.Reflection;
 global using AutoMapper;
 
@@ -8,8 +9,9 @@ global using Microsoft.AspNetCore.Authorization;
 global using Microsoft.AspNetCore.Authentication;
 
 global using Portal.UI_MVC_Web.MappingProfiles;
-global using Portal.UI_MVC_Web.Controllers.Absract;
+global using Portal.UI_MVC_Web.Controllers.Abstract;
 global using Portal.UI_MVC_Web.Services;
+global using Portal.UI_MVC_Web.Models;
 global using Portal.UI_MVC_Web.Models.Course;
 global using Portal.UI_MVC_Web.Models.Materials;
 global using Portal.UI_MVC_Web.Models.Perk;

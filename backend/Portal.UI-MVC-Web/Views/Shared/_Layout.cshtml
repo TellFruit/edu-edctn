@@ -48,7 +48,10 @@
                                         <a asp-controller="User" asp-action="Info" class="nav-link text-dark">
                                             @Profile.Info
                                         </a>
-                                        <a class="nav-link text-dark">Link 2</a>
+                                        <a asp-controller="User" asp-action="Courses" class="nav-link text-dark">
+                                            @Profile.ProfileCourses
+                                        </a>
+                                        <div class="dropdown-divider"></div>
                                         <a asp-controller="Auth" asp-action="Logout" class="nav-link text-danger">
                                             @Actions.Logout
                                         </a>
