@@ -11,7 +11,7 @@
 
         public override bool IsSatisfiedBy(UserDomain item)
         {
-            return item.Id.Equals(_email);
+            return item.Email.Equals(_email);
         }
     }
 }
