@@ -15,7 +15,9 @@
 
 @if (User.IsInRole(nameof(Roles.Admin)))
 {
-    <a asp-controller="Video" asp-action="AddOrEdit" class="btn btn-primary">@Actions.Create</a>
+    <a asp-controller="Video" asp-action="AddOrEdit" class="btn btn-primary">
+        @Actions.Create
+    </a>
 }
 
 <div id="video-table-view">
