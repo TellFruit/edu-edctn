@@ -119,7 +119,8 @@ namespace Portal.Domain.Entities.User
                     {
                         UserId = Id,
                         PerkId = perk.Id,
-                        Level = 1
+                        Level = 1,
+                        Perk = perk
                     });
                 }
                 else
