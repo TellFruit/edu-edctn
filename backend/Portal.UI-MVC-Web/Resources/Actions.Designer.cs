@@ -131,5 +131,14 @@ namespace Portal.UI_MVC_Web.Resources {
                 return ResourceManager.GetString("Submit", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update.
+        /// </summary>
+        internal static string Update {
+            get {
+                return ResourceManager.GetString("Update", resourceCulture);
+            }
+        }
     }
 }

@@ -120,8 +120,14 @@
   <data name="Email" xml:space="preserve">
     <value>E-mail</value>
   </data>
-  <data name="Name" xml:space="preserve">
-    <value>Name</value>
+  <data name="FirstName" xml:space="preserve">
+    <value>First name</value>
+  </data>
+  <data name="Info" xml:space="preserve">
+    <value>Personal info</value>
+  </data>
+  <data name="LastName" xml:space="preserve">
+    <value>Last name</value>
   </data>
   <data name="Password" xml:space="preserve">
     <value>Password</value>

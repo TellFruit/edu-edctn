@@ -45,10 +45,12 @@
                                     <div class="dropdown">
                                       <button class="dropbtn nav-link">Profile</button>
                                       <div class="dropdown-content">
-                                        <a class="nav-link text-dark">Link 1</a>
+                                        <a asp-controller="User" asp-action="Info" class="nav-link text-dark">
+                                            @Profile.Info
+                                        </a>
                                         <a class="nav-link text-dark">Link 2</a>
-                                        <a asp-controller="Auth" asp-action="Logout" class="nav-link text-dark" style="color: darkred">
-                                            Log out
+                                        <a asp-controller="Auth" asp-action="Logout" class="nav-link text-danger">
+                                            @Actions.Logout
                                         </a>
                                       </div>
                                     </div>

@@ -30,6 +30,8 @@
             
             await Authenticate(loggedUser.Email, loggedUser.Role.ToString());
 
+            HttpContext.Session.SetString("LoggedEmail", model.Email);
+
             return RedirectBack();
         }
 
@@ -44,6 +46,8 @@
             await _userAuth.Register(model.Email, model.Password);
 
             await Authenticate(model.Email, Roles.Learner.ToString());
+
+            HttpContext.Session.SetString("LoggedEmail", model.Email);
 
             return RedirectBack();
         }
