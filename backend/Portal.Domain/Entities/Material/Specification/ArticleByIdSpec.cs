@@ -1,10 +1,10 @@
 ﻿namespace Portal.Domain.Entities.Material.Specification
 {
-    public class ArticleByIdFilter : Specification<ArticleDomain>
+    public class ArticleByIdSpec : Specification<ArticleDomain>
     {
         private readonly int _articleId;
 
-        public ArticleByIdFilter(int articleId)
+        public ArticleByIdSpec(int articleId)
         {
             _articleId = articleId;
         }

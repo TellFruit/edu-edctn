@@ -77,7 +77,7 @@ namespace Portal.Application.Services.Rules
 
         private async Task<UserDomain> GetUserById(int userId)
         {
-            var spec = new UserByIdFilter(userId);
+            var spec = new UserByIdSpec(userId);
 
             var res = await _userRepos.Read(spec);
              

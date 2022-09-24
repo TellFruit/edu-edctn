@@ -1,12 +1,12 @@
 ﻿namespace Portal.Domain.Entities.User.Specification
 {
-    public class UserByIdFilter : Specification<UserDomain>
+    public class UserByIdSpec : Specification<UserDomain>
     {
         private readonly int _userId;
 
-        public UserByIdFilter(int articleId)
+        public UserByIdSpec(int userId)
         {
-            _userId = articleId;
+            _userId = userId;
         }
 
         public override bool IsSatisfiedBy(UserDomain item)
