@@ -97,6 +97,15 @@ namespace Portal.UI_MVC_Web.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enroll in course.
+        /// </summary>
+        internal static string Enroll {
+            get {
+                return ResourceManager.GetString("Enroll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Log In.
         /// </summary>
         internal static string Login {
@@ -129,6 +138,15 @@ namespace Portal.UI_MVC_Web.Resources {
         internal static string Submit {
             get {
                 return ResourceManager.GetString("Submit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unenroll in course.
+        /// </summary>
+        internal static string Unenroll {
+            get {
+                return ResourceManager.GetString("Unenroll", resourceCulture);
             }
         }
         

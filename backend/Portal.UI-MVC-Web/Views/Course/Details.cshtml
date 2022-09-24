@@ -6,7 +6,29 @@
 
 @if (User.IsInRole(nameof(Roles.Learner)))
 {
-    
+    var courseProgress = Model.LoggedUser.CourseProgress.FirstOrDefault(c => c.CourseId.Equals(Model.Id));
+
+    if (courseProgress is null)
+    {
+        <a asp-action="Enroll" asp-controller="User" asp-route-courseid="@Model.Id" class="btn btn-primary">
+            @Actions.Enroll
+        </a>
+    }
+    else
+    {
+        if (courseProgress.CourseFinished is false)
+        {
+            <a asp-action="Unenroll" asp-controller="User" asp-route-courseid="@Model.Id" class="btn btn-danger">
+                @Actions.Unenroll
+            </a>
+        }
+        else
+        {
+            <div class="btn btn-info">
+                @Headings.Finished
+            </div>
+        }
+    }
 }
 
 <div class="mb-2">
@@ -34,10 +56,10 @@
             {
                 <tr>
                     <th scope="row">
-                        @Model.Books[i].Title
+                        @Model.Articles[i].Title
                     </th>
                     <td>
-                        @Model.Books[i].PageCount
+                        @Model.Articles[i].Url
                     </td>
                     <td>
                         @Model.Articles[i].Published.Date.ToShortDateString()

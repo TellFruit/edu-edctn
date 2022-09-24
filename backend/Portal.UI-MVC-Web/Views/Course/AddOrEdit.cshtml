@@ -47,10 +47,10 @@
                             @Html.CheckBoxFor(m => m.Articles[i].IsSelected)
                         </th>
                         <th scope="row">
-                            @Model.Books[i].Title
+                            @Model.Articles[i].Title
                         </th>
                         <td>
-                            @Model.Books[i].PageCount
+                            @Model.Articles[i].Url
                         </td>
                         <td>
                             @Model.Articles[i].Published.Date.ToShortDateString()

@@ -126,6 +126,9 @@
   <data name="DataTable" xml:space="preserve">
     <value>Data table</value>
   </data>
+  <data name="Finished" xml:space="preserve">
+    <value>Course is finished</value>
+  </data>
   <data name="NoData" xml:space="preserve">
     <value>No data</value>
   </data>

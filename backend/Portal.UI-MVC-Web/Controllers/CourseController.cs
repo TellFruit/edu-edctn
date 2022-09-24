@@ -20,37 +20,26 @@
         [AllowAnonymous]
         public async Task<IActionResult> Details(int id)
         {
-            return View(await _viewModelService.ToCourseViewModelById(id));
-        }
-
-        public async Task<IActionResult> AddOrEdit(int? id)
-        {
-            CourseViewModel model;
-
-            if (id != null)
-            {
-                model = await _viewModelService.ToCourseViewModelByIdWithUnmarked(id.Value);
-                
-                await IfLoggedPutUser(model);
-                
-                return View(model);
-            }
-
-            model = await _viewModelService.ToCourseViewModelWithUnmarked(new CourseDTO());
+            var model = await _viewModelService.ToCourseViewModelById(id);
 
             await IfLoggedPutUser(model);
 
             return View(model);
         }
 
+        public async Task<IActionResult> AddOrEdit(int? id)
+        {
+            if (id != null)
+            {
+                return View(await _viewModelService.ToCourseViewModelByIdWithUnmarked(id.Value));
+            }
+
+            return View(await _viewModelService.ToCourseViewModelWithUnmarked(new CourseDTO()));
+        }
+
         [HttpPost]
         public async Task<IActionResult> AddOrEdit(CourseViewModel courseViewModel)
         {
-            if (!ModelState.IsValid)
-            {
-                return View(courseViewModel);
-            }
-
             if (courseViewModel.Id.Equals(default))
             {
                 await _viewModelService.CallCreateCourse(courseViewModel);

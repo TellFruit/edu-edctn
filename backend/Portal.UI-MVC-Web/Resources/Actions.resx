@@ -129,6 +129,9 @@
   <data name="Edit" xml:space="preserve">
     <value>Edit</value>
   </data>
+  <data name="Enroll" xml:space="preserve">
+    <value>Enroll in course</value>
+  </data>
   <data name="Login" xml:space="preserve">
     <value>Log In</value>
   </data>
@@ -140,6 +143,9 @@
   </data>
   <data name="Submit" xml:space="preserve">
     <value>Submit</value>
+  </data>
+  <data name="Unenroll" xml:space="preserve">
+    <value>Unenroll in course</value>
   </data>
   <data name="Update" xml:space="preserve">
     <value>Update</value>

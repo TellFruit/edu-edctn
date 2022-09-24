@@ -30,11 +30,20 @@
             return RedirectToAction(nameof(Info));
         }
 
-        public async Task<IActionResult> EnrollInCourse(int courseId)
+        public async Task<IActionResult> Enroll(int courseId)
         {
             var user = await GetUserByLoggedEmail();
 
             await _ruleUser.Enroll(user.Id, courseId);
+
+            return RedirectToAction("Index", "Course");
+        }
+
+        public async Task<IActionResult> Unenroll(int courseId)
+        {
+            var user = await GetUserByLoggedEmail();
+
+            await _ruleUser.Unenroll(user.Id, courseId);
 
             return RedirectToAction("Index", "Course");
         }
