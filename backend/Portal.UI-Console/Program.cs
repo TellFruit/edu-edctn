@@ -4,7 +4,20 @@
     static class Program
     {
         private static IServiceProvider _root;
+
         public static IServiceProvider Root => _root;
+
+        public static Task Main()
+        {
+            Console.OutputEncoding = Encoding.Unicode;
+            Console.InputEncoding = Encoding.Unicode;
+
+            _root = CompositionRoot();
+
+            Root.GetService<ConsoleApp>()?.Start();
+
+            return Task.CompletedTask;
+        }
 
         private static IServiceProvider CompositionRoot()
         {
@@ -28,18 +41,6 @@
                 .DependencyInjection.RegisterDbContextXml(services);
 
             return services.BuildServiceProvider();
-        }
-
-        public static Task Main()
-        {
-            Console.OutputEncoding = Encoding.Unicode;
-            Console.InputEncoding = Encoding.Unicode;
-
-            _root = CompositionRoot();
-
-            Root.GetService<ConsoleApp>()?.Start();
-
-            return Task.CompletedTask;
         }
     }
 }
