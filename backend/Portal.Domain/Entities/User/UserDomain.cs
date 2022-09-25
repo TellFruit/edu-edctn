@@ -125,6 +125,7 @@ namespace Portal.Domain.Entities.User
                 }
                 else
                 {
+                    found.User = this;
                     found.Reestimate();
                 }
             }
