@@ -19,9 +19,16 @@
         <div class="d-flex flex-column">
             @Html.Label(@Objects.Name)
             @Html.TextBoxFor(m => m.Name)
+            <span asp-validation-for="Name"></span>
         </div>
     </div>
     <input asp-for="Id" type="hidden"/>
     <input class="btn btn-primary" type="submit" value="@Actions.Submit">
 }
+}
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

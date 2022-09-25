@@ -13,7 +13,8 @@
     @{
         var courseProgress = Model.User.CourseProgress.First(c => Model.Course.Id.Equals(c.CourseId));
 
-            <table class="table table-hover" id="article-table">
+            <h3>@Headings.Materials</h3>
+            <table class="table table-hover">
                 <thead>
                     <tr>
                         <th scope="col">@Objects.Learned</th>
@@ -34,6 +35,25 @@
                     }
                 </tbody>
             </table>  
+
+            <h3>@Headings.Perks</h3>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">@Objects.Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(var perk in Model.Course.Perks)
+                    {
+                        <tr>
+                            <td>
+                                 @perk.Name
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
     }
     
 </div>
