@@ -10,6 +10,7 @@ Portal.Persistence_EF_Core
     .DependencyInjection.RegisterDbContextJson(builder.Services, builder.Configuration);
 
 builder.Services.AddScoped<ICourseViewModelService, CourseViewModelService>();
+builder.Services.AddScoped<IAttendViewModelService, AttendViewModelService>();
 
 builder.Services.AddAutoMapper(
                 cfg =>

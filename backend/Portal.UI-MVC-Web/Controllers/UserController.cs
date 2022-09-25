@@ -3,16 +3,16 @@
     [Authorize]
     public class UserController : BaseController
     {
-        private readonly ICourseViewModelService _viewModelService;
+        private readonly IAttendViewModelService _viewModelService;
         private readonly IUserService _userService;
         private readonly IRuleUser _ruleUser;
 
-        public UserController(IUserService userService, IRuleUser ruleUser, ICourseViewModelService viewModelService)
+        public UserController(IUserService userService, IRuleUser ruleUser, IAttendViewModelService viewModelService)
             : base(userService)
         {
-            _viewModelService = viewModelService;
             _userService = userService;
             _ruleUser = ruleUser;
+            _viewModelService = viewModelService;
         }
 
         public async Task<IActionResult> Info()
@@ -52,17 +52,26 @@
 
         public async Task<IActionResult> Courses()
         {
-            var model = await _viewModelService.GetCourseIndexModel();
+            _viewModelService.SetUser(await GetUserByLoggedEmail());
 
+            return View(await _viewModelService.GetAttendedCourses());
+        }
+
+        public async Task<IActionResult> Attend(int courseId)
+        {
+            _viewModelService.SetUser(await GetUserByLoggedEmail());
+
+            return View(await _viewModelService.GetAttendModelById(courseId));
+        }
+
+        [HttpPost]
+        public async Task LearnMaterial(int materialId)
+        {
             var user = await GetUserByLoggedEmail();
 
-            var ids = user.CourseProgress.Select(c => c.CourseId).ToList();
+            _viewModelService.SetUser(user);
 
-            model.Courses = model.Courses.Where(c => ids.Contains(c.Id)).ToList();
-
-            model.LoggedUser = user;
-
-            return View(model);
+            await _ruleUser.MarkLearned(user.Id, materialId);
         }
     }
 }

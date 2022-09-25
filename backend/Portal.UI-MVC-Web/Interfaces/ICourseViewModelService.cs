@@ -2,22 +2,22 @@
 {
     public interface ICourseViewModelService
     {
-        public CourseViewModel ToCourseViewModel(CourseDTO courseDTO);
+        CourseViewModel ToCourseViewModel(CourseDTO courseDTO);
 
-        public Task<CourseViewModel> ToCourseViewModelWithUnmarked(CourseDTO courseDTO);
+        Task<CourseViewModel> ToCourseViewModelWithUnmarked(CourseDTO courseDTO);
 
-        public Task<CourseViewModel> ToCourseViewModelById(int courseId);
+        Task<CourseViewModel> ToCourseViewModelById(int courseId);
 
-        public Task<CourseViewModel> ToCourseViewModelByIdWithUnmarked(int courseId);
+        Task<CourseViewModel> ToCourseViewModelByIdWithUnmarked(int courseId);
 
-        public CourseDTO ToCourseDto(CourseViewModel courseViewModel);
+        CourseDTO ToCourseDto(CourseViewModel courseViewModel);
 
-        public Task<CourseIndexModel> GetCourseIndexModel();
+        Task<CourseIndexModel> GetCourseIndexModel();
 
-        public Task CallCreateCourse(CourseViewModel courseViewModel);
+        Task CallCreateCourse(CourseViewModel courseViewModel);
 
-        public Task CallUpdateCourse(CourseViewModel courseViewModel);
+        Task CallUpdateCourse(CourseViewModel courseViewModel);
 
-        public Task CallDeleteCourse(int id);
+        Task CallDeleteCourse(int id);
     }
 }
