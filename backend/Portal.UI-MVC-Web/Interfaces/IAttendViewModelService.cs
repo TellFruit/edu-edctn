@@ -7,5 +7,7 @@
         Task<CourseIndexModel> GetAttendedCourses();
 
         Task<AttendViewModel> GetAttendModelById(int courseId);
+
+        Task LearnOrUnlearnMaterial(int material);
     }
 }

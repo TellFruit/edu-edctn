@@ -36,19 +36,23 @@
 
         public async Task<ICollection<UserDomain>> Read()
         {
-            return await Task.Run(() =>
-            {
-                var users = _context.Users
+            var users = _context.Users
                 .Include(u => u.UserCourses)
                     .ThenInclude(uc => uc.Course)
+                        .ThenInclude(c => c.CourseMaterials)
+                            .ThenInclude(cm => cm.Material)
                 .Include(u => u.UserMaterial)
                     .ThenInclude(um => um.Material)
                 .Include(u => u.UserPerks)
                     .ThenInclude(up => up.Perk)
                 .ToList();
 
-                return users.Select(x => _mapper.Map<UserDomain>(x)).ToList();
-            });
+            return users.Select(x => _mapper.Map<UserDomain>(x)).ToList();
+
+            //return await Task.Run(() =>
+            //{
+                
+            //});
         }
 
         public async Task<ICollection<UserDomain>> Read(ISpecification<UserDomain> specification)

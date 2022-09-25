@@ -67,11 +67,9 @@
         [HttpPost]
         public async Task<IActionResult> LearnOrUnlearn(int materialId)
         {
-            var user = await GetUserByLoggedEmail();
+            _viewModelService.SetUser(await GetUserByLoggedEmail());
 
-            _viewModelService.SetUser(user);
-
-            await _ruleUser.MarkLearned(user.Id, materialId);
+            await _viewModelService.LearnOrUnlearnMaterial(materialId);
 
             return Ok(materialId);
         }

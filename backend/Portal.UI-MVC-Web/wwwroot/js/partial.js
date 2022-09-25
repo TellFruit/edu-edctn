@@ -43,7 +43,7 @@ function createCourseEvents() {
     createDeleteEvents("#course-table-view", createCourseEvents);
 }
 
-$(function () {
+function createLearnEvents() {
     $(".learn-material").each(function () {
         $(this).click(function () {
             let progress = $(this).attr("progress");
@@ -58,10 +58,11 @@ $(function () {
             }
         });
     })
-});
+}
 
 createArticleEvents();
 createBookEvents();
 createVideoEvents();
 createPerkEvents();
 createCourseEvents();
+createLearnEvents();

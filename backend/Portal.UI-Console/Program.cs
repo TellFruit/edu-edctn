@@ -34,6 +34,7 @@
 
             Portal.Application
                 .DependencyInjection.RegisterApplication(services);
+
             Portal.Persistence_EF_Core
                 .DependencyInjection.RegisterEntityFramework(services);
 

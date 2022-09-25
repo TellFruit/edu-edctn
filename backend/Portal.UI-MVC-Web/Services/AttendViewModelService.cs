@@ -57,5 +57,19 @@
                 Materials = materialViews
             };
         }
+
+        public async Task LearnOrUnlearnMaterial(int materialId)
+        {
+            var found = _loggedUser.MaterialLearned.Where(m => m.MaterialId == materialId).FirstOrDefault();
+
+            if (found == null)
+            {
+                await _ruleUser.MarkLearned(_loggedUser.Id, materialId);
+            }
+            else
+            {
+                await _ruleUser.UnmarkLearned(_loggedUser.Id, materialId);
+            }
+        }
     }
 }

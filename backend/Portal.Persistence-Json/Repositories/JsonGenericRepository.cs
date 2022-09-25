@@ -1,4 +1,6 @@
-﻿namespace Portal.Persistence_Json.Repositories
+﻿using Portal.Domain.GenericSpecification;
+
+namespace Portal.Persistence_Json.Repositories
 {
     internal class JsonGenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : BaseEntity
     {
@@ -43,7 +45,7 @@
             return _entities;
         }
 
-        public async Task<ICollection<TEntity>> Read(Func<TEntity, bool> predicate)
+        public async Task<ICollection<TEntity>> Read(ISpecification<TEntity> predicate)
         {
             return _entities.Where(predicate).ToList();
         }
