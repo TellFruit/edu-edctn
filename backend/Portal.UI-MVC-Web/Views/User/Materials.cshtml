@@ -1,0 +1,28 @@
+﻿@model ICollection<MaterialLearnedDTO>
+
+@{
+    ViewData["Title"] = @Profile.ProfileMaterials;
+}
+
+<h1 class="text-center">@Profile.ProfileMaterials</h1>
+<table class="table table-hover" id="book-table">
+    <thead>
+        <tr>
+            <th scope="col">@Objects.Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var material in Model)
+        {
+            <tr>
+                <th scope="row">
+                    @material.Material.ToString()
+                </th>
+            </tr>
+        }
+    </tbody>
+</table>  
+@if (Model.Any() is false)
+{
+    <h3 class="text-center">@Headings.NoData</h3>
+}

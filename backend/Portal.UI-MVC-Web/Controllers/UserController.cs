@@ -57,6 +57,20 @@
             return View(await _viewModelService.GetAttendedCourses());
         }
 
+        public async Task<IActionResult> Materials()
+        {
+            var user = await GetUserByLoggedEmail();
+
+            return View(user.MaterialLearned);
+        }
+
+        public async Task<IActionResult> Perks()
+        {
+            var user = await GetUserByLoggedEmail();
+
+            return View(user.PerkLevel);
+        }
+
         public async Task<IActionResult> Attend(int courseId)
         {
             _viewModelService.SetUser(await GetUserByLoggedEmail());
