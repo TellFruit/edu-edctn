@@ -97,6 +97,15 @@ namespace Portal.UI_MVC_Web.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Learned.
+        /// </summary>
+        internal static string Learned {
+            get {
+                return ResourceManager.GetString("Learned", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
         internal static string Name {

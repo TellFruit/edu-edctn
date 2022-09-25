@@ -53,7 +53,7 @@
             return new AttendViewModel()
             {
                 Course = course,
-                UserDTO = _loggedUser,
+                User = _loggedUser,
                 Materials = materialViews
             };
         }

@@ -4,8 +4,8 @@
     {
         public CourseDTO Course { get; set; }
 
-        public UserDTO UserDTO { get; set; }
+        public UserDTO User { get; set; }
 
-        public ICollection<AttendMaterialModel> Materials { get; set; }
+        public IList<AttendMaterialModel> Materials { get; set; }
     }
 }

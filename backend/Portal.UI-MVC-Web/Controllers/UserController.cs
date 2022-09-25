@@ -65,13 +65,15 @@
         }
 
         [HttpPost]
-        public async Task LearnMaterial(int materialId)
+        public async Task<IActionResult> LearnOrUnlearn(int materialId)
         {
             var user = await GetUserByLoggedEmail();
 
             _viewModelService.SetUser(user);
 
             await _ruleUser.MarkLearned(user.Id, materialId);
+
+            return Ok(materialId);
         }
     }
 }

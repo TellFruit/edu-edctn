@@ -43,6 +43,23 @@ function createCourseEvents() {
     createDeleteEvents("#course-table-view", createCourseEvents);
 }
 
+$(function () {
+    $(".learn-material").each(function () {
+        $(this).click(function () {
+            let progress = $(this).attr("progress");
+            let material = { materialId: $(this).attr("material") };
+            let url = $(this).attr("url");
+
+            if (progress < 100) {
+                getPartial("Post", url, material, null, null);
+            }
+            else {
+                $(this).attr('checked', true);
+            }
+        });
+    })
+});
+
 createArticleEvents();
 createBookEvents();
 createVideoEvents();

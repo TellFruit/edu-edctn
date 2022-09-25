@@ -129,6 +129,9 @@
   <data name="Format" xml:space="preserve">
     <value>Format</value>
   </data>
+  <data name="Learned" xml:space="preserve">
+    <value>Learned</value>
+  </data>
   <data name="Name" xml:space="preserve">
     <value>Name</value>
   </data>

@@ -27,7 +27,7 @@
                     @course.Description
                 </td>
                 <td>
-                    <a asp-controller="User" asp-action="Attend" asp-route-id="@course.Id" class="btn btn-light">
+                    <a asp-controller="User" asp-action="Attend" asp-route-courseid="@course.Id" class="btn btn-light">
                         @Actions.Attend
                     </a>
                 </td>
