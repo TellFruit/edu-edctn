@@ -1,6 +1,4 @@
-﻿using Portal.Domain.Entities.Material;
-
-namespace Portal.Application.MappingProfiles
+﻿namespace Portal.Application.MappingProfiles
 {
     internal class ArticleProfile : Profile
     {

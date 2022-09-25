@@ -1,6 +1,4 @@
-﻿using Portal.Domain.Entities.Course;
-using Portal.Domain.Entities.Course.Specification;
-using Portal.Domain.Entities.User;
+﻿using Portal.Domain.Entities.Course.Specification;
 using Portal.Domain.Entities.User.Specification;
 
 namespace Portal.Application.Services.Rules

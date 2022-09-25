@@ -1,6 +1,4 @@
-﻿using Portal.Domain.Entities.User;
-
-namespace Portal.Application.MappingProfiles
+﻿namespace Portal.Application.MappingProfiles
 {
     internal class MaterialLearnedProfile : Profile
     {

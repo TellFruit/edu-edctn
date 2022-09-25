@@ -45,18 +45,21 @@
                                     <div class="dropdown">
                                       <button class="dropbtn nav-link">Profile</button>
                                       <div class="dropdown-content">
-                                        <a asp-controller="User" asp-action="Info" class="nav-link text-dark">
+                                          @if (User.IsInRole(nameof(Roles.Learner)))
+                                        {
+                                            <a asp-controller="User" asp-action="Info" class="nav-link text-dark">
                                             @Profile.Info
-                                        </a>
-                                        <a asp-controller="User" asp-action="Courses" class="nav-link text-dark">
-                                            @Profile.ProfileCourses
-                                        </a>
-                                        <a asp-controller="User" asp-action="Materials" class="nav-link text-dark">
-                                            @Profile.ProfileMaterials
-                                        </a>
-                                        <a asp-controller="User" asp-action="Perks" class="nav-link text-dark">
-                                            @Profile.ProfilePerks
-                                        </a>
+                                            </a>
+                                            <a asp-controller="User" asp-action="Courses" class="nav-link text-dark">
+                                                @Profile.ProfileCourses
+                                            </a>
+                                            <a asp-controller="User" asp-action="Materials" class="nav-link text-dark">
+                                                @Profile.ProfileMaterials
+                                            </a>
+                                            <a asp-controller="User" asp-action="Perks" class="nav-link text-dark">
+                                                @Profile.ProfilePerks
+                                            </a>
+                                        }
                                         <div class="dropdown-divider"></div>
                                         <a asp-controller="Auth" asp-action="Logout" class="nav-link text-danger">
                                             @Actions.Logout
