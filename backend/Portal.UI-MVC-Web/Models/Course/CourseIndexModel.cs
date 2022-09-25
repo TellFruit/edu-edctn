@@ -2,6 +2,8 @@
 {
     public class CourseIndexModel
     {
+        public UserDTO LoggedUser { get; set; }
+
         public ICollection<CourseDTO> Courses { get; set; }
 
         public CourseIndexModel(ICollection<CourseDTO> courses)

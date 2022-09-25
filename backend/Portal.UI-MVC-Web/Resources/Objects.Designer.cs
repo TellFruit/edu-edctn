@@ -115,6 +115,15 @@ namespace Portal.UI_MVC_Web.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Progress.
+        /// </summary>
+        internal static string Progress {
+            get {
+                return ResourceManager.GetString("Progress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Published.
         /// </summary>
         internal static string Published {

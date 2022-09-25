@@ -135,6 +135,9 @@
   <data name="PageCount" xml:space="preserve">
     <value>Page Count</value>
   </data>
+  <data name="Progress" xml:space="preserve">
+    <value>Progress</value>
+  </data>
   <data name="Published" xml:space="preserve">
     <value>Published</value>
   </data>

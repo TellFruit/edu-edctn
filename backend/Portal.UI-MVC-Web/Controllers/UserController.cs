@@ -56,6 +56,12 @@
 
             var user = await GetUserByLoggedEmail();
 
+            var ids = user.CourseProgress.Select(c => c.CourseId).ToList();
+
+            model.Courses = model.Courses.Where(c => ids.Contains(c.Id)).ToList();
+
+            model.LoggedUser = user;
+
             return View(model);
         }
     }

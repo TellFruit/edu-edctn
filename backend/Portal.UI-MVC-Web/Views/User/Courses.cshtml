@@ -1,0 +1,49 @@
+﻿@model CourseIndexModel
+
+@{
+    ViewData["Title"] = @Profile.ProfileCourses;
+}
+
+<h1 class="text-center">@ViewData["Title"]</h1>
+<table class="table table-hover" id="course-table">
+    <thead>
+        <tr>
+            <th scope="col">@Objects.Name</th>
+            <th scope="col">@Objects.Description</th>
+            <th scope="col" />
+            <th scope="col" />
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var course in Model.Courses)
+        {
+            var courseProgress = Model.LoggedUser.CourseProgress.First(c => c.CourseId.Equals(course.Id));
+
+            <tr>
+                <th scope="row">
+                    @course.Name
+                </th>
+                <td>
+                    @course.Description
+                </td>
+                <td>
+                    <a asp-controller="User" asp-action="Attend" asp-route-id="@course.Id" class="btn btn-light">
+                        @Actions.Attend
+                    </a>
+                </td>
+                <td cclass="d-flex flex-direction">
+                    <div class="progress min-vw-20" style="margin: 0">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="@courseProgress.Progress" aria-valuemin="0" aria-valuemax="100" course-id="@course.Id"></div>
+                    </div>
+                    <div class="text-dark" id="progress_@course.Id">
+                        
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@if (Model.Courses.Any() is false)
+{
+    <h3 class="text-center">@Headings.NoData</h3>
+}

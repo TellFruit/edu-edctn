@@ -61,6 +61,15 @@ namespace Portal.UI_MVC_Web.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Attend.
+        /// </summary>
+        internal static string Attend {
+            get {
+                return ResourceManager.GetString("Attend", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create.
         /// </summary>
         internal static string Create {
