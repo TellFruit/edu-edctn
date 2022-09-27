@@ -1,7 +1,7 @@
 ﻿@model UserDTO
 
 @{
-    ViewData["Title"] = @Profile.Info
+    ViewData["Title"] = @Profile.Info;
     Context.Session.SetString("LastUrl", Context.Request.Path);
 }
 
