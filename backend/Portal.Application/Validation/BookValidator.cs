@@ -3,7 +3,6 @@
     public class BookValidator : AbstractValidator<BookDTO>
     {
         private static readonly IList<string> _formats = new List<string>() { ".pdf", ".mobi", ".epub", ".doc", ".docx", ".odt" };
-        private readonly string _match = "";
 
         public BookValidator()
         {

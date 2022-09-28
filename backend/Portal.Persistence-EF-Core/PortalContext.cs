@@ -11,7 +11,7 @@
         public DbSet<Material> Materials { get; set; }
 
         public PortalContext(DbContextOptions<PortalContext> options)
-            : base(options) {}
+            : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

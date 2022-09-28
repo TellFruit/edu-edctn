@@ -29,14 +29,14 @@
             builder.Entity<User>().HasData(
                 new User 
                 { 
-                    Id = 9999,
+                    Id = 1000,
                     Email = "admin@nix.dev.com",
                     Password = "admin",
                     Roles = "Admin"
                 },
                 new User
                 {
-                    Id = 9998,
+                    Id = 1001,
                     Email = "moder1@nix.dev.com",
                     Password = "moder1",
                     Roles = "Moderator"
