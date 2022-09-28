@@ -26,3 +26,4 @@ global using Portal.Application;
 global using Portal.Application.DTO;
 global using Portal.Application.Interfaces.InnerImpl.Services;
 global using Portal.Application.Interfaces.InnerImpl;
+global using Portal.Application.Validation;

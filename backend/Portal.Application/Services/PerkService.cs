@@ -7,7 +7,7 @@
 
         public async Task<PerkDTO> Create(PerkDTO entity)
         {
-            if (entity.Validate(new PerkValidator()))
+            if (entity.Validate(new PerkValidator()) is false)
             {
                 return new PerkDTO();
             }
@@ -64,7 +64,7 @@
 
         public async Task<PerkDTO> Update(PerkDTO entity)
         {
-            if (entity.Validate(new PerkValidator()))
+            if (entity.Validate(new PerkValidator()) is false)
             {
                 return new PerkDTO();
             }

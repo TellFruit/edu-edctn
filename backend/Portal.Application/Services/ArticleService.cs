@@ -7,7 +7,7 @@
 
         public async Task<ArticleDTO> Create(ArticleDTO entity)
         {
-            if (entity.Validate(new ArticleValidator()))
+            if (entity.Validate(new ArticleValidator()) is false)
             {
                 return new ArticleDTO();
             }
@@ -63,7 +63,7 @@
 
         public async Task<ArticleDTO> Update(ArticleDTO entity)
         {
-            if (entity.Validate(new ArticleValidator()))
+            if (entity.Validate(new ArticleValidator()) is false)
             {
                 return new ArticleDTO();
             }

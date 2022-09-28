@@ -7,7 +7,7 @@
 
         public async Task<VideoDTO> Create(VideoDTO entity)
         {
-            if (entity.Validate(new VideoValidator()))
+            if (entity.Validate(new VideoValidator()) is false)
             {
                 return new VideoDTO();
             }
@@ -64,7 +64,7 @@
 
         public async Task<VideoDTO> Update(VideoDTO entity)
         {
-            if (entity.Validate(new VideoValidator()))
+            if (entity.Validate(new VideoValidator()) is false)
             {
                 return new VideoDTO();
             }

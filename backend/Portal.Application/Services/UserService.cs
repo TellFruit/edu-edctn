@@ -7,7 +7,7 @@
 
         public async Task<UserDTO> Create(UserDTO entity)
         {
-            if (entity.Validate(new UserValidator()))
+            if (entity.Validate(new UserValidator()) is false)
             {
                 return new UserDTO();
             }
@@ -64,7 +64,7 @@
 
         public async Task<UserDTO> Update(UserDTO entity)
         {
-            if (entity.Validate(new UserValidator()))
+            if (entity.Validate(new UserValidator()) is false)
             {
                 return new UserDTO();
             }

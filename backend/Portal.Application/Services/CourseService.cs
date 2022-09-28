@@ -7,7 +7,7 @@
 
         public async Task<CourseDTO> Create(CourseDTO entity)
         {
-            if (entity.Validate(new CourseValidator()))
+            if (entity.Validate(new CourseValidator()) is false)
             {
                 return new CourseDTO();
             }
@@ -64,7 +64,7 @@
 
         public async Task<CourseDTO> Update(CourseDTO entity)
         {
-            if (entity.Validate(new CourseValidator()))
+            if (entity.Validate(new CourseValidator()) is false)
             {
                 return new CourseDTO();
             }

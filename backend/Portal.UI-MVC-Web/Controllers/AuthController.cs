@@ -43,6 +43,17 @@
         [HttpPost]
         public async Task<IActionResult> Register(RegisterModel model)
         {
+            var toValidate = new UserDTO()
+            {
+                Email = model.Email,
+                Password = model.Password
+            };
+
+            if (toValidate.Validate(new UserValidator()) is false)
+            {
+                return View();
+            }
+
             await _userAuth.Register(model.Email, model.Password);
 
             await Authenticate(model.Email, Roles.Learner.ToString());
