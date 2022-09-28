@@ -1,5 +1,6 @@
 ﻿global using Newtonsoft.Json;
 global using AutoMapper;
+global using FluentValidation;
 
 global using System.Reflection;
 global using System.Configuration;
