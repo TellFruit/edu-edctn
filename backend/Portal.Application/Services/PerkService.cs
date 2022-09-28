@@ -7,6 +7,11 @@
 
         public async Task<PerkDTO> Create(PerkDTO entity)
         {
+            if (entity.Validate(new PerkValidator()))
+            {
+                return new PerkDTO();
+            }
+
             var perk = _mapper.Map<PerkDomain>(entity);
 
             perk.CreatedAt = DateTime.Now;
@@ -59,6 +64,11 @@
 
         public async Task<PerkDTO> Update(PerkDTO entity)
         {
+            if (entity.Validate(new PerkValidator()))
+            {
+                return new PerkDTO();
+            }
+
             var perks = await _repository.Read();
 
             var toUpdate = perks.FirstOrDefault(a => a.Id.Equals(entity.Id));

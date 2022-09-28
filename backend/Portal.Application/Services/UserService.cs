@@ -7,6 +7,11 @@
 
         public async Task<UserDTO> Create(UserDTO entity)
         {
+            if (entity.Validate(new UserValidator()))
+            {
+                return new UserDTO();
+            }
+
             var user = _mapper.Map<UserDomain>(entity);
 
             user.CreatedAt = DateTime.Now;
@@ -59,6 +64,11 @@
 
         public async Task<UserDTO> Update(UserDTO entity)
         {
+            if (entity.Validate(new UserValidator()))
+            {
+                return new UserDTO();
+            }
+
             var users = await _repository.Read();
 
             var toUpdate = users.FirstOrDefault(a => a.Id.Equals(entity.Id));

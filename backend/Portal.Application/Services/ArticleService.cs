@@ -7,6 +7,11 @@
 
         public async Task<ArticleDTO> Create(ArticleDTO entity)
         {
+            if (entity.Validate(new ArticleValidator()))
+            {
+                return new ArticleDTO();
+            }
+
             var article = _mapper.Map<ArticleDomain>(entity);
 
             article.CreatedAt = DateTime.Now;
@@ -58,6 +63,11 @@
 
         public async Task<ArticleDTO> Update(ArticleDTO entity)
         {
+            if (entity.Validate(new ArticleValidator()))
+            {
+                return new ArticleDTO();
+            }
+
             var articles = await _repository.Read();
 
             var toUpdate = articles.FirstOrDefault(a => a.Id.Equals(entity.Id));

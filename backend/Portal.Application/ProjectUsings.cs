@@ -9,6 +9,7 @@ global using Portal.Application.Interfaces.Other;
 global using Portal.Application.Interfaces.OuterImpl;
 global using Portal.Application.Interfaces.InnerImpl;
 global using Portal.Application.Interfaces.InnerImpl.Services;
+global using Portal.Application.Validation;
 global using Portal.Application.MappingProfiles;
 global using Portal.Application.Services.Abstract;
 global using Portal.Application.Services.Config;

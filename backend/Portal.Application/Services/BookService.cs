@@ -7,6 +7,11 @@
 
         public async Task<BookDTO> Create(BookDTO entity)
         {
+            if (entity.Validate(new BookValidator()))
+            {
+                return new BookDTO();
+            }
+
             var book = _mapper.Map<BookDomain>(entity);
 
             book.CreatedAt = DateTime.Now;
@@ -59,6 +64,11 @@
 
         public async Task<BookDTO> Update(BookDTO entity)
         {
+            if (entity.Validate(new BookValidator()))
+            {
+                return new BookDTO();
+            }
+
             var articles = await _repository.Read();
 
             var toUpdate = articles.FirstOrDefault(a => a.Id.Equals(entity.Id)); 

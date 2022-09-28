@@ -7,6 +7,11 @@
 
         public async Task<CourseDTO> Create(CourseDTO entity)
         {
+            if (entity.Validate(new CourseValidator()))
+            {
+                return new CourseDTO();
+            }
+
             var course = _mapper.Map<CourseDomain>(entity);
 
             course.CreatedAt = DateTime.Now;
@@ -59,6 +64,11 @@
 
         public async Task<CourseDTO> Update(CourseDTO entity)
         {
+            if (entity.Validate(new CourseValidator()))
+            {
+                return new CourseDTO();
+            }
+
             var courses = await _repository.Read();
 
             var toUpdate = courses.FirstOrDefault(a => a.Id.Equals(entity.Id));

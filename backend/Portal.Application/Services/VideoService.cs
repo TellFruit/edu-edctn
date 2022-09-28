@@ -7,6 +7,11 @@
 
         public async Task<VideoDTO> Create(VideoDTO entity)
         {
+            if (entity.Validate(new VideoValidator()))
+            {
+                return new VideoDTO();
+            }
+
             var video = _mapper.Map<VideoDomain>(entity);
 
             video.CreatedAt = DateTime.Now;
@@ -59,6 +64,11 @@
 
         public async Task<VideoDTO> Update(VideoDTO entity)
         {
+            if (entity.Validate(new VideoValidator()))
+            {
+                return new VideoDTO();
+            }
+
             var articles = await _repository.Read();
 
             var toUpdate = articles.FirstOrDefault(a => a.Id.Equals(entity.Id));
