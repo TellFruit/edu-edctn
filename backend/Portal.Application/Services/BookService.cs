@@ -7,7 +7,7 @@
 
         public async Task<BookDTO> Create(BookDTO entity)
         {
-            if (entity.Validate(new BookValidator()))
+            if (entity.Validate(new BookValidator()) is false)
             {
                 return new BookDTO();
             }

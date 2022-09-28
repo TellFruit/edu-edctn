@@ -9,6 +9,9 @@
 
             RuleFor(v => v.Quality)
                 .GreaterThan(0);
+
+            RuleFor(v => v.Duration)
+                .GreaterThan(TimeSpan.Zero);
         }
     }
 }

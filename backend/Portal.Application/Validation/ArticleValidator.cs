@@ -16,7 +16,8 @@
                 .Matches(_match);
 
             RuleFor(a => a.Published)
-                .GreaterThan(_minDate);
+                .GreaterThan(_minDate)
+                .LessThanOrEqualTo(DateTime.Now);
         }
     }
 }
