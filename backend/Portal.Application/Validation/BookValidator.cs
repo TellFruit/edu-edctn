@@ -8,7 +8,6 @@
         public BookValidator()
         {
             RuleFor(b => b.Title)
-                .NotNull()
                 .NotEmpty();
 
             RuleFor(b => b.Authors)

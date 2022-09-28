@@ -8,7 +8,6 @@
         public ArticleValidator()
         {
             RuleFor(a => a.Title)
-                .NotNull()
                 .NotEmpty();
 
             RuleFor(a => a.Url)
