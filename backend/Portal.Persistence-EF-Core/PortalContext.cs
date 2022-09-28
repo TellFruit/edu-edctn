@@ -15,24 +15,9 @@
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Article>();
-            modelBuilder.Entity<Book>();
-            modelBuilder.Entity<Video>();
+            modelBuilder.Configure();
 
-            modelBuilder.Entity<CourseMaterial>()
-                .HasKey(x => new { x.CourseId, x.MaterialId });
-
-            modelBuilder.Entity<UserCourse>()
-                .HasKey(x => new { x.UserId, x.CourseId });
-
-            modelBuilder.Entity<UserMaterial>()
-                .HasKey(x => new { x.UserId, x.MaterialId });
-
-            modelBuilder.Entity<CoursePerk>()
-                .HasKey(x => new { x.PerkId, x.CourseId });
-
-            modelBuilder.Entity<FrameworkEntities.UserPerk>()
-                .HasKey(x => new { x.UserId, x.PerkId });
+            modelBuilder.Seed();
         }
     }
 }
