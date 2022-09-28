@@ -2,19 +2,22 @@
 {
     public class ArticleValidator : AbstractValidator<ArticleDTO>
     {
-        public readonly DateTime MinDate = new DateTime(1990, 12, 20);
-        public readonly string Match = @"((?:http|ftp|https):\/\/(?:[\w_-]+(?:(?:\.[\w_-]+)+))(?:[\w.,@?^=%:\/~+#-]*[\w@?^=%\/~+#-]))";
+        private readonly DateTime _minDate = new DateTime(1990, 12, 20);
+        private readonly string _match = @"((?:http|ftp|https):\/\/(?:[\w_-]+(?:(?:\.[\w_-]+)+))(?:[\w.,@?^=%:\/~+#-]*[\w@?^=%\/~+#-]))";
 
         public ArticleValidator()
         {
             RuleFor(a => a.Title)
+                .NotNull()
                 .NotEmpty();
 
             RuleFor(a => a.Url)
-                .Matches(Match);
+                .NotNull()
+                .NotEmpty()
+                .Matches(_match);
 
             RuleFor(a => a.Published)
-                .GreaterThan(MinDate);
+                .GreaterThan(_minDate);
         }
     }
 }
