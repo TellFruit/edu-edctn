@@ -1,6 +1,4 @@
-﻿using Portal.Domain.Entities.Abstract;
-
-namespace Portal.Domain.Interfaces
+﻿namespace Portal.Domain.Interfaces
 {
     public interface ISpecification<T> where T : BaseEntity
     {

@@ -1,5 +1,4 @@
-﻿using Portal.Domain.Entities.Abstract;
-using Portal.Domain.Entities.Course;
+﻿using Portal.Domain.Entities.Course;
 
 namespace Portal.Domain.Entities.User
 {

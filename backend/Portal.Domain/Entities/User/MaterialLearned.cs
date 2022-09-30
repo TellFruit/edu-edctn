@@ -1,6 +1,4 @@
-﻿using Portal.Domain.Entities.Abstract;
-
-namespace Portal.Domain.Entities.User
+﻿namespace Portal.Domain.Entities.User
 {
     public class MaterialLearned
     {

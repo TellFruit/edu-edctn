@@ -1,5 +1,4 @@
-﻿using Portal.Domain.Entities.Abstract;
-using Portal.Domain.Entities.User;
+﻿using Portal.Domain.Entities.User;
 
 namespace Portal.Domain.Entities.Perk
 {

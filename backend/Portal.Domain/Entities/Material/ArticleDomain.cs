@@ -1,6 +1,4 @@
-﻿using Portal.Domain.Entities.Abstract;
-
-namespace Portal.Domain.Entities.Material
+﻿namespace Portal.Domain.Entities.Material
 {
     public class ArticleDomain : MaterialDomain
     {

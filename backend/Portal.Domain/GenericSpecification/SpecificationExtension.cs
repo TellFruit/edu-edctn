@@ -1,6 +1,4 @@
-﻿using Portal.Domain.Entities.Abstract;
-
-namespace Portal.Domain.GenericSpecification
+﻿namespace Portal.Domain.GenericSpecification
 {
     public static class SpecificationExtension
     {

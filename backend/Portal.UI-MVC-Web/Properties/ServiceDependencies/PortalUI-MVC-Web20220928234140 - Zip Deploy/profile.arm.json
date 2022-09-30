@@ -21,7 +21,7 @@
     },
     "resourceName": {
       "type": "string",
-      "defaultValue": "PortalUI-MVC-Web20220927152051",
+      "defaultValue": "PortalUI-MVC-Web20220928234140",
       "metadata": {
         "description": "Name of the main resource to be created by this template."
       }

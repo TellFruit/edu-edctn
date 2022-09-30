@@ -1,22 +1,20 @@
-﻿using Portal.Domain.Entities.Abstract;
-
-namespace Portal.Domain.GenericSpecification
+﻿namespace Portal.Domain.GenericSpecification
 {
     internal class AndSpecification<T> : Specification<T> where T : BaseEntity
     {
-        private ISpecification<T> leftSpec;
-        private ISpecification<T> rightSpec;
+        private ISpecification<T> _leftSpec;
+        private ISpecification<T> _rightSpec;
 
         public AndSpecification(ISpecification<T> first, ISpecification<T> second)
         {
-            leftSpec = first;
-            rightSpec = second;
+            _leftSpec = first;
+            _rightSpec = second;
         }
 
         public override bool IsSatisfiedBy(T item)
         {
-            return leftSpec.IsSatisfiedBy(item) 
-                && rightSpec.IsSatisfiedBy(item);
+            return _leftSpec.IsSatisfiedBy(item) 
+                && _rightSpec.IsSatisfiedBy(item);
         }
     }
 }
