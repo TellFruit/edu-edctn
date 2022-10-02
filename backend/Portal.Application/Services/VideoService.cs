@@ -2,12 +2,14 @@
 {
     internal class VideoService : BaseModelService<VideoDomain>, IVideoService
     {
+        private readonly AbstractValidator<VideoDTO> _validator;
+
         public VideoService(IGenericRepository<VideoDomain> repository, IMapper mapper)
             : base(repository, mapper) {}
 
         public async Task<VideoDTO> Create(VideoDTO entity)
         {
-            if (entity.Validate(new VideoValidator()) is false)
+            if (entity.Validate(_validator) is false)
             {
                 return new VideoDTO();
             }
@@ -64,7 +66,7 @@
 
         public async Task<VideoDTO> Update(VideoDTO entity)
         {
-            if (entity.Validate(new VideoValidator()) is false)
+            if (entity.Validate(_validator) is false)
             {
                 return new VideoDTO();
             }

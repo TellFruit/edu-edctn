@@ -2,12 +2,17 @@
 {
     internal class BookService : BaseModelService<BookDomain>, IBookService
     {
-        public BookService(IGenericRepository<BookDomain> repository, IMapper mapper)
-            : base(repository, mapper) {}
+        private readonly AbstractValidator<BookDTO> _validator;
+
+        public BookService(IGenericRepository<BookDomain> repository, IMapper mapper, AbstractValidator<BookDTO> validator)
+            : base(repository, mapper)
+        {
+            _validator = validator;
+        }
 
         public async Task<BookDTO> Create(BookDTO entity)
         {
-            if (entity.Validate(new BookValidator()) is false)
+            if (entity.Validate(_validator) is false)
             {
                 return new BookDTO();
             }
@@ -64,7 +69,7 @@
 
         public async Task<BookDTO> Update(BookDTO entity)
         {
-            if (entity.Validate(new BookValidator()) is false)
+            if (entity.Validate(_validator) is false)
             {
                 return new BookDTO();
             }

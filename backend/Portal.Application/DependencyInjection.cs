@@ -24,6 +24,13 @@
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ICourseService, CourseService>();
 
+            services.AddScoped<AbstractValidator<ArticleDTO>, ArticleValidator>();
+            services.AddScoped<AbstractValidator<BookDTO>, BookValidator>();
+            services.AddScoped<AbstractValidator<VideoDTO>, VideoValidator>();
+            services.AddScoped<AbstractValidator<PerkDTO>, PerkValidator>();
+            services.AddScoped<AbstractValidator<CourseDTO>, CourseValidator>();
+            services.AddScoped<AbstractValidator<UserDTO>, UserValidator>();
+
             services.AddScoped<IConfigService, ConfigService>();
 
             services.AddScoped<IUserAuth, UserAuth>();

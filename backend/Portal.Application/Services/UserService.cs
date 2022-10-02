@@ -2,12 +2,14 @@
 {
     internal class UserService : BaseModelService<UserDomain>, IUserService
     {
+        private readonly AbstractValidator<UserDTO> _validator;
+
         public UserService(IGenericRepository<UserDomain> repository, IMapper mapper)
             : base(repository, mapper) {}
 
         public async Task<UserDTO> Create(UserDTO entity)
         {
-            if (entity.Validate(new UserValidator()) is false)
+            if (entity.Validate(_validator) is false)
             {
                 return new UserDTO();
             }
@@ -64,7 +66,7 @@
 
         public async Task<UserDTO> Update(UserDTO entity)
         {
-            if (entity.Validate(new UserValidator()) is false)
+            if (entity.Validate(_validator) is false)
             {
                 return new UserDTO();
             }

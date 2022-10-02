@@ -2,12 +2,17 @@
 {
     internal class ArticleService : BaseModelService<ArticleDomain>, IArticleService
     {
-        public ArticleService(IGenericRepository<ArticleDomain> repository, IMapper mapper) 
-            : base(repository, mapper) {}
+        private readonly AbstractValidator<ArticleDTO> _validator;
+
+        public ArticleService(IGenericRepository<ArticleDomain> repository, IMapper mapper, AbstractValidator<ArticleDTO> validator)
+            : base(repository, mapper)
+        {
+            _validator = validator;
+        }
 
         public async Task<ArticleDTO> Create(ArticleDTO entity)
         {
-            if (entity.Validate(new ArticleValidator()) is false)
+            if (entity.Validate(_validator) is false)
             {
                 return new ArticleDTO();
             }
@@ -63,7 +68,7 @@
 
         public async Task<ArticleDTO> Update(ArticleDTO entity)
         {
-            if (entity.Validate(new ArticleValidator()) is false)
+            if (entity.Validate(_validator) is false)
             {
                 return new ArticleDTO();
             }

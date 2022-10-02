@@ -2,12 +2,17 @@
 {
     internal class CourseService : BaseModelService<CourseDomain>, ICourseService
     {
-        public CourseService(IGenericRepository<CourseDomain> repository, IMapper mapper)
-            : base(repository, mapper) {}
+        private readonly AbstractValidator<CourseDTO> _validator;
+
+        public CourseService(IGenericRepository<CourseDomain> repository, IMapper mapper, AbstractValidator<CourseDTO> validator)
+            : base(repository, mapper)
+        {
+            _validator = validator;
+        }
 
         public async Task<CourseDTO> Create(CourseDTO entity)
         {
-            if (entity.Validate(new CourseValidator()) is false)
+            if (entity.Validate(_validator) is false)
             {
                 return new CourseDTO();
             }

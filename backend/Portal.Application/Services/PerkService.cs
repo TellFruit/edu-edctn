@@ -2,12 +2,14 @@
 {
     internal class PerkService : BaseModelService<PerkDomain>, IPerkService
     {
+        private readonly AbstractValidator<PerkDTO> _validator;
+
         public PerkService(IGenericRepository<PerkDomain> repository, IMapper mapper)
             : base(repository, mapper) {}
 
         public async Task<PerkDTO> Create(PerkDTO entity)
         {
-            if (entity.Validate(new PerkValidator()) is false)
+            if (entity.Validate(_validator) is false)
             {
                 return new PerkDTO();
             }
@@ -64,7 +66,7 @@
 
         public async Task<PerkDTO> Update(PerkDTO entity)
         {
-            if (entity.Validate(new PerkValidator()) is false)
+            if (entity.Validate(_validator) is false)
             {
                 return new PerkDTO();
             }
