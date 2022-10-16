@@ -4,8 +4,11 @@
     {
         private readonly AbstractValidator<VideoDTO> _validator;
 
-        public VideoService(IGenericRepository<VideoDomain> repository, IMapper mapper)
-            : base(repository, mapper) {}
+        public VideoService(IGenericRepository<VideoDomain> repository, IMapper mapper, AbstractValidator<VideoDTO> validator)
+            : base(repository, mapper)
+        {
+            _validator = validator;
+        }
 
         public async Task<VideoDTO> Create(VideoDTO entity)
         {
