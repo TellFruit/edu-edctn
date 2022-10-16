@@ -4,8 +4,11 @@
     {
         private readonly AbstractValidator<UserDTO> _validator;
 
-        public UserService(IGenericRepository<UserDomain> repository, IMapper mapper)
-            : base(repository, mapper) {}
+        public UserService(IGenericRepository<UserDomain> repository, IMapper mapper, AbstractValidator<UserDTO> validator)
+            : base(repository, mapper)
+        {
+            _validator = validator;
+        }
 
         public async Task<UserDTO> Create(UserDTO entity)
         {

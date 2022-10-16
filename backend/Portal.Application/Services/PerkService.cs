@@ -4,8 +4,11 @@
     {
         private readonly AbstractValidator<PerkDTO> _validator;
 
-        public PerkService(IGenericRepository<PerkDomain> repository, IMapper mapper)
-            : base(repository, mapper) {}
+        public PerkService(IGenericRepository<PerkDomain> repository, IMapper mapper, AbstractValidator<PerkDTO> validator)
+            : base(repository, mapper)
+        {
+            _validator = validator;
+        }
 
         public async Task<PerkDTO> Create(PerkDTO entity)
         {
