@@ -1,0 +1,50 @@
+﻿@model CourseIndexModel
+
+<table class="table table-hover" id="course-table">
+    <thead>
+        <tr>
+            <th scope="col">@Objects.Name</th>
+            <th scope="col">@Objects.Description</th>
+            <th scope="col" />
+            <th scope="col" />
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var course in Model.Courses)
+        {
+            <tr>
+                <th scope="row">
+                    @course.Name
+                </th>
+                <td>
+                    @course.Description
+                </td>
+                <td>
+                    <div class="d-flex flex-row-reverse">
+                        @if (User.IsInRole(nameof(Roles.Moderator)) || User.IsInRole(nameof(Roles.Admin)))
+                        {
+                            <a asp-controller="Course" asp-action="AddOrEdit" asp-route-id="@course.Id" class="btn btn-secondary">
+                                @Actions.Edit
+                            </a>
+                        }
+                        <a asp-controller="Course" asp-action="Details" asp-route-id="@course.Id" class="btn btn-light">
+                            @Actions.Details
+                        </a>
+                    </div>
+                </td>
+                <td>
+                    @if (User.IsInRole(nameof(Roles.Admin)))
+                    {
+                        <a class="btn btn-danger" url="@Url.Action("Delete", "Course")" data_id="@course.Id">
+                            @Actions.Delete
+                        </a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>  
+@if (Model.Courses.Any() is false)
+{
+    <h3 class="text-center">@Headings.NoData</h3>
+}

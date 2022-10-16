@@ -1,0 +1,49 @@
+﻿@model ArticleIndexModel
+
+<table class="table table-hover" id="article-table">
+    <thead>
+        <tr>
+            <th scope="col">@Objects.Title</th>
+            <th scope="col">@Objects.Url</th>
+            <th scope="col">@Objects.Published</th>
+            <th scope="col" />
+            <th scope="col" />
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var article in Model.ArticleList)
+        {
+            <tr>
+                <th scope="row">
+                    @article.Title
+                </th>
+                <td>
+                    <a href="@article.Url">@article.Url</a>
+                </td>
+                <td>
+                    @article.Published.Date.ToShortDateString()
+                </td>
+                <td class="d-flex flex-row-reverse">
+                    @if (User.IsInRole(nameof(Roles.Moderator)) || User.IsInRole(nameof(Roles.Admin)))
+                    {
+                        <a asp-controller="Article" asp-action="AddOrEdit" asp-route-id="@article.Id" class="btn btn-secondary">
+                            @Actions.Edit
+                        </a>
+                    }
+                </td>
+                <td>
+                    @if (User.IsInRole(nameof(Roles.Admin)))
+                    {
+                        <a class="btn btn-danger" url="@Url.Action("Delete", "Article")" data_id="@article.Id">
+                            @Actions.Delete
+                        </a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>  
+@if (Model.ArticleList.Any() is false)
+{
+    <h3 class="text-center">@Headings.NoData</h3>
+}

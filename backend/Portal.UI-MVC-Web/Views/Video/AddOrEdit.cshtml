@@ -1,0 +1,35 @@
+﻿@model VideoDTO
+
+@{
+    if (Model.Id.Equals(default))
+    {
+        ViewData["Title"] = $"Add {Context.Request.RouteValues["controller"]}";
+    }
+    else
+    {
+        ViewData["Title"] = $"Edit {Context.Request.RouteValues["controller"]}";
+    }
+}
+
+@if (User.IsInRole(nameof(Roles.Admin)) || (!Model.Id.Equals(default) && User.IsInRole(nameof(Roles.Moderator))))
+{
+@using(Html.BeginForm("AddOrEdit", "Video", FormMethod.Post))
+{
+    <div class="mb-2">
+        <div class="d-flex flex-column">
+            @Html.Label(@Objects.Title)
+            @Html.TextBoxFor(m => m.Title)
+        </div>
+        <div class="d-flex flex-column">
+            @Html.Label(@Objects.Duration)
+            <input asp-for="Duration" id="timepicker" type="text">
+        </div>
+        <div class="d-flex flex-column">
+            @Html.Label(@Objects.Quality + ", pixels")
+            @Html.TextBoxFor(m => m.Quality)
+        </div>
+    </div>
+    <input asp-for="Id" type="hidden"/>
+    <input class="btn btn-primary" type="submit" value="@Actions.Submit">
+}
+}

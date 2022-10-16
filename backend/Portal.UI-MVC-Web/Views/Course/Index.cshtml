@@ -1,0 +1,22 @@
+﻿@model CourseIndexModel
+
+@{
+    Context.Session.SetString("LastUrl", Context.Request.Path);
+    ViewData["Title"] = Context.Request.RouteValues["controller"];
+}
+
+@section Styles {
+    <link href="~/css/materials.css" rel="stylesheet"/>
+}
+
+<h1 class="text-center">@ViewData["Title"]</h1>
+<h2 class="text-center">@Headings.DataTable</h2>
+
+@if (User.IsInRole(nameof(Roles.Admin)))
+{
+    <a asp-controller="Course" asp-action="AddOrEdit" class="btn btn-primary">@Actions.Create</a>
+}
+
+<div id="course-table-view">
+    @await Html.PartialAsync("_CoursePartial", Model)
+</div>

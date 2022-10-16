@@ -1,0 +1,59 @@
+﻿@model BookDTO
+
+@{
+    if (Model.Id.Equals(default))
+    {
+        ViewData["Title"] = $"Add {Context.Request.RouteValues["controller"]}";
+    }
+    else
+    {
+        ViewData["Title"] = $"Edit {Context.Request.RouteValues["controller"]}";
+    }
+}
+
+@if (User.IsInRole(nameof(Roles.Admin)) || (!Model.Id.Equals(default) && User.IsInRole(nameof(Roles.Moderator))))
+{
+@using(Html.BeginForm("AddOrEdit", "Book", FormMethod.Post))
+{
+    if (Model.Authors == null)
+    {
+        Model.Authors = new List<string>();
+        Model.Authors.Add("");
+    }
+
+    <div class="mb-2">
+        <div class="d-flex flex-column">
+            @Html.Label(@Objects.Title)
+            @Html.TextBoxFor(m => m.Title)
+            <span asp-validation-for="Title"></span>
+        </div>
+        <div class="d-flex flex-column">
+            @Html.Label(@Objects.PageCount)
+            @Html.TextBoxFor(m => m.PageCount)
+            <span asp-validation-for="PageCount"></span>
+        </div>
+        <div class="d-flex flex-column">
+            @Html.Label(@Objects.Author)
+            @Html.TextBoxFor(m => m.Authors[0])
+        </div>
+        <div class="d-flex flex-column">
+            @Html.Label(@Objects.Published)
+            <input asp-for="Published" type="date">
+            <span asp-validation-for="Published"></span>
+        </div>
+        <div class="d-flex flex-column">
+            @Html.Label(@Objects.Format)
+            @Html.TextBoxFor(m => m.Format)
+            <span asp-validation-for="Format"></span>
+        </div>
+    </div>
+    <input asp-for="Id" type="hidden"/>
+    <input class="btn btn-primary" type="submit" value="@Actions.Submit">
+}
+}
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

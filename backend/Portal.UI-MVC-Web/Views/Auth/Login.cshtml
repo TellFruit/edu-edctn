@@ -1,0 +1,33 @@
+﻿@model LoginModel
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<h1 class="text-center">@ViewData["Title"]</h1>
+
+@using(Html.BeginForm("Login", "Auth", FormMethod.Post))
+{
+    <div class="mb-2">
+        <div class="d-flex flex-column">
+            @Html.Label(@Profile.Email)
+            @Html.TextBoxFor(m => m.Email)
+            <span asp-validation-for="Email"></span>
+        </div>
+        <div class="d-flex flex-column">
+            @Html.Label(@Profile.Password)
+            @Html.TextBoxFor(m => m.Password, new {type = "password"})
+            <span asp-validation-for="Email"></span>
+        </div>
+    </div>
+    <div class="d-flex justify-content-around">
+        <input class="btn btn-primary" type="submit" value="@Actions.Login">
+        <a asp-action="Register" asp-controller="Auth" class="btn btn-secondary">@Actions.Register</a>
+    </div>
+}
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

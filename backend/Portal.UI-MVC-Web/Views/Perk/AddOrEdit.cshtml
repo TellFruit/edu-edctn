@@ -1,0 +1,34 @@
+﻿@model PerkDTO
+
+@{
+    if (Model.Id.Equals(default))
+    {
+        ViewData["Title"] = $"Add {Context.Request.RouteValues["controller"]}";
+    }
+    else
+    {
+        ViewData["Title"] = $"Edit {Context.Request.RouteValues["controller"]}";
+    }
+}
+
+@if (User.IsInRole(nameof(Roles.Admin)) || (!Model.Id.Equals(default) && User.IsInRole(nameof(Roles.Moderator))))
+{
+@using(Html.BeginForm("AddOrEdit", "Perk", FormMethod.Post))
+{
+    <div class="mb-2">
+        <div class="d-flex flex-column">
+            @Html.Label(@Objects.Name)
+            @Html.TextBoxFor(m => m.Name)
+            <span asp-validation-for="Name"></span>
+        </div>
+    </div>
+    <input asp-for="Id" type="hidden"/>
+    <input class="btn btn-primary" type="submit" value="@Actions.Submit">
+}
+}
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

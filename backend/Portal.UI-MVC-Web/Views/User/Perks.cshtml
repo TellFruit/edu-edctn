@@ -1,0 +1,32 @@
+﻿@model ICollection<PerkLevelDTO>
+
+@{
+    ViewData["Title"] = @Profile.ProfilePerks;
+}
+
+<h1 class="text-center">@Profile.ProfilePerks</h1>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">@Objects.Name</th>
+            <th scope="col">@Objects.Level</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var perk in Model)
+        {
+            <tr>
+                <th scope="row">
+                    @perk.Perk.Name
+                </th>
+                <th scope="row">
+                    @perk.Level
+                </th>
+            </tr>
+        }
+    </tbody>
+</table>  
+@if (Model.Any() is false)
+{
+    <h3 class="text-center">@Headings.NoData</h3>
+}

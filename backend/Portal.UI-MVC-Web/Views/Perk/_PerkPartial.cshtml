@@ -1,0 +1,41 @@
+﻿@model PerkIndexModel
+
+<table class="table table-hover" id="perk-table">
+    <thead>
+        <tr>
+            <th scope="col">@Objects.Name</th>
+            <th scope="col" />
+            <th scope="col" />
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var perk in Model.Perks)
+        {
+            <tr>
+                <th scope="row">
+                    @perk.Name
+                </th>
+                <td class="d-flex flex-row-reverse">
+                    @if (User.IsInRole(nameof(Roles.Moderator)) || User.IsInRole(nameof(Roles.Admin)))
+                    {
+                        <a asp-controller="Perk" asp-action="AddOrEdit" asp-route-id="@perk.Id" class="btn btn-secondary">
+                            @Actions.Edit
+                        </a>
+                    }
+                </td>
+                <td>
+                    @if (User.IsInRole(nameof(Roles.Admin)))
+                    {
+                        <a class="btn btn-danger" url="@Url.Action("Delete", "Perk")" data_id="@perk.Id">
+                            @Actions.Delete
+                        </a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>  
+@if (Model.Perks.Any() is false)
+{
+    <h3 class="text-center">@Headings.NoData</h3>
+}

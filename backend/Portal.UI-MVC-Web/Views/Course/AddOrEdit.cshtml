@@ -1,0 +1,214 @@
+﻿@model CourseViewModel
+
+@{
+    if (Model.Id.Equals(default))
+    {
+        ViewData["Title"] = $"Add {Context.Request.RouteValues["controller"]}";
+    }
+    else
+    {
+        ViewData["Title"] = $"Edit {Context.Request.RouteValues["controller"]}";
+    }
+}
+
+@if (User.IsInRole(nameof(Roles.Admin)) || (!Model.Id.Equals(default) && User.IsInRole(nameof(Roles.Moderator))))
+{
+@using (Html.BeginForm("AddOrEdit", "Course", FormMethod.Post))
+{
+    <div class="mb-2">
+        <div class="d-flex flex-column">
+            @Html.Label(@Objects.Name)
+            @Html.TextBoxFor(m => m.Name)
+            <span asp-validation-for="Name"></span>
+        </div>
+        <div class="d-flex flex-column">
+            @Html.Label(@Objects.Description)
+            @Html.TextAreaFor(m => m.Description)
+            <span asp-validation-for="Description"></span>
+        </div>
+        <h2>@Headings.Articles</h2>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">@Objects.Selected</th>
+                    <th scope="col">@Objects.Title</th>
+                    <th scope="col">@Objects.Url</th>
+                    <th scope="col">@Objects.Published</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.Articles.Count(); ++i)
+                {
+                    <input asp-for="Articles[i].Id" type="hidden" />
+                    <input asp-for="Articles[i].Title" type="hidden" />
+                    <input asp-for="Articles[i].Url" type="hidden" />
+                    <input asp-for="Articles[i].Published" type="hidden" />
+                    <tr>
+                        <th scope="row">
+                            @Html.CheckBoxFor(m => m.Articles[i].IsSelected)
+                        </th>
+                        <th scope="row">
+                            @Model.Articles[i].Title
+                        </th>
+                        <td>
+                            @Model.Articles[i].Url
+                        </td>
+                        <td>
+                            @Model.Articles[i].Published.Date.ToShortDateString()
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        @if (Model.Articles.Any() is false)
+        {
+            <h3 class="text-center">@Headings.NoData</h3>
+        }
+        <div class="border-top my-3"></div>
+        <div class="border-top my-3"></div>
+        <div class="border-top my-3"></div>
+        <div class="border-top my-3"></div>
+        <div class="border-top my-3"></div>
+        <h2>@Headings.Books</h2>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">@Objects.Selected</th>
+                    <th scope="col">@Objects.Title</th>
+                    <th scope="col">@Objects.PageCount</th>
+                    <th scope="col">@Objects.Author</th>
+                    <th scope="col">@Objects.Published</th>
+                    <th scope="col">@Objects.Format</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.Books.Count(); ++i)
+                {
+                    <input asp-for="Books[i].Id" type="hidden" />
+                    <input asp-for="Books[i].Title" type="hidden" />
+                    <input asp-for="Books[i].PageCount" type="hidden" />
+                    <input asp-for="Books[i].Authors" type="hidden" />
+                    <input asp-for="Books[i].Published" type="hidden" />
+                    <input asp-for="Books[i].Format" type="hidden" />
+
+                    <tr>
+                        <th scope="row">
+                            @Html.CheckBoxFor(m => m.Books[i].IsSelected)
+                        </th>
+                        <th scope="row">
+                            @Model.Books[i].Title
+                        </th>
+                        <td>
+                            @Model.Books[i].PageCount
+                        </td>
+                        <td>
+                            @Model.Books[i].Authors.First()
+                        </td>
+                        <td>
+                            @Model.Books[i].Published.ToShortDateString()
+                        </td>
+                        <td>
+                            @Model.Books[i].Format
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        @if (Model.Books.Any() is false)
+        {
+            <h3 class="text-center">@Headings.NoData</h3>
+        }
+        <div class="border-top my-3"></div>
+        <div class="border-top my-3"></div>
+        <div class="border-top my-3"></div>
+        <div class="border-top my-3"></div>
+        <div class="border-top my-3"></div>
+        <h2>@Headings.Videos</h2>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">@Objects.Selected</th>
+                    <th scope="col">@Objects.Title</th>
+                    <th scope="col">@Objects.Duration</th>
+                    <th scope="col">@Objects.Quality</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.Videos.Count(); ++i)
+                {
+                    <input asp-for="Videos[i].Id" type="hidden" />
+                    <input asp-for="Videos[i].Title" type="hidden" />
+                    <input asp-for="Videos[i].Duration" type="hidden" />
+                    <input asp-for="Videos[i].Quality" type="hidden" />
+
+                    <tr>
+                        <th scope="row">
+                            @Html.CheckBoxFor(m => m.Videos[i].IsSelected)
+                        </th>
+                        <th scope="row">
+                            @Model.Videos[i].Title
+                        </th>
+                        <td>
+                            @Model.Videos[i].Duration.ToString()
+                        </td>
+                        <td>
+                            @Model.Videos[i].Quality
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        @if (Model.Videos.Any() is false)
+        {
+            <h3 class="text-center">@Headings.NoData</h3>
+        }
+        <div class="border-top my-3"></div>
+        <div class="border-top my-3"></div>
+        <div class="border-top my-3"></div>
+        <div class="border-top my-3"></div>
+        <div class="border-top my-3"></div>
+        <h2>@Headings.Perks</h2>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">@Objects.Selected</th>
+                    <th scope="col">@Objects.Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.Perks.Count(); ++i)
+                {
+                    <input asp-for="Perks[i].Id" type="hidden" />
+                    <input asp-for="Perks[i].Name" type="hidden" />
+
+                    <tr>
+                        <th scope="row">
+                            @Html.CheckBoxFor(m => m.Perks[i].IsSelected)
+                        </th>
+                        <th scope="row">
+                            @Model.Perks[i].Name
+                        </th>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        @if (Model.Perks.Any() is false)
+        {
+            <h3 class="text-center">@Headings.NoData</h3>
+        }
+    </div>
+    <div class="border-top my-3"></div>
+    <div class="border-top my-3"></div>
+    <div class="border-top my-3"></div>
+    <div class="border-top my-3"></div>
+    <div class="border-top my-3"></div>
+    <input asp-for="Id" type="hidden" />
+    <input class="btn btn-primary" type="submit" value="@Actions.Submit">
+}
+}
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

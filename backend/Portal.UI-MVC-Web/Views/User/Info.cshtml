@@ -1,0 +1,33 @@
+﻿@model UserDTO
+
+@{
+    ViewData["Title"] = @Profile.Info;
+    Context.Session.SetString("LastUrl", Context.Request.Path);
+}
+
+@if (User.Identity.IsAuthenticated)
+{
+@using(Html.BeginForm("UpdateInfo", "User", FormMethod.Post))
+{
+    <div class="mb-2">
+        <div class="d-flex flex-column">
+            @Html.Label(@Profile.FirstName)
+            @Html.TextBoxFor(m => m.FirstName)
+        </div>
+        <div class="d-flex flex-column">
+            @Html.Label(@Profile.LastName)
+            @Html.TextBoxFor(m => m.LastName)
+        </div>
+        <div class="d-flex flex-column">
+            @Html.Label(@Profile.Email)
+            @Html.TextBoxFor(m => m.Email)
+        </div>
+        <div class="d-flex flex-column">
+            @Html.Label(@Profile.Password)
+            @Html.TextBoxFor(m => m.Password)
+        </div>
+    </div>
+    <input asp-for="Id" type="hidden"/>
+    <input class="btn btn-primary" type="submit" value="@Actions.Update">
+}
+}

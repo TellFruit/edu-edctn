@@ -1,0 +1,57 @@
+﻿@model BookIndexModel
+
+<table class="table table-hover" id="book-table">
+    <thead>
+        <tr>
+            <th scope="col">@Objects.Title</th>
+            <th scope="col">@Objects.PageCount</th>
+            <th scope="col">@Objects.Author</th>
+            <th scope="col">@Objects.Published</th>
+            <th scope="col">@Objects.Format</th>
+            <th scope="col" />
+            <th scope="col" />
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var book in Model.Books)
+        {
+            <tr>
+                <th scope="row">
+                    @book.Title
+                </th>
+                <th scope="row">
+                    @book.PageCount
+                </th>
+                <td>
+                    @book.Authors.First()
+                </td>
+                <td>
+                    @book.Published.ToShortDateString()
+                </td>
+                <td>
+                    @book.Format
+                </td>
+                <td class="d-flex flex-row-reverse">
+                    @if (User.IsInRole(nameof(Roles.Moderator)) || User.IsInRole(nameof(Roles.Admin)))
+                    {
+                        <a asp-controller="Book" asp-action="AddOrEdit" asp-route-id="@book.Id" class="btn btn-secondary">
+                            @Actions.Edit
+                        </a>
+                    }
+                </td>
+                <td>
+                    @if (User.IsInRole(nameof(Roles.Admin)))
+                    {
+                        <a class="btn btn-danger" url="@Url.Action("Delete", "Book")" data_id="@book.Id">
+                            @Actions.Delete
+                        </a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>  
+@if (Model.Books.Any() is false)
+{
+    <h3 class="text-center">@Headings.NoData</h3>
+}

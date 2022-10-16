@@ -1,0 +1,63 @@
+﻿@model AttendViewModel
+
+@{
+    ViewData["Title"] = @Actions.Attend;
+}
+
+<div class="mb-2">
+        <div class="d-flex flex-column">
+            @Html.Label(@Objects.Name)
+            @Html.TextBoxFor(m => m.Course.Name)
+        </div>
+        <div class="d-flex flex-column">
+            @Html.Label(@Objects.Description)
+            @Html.TextAreaFor(m => m.Course.Description)
+        </div>
+
+    @{
+        var courseProgress = Model.User.CourseProgress.First(c => Model.Course.Id.Equals(c.CourseId));
+
+            <h3>@Headings.Materials</h3>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">@Objects.Learned</th>
+                        <th scope="col">@Objects.Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < Model.Materials.Count; ++i)
+                    {
+                        <tr>
+                            <th scope="row">
+                                @Html.CheckBoxFor(m => m.Materials[i].IsLearned, new { @class = "learn-material", progress = courseProgress.Progress, material = Model.Materials[i].Material.Id, url= @Url.Action("LearnOrUnlearn", "User") })
+                            </th>
+                            <td>
+                                @Model.Materials[i].Material.ToString()
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>  
+
+            <h3>@Headings.Perks</h3>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">@Objects.Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(var perk in Model.Course.Perks)
+                    {
+                        <tr>
+                            <td>
+                                 @perk.Name
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+    }
+    
+</div>
